@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+All Profiles
+{% endblock title %}
+
+
+{% block content %}
+  {% if is_empty %}
+    No People to interact with
+  {% endif %}
+  {% for obj in  object_list%}
+    <div class='ui segment'>
+      <div class="ui grid">
+        <div class="row">
+          <div class="three wide column">
+            <img class="ui small circular image" src="{{ obj.avatar.url }}">
+          </div>
+          <div class="thirteen wide column">
+            <h3>{{ obj.user.username }}</h3>
+            <p>{{ obj.bio }}</p>
+            <a href="{{obj.get_absolute_url}}"><button class='ui primary button sizebtn mb-5'>See Profile</button></a>
+            <br>
+          
+            {% if obj.user not in rel_receiver and obj.user not in rel_sender%}
+            <form action="{% url 'profiles:send-invite' %}" method='POST'>
+              {% csrf_token %}
+              <input type="hidden" name='profile_pk' value={{obj.pk}}>
+                <button type='submit' class='ui positive basic button sizebtn mb-5'><i class='plus square icon'></i>Add to Friends</button>
+            </form>
+            {% endif %}
+            
+            {% if obj.user in rel_receiver and request.user not in obj.friends.all %}
+              <button class='ui disabled button'>
+                <i class='user icon sizebtn mb-5'></i>
+                Pending...
+              </button>
+            {% endif %}
+
+            <!--to remove from firend list-->
+            {% if request.user in obj.friends.all %}
+            <form action="{% url 'profiles:remove-friend' %}" method='POST'>
+              {% csrf_token %}
+              <input type="hidden" name='profile_pk' value={{obj.pk}}>
+              
+              <button class='ui negative basic button'>
+                <i class='minus square icon sizebtn mb-5'></i>
+                Remove from Friends
+              </button>
+            </form>
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock content %}

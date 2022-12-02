@@ -1,0 +1,47 @@
+body{
+  background-color: rgb(174, 215, 255) !important; 
+}
+
+.nav{
+  border-radius: 0% !important;
+  border-radius: 10px 0 10px 0 !important; 
+  background-color: #000 !important;
+}
+
+.mb-7{
+  margin-bottom: 7px !important;
+}
+
+/* for update button */
+mt-5{
+  margin-top: 5px !important;
+}
+
+.mymodel {
+  height: 300px !important;
+  top: 200% !important;
+  font-size: 20px !important;
+}
+
+/* for posts/main.html*/
+.mb-5 {
+  margin-bottom: 5px !important;
+}
+
+/* for profiles/profile_list.html--> buttons*/
+.btn_size {
+  width: 200px !important;
+}
+
+.bwhite-lg {
+  background-color: transparent !important;
+}
+
+.bwhite-sm {
+  background-color: transparent !important;
+  width: 10px !important;
+}
+
+.comment-box {
+  display: none;
+}
