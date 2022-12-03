@@ -13,7 +13,7 @@
                     <div class="row">
                         {% if request.user == obj.author.user %}
                             <a href="{% url 'posts:post-update' obj.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
-                            <a href="{% url 'posts:post-delete' obj.pk %}"><button class="ui button bwhite-lg ">Delete</button></a>
+                            <a href="{% url 'posts:post-delete' obj.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
                         {% endif %}
                     </div>
                 </div>
@@ -27,9 +27,12 @@
                     <img src={{obj.image.url}}>
                 {% endif %}
             </div>
+            <br>
             <!--Likes and Unlikes-->
             <div class="content">
                 <p> {{ obj.content }} </p>
+            </div>
+            <div>
                 <div class="right floated">
                     <form action="{% url 'posts:like-post-view' %}" method="POST" class='like-form' id='{{obj.id}}'>
                         {% csrf_token %}
@@ -52,12 +55,13 @@
                             </div>
                     </form>
                 </div>
-                <i class="comment icon"></i>
-                <span> {{ obj.num_comments }} comments</span>
+                <div class='left floated' >
+                    <i class=" comment icon large"></i>
+                    <span> <h5>{{ obj.num_comments }} Comments</h5></span>
+                </div>
             </div>
             <div class="extra content">
                 <div class="mb-5">
-                  
                 </div>
                 <button class="cmt_btn ui button mb-5">show / hide comments</button>
                 <div class="comment-box">
@@ -89,7 +93,7 @@
     <div class="five wide column">
         <div class="ui segment">
             {% if post_added %}
-                <div class="ui green message">Post added</div>
+            <div class="ui green message">Post added</div>
             {% endif %}
             <form action="" method="POST" class='ui form' enctype="multipart/form-data">
                 {% csrf_token %}

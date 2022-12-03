@@ -18,8 +18,9 @@ class Posts(models.Model):
   def num_likes(self):
     return self.liked.all().count()
   
+  #TODO:
   def num_comments(self):
-        return self.comment_set.all().count() # type: ignore 
+    return self.comment_set.all().count() # type: ignore 
   
   # the latest post will be on top
   class Meta:

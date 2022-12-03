@@ -1,10 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Profile, Relationship
 from django.shortcuts import render
 from .forms import ProfileModelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
 from django.db.models import Q
 from posts.models import Posts
 
@@ -39,35 +38,38 @@ def invite_profiles_list_view(request):
   return render(request, 'profiles/to-invite-list.html', context)
 
 class ProfileListView(ListView):
-    model = Profile
-    template_name = 'profiles/profile_list.html'
-    # context_object_name = 'qs'
+  '''
+  This will show all those profiles which are either friends or not friend of the current user
+  '''
+  model = Profile
+  template_name = 'profiles/profile_list.html'
+  # context_object_name = 'qs'
 
-    def get_queryset(self):
-        qs = Profile.objects.get_all_profiles(self.request.user)
-        return qs
+  def get_queryset(self):
+    qs = Profile.objects.get_all_profiles(self.request.user)
+    return qs
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        user = User.objects.get(username__iexact=self.request.user)
-        profile = Profile.objects.get(user=user)
-        rel_r = Relationship.objects.filter(sender=profile)
-        rel_s = Relationship.objects.filter(receiver=profile)
-        rel_receiver = []
-        rel_sender = []
-        for item in rel_r:
-            rel_receiver.append(item.receiver.user)
-        for item in rel_s:
-            rel_sender.append(item.sender.user)
-        context["rel_receiver"] = rel_receiver
-        context["rel_sender"] = rel_sender
-        context['is_empty'] = False
-        if len(self.get_queryset()) == 0:
-            context['is_empty'] = True
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    user = User.objects.get(username__iexact=self.request.user)
+    profile = Profile.objects.get(user=user)
+    rel_r = Relationship.objects.filter(sender=profile)
+    rel_s = Relationship.objects.filter(receiver=profile)
+    rel_receiver = []
+    rel_sender = []
+    for item in rel_r:
+        rel_receiver.append(item.receiver.user)
+    for item in rel_s:
+        rel_sender.append(item.sender.user)
+    context["rel_receiver"] = rel_receiver
+    context["rel_sender"] = rel_sender
+    context['is_empty'] = False
+    if len(self.get_queryset()) == 0:
+        context['is_empty'] = True
 
-        return context
+    return context
 
-def send_invatation(request):
+def send_invitation(request):
   '''Here we will receive Primary key of the user we want to send the friend request, and then we will create a relationship object'''
 
   if request.method == 'POST':
@@ -101,7 +103,7 @@ def remove_from_friends(request):
 # Accepting and rejecting friend requests all three 
 def invites_received_view(request):
   profile = Profile.objects.get(user=request.user)
-  qs = Relationship.objects.invatations_received(profile)
+  qs = Relationship.objects.invitations_received(profile)
   results = list(map(lambda x: x.sender, qs))
   is_empty = False
   if len(results) == 0:

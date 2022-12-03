@@ -4,7 +4,7 @@ from .views import (
   invites_received_view,
   invite_profiles_list_view,
   ProfileListView,
-  send_invatation,
+  send_invitation,
   remove_from_friends,
   accept_invitation,
   reject_invitation,
@@ -15,7 +15,7 @@ app_name = 'profiles'  # in case we need to use the namespace in the future
 urlpatterns = [
   # all profiles list
   path('', ProfileListView.as_view(), name='all-profiles'),
-  path('send-invite/', send_invatation, name='send-invite'),
+  path('send-invite/', send_invitation, name='send-invite'),
   path('remove-friend/', remove_from_friends, name='remove-friend'),
 
   # show own profile

@@ -26,11 +26,11 @@ SECRET_KEY = 'django-insecure-9x5e3shen*+a66vk360$0ncpk^4+!o4(mps)e_6tmih(smob^e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# Allowed hosts for the project to run on 
 ALLOWED_HOSTS = []
 
 # LOGIN_URL ='/admin/'
 # Here If User logged in then he will be redirected to this page
-LOGIN_REDIRECT_URL = '/posts'
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     'profiles',
     'posts',
+    'zakat_posts',
 
     # django-allauth
     'allauth',
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
 ]
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
+LOGIN_REDIRECT_URL = '/posts'
 ACCOUNT_EMAIL_UNIQUE = True
 # ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_AUTHENTICATION_METHOD = 'username_email'

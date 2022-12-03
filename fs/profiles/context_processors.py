@@ -13,6 +13,6 @@ def profile_picture(request):
 def invitaions_received_no(request):
   if request.user.is_authenticated:
     profile_obj = Profile.objects.get(user=request.user)
-    qs_count = Relationship.objects.invatations_received(profile_obj).count()
+    qs_count = Relationship.objects.invitations_received(profile_obj).count()
     return {'invitations_no': qs_count} # will use this key to access
   return {}

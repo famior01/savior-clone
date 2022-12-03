@@ -25,8 +25,9 @@ urlpatterns = [
     path('', home, name='home'),
     path('profiles/', include('profiles.urls', namespace='profiles')),
     path('posts/', include('posts.urls', namespace='posts')),
+    path('zakat_posts/', include('zakat_posts.urls', namespace='zakat_posts')),
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # for media files (user uploaded files)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # for static files (css, js, images) 

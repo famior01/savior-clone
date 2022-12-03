@@ -7,10 +7,10 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import JsonResponse
+from family_savior.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
-# Create your views here.
 
-# @login_required
+@login_required(login_url=LOGIN_REDIRECT_URL)
 def post_comment_create_and_list_view(request):
     qs = Posts.objects.all()
     profile = Profile.objects.all()
@@ -46,12 +46,14 @@ def post_comment_create_and_list_view(request):
     context = {
       'qs':qs,
       'profile':profile,
+      'post_added':post_added,
       'p_form':p_form,
       'c_form':c_form,
     }
     return render(request, "posts/main.html", context=context)
 
 
+@login_required(login_url=LOGIN_REDIRECT_URL)
 def like_unlike_post(request):
     user = request.user
     if request.method == 'POST':
@@ -59,23 +61,29 @@ def like_unlike_post(request):
         post_obj = Posts.objects.get(id=post_id)
         profile = Profile.objects.get(user=user)
 
-        if profile in post_obj.liked.all():
-            post_obj.liked.remove(profile)
-        else:
-            post_obj.liked.add(profile)
-
         like, created = Like.objects.get_or_create(user=profile, post_id=post_id)
 
-        if not created:
-            if like.value=='Like':
-                like.value='Unlike'
-            else:
-                like.value='Like'
+        if profile in post_obj.liked.all():
+            post_obj.liked.remove(profile)
+            like.delete()
         else:
-            like.value='Like'
-
-            post_obj.save()
+            post_obj.liked.add(profile)
+            like.value = 'Like'
             like.save()
+        post_obj.save()
+
+        
+
+        # if not created:
+        #     if like.value=='Like':
+        #         like.value='Unlike'
+        #     else:
+        #         like.value='Like'
+        # else:
+        #     like.value='Like'
+
+        #     post_obj.save()
+        #     like.save()
 
         data = {
             'value': like.value,
@@ -87,6 +95,7 @@ def like_unlike_post(request):
 
 
 # delete post
+# @login_required(login_url=LOGIN_REDIRECT_URL)
 class PostDeleteView(DeleteView):
     model = Posts
     template_name = 'posts/confirm_delete.html'
@@ -101,6 +110,7 @@ class PostDeleteView(DeleteView):
       return obj
     
 # post update
+
 
 class PostUpdateView(UpdateView):
     model = Posts

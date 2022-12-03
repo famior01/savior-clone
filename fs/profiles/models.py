@@ -4,7 +4,7 @@ from .utils import get_random_code
 from django.template.defaultfilters import slugify
 from django.db.models.signals import post_save
 from django.db.models import Q
-from django.shortcuts import reverse
+from django.urls import reverse
 # Create your models here.
 
 class ProfileManager(models.Manager):
@@ -24,6 +24,9 @@ class ProfileManager(models.Manager):
     print(accepted)
     available = [profile for profile in profiles if profile not in accepted]
     return available
+
+  #TODO: HERE YOU WILL WRITE THE LOGIC OF RECOMMENDATION SYSTEM
+  # IT WILL BE DEPENDENT OF MUTUAL FRIENDS, LOCATION 
 
   def get_all_profiles(self, me):
     profiles = Profile.objects.all().exclude(user=me)
@@ -47,10 +50,11 @@ class Profile(models.Model):
   
   def __str__(self):
     # String representation of the model
-    return f'{self.user.username}-{self.created.strftime("%d-%m-%Y")}'
+    return f'{self.user.username} ({self.created.strftime("%b %d, %Y")})'
 
+  # to get the absolute url of the profile
   def get_absolute_url(self):
-    return reverse("profiles:profile-detail-view", kwargs={"slug": self.slug})
+    return reverse("profiles:profile-detail-view", kwargs={"slug": self.slug}) 
 
   def get_friends(self):
     return self.friends.all()
@@ -80,10 +84,10 @@ class Profile(models.Model):
 
   def get_likes_recieved_no(self):
     posts = self.posts.all() # type: ignore
-    total_liked = 0
+    total_posts = 0
     for item in posts:
-      total_liked += item.likes.all().count()
-    return total_liked
+      total_posts+= item.likes.all().count()
+    return total_posts
 
   __initial_first_name = None
   __initial_last_name = None
@@ -121,7 +125,7 @@ class RelationshipManager(models.Manager):
   '''
   here this will handle the friend request
   '''
-  def invatations_received(self, receiver):
+  def invitations_received(self, receiver):
     qs = Relationship.objects.filter(receiver=receiver, status='send')
     return qs
 

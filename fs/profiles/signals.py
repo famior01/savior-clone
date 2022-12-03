@@ -1,7 +1,6 @@
 """
 This file is used to send signals to the user profile app. 
 """
-
 from django.db.models.signals import post_save, pre_delete # this is the signal that is sent when a user is created
 from django.contrib.auth.models import User # this is the user model
 from django.dispatch import receiver # this is the receiver of the signal
