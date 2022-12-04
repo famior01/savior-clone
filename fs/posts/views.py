@@ -96,7 +96,7 @@ def like_unlike_post(request):
 
 # delete post
 # @login_required(login_url=LOGIN_REDIRECT_URL)
-class PostDeleteView(DeleteView):
+class PostDeleteView(DeleteView): 
     model = Posts
     template_name = 'posts/confirm_delete.html'
     success_url = reverse_lazy('posts:main-post-view') # reverse_lazy is used to avoid circular import

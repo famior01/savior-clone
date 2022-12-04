@@ -8,7 +8,7 @@ class ZakatPostsAdmin(admin.ModelAdmin):
     
 @admin.register(ZakatPostsComment)
 class ZakatPostsCommentAdmin(admin.ModelAdmin):
-    list_display = ('user', 'post', 'body', 'created_at', 'updated_at')
+    list_display = ('id', 'user', 'post', 'body', 'created_at', 'updated_at')
 
 @admin.register(UpVote)
 class UpVoteAdmin(admin.ModelAdmin):

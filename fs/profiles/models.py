@@ -50,7 +50,7 @@ class Profile(models.Model):
   
   def __str__(self):
     # String representation of the model
-    return f'{self.user.username} ({self.created.strftime("%b %d, %Y")})'
+    return str(self.slug)
 
   # to get the absolute url of the profile
   def get_absolute_url(self):

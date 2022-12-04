@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import home
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -26,6 +27,7 @@ urlpatterns = [
     path('profiles/', include('profiles.urls', namespace='profiles')),
     path('posts/', include('posts.urls', namespace='posts')),
     path('zakat_posts/', include('zakat_posts.urls', namespace='zakat_posts')),
+    path('api/', include('zakat_posts.api.urls')),
 ]
 
 if settings.DEBUG:

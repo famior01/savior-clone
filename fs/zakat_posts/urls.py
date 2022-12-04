@@ -1,8 +1,10 @@
 from django.urls import path
-from .views import home
+from . import views
 
 app_name = 'zakat_posts'
 
 urlpatterns = [
-    path('zakat_bat/', home, name='home'),
+    path('', views.zakatPosts_comment_create_and_list_view, name='main-post-view'),
+    path('upvote/', views.upvote, name='upvote'),
+    path('downvote/', views.downvote, name='downvote'),
 ]
