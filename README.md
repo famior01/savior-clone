@@ -32,7 +32,7 @@ THE EASIEST WAY TO PAY ZAKAT!
   [] Displaying of Zakat amount with in the app
 
 ## Zakat Payment
-  [] Payment of Zakat, through debit card, credit card, and bank account
+[] Payment of Zakat, through debit card, credit card, and bank account
 
 ## Zakat Organizations
   [] List of Zakat Organizations
