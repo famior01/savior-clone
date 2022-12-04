@@ -98,8 +98,6 @@ def upvote(request):
     # return JsonResponse(data, safe=False)
   return redirect('zakat_posts:main-post-view')
 
-
-
 def downvote(request):
   
   if request.method == 'POST':
@@ -132,3 +130,31 @@ def downvote(request):
     
   return redirect('zakat_posts:main-post-view')
 
+class PostDeleteView(DeleteView): 
+    model = ZakatPosts
+    template_name = 'zakat_posts/confirm_delete.html'
+    success_url = reverse_lazy('zakat_posts:main-post-view') # reverse_lazy is used to avoid circular import
+
+    # only author will be able to delete the post
+    def get_object(self, *args, **kwargs):
+      pk = self.kwargs.get('pk')
+      obj = ZakatPosts.objects.get(pk=pk)
+      if not obj.creator.user== self.request.user:
+        messages.warning(self.request, "You are not authorized to delete this post")
+      return obj
+
+
+class PostUpdateView(UpdateView):
+    model = ZakatPosts
+    form_class = ZakatPostForm  # from forms.py
+    template_name = 'zakat_posts/update.html'
+    success_url = reverse_lazy('zakat_posts:main-post-view')
+
+    # only author will be able to update the post
+    def form_valid(self, form):
+      profile = Profile.objects.get(user=self.request.user)
+      if form.instance.creator == profile:
+        return super().form_valid(form)
+      else:
+        form.add_error(None, "You are not authorized to update this post")
+        return super().form_invalid(form)

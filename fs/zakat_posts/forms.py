@@ -3,9 +3,8 @@ from .models import ZakatPosts, ZakatPostsComment
 
 class ZakatPostForm(forms.ModelForm):
     '''
-    This form is used to create a post
+    This form is used to create and update a post
     '''
-
     # for changing the size of the text area
     content = forms.CharField(widget=forms.Textarea(attrs={'rows':2, 'cols':40}))
     class Meta:
@@ -16,7 +15,7 @@ class ZakatPostForm(forms.ModelForm):
 
 class ZakatPostsCommentForm(forms.ModelForm):
   '''
-  This form is used to create a comment
+  This form is used to create  a comment
   '''
 
   # for changing the size of the text area
