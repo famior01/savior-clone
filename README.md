@@ -42,3 +42,7 @@ THE EASIEST WAY TO PAY ZAKAT!
 
 ## Authentication
 - [ ] Simple login and signup page
+
+
+----
+[All shortcuts for Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
