@@ -3,7 +3,7 @@ THE EASIEST WAY TO PAY ZAKAT!
 
 ## TODO
 ------
-1. Profile
+## Profile
   [X] Every user must have his Profile, with having ability of updating contents, 
     [X] Watching his friends 
     [X] Watching his posts 
@@ -13,13 +13,13 @@ THE EASIEST WAY TO PAY ZAKAT!
   [X] ability to accept friend request
   
 
-2. Posts
+## Posts
   [X] Post (Content, Pictures, Videos )
   [X] Like and dislike, comments, share
   [] notification of like, dislike, comments, and sharing 
    
 
-3. Zakat Posts
+## Zakat Posts
   [X] Posting Zakat Post
   [] Varification from AI
   [X] Upvoting and DownVoting
@@ -27,19 +27,19 @@ THE EASIEST WAY TO PAY ZAKAT!
   [] Direct message option with in the app
   [] Display Expected amount, varified badge, Pade badge 
 
-4. Zakat Calculator
+## Zakat Calculator
   [] Calculating of Zakat
   [] Displaying of Zakat amount with in the app
 
-5. Zakat Payment
+## Zakat Payment
   [] Payment of Zakat, through debit card, credit card, and bank account
 
-6. Zakat Organizations
+## Zakat Organizations
   [] List of Zakat Organizations
   [] Displaying of Zakat Organizations with in the app
   [] Payment of Zakat to Zakat Organizations
   [] Displaying of Zakat Organizations with in the app
 
 
-3. Authentication
+## Authentication
   Simple login and signup page
