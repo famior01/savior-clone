@@ -29,7 +29,7 @@
                         <a href="{{obj.video1.url}}">  
                             <video width="320" height="240" controls>
                                 <source src="{{obj.video1.url}}" type="video/mp4">
-                                <source src="{{obj.video1.url}}" type="video/mp4">
+                                {% comment %} <source src="{{obj.video1.url}}" type="video/mp4"> {% endcomment %}
                             </video>
                         </a>
                     {% endif %}
@@ -40,7 +40,7 @@
                         <a href="{{obj.video2.url}}">  
                             <video width="320" height="240" controls>
                                 <source src="{{obj.video2.url}}" type="video/mp4">
-                                <source src="{{obj.video2.url}}" type="video/mp4">
+                                {% comment %} <source src="{{obj.video2.url}}" type="video/mp4"> {% endcomment %}
                             </video>
                         </a>
                     {% endif %}
@@ -122,7 +122,7 @@
             {% if post_added %}
             <div class="ui green message">Post added</div>
             {% endif %}
-            <form action="" method="POST" class='ui form' enctype="multipart/form-data">
+            <form action="" method="POST" class='ui form' enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
                 {{p_form}}
                 <button type='submit' name="submit_p_form" class="ui positive button w-full mt-5">Send</button>
@@ -131,7 +131,7 @@
     </div>
 </div>
 {% endblock content %}
-
+{% comment %} 
 {% block scripts %} 
     <!--display here will overide the display = none in style-->
     <script>
@@ -171,10 +171,10 @@
                     }, 
                     success: function(response) {
                         if(trim === 'Unlike') {
-                            $(`.upvote-btn${post_id}`).text('Like')
+                            $(`.upvote-btn${post_id}`).text('Upvote')
                             res = trimCount - 1
                         } else {
-                            $(`.upvote-btn${post_id}`).text('Unlike')
+                            $(`.upvote-btn${post_id}`).text('Downvote')
                             res = trimCount + 1
                         }
 
@@ -188,4 +188,4 @@
             })
         });
     </script>
-{% endblock scripts %}
+{% endblock scripts %} {% endcomment %}

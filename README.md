@@ -3,7 +3,7 @@ THE EASIEST WAY TO PAY ZAKAT!
 
 ## TODO
 
-## Profile
+## 1. Profile
 - [X] Every user must have his Profile, with having ability of updating contents, 
    - [X] Watching his friends 
    - [X] Watching his posts 
@@ -13,26 +13,34 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [X] ability to accept friend request
   
 
-## Islamic Posts
+## 2. Islamic Posts
 - [X] Post (Content, Pictures, Videos )
 - [X] Like and dislike, comments, share
 - [ ] notification of like, dislike, comments, and sharing 
    
 
-## Zakat Posts
+## 3. Zakat Posts
 - [X] Posting Zakat Post
-- [ ] Updating and Deleting Zakat Post
+- [X] Updating and Deleting Zakat Post
 - [ ] Varification from AI
 - [X] Upvoting and DownVoting
 - [ ] Sharing Experience
 - [ ] Direct message option with in the app
 - [ ] Display Expected amount, varified badge, Pade badge 
 
+## 4. AI Varification systems
+- [ ] Detect Emotions by face
+  - [ ] Get Frames from video
+  - [ ] Detect face
+  - [ ] Detect Emotions
+  - [ ] take out average of emotions
+## Communication with Seeker  via messenger or Phone 
+- [ ] Messenger like app
 ## Zakat Calculator
 - [ ] Calculating of Zakat
 - [ ] Displaying of Zakat amount with in the app
 
-## Zakat Payment
+## Zakat Payment System
   [] Payment of Zakat, through debit card, credit card, and bank account
 
 ## Zakat Organizations
@@ -45,5 +53,3 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] Simple login and signup page
 
 
-----
-[All shortcuts for Markdown](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)

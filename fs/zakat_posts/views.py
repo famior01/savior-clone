@@ -10,7 +10,11 @@ from django.http import JsonResponse
 from family_savior.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
 from posts.models import Posts
-# Create your views here.
+from AI.face_emo_detection import connector
+import cv2
+import os
+# from .utils import playvideo
+
 
 def zakatPosts_comment_create_and_list_view(request):
   qs = ZakatPosts.objects.all()
@@ -24,12 +28,20 @@ def zakatPosts_comment_create_and_list_view(request):
   profile = Profile.objects.get(user=request.user)
 
   if 'submit_p_form' in request.POST:
-    print('Adding post')
+    # print('Adding post')
     p_form = ZakatPostForm(request.POST, request.FILES)
     if p_form.is_valid():
+      # video1 = p_form.cleaned_data['video1']
+      # print("************", video1, "************")
       instance = p_form.save(commit=False)
       instance.creator= profile
       instance.save()
+
+      # GETTING FRAMES
+      ID = instance.id
+      print("************", ID, "************")
+      obj = connector.find_emotion(video_id=ID)
+
       p_form = ZakatPostForm()
       post_added = True
 
@@ -41,6 +53,7 @@ def zakatPosts_comment_create_and_list_view(request):
       instance = c_form.save(commit=False)
       instance.user = profile
       instance.post = ZakatPosts.objects.get(id=request.POST.get('post_id'))
+
       instance.save()
       c_form = ZakatPostsCommentForm()
 

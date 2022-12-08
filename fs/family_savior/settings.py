@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'profiles',
     'posts',
     'zakat_posts',
+    'AI',
 
     # django-allauth
     'allauth',
