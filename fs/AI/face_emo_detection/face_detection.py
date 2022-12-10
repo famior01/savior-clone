@@ -12,7 +12,7 @@ import cv2
 from cv2 import dnn_superres
 
 class Detection:
-    def __init__(self, path, vid_frame_path, height=224, width=224):
+    def __init__(self, path, vid_frame_path, height=500, width=500):
         self.path= path
         self.frames = vid_frame_path
         self.index = 0
@@ -35,13 +35,13 @@ class Detection:
             img_path = self.ls_of_frames[self.index], align = False, allow_upscaling=True)
         
         path = self.make_dir()
-        dim = (self.height, self.width)
+        dim = (self.height, self.width) 
         
         for f in faces:
             # Up-scaling 
             img = cv2.resize(f, dim)
             sr = dnn_superres.DnnSuperResImpl_create()
-            model_path = r'fs\AI\face_emo_detection\FSRCNN_x4.pb'
+            model_path = 'C:/Product/FS_1.1/fs/AI/face_emo_detection/FSRCNN_x4.pb'
             sr.readModel(model_path)
             sr.setModel("fsrcnn", 4) #x4
             result = sr.upsample(img)
@@ -55,6 +55,7 @@ class Detection:
             self.find_face()
         else:
             print("Done extracting faces")
+            return curr_dir
     
     
 

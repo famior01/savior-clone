@@ -29,13 +29,18 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] Display Expected amount, varified badge, Pade badge 
 
 ## 4. AI Varification systems
-- [ ] Detect Emotions by face
-  - [ ] Get Frames from video
-  - [ ] Detect face
-  - [ ] Detect Emotions
-  - [ ] take out average of emotions
+- [X] Detect Emotions by face
+  - [X] Get Frames from video
+  - [-] Detect face
+  - [X] Detect Emotions
+  - [X] take out average of emotions
+
+- [X] Detect Emotions by voice
+- [ ] Detect Objects and place list of all objects
+
 ## Communication with Seeker  via messenger or Phone 
 - [ ] Messenger like app
+
 ## Zakat Calculator
 - [ ] Calculating of Zakat
 - [ ] Displaying of Zakat amount with in the app

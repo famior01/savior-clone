@@ -66,7 +66,7 @@ class GatherSimilarFaces():
         """
         This function will remove rest images from faces dir and will also remove those folder which are empty or have less then 5 images 
         """
-        for img in self.faces_list:
+        for img in self.faces_list: 
             os.remove(img)
         
         path = os.getcwd() 
@@ -74,12 +74,12 @@ class GatherSimilarFaces():
         for i in range(fold_len):
             fold = 'Person'+str(i)
             no_files =len(os.listdir(fold))
-            if no_files == 0 or no_files<5:
+            if no_files == 0 or no_files<2:
                 shutil.rmtree(fold)
         print("Purified!")
     
 
-if __name__ == '__main__':
-    obj = GatherSimilarFaces(r'C:\Product\FS_1.1\fs\AI\face_emo_detection\data\Frames')
-    obj.similar_face()
-    obj.remove_rest()
+# if __name__ == '__main__':
+#     obj = GatherSimilarFaces(r'C:\Product\FS_1.1\fs\AI\face_emo_detection\data\Frames')
+#     obj.similar_face()
+#     obj.remove_rest()

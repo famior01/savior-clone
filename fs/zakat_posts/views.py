@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from family_savior.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
 from posts.models import Posts
-from AI.face_emo_detection import connector
+from AI.combination import Analysis
 import cv2
 import os
 # from .utils import playvideo
@@ -39,8 +39,9 @@ def zakatPosts_comment_create_and_list_view(request):
 
       # GETTING FRAMES
       ID = instance.id
-      print("************", ID, "************")
-      obj = connector.find_emotion(video_id=ID)
+      Analysis(ID)
+
+
 
       p_form = ZakatPostForm()
       post_added = True

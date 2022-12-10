@@ -1,5 +1,5 @@
 '''
-This function will get the frames from a video, you can specify the fps rate (after each second), but I have set it to 90sec. According to Harvard brain scientist Dr. Jill Bolte Taylor, ninety seconds is all it takes to identify an emotion and allow it to dissipate while you simply notice it. 
+This function will get the frames from a video, you can specify the fps rate (after each second), 24 frames per second is the best fps rate for a video. let's get each frames after 24 seconds, and then we will see the result.
 
 let's fix it with 20sec, and then we will see the result.
 '''
@@ -13,12 +13,12 @@ import cv2
 from zakat_posts.utils import playvideo
 
 class Get_frames:
-    def __init__(self, video_id=None, after_each_sec=20):
+    def __init__(self, video_id=None, after_each_sec=2):
         self.vid_path = video_id
         self.second = after_each_sec
 
     def mk_dir(self):
-        curr_dir = os.path.realpath(os.path.dirname(__file__))
+        curr_dir = os.path.realpath(os.path.dirname(__file__)) # for finding the curr dir
         curr_dir = curr_dir+'\data\Frames'
         print("############\tCurrent Directory: ", curr_dir)
         os.makedirs(curr_dir, exist_ok=True)
@@ -49,7 +49,7 @@ class Get_frames:
             # ret, when it reach to end, gets False
             if frame is not None:
                 # write image on the current folder with frame id
-                cv2.imwrite(f"{path}/{frame_id}.jpg", frame)
+                cv2.imwrite(f"{path}/{i}.jpg", frame)
                 i+=1
                 fps+=frame_af_sec
                 # time.sleep(5)
