@@ -29,23 +29,23 @@ class ZakatPosts(models.Model):
   def __str__(self):
     return str(self.pk)
 
+  def num_comments(self):
+    return self.zakat_posts_comments.all().count() # type: ignore
   class Meta:
     ordering = ('-created',)
 
 
 class ZakatPostsComment(models.Model):
-  user = models.ForeignKey(Profile, on_delete=models.CASCADE)
-  post = models.ForeignKey(ZakatPosts,  on_delete=models.CASCADE)
+  user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='zakat_posts_user_comments')
+  post = models.ForeignKey(ZakatPosts,  on_delete=models.CASCADE, related_name='zakat_posts_comments')
   body = models.TextField()
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
 
   def __str__(self):
     return str(self.pk)
-  
   class Meta:
     ordering = ['-created_at']
-
 
 
 class UpVote(models.Model):
@@ -56,7 +56,6 @@ class UpVote(models.Model):
 
   def __str__(self):
     return f"{self.user}-{self.post}"
-
   class Meta:
     ordering = ['-created']
 

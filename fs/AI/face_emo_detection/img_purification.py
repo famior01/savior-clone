@@ -3,10 +3,10 @@ This function will remove all duplicate images from folder.
 You need to provide path with either forward slash init or with -- r"path"
 '''
 import os
-import filecmp
+import filecmp # it find exact similar pic
 from glob import glob
-from face_detection import Detection
-
+# from face_detection import Detection
+ 
 class Purification:
     def __init__(self, fold_path):
         self.fold_path = fold_path
@@ -25,22 +25,23 @@ class Purification:
                         # os.remove(faces_list[nex_img])
                         remove_images.append(faces_list[nex_img])
                 nex_img+=1
-
         # now we got list: let's remove duplicates from this
         ls = set(remove_images)
+        print(ls)
         for i in ls:
             os.remove(i)
         print("All duplicated item have been removed")
+        print("************** ",self.fold_path,"****************")
+        return self.fold_path
+    # def purify_faces(self):
+    #     det = Detection(mk_dir='faces2', 
+    #     vid_frame_path=r'C:\Product\FS\Models\DEEPFACE\faces')
+    #     # print(det.ls_of_frames)
+    #     det.find_face()
 
-    def purify_faces(self):
-        det = Detection(mk_dir='faces2', 
-        vid_frame_path=r'C:\Product\FS\Models\DEEPFACE\faces')
-        # print(det.ls_of_frames)
-        det.find_face()
 
 
-
-if __name__ == "__main__":
-    obj = Purification(r'C:\Product\FS\Models\DEEPFACE\faces')
-    obj.remove_duplicate_images()
-    # obj.purify_faces()
+# if __name__ == "__main__":
+#     obj = Purification(r'C:\Product\FS\Models\DEEPFACE\faces')
+#     obj.remove_duplicate_images()
+#     # obj.purify_faces()

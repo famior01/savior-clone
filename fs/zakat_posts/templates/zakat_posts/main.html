@@ -82,18 +82,23 @@
                         </button>
                     </form>
                 </div>
+                <div class='right floated'>
+                    {% if obj.AI_varified %}
+                            <h1><i class="check circle icon"></i>Varified</h1> 
+                        {% endif %}
+                </div>
                 <div class='left floated' >
                     <i class=" comment icon large"></i>
                     <span> <h5>{{ obj.num_comments }} Comments</h5></span>
                 </div>
-            </div>
+            </div> 
             <div class="extra content">
                 <div class="mb-5">
                 </div>
                 <button class="cmt_btn ui button mb-5">show / hide comments</button>
                 <div class="comment-box">
-                {% if obj.comment_set.all %}
-                    {% for c in obj.comment_set.all %}
+                {% if obj.zakat_posts_comments.all %}
+                    {% for c in obj.zakat_posts_comments.all %}
                     
                         <div class="ui segment mb-5">
                             <img class="ui avatar image" src={{c.user.avatar.url}}>
@@ -104,7 +109,7 @@
                     {% endfor %}
                 {% endif %}
                 </div>
-  
+
                 <form action="" method="POST"class='ui fluid form'>
                     {% csrf_token %}
                     <input type="hidden" name="post_id" value={{obj.id}}>
@@ -119,8 +124,15 @@
     </div>
     <div class="five wide column">
         <div class="ui segment">
-            {% if post_added %}
+            
+            {% if post_added == True %}
             <div class="ui green message">Post added</div>
+            
+            {% elif not post_added %}
+            <div class="ui yellow message"><strong>AI didn't Varified it!</strong></div>
+            
+            {% else %}
+            <div class="ui red message"><strong>{{post_added}}</strong></div>
             {% endif %}
             <form action="" method="POST" class='ui form' enctype="multipart/form-data" novalidate>
                 {% csrf_token %}
@@ -131,7 +143,6 @@
     </div>
 </div>
 {% endblock content %}
-{% comment %} 
 {% block scripts %} 
     <!--display here will overide the display = none in style-->
     <script>
@@ -188,4 +199,4 @@
             })
         });
     </script>
-{% endblock scripts %} {% endcomment %}
+{% endblock scripts %}

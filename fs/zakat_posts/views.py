@@ -10,9 +10,10 @@ from django.http import JsonResponse
 from family_savior.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
 from posts.models import Posts
-from AI.combination import Analysis
+from AI.combination import AI
 import cv2
 import os
+import time
 # from .utils import playvideo
 
 
@@ -32,19 +33,33 @@ def zakatPosts_comment_create_and_list_view(request):
     p_form = ZakatPostForm(request.POST, request.FILES)
     if p_form.is_valid():
       # video1 = p_form.cleaned_data['video1']
-      # print("************", video1, "************")
       instance = p_form.save(commit=False)
       instance.creator= profile
-      instance.save()
-
-      # GETTING FRAMES
+      # Sending the video to the AI
+      instance.save() # have to save it first, to get the id
+      
       ID = instance.id
-      Analysis(ID)
+      print("\n************", ID, "************\n")
+      output = AI(ID)
+      
+      
+      if output==1: # if output is 1
+        instance.AI_verified = True
+        instance.save()
+        post_added = True
+        print("\n************", instance.AI_verified, "************\n")
+      
+      elif type(output) == str: # if output is a string
+        post_added = output
+        time.sleep(5) # wait for 5 seconds, to show the error message
+        instance.delete()
 
-
-
-      p_form = ZakatPostForm()
-      post_added = True
+      else: # if output is 0
+        instance.delete()
+        post_added=False
+        print("\n************\t Deleted object \t************\n")
+        
+    p_form = ZakatPostForm()
 
     # comment form
   if 'submit_c_form' in request.POST:
@@ -54,7 +69,6 @@ def zakatPosts_comment_create_and_list_view(request):
       instance = c_form.save(commit=False)
       instance.user = profile
       instance.post = ZakatPosts.objects.get(id=request.POST.get('post_id'))
-
       instance.save()
       c_form = ZakatPostsCommentForm()
 

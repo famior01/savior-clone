@@ -14,12 +14,11 @@ class GatherSimilarFaces():
         self.faces_path = faces_path
         self.db_path = self.faces_path
         self.faces_list =  glob(self.db_path+'/*')
-        print('\t\t########### ',self.faces_list[3])
         self.imgs_len = len(self.faces_list)
         self.index = 0
         # create directory and save all directories over there 
         path = faces_path.replace('Frames', 'People_faces')
-        print("\n****************", path, "****************\n")
+        print("\n****************\t Similar Face Gathering ****************\n")
         os.makedirs(path, exist_ok=True)
         os.chdir(path)
 
@@ -30,9 +29,7 @@ class GatherSimilarFaces():
         '''
         # print("***********", self.faces_path, "***********")
         self.faces_list =  glob(self.db_path+'/*')
-        print("\n********* ", len(self.faces_list), " *********\n")
-        # self.index = 0
-        # self.db_path = self.faces_path
+        print("\n********* len of frames_list", len(self.faces_list), " *********\n")
 
 
         try:
@@ -59,8 +56,6 @@ class GatherSimilarFaces():
 
             self.index+=1
             self.similar_face()
-            # if self.index<self.imgs_len:
-            #     self.similar_face()
         
     def remove_rest(self):
         """
@@ -74,7 +69,7 @@ class GatherSimilarFaces():
         for i in range(fold_len):
             fold = 'Person'+str(i)
             no_files =len(os.listdir(fold))
-            if no_files == 0 or no_files<2:
+            if no_files == 0 or no_files<3:
                 shutil.rmtree(fold)
         print("Purified!")
     
