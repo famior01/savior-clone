@@ -22,21 +22,20 @@ THE EASIEST WAY TO PAY ZAKAT!
 ## 3. Zakat Posts
 - [X] Posting Zakat Post
 - [X] Updating and Deleting Zakat Post
-- [ ] Varification from AI
+- [X] Varification from AI
 - [X] Upvoting and DownVoting
-- [ ] Sharing Experience
+- [X] Sharing Experience/Comments
 - [ ] Direct message option with in the app
 - [ ] Display Expected amount, varified badge, Pade badge 
 
 ## 4. AI Varification systems
 - [X] Detect Emotions by face
-  - [X] Get Frames from video
-  - [-] Detect face
-  - [X] Detect Emotions
-  - [X] take out average of emotions
-
 - [X] Detect Emotions by voice
-- [ ] Detect Objects and place list of all objects
+- [X] Detect Objects and place list of all objects
+- [ ] Bluring the face, if seeker want.
+
+## 5. Zakat Payment System
+  [] Payment of Zakat, through debit card, credit card, and bank account
 
 ## Communication with Seeker  via messenger or Phone 
 - [ ] Messenger like app
@@ -45,8 +44,6 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] Calculating of Zakat
 - [ ] Displaying of Zakat amount with in the app
 
-## Zakat Payment System
-  [] Payment of Zakat, through debit card, credit card, and bank account
 
 ## Zakat Organizations
 - [ ] List of Zakat Organizations
