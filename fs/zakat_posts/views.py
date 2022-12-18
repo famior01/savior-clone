@@ -41,13 +41,19 @@ def zakatPosts_comment_create_and_list_view(request):
       ID = instance.id
       print("\n************", ID, "************\n")
       output = AI(ID)
-      
+
+      # post_without_varification = True
+      # if post_without_varification:
+      #   instance.varified = False
+      #   instance.save()
+      #   post_added = True
+      #   print("\n************", instance.varified, "************\n")
       
       if output==1: # if output is 1
-        instance.AI_verified = True
+        instance.varified = True
         instance.save()
         post_added = True
-        print("\n************", instance.AI_verified, "************\n")
+        print("\n************", instance.varified, "************\n")
       
       elif type(output) == str: # if output is a string
         post_added = output

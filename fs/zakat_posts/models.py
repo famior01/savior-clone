@@ -17,7 +17,7 @@ class ZakatPosts(models.Model):
   no_of_children = models.IntegerField(default=0)
   video1 = models.FileField(upload_to='zakat_video', blank=True)
   video2 = models.FileField(upload_to='zakat_video', blank=True)
-  AI_varified = models.BooleanField(default=False, blank=True)
+  varified = models.BooleanField(default=False, blank=True)
   paid = models.BooleanField(default=False, blank=True)
   expected_money = models.IntegerField(default=0)
   upvote = models.IntegerField(default=0)
