@@ -7,6 +7,7 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
+<h1>I am from login.html</h1>
 
 <h1>{% trans "Sign In" %}</h1>
 
@@ -31,9 +32,8 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 {% else %}
 <p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+<a href="{{ account_signup }}">Sign up</a> first.{% endblocktrans %}</p>
 {% endif %}
-
 <div class="ui grid">
   <div class="six wide column">
     <form class="login ui form" method="POST" action="{% url 'account_login' %}">
