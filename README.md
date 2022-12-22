@@ -12,24 +12,7 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [X] Finding of profiles
 - [ ] Recommendation of profiles base on location, mutual friends 
 - [X] Notification of receiving friend Request
-- [X] ability to accept friend request
-- [X] ability to reject friend request
-- [X] ability to send friend request
-- [X] ability to remove friend
-- [X] ability to block friend
-- [X] ability to unblock friend
-- [X] ability to report friend
-- [X] ability to unreport friend
-- [X] ability to mute friend
-- [X] ability to unmute friend
-- [X] ability to follow friend
-- [X] ability to unfollow friend
-- [X] ability to add friend to group
-- [X] ability to remove friend from group
-- [X] ability to create group
-- [X] ability to update group
-- [X] ability to delete group
-- [X] ability to add friend to group
+
 
 ## 2. Islamic Posts
 
@@ -48,7 +31,6 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] Display Expected amount, varified badge, Pade badge 
 
 
-
 ## 4. AI Varification systems
 
 - [X] Detect Emotions by face
@@ -56,10 +38,27 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [X] Detect Objects and place list of all objects
 - [ ] Bluring the face, if seeker want.
 
-## 5. Zakat Payment System
-  [] Payment of Zakat, through debit card, credit card, and bank account
+## 5. Authentication
 
-## 5. Messenger?
+- [X] Sign up
+- [X] Sign in
+- [X] Sign out
+- [X] forget password, first email varification
+- [X] Change password
+- [X] Change email
+- [X] Email Varification
+
+## 6. Zakat Payment System
+
+- [ ] Payment of Zakat, through debit card, credit card, and bank account
+
+## 7. focus on UI and some basice settings and clear_features
+
+- [ ] etc
+
+## 8. Search Engine
+
+## 7. Messenger?
 
 - [ ] Direct message option with in the app
 
@@ -69,7 +68,8 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] Displaying of Zakat amount with in the app
 
 ## Zakat Payment System
-  [] Payment of Zakat, through debit card, credit card, and bank account
+
+- [ ] Payment of Zakat, through debit card, credit card, and bank account
 
 ## Zakat Organizations
 
@@ -78,6 +78,4 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] Payment of Zakat to Zakat Organizations
 - [ ] Displaying of Zakat Organizations with in the app
 
-## Authentication
 
-- [ ] Simple login and signup page
