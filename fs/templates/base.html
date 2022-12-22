@@ -18,20 +18,36 @@
 
   
     <title>Family Savior - {% block title %}{% endblock title %}</title>
+    {% block extra_head %}
+    {% endblock %}
   </head>
   <header>
     {% include "main/navbar.html" %}
   </header>
   <body>
+    <!--For messages to show-->
+    {% if messages %}
+    <div>      
+        {% for message in messages %}
+        <div class="ui green message"><strong>{{message}}</strong></div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
     <div class="ui container">
       {% block content %}
       {% endblock content %}
     </div>
+    
+
+    <!--Extra body incase of other uses-->
+    {% block extra_body %}
+    {% endblock %}
 
     {% block scripts %}
     {% endblock scripts %}
   
-
+    
   <!--Custom js -->
   <script type="text/javascript" src={% static 'main.js' %}>
   </script>

@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9x5e3shen*+a66vk360$0ncpk^4+!o4(mps)e_6tmih(smob^e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Allowed hosts for the project to run on 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # LOGIN_URL ='/admin/'
 # Here If User logged in then he will be redirected to this page
@@ -51,24 +51,75 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
 ]
+
+# https://django-allauth.readthedocs.io/en/latest/configuration.html 
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_USERNAME_REQUIRED = False
 LOGIN_REDIRECT_URL = '/posts'
 ACCOUNT_EMAIL_UNIQUE = True
-# ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
-ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = False
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = False
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_CONFIRMATION_HMAC = True
-ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
-ACCOUNT_LOGOUT_ON_GET = True
+
+# ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
+# # to show the subject of the email
+# ACCOUNT_EMAIL_SUBJECT_PREFIX = "Assalam O Alaikum 👋 \n"
+# after these second, user can request of email confirmation 
+ACCOUNT_EMAIL_CONFIRMATION_COOLDOWN = 180
+# user can change his email address 3 times only!
+ACCOUNT_MAX_EMAIL_ADDRESSES = 1 
+# user failed attempts to login are limited to 5
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 4
+# after these second, user can try to login again
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 180
+# user cannot loged in after varification, he will redirect to annonymous url
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
+# Remember me is enabled by default
+ACCOUNT_SESSION_REMEMBER = True
+# limit of alphanumeric characters in username
+ACCOUNT_USERNAME_MIN_LENGTH = 5
+
+# instead of website@gmail.com, now it will be abuubaida901@gmail.com
+DEFAULT_FROM_EMAIL = "abuubaida901@gmail.com"
+
+
+# Email settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+# we will provide our email and password in the .env file
+EMAIL_HOST_USER = "abuubaida901@gmail.com"
+EMAIL_HOST_PASSWORD = 'fwippydzgpvutvmr'
+
+# --------------- Working for personal messages----------------
+# import smtplib, ssl
+# from email.message import EmailMessage
+
+# msg = EmailMessage()
+# msg.set_content("The body of the email is here")
+# msg["Subject"] = "An Email Alert"
+# msg["From"] = "abuubaida901@gmail.com"
+# msg["To"] = "dadajan0011@gmail.com"
+
+# context=ssl.create_default_context()
+
+# with smtplib.SMTP("smtp.gmail.com", port=587) as smtp:
+#     smtp.starttls(context=context)
+#     smtp.login(msg["From"], "fwippydzgpvutvmr")
+#     smtp.send_message(msg)
+
+# # custom settings in Allauth
+# ACCOUNT_FORMS = {
+# 'signup': 'family_savior.forms.CustomSignupForm',
+# }
 
 if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.dummy.EmailBackend'
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 MIDDLEWARE = [
