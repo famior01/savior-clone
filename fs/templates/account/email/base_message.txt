@@ -1,7 +1,19 @@
-{% load i18n %}{% autoescape off %}{% blocktrans with site_name=current_site.name %}Hello from {{ site_name }}!{% endblocktrans %}
+{% load i18n %}
 
-{% block content %}{% endblock %}
+{% autoescape off %}
 
-{% blocktrans with site_name=current_site.name site_domain=current_site.domain %}Thank you for using {{ site_name }}!
-{{ site_domain }}{% endblocktrans %}
+  {% blocktrans with site_name=current_site.name %}
+  Assalam O Alaikum 👋, I am from {{ site_name }}!
+  {% endblocktrans %}
+
+  {% comment %} This is for other pages! {% endcomment %}
+  {% block content %} 
+  {% endblock %}
+
+  {% blocktrans with site_name=current_site.name site_domain=current_site.domain %}
+  Thank you for using {{ site_name }}!, We hope you will help  poor families 👨‍👩‍👧‍👦. 
+
+  Have a nice day! 👋
+  {% endblocktrans %}
+
 {% endautoescape %}

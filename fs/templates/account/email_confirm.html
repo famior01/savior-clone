@@ -18,13 +18,8 @@
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
 {% csrf_token %}
-    {% comment %} <button type="submit">{% trans 'Confirm' %}</button> {% endcomment %}
-    <form class="login ui form" method="get" action="{% url 'account_login' %}">
-        {% csrf_token %}
-        <button type='submit'>Log In</button>
-    </form> 
+    <button type="submit">Confirm</button> 
 </form>
-
 {% else %}
 
 {% url 'account_email' as email_url %}

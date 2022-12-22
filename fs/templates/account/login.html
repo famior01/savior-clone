@@ -1,5 +1,5 @@
 
-{% extends "base.html" %}
+{% extends "account/base.html" %}
 
 {% load i18n %}
 {% load account socialaccount %}
@@ -7,10 +7,6 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-<h1>I am from login.html</h1>
-
-<h1>{% trans "Sign In" %}</h1>
-
 {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
@@ -31,21 +27,54 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ account_signup }}">Sign up</a> first.{% endblocktrans %}</p>
+{% comment %} <p>{% blocktrans %}If you have not created an account yet, then please
+<a href="{{ account_signup }}">Sign up</a> first.{% endblocktrans %}</p> {% endcomment %}
 {% endif %}
+
+<!--    Log in page start here-->
+<div style="margin-top: 100px" class="ui container">
 <div class="ui grid">
+  <div class="ten wide column">
+    <div class="card">
+      <div class="header">
+        <h1>Welcome to Family Savior</h1>
+      </div>
+      <br>
+      <div class="content">
+        <p>
+          The easiest way to find the needy familes and help them to get out of poverty. Here you can Pay Zakat, Sadaqah, Fidya, Fitra, and other donations.
+        </p>
+      </div>
+    </div>
+  </div>
   <div class="six wide column">
-    <form class="login ui form" method="POST" action="{% url 'account_login' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      {% if redirect_field_value %}
-      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-      {% endif %}
-      <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-      <button class="ui button secondary " type="submit">{% trans "Sign In" %}</button>
-    </form>
+    <!--Login Card-->
+    <div class="card bg-info">
+      <div class="ui header text-center">
+        <h1><strong>Log In</strong></h1>
+      </div>
+      <div class="ui content Padded-Variation-Class segment">
+        <form class="login ui form" method="POST" action="{% url 'account_login' %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          {% comment %} {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+          {% endif %} {% endcomment %}
+          
+          <!--Centering the links-->
+          <div class='ui text-center'>
+          <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+          <br><br>
+          <button class="ui button secondary " type="submit">{% trans "Log in" %}</button>
+        <button class="ui button ">
+          <a href="{% url 'account_signup' %}"> Create Account</a>
+        </button>
+        </div>
+        </form> 
+      </div>
+    </div>  
+    
   </div>
 </div>
-
+</div>
 {% endblock %}
