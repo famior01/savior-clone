@@ -50,15 +50,11 @@ THE EASIEST WAY TO PAY ZAKAT!
 
 ## 6. Zakat Payment System
 
-- [ ] Payment of Zakat, through debit card, credit card, and bank account
-
-## 7. focus on UI and some basice settings and clear_features
-
-- [ ] etc
+- [-] Payment of Zakat, through debit card, credit card, and bank account
 
 ## 8. Search Engine
 
-## 7. Messenger?
+## 7. Messenger --> no need now!
 
 - [ ] Direct message option with in the app
 
@@ -67,15 +63,36 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] Calculating of Zakat
 - [ ] Displaying of Zakat amount with in the app
 
-## Zakat Payment System
+## TODOs
 
-- [ ] Payment of Zakat, through debit card, credit card, and bank account
+### Zakat Posts
 
-## Zakat Organizations
+- [ ] Adjustment of all features with in the post shape
+- [ ] if post is getting upvotes then take it up in the feed, else if it is getting downvotes then take it down in the feed
+- [ ] Take a look at the form of the Zakat post, and make it more attractive, ask sensible stuffs, position it, add loading button, instructions to posts in urdu voice, and make it more attractive and user friendly 
+- [ ] if expacted money got acheived, then move it to the satisfy page with having one video of receiving money with that post!
 
-- [ ] List of Zakat Organizations
-- [ ] Displaying of Zakat Organizations with in the app
-- [ ] Payment of Zakat to Zakat Organizations
-- [ ] Displaying of Zakat Organizations with in the app
+---
 
+### IWatch
 
+- [ ] User must be able to upload video.
+- [ ] User should be able to see his connectes' videos.
+- [ ] Hearth, Comment, Pay, Share, and Report options should be there.
+- [ ] show recommendations and connected people on the side panaels and notification badge on the top right corner, options to follow.
+
+---
+
+### Profile
+
+- [ ] slogan, bio, Name, location and profile picture should be there.
+- [ ] Show all videos as grid.  
+
+### Search Engine
+
+- [ ] simple search engine, with search by name, location, and tags.
+
+### Real time updates of likes, comments
+
+- [ ]  use ajax to update the likes and comments in real time.
+- [ ]  use javascript to update the likes and comments in real time. either of them are fine.
