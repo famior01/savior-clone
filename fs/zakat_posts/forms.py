@@ -10,7 +10,7 @@ class ZakatPostForm(forms.ModelForm):
     class Meta:
       # will we be changed and these fields will be used
       model = ZakatPosts
-      fields = ['seeker', 'number1', 'cnic1', 'spouse_name', 'number2', 'cnic2', 'no_of_children','video1', 'video2', 'expected_money', 'content']
+      fields = ['seeker', 'expected_money', 'video1', 'video2', 'content']
 
 
 class ZakatPostsCommentForm(forms.ModelForm):
@@ -19,7 +19,7 @@ class ZakatPostsCommentForm(forms.ModelForm):
   '''
 
   # for changing the size of the text area
-  body = forms.CharField(label='', widget=forms.Textarea(attrs={'placeholder':"Add a comment...", 'rows':2, 'cols':40}))
+  body = forms.CharField(label='', widget=forms.Textarea(attrs={'placeholder':"Add a comment...", 'rows':1, 'cols':40}))
   class Meta:
     # will we be changed and these fields will be used
     model = ZakatPostsComment

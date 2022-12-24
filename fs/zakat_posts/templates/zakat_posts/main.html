@@ -1,160 +1,210 @@
 {% extends 'base.html' %}
 
 {% block title %}Zakat Posts{% endblock title %}
- 
 {% block content %}
-<div class="ui grid">
-    <div class="eleven wide column">
-        {% for obj in qs %}
-        <div class="ui fluid card">
-            <div class="content">
-                <div class="right floated meta">
-                <div class="ui grid">
-                    <div class="row">
-                        {% if request.user == obj.creator.user %}
-                            <a href="{% url 'zakat_posts:post-update' obj.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
-                            <a href="{% url 'zakat_posts:post-delete' obj.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
-                        {% endif %}
-                    </div>
-                </div>
-                    
-                </div>
-                <img class="ui avatar image" src={{obj.creator.avatar.url}}> 
-                {{ obj.creator.first_name }} {{obj.creator.last_name}}<br>   ({{ obj.created|timesince}} ago)
-            </div>
-            <div class="card card-body flex-fill">
-                <div class="row">
-                    <div class="col">
-                        {% if obj.video1 %}
-                        <a href="{{obj.video1.url}}">  
-                            <video width="320" height="240" controls>
-                                <source src="{{obj.video1.url}}" type="video/mp4">
-                                {% comment %} <source src="{{obj.video1.url}}" type="video/mp4"> {% endcomment %}
-                            </video>
-                        </a>
-                    {% endif %}
-                    </div>
+<div style = 'margin-top:30px;' class='ui container fluid'>
+    <div class="ui grid">
     
-                    <div class="col">
-                        {% if obj.video2 %}
-                        <a href="{{obj.video2.url}}">  
-                            <video width="320" height="240" controls>
-                                <source src="{{obj.video2.url}}" type="video/mp4">
-                                {% comment %} <source src="{{obj.video2.url}}" type="video/mp4"> {% endcomment %}
-                            </video>
-                        </a>
-                    {% endif %}
-                    </div>
-                </div>
+    <div class="row">
+        <div class=" eleven wide column ">
+            <div class="ui blue raised segment">
+                {% if post_added == True %}
+                <div class="ui green message">Post added</div>
                 
-            </div>
-            <!--Likes and Unlikes-->
-            <div class="content">
-                <p> {{ obj.content }} </p>
-            </div>
-            <br><hr>
-            <div>
-                <!--UpVote-->
-                <div class="right floated">
-                    <form action="{% url 'zakat_posts:upvote' %}" method="POST" class='upvote-form' id='{{obj.id}}'>
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value={{obj.id}}>
-                        <button type="submit" class="ui button upvote-btn{{obj.id}}">
-                            <div class="p-2 rounded-full text-black">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="25">
-                                    <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
-                                <p class="upvote-count{{obj.id}}"><b>{{obj.upvote}} Upvotes</b></p>
-                            </div>
-                        </button>
-                    </form>
-                </div>
-                <!--DownVote-->
-                <div class="right floated">
-                    <form action="{% url 'zakat_posts:downvote' %}" method="POST" class='downvote-form' id='{{obj.id}}'>
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value={{obj.id}}>
-                        <button type="submit" class="ui button downvote-btn{{obj.id}}">
-                            <div class="p-2 rounded-full text-black">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="25">
-                                    <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
-                                <p class="downvote-count{{obj.id}}"><b>{{obj.downvote}} Downvotes</b></p>
-                            </div>
-                        </button>
-                    </form>
-                </div>
-                <div class='right floated'>
-                    {% if obj.varified %}
-                            <h1><i class="check circle icon"></i>Varified</h1> 
-                        {% endif %}
-                </div>
-                <div class='left floated' >
-                    <i class=" comment icon large"></i>
-                    <span> <h5>{{ obj.num_comments }} Comments</h5></span>
-                </div>
-            </div> 
-            <div class="extra content">
-                <div class="mb-5">
-                </div>
-                <button class="cmt_btn ui button mb-5">show / hide comments</button>
-                <div class="comment-box">
-                {% if obj.zakat_posts_comments.all %}
-                    {% for c in obj.zakat_posts_comments.all %}
-                    
-                        <div class="ui segment mb-5">
-                            <img class="ui avatar image" src={{c.user.avatar.url}}>
-                            <span>{{ c.user }}</span>
-                            <div class='mt-5'>{{ c.body }}</div>
-                        </div>
-                    
-                    {% endfor %}
+                {% elif not post_added %}
+                <div class="ui yellow message"><strong>AI didn't Varified it!</strong></div>
+                
+                {% else %}
+                <div class="ui red message"><strong>{{post_added}}</strong></div>
                 {% endif %}
-                </div>
 
-                <form action="" method="POST"class='ui fluid form'>
+                <form action="" method="POST" class='ui form' enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
-                    <input type="hidden" name="post_id" value={{obj.id}}>
-                    {{ c_form }}
-                    <button type="submit" name="submit_c_form" class="ui primary button mt-5 w-full">Send</button>
+                    {{p_form}}
+                    <button type='submit' name="submit_p_form" class="ui positive button w-full mt-5">Send</button>
                 </form>
             </div>
         </div>
-
-
-        {% endfor %}
+        <div class="five wide column">
+            <div class= 'ui segment'>
+                Assalam o alikum
+            </div>
+        </div>    
     </div>
-    <div class="five wide column">
-        <div class="ui segment">
-            
-            {% if post_added == True %}
-            <div class="ui green message">Post added</div>
-            
-            {% elif not post_added %}
-            <div class="ui yellow message"><strong>AI didn't Varified it!</strong></div>
-            
-            {% else %}
-            <div class="ui red message"><strong>{{post_added}}</strong></div>
-            {% endif %}
-            <form action="" method="POST" class='ui form' enctype="multipart/form-data" novalidate>
-                {% csrf_token %}
-                {{p_form}}
-                <button type='submit' name="submit_p_form" class="ui positive button w-full mt-5">Send</button>
-            </form>
+    
+    {% for obj in qs %}
+    <div class="row">
+        <div class=" eleven wide column ">
+            <div class="ui blue raised segment">
+                <!--Herder line-->
+                <div class="ui grid">
+                    <div class="row">
+                        <div class="left floated  column eight wide fluid">
+                            <!--Profile picture and created time-->
+                            <img class="ui avatar image" src={{obj.creator.avatar.url}}> 
+                            {{ obj.creator.first_name }} {{obj.creator.last_name}}
+                            <br>({{ obj.created|timesince}} ago)
+                        </div>
+
+                        <div class="right floated column eight wide fluid ">
+                            {% if request.user == obj.creator.user %}
+                                <a href="{% url 'zakat_posts:post-update' obj.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
+                                <a href="{% url 'zakat_posts:post-delete' obj.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <!--video 1-->
+                <div class="ui grid">
+                    <div class="row">
+                        <div class="column eight wide">
+                            {% if obj.video1 %}
+                            <a href="{{obj.video1.url}}">  
+                                <video width="320" height="240" controls>
+                                    <source src="{{obj.video1.url}}" type="video/mp4">
+                                    {% comment %} <source src="{{obj.video1.url}}" type="video/mp4"> {% endcomment %}
+                                </video>
+                            </a>
+                        {% endif %}
+                        </div>
+
+                        <!--video 1-->
+                        <div class="column eight wide">
+                            {% if obj.video2 %}
+                            <a href="{{obj.video2.url}}">  
+                                <video width="320" height="240" controls>
+                                    <source src="{{obj.video2.url}}" type="video/mp4">
+                                    {% comment %} <source src="{{obj.video2.url}}" type="video/mp4"> {% endcomment %}
+                                </video>
+                            </a>
+                        {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <!--Content-->
+                <div class="content">
+                    <p> {{ obj.content }} </p>
+                </div>
+                <hr>
+
+                <!--Comments-->
+                <div class="content">
+                    <button class="cmt_btn ui button mb-5">{{ obj.num_comments }} Comments</button>
+                    <div class="comment-box">
+                    {% if obj.zakat_posts_comments.all %}
+                        
+                        {% for c in obj.zakat_posts_comments.all %}
+                            <div class="ui green raised segment">
+                                <img class="ui avatar image" src={{c.user.avatar.url}}>
+                                <span>{{ c.user }}</span>
+                                <div class='mt-5'>{{ c.body }}</div>
+                            </div>
+                        {% endfor %}
+
+                    {% endif %}
+                    </div>
+    
+                    <form action="" method="POST"class='ui fluid form'>
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value={{obj.id}}>
+                        {{ c_form }}
+                        <button type="submit" name="submit_c_form" class="ui primary button mt-5 w-full">send</button>
+                    </form>
+                </div>
+            </div>
         </div>
+        <div class="five wide column">
+            <div class= 'ui black raised segment'>
+                <div class="ui grid">
+                <div class="row">
+                <div class="column eight wide fluid">
+                    <div class="ui items">
+                        <!--UpVote-->
+                        <div class="item">
+                            <form action="{% url 'zakat_posts:upvote' %}" method="POST" class='upvote-form' id='{{obj.id}}'>
+                                {% csrf_token %}
+                                <input type="hidden" name="post_id" value={{obj.id}}>
+                                <button type="submit" class="ui button upvote-btn{{obj.id}}">
+                                    <div class="p-2 rounded-full text-black">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="25">
+                                            <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
+                                        <p class="upvote-count{{obj.id}}"><b>{{obj.upvote}} Upvotes</b></p>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                        <!--DownVote-->
+                        <div class="item">
+                            <form action="{% url 'zakat_posts:downvote' %}" method="POST" class='downvote-form' id='{{obj.id}}'>
+                                {% csrf_token %}
+                                <input type="hidden" name="post_id" value={{obj.id}}>
+                                <button type="submit" class="ui button downvote-btn{{obj.id}}">
+                                    <div class="p-2 rounded-full text-black">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="25">
+                                            <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
+                                        <p class="downvote-count{{obj.id}}"><b>{{obj.downvote}} Downvotes</b></p>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                        <!--Pay-->
+                        <div class='item'>
+                            <button class='ui primary button'>Pay</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="column eight wide fluid">
+                    <div class="ui items">
+                        <!--Share-->
+                        <div class="item">
+                            <button class='ui button'>Expected money</button>
+                        </div>
+                        <!--Report-->
+                        <div class="item">
+                            <button class='ui button'>Satisfied or unsatisfied</button>
+                        </div>
+                        <!--Save-->
+                        <div class="item">
+                            <button class='ui button'>varified</button>
+                        </div>
+                        <!--NO of varified badge-->
+                        <div class='item'>
+                            {% if obj.varified %}
+                                    <h1><i class="check circle icon"></i>Varified</h1> 
+                                {% endif %}
+                        </div>
+                    </div>
+                
+                </div>
+                </div>
+                </div>
+            </div>
+        </div> 
     </div>
+    {% endfor %}
+</div>
+
 </div>
 {% endblock content %}
+
+
 {% block scripts %} 
     <!--display here will overide the display = none in style-->
     <script>
         $( document ).ready(function() {
-            let display = false
+            let display = true
+            //cmt_btn = FAlse
             $(".cmt_btn").click(function () {
-                if (display===false) {
-                    $(this).next(".comment-box").show("slow");
-                    display=true
-                } else {
+                if (display===true) {
                     $(this).next(".comment-box").hide("slow");
                     display=false
+                } else {
+                    $(this).next(".comment-box").show("slow");
+                    display=true
                 }  
             });
 
