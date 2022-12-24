@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 
+<!--************** Including Bootstrap ****************-->
+
+
+
+
+
 {% block title %}Zakat Posts{% endblock title %}
- 
+
 {% block content %}
+
 <div class="ui grid">
     <div class="eleven wide column">
         {% for obj in qs %}
@@ -143,6 +150,7 @@
     </div>
 </div>
 {% endblock content %}
+
 {% block scripts %} 
     <!--display here will overide the display = none in style-->
     <script>
