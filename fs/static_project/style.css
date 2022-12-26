@@ -1,10 +1,10 @@
 body{
-  background-color: rgb(21, 136, 252) !important; 
+  background-color: rgb(214, 214, 214) !important; 
 }
 
 .nav{
   border-radius: 0% !important;
-  border-radius: 10px 0 10px 0 !important; 
+  /* border-radius: px 5px 5px 5px !important;  */
   background-color: #000 !important;
 }
 
@@ -13,15 +13,15 @@ body{
 }
 
 /* for update button */
-mt-5{
+.mt-5{
   margin-top: 5px !important;
 }
-
+/* 
 .mymodel {
   height: 300px !important;
   top: 200% !important;
   font-size: 20px !important;
-}
+} */
 
 /* for posts/main.html*/
 .mb-5 {
@@ -44,4 +44,46 @@ mt-5{
 
 .comment-box {
   display: none;
+}
+
+/* details {
+  padding: 5 5 5 5 !important;
+} */
+
+
+.field1 {
+  margin-bottom: 2vw !important;
+  margin-left: 0.3vw !important;
+  margin-right: 2vw !important;  
+  border:  1px solid rgb(6, 6, 6) !important; 
+}
+
+.field2 {
+  margin-bottom: 2vw !important;
+  margin-left: 0.3vw !important;
+  margin-right: 2vw !important;
+  border:  1px solid rgb(6, 6, 6) !important; 
+}
+
+.field3 {
+  margin-left: 1.2vw !important;
+  margin-bottom: 2vw !important;
+  margin-right: 3vw !important;
+  border:  1px solid rgb(6, 6, 6) !important; 
+}
+
+.field4 {
+  margin-left: 0.3vw !important;
+  margin-bottom: 1vw !important;
+  margin-right: 2vw !important;
+  border:  1px solid rgb(6, 6, 6) !important; 
+}
+
+
+
+.css_form {
+  margin: 0.5em;
+  padding: 1em;
+  border: 1px solid rgb(6, 6, 6);
+  border-radius: 1em;
 }

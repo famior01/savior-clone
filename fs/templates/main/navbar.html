@@ -5,6 +5,10 @@
 {% url 'profiles:my-invites' as path_to_my_invites %}
 {% url 'profiles:sent-invites' as user_friend_request %}
 {% url 'zakat_posts:main-post-view' as zakat_posts_home %}
+{% url 'zakat_posts:satisfied' as satisfied %}
+
+
+
 
 
 <div class="ui inverted menu nav mb-7">
@@ -14,6 +18,7 @@
         <h3>Family Savior</h3>
     </a>
     {% else %}
+    <!--for sign up-->
     <a href="#" class="item">
         <h3>Family Savior</h3>
     {% endif %}
@@ -28,6 +33,12 @@
     {% if request.user.is_authenticated %}
     <a href="{{zakat_posts_home}}" class="{% if request.path == zakat_posts_home %}active{% endif %} item">
         zakat_posts
+    </a>
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+    <a href="{{satisfied}}" class="{% if request.path == satisfied %}active{% endif %} item">
+        satisfied zakat_posts
     </a>
     {% endif %}
 

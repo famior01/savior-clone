@@ -6,8 +6,9 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.models import User
 from django.db.models import Q
 from posts.models import Posts
-
+from zakat_posts.models import ZakatPosts
 def myprofile(request):
+  zp = ZakatPosts.objects.all()
   profile = Profile.objects.get(user=request.user) #get curr user profile
   form = ProfileModelForm(request.POST or None, request.FILES or None ,instance=profile) # get curr user form to update
 
@@ -20,7 +21,8 @@ def myprofile(request):
   context = {
     'profile': profile,
     'form': form,
-    'confirm': confirm
+    'confirm': confirm,
+    'zp': zp
   }
   return render(request, 'profiles/myprofile.html', context)
 

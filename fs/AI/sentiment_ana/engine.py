@@ -30,10 +30,12 @@ def get_voice_ana(ID):
 
   print("********* Made MP3 file! *********")
   
-  # remove traced_model.pt
-  shutil.rmtree('C:/Product/FS_1.1/fs/AI/sentiment_ana/traced_model.pt', ignore_errors=True)
-  shutil.rmtree("C:/Product/FS_1.1/fs/AI/sentiment_ana/runs", ignore_errors=True)
   # now I need to pass this audio to emotion_detection.py
   obj = audio2emo(audio_path='C:/Product/FS_1.1/fs/AI/sentiment_ana/sample.mp3')
   output = obj.engine()
+
+  # remove traced_model.pt and runs folder
+  shutil.rmtree('C:/Product/FS_1.1/fs/AI/sentiment_ana/traced_model.pt', ignore_errors=True)
+  shutil.rmtree("C:/Product/FS_1.1/fs/AI/sentiment_ana/runs", ignore_errors=True)
+
   return output

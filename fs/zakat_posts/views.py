@@ -49,25 +49,30 @@ def zakatPosts_comment_create_and_list_view(request):
       #   post_added = True
       #   print("\n************", instance.varified, "************\n")
       
-      if output==1: # if output is 1
-        instance.varified = True
-        instance.save()
-        post_added = True
-        print("\n************", instance.varified, "************\n")
-      
-      elif type(output) == str: # if output is a string
+      if type(output) == str: # if output is a string
+        print("\n************\t", output, "\t************\n")
         post_added = output
         time.sleep(5) # wait for 5 seconds, to show the error message
         instance.delete()
 
+      elif type(output)!=str and output>0: # if output is 1
+        print("\n************", output, "************\n")
+        instance.varified = output
+        instance.save()
+        post_added = True
+        print("\n************", instance.varified, "************\n")
+      
+      
+
       else: # if output is 0
+        print("\n************", output, "************\n")
         instance.delete()
         post_added=False
         print("\n************\t Deleted object \t************\n")
         
-    p_form = ZakatPostForm()
+    p_form = ZakatPostForm() # renew the form
 
-    # comment form
+  # comment form
   if 'submit_c_form' in request.POST:
     print('Adding comment')
     c_form = ZakatPostsCommentForm(request.POST)
@@ -192,3 +197,6 @@ class PostUpdateView(UpdateView):
       else:
         form.add_error(None, "You are not authorized to update this post")
         return super().form_invalid(form)
+
+def satisfied(request):
+  return render(request, 'zakat_posts/satisfied_vid.html')

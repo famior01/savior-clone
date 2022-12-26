@@ -18,10 +18,12 @@ def AI(ID, blur=False):
   if type(objects_ana) == str: # if string then return it
     return objects_ana 
 
-  # COMBINING ALL THE ANALYSIS
-  if face_ana and audio_ana and objects_ana:
-    print("\n******************\tVerified\t******************\n")
-    return 1
+  # COMBINING ALL AI MODELS RESULTS
+  Nor_and_add = ((face_ana/10)+(audio_ana/10)+(objects_ana/100)) # normalizing and adding
+  avg = Nor_and_add//3 # getting average
+  print("************************", avg, "************************")
+  if avg>60:
+    return avg
   else:
     return 0
     

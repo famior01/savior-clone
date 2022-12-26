@@ -17,19 +17,68 @@
                 {% else %}
                 <div class="ui red message"><strong>{{post_added}}</strong></div>
                 {% endif %}
-
-                <form action="" method="POST" class='ui form' enctype="multipart/form-data" novalidate>
-                    {% csrf_token %}
-                    {{p_form}}
-                    <button type='submit' name="submit_p_form" class="ui positive button w-full mt-5">Send</button>
-                </form>
+                <div class='ui large form'>
+                    <div class="two fields">
+                        <form action="" method="POST" class='css_form' enctype="multipart/form-data" >
+                            {% csrf_token %}
+                            {{p_form}}
+                            <button type='submit' name="submit_p_form" class="ui primary button fluid mt-5">Submit</button>
+                            {% comment %} <div class="ui active dimmer">
+                                <div class="ui small text loader">Loading</div>
+                            </div> {% endcomment %}
+                        </form>
+                        
+                    </div>
+                </div>
+                
             </div>
         </div>
         <div class="five wide column">
-            <div class= 'ui segment'>
-                Assalam o alikum
-            </div>
-        </div>    
+            <div class= 'ui red raised segment'>
+                {% comment %} <h3>Instructions to fill form in two languages</h3>
+                <button class="ui button b_English">English</button>
+                <button class="ui button b_Urdu">Urdu</button> {% endcomment %}
+                <details>
+                    <summary>
+                        <strong>Instructions in English</strong>
+                    </summary>
+                        <div class='details-content'>
+                        <audio controls autoplay>
+                            <source src='static_project/audios/video1_urdu.mp3'>
+                        </audio>
+                        <audio controls autoplay>
+                            <source src='static_project/audios/video1_urdu.mp3'>
+                        </audio>
+                        <audio controls autoplay>
+                            <source src='static_project/audios/video1_urdu.mp3'>
+                        </audio>
+                        <audio controls autoplay>
+                            <source src='static_project/audios/video1_urdu.mp3'>
+                        </audio>
+                        </div>
+                    </details>
+                
+                    <details>
+                        <summary>
+                            <strong>Instructions in Urdu</strong>
+                        </summary>
+                            <div class='details-content'>
+                            <audio controls autoplay>
+                                <source src='static_project/audios/video1_urdu.mp3'>
+                            </audio>
+                            <audio controls autoplay>
+                                <source src='static_project/audios/video1_urdu.mp3'>
+                            </audio>
+                            <audio controls autoplay>
+                                <source src='static_project/audios/video1_urdu.mp3'>
+                            </audio>
+                            <audio controls autoplay>
+                                <source src='static_project/audios/video1_urdu.mp3'>
+                            </audio>
+                            </div>
+                        </details>
+                </div>
+        </div>      
     </div>
     
     {% for obj in qs %}
@@ -42,7 +91,7 @@
                         <div class="left floated  column eight wide fluid">
                             <!--Profile picture and created time-->
                             <img class="ui avatar image" src={{obj.creator.avatar.url}}> 
-                            {{ obj.creator.first_name }} {{obj.creator.last_name}}
+                            {{ obj.creator}} {{obj.creator.last_name}}
                             <br>({{ obj.created|timesince}} ago)
                         </div>
 
@@ -91,8 +140,36 @@
                 </div>
                 <hr>
 
-                <!--Comments-->
-                <div class="content">
+                <!--Commentes-->
+                <div>
+                    <form action="" method="POST"class='ui form'>
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value={{obj.id}}>
+                        {{ c_form }}    
+                        <button type="submit" name="submit_c_form" class="ui primary button mt-5 w-full">send</button>
+                    </form>
+                </div>
+                <hr>
+                <!--Show Comments-->
+                <details>
+                    <summary>{{ obj.num_comments }} Comments</summary>
+                    <div class="details-content">
+                            {% if obj.zakat_posts_comments.all %}
+                                
+                                {% for c in obj.zakat_posts_comments.all %}
+                                    <div class="ui green raised segment">
+                                        <img class="ui avatar image" src={{c.user.avatar.url}}>
+                                        <span>{{ c.user }}</span>
+                                        <div class='mt-5'>{{ c.body }}</div>
+                                    </div>
+                                {% endfor %}
+        
+                            {% endif %}
+                    </div>
+                </details>
+
+                <!-- show or hide Comments with effects-->
+                {% comment %} <div class="content">
                     <button class="cmt_btn ui button mb-5">{{ obj.num_comments }} Comments</button>
                     <div class="comment-box">
                     {% if obj.zakat_posts_comments.all %}
@@ -107,14 +184,7 @@
 
                     {% endif %}
                     </div>
-    
-                    <form action="" method="POST"class='ui fluid form'>
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value={{obj.id}}>
-                        {{ c_form }}
-                        <button type="submit" name="submit_c_form" class="ui primary button mt-5 w-full">send</button>
-                    </form>
-                </div>
+                </div> {% endcomment %}
             </div>
         </div>
         <div class="five wide column">
@@ -130,9 +200,9 @@
                                 <input type="hidden" name="post_id" value={{obj.id}}>
                                 <button type="submit" class="ui button upvote-btn{{obj.id}}">
                                     <div class="p-2 rounded-full text-black">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="25">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60">
                                             <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
-                                        <p class="upvote-count{{obj.id}}"><b>{{obj.upvote}} Upvotes</b></p>
+                                        <p class="upvote-count{{obj.id}}"><b>{{obj.upvote}} </b></p>
                                     </div>
                                 </button>
                             </form>
@@ -142,11 +212,10 @@
                             <form action="{% url 'zakat_posts:downvote' %}" method="POST" class='downvote-form' id='{{obj.id}}'>
                                 {% csrf_token %}
                                 <input type="hidden" name="post_id" value={{obj.id}}>
-                                <button type="submit" class="ui button downvote-btn{{obj.id}}">
-                                    <div class="p-2 rounded-full text-black">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="25">
-                                            <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
-                                        <p class="downvote-count{{obj.id}}"><b>{{obj.downvote}} Downvotes</b></p>
+                                <button type="submit" class="ui button -btn{{obj.id}}">
+                                    <div class="">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60"><path d="M318 334.5c3.8 8.8 2 19-4.6 26l-136 144c-4.5 4.8-10.8 7.5-17.4 7.5s-12.9-2.7-17.4-7.5l-136-144c-6.6-7-8.4-17.2-4.6-26S14.4 320 24 320h88l0-288c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32l0 288h88c9.6 0 18.2 5.7 22 14.5z"/></svg>
+                                        <p class="downvote-count{{obj.id}}"><b>{{obj.downvote}} </b></p>
                                     </div>
                                 </button>
                             </form>
@@ -159,23 +228,48 @@
                 </div>
                 <div class="column eight wide fluid">
                     <div class="ui items">
-                        <!--Share-->
-                        <div class="item">
-                            <button class='ui button'>Expected money</button>
-                        </div>
-                        <!--Report-->
-                        <div class="item">
-                            <button class='ui button'>Satisfied or unsatisfied</button>
-                        </div>
-                        <!--Save-->
-                        <div class="item">
-                            <button class='ui button'>varified</button>
-                        </div>
                         <!--NO of varified badge-->
                         <div class='item'>
-                            {% if obj.varified %}
-                                    <h1><i class="check circle icon"></i>Varified</h1> 
-                                {% endif %}
+                            <h2><strong>
+                                <a class="item">
+                                    <div class="ui red horizontal label"><h5>AI Varification</h5></div><br>
+                                    {{ obj.varified }}%
+                                </a>
+                            </strong></h2>
+                        </div>
+                        <!--Needed Money-->
+                        <div class="item">
+                            <h2><strong>
+                                <a class="item">
+                                    <div class="ui red horizontal label"><h5>Needed Money</h5></div>
+                                    {{ obj.needed_money }}
+                                </a>
+                            </strong></h2>
+                        </div>
+
+                        <!--Paid money-->
+                        <div class="item">
+                            <h2><strong>
+                                <a class="item">
+                                    <div class="ui red horizontal label"><h5>Paid Money</h5></div>
+                                    <br>
+                                    {{ obj.paid }}
+                                </a>
+                            </strong></h2>
+                        </div>
+                        <!--Satisfied-->
+                        <div class="item">
+                            <h2><strong>
+                                <a class="item">
+                                    <div class="ui red horizontal label"><h5>Satisfied</h5></div>
+                                    <br>
+                                    {% if obj.satisfied %}
+                                        <i class="check circle icon"></i>
+                                    {% else %}
+                                        <i class="times circle icon"></i>
+                                    {% endif %}
+                                </a>
+                            </strong></h2>        
                         </div>
                     </div>
                 
@@ -194,10 +288,21 @@
 
 {% block scripts %} 
     <!--display here will overide the display = none in style-->
+    {% comment %} <script src=
+        "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js">
+    </script> {% endcomment %}
     <script>
-        $( document ).ready(function() {
+        {% comment %} //for showing translation options
+        $('.b_English').click(function () {
+            $('.english').transition('fade');
+        })
+
+        $('.b_Urdu').click(function () {
+            $('.urdu').transition('fade');
+        }) {% endcomment %}
+
+        {% comment %} $( document ).ready(function() {
             let display = true
-            //cmt_btn = FAlse
             $(".cmt_btn").click(function () {
                 if (display===true) {
                     $(this).next(".comment-box").hide("slow");
@@ -206,7 +311,7 @@
                     $(this).next(".comment-box").show("slow");
                     display=true
                 }  
-            });
+            }); {% endcomment %}
 
             //like button logic
             $('.upvote-form').submit(function(e){

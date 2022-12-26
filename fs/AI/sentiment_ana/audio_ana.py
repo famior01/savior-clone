@@ -86,7 +86,7 @@ class audio2emo:
             result = sum(scores)/len(scores) # average of all scores
         if result > 6:
             print("Entitled", result)
-            return 1     # Entitled
+            return int(result)     # to calculate the percentage of all three models
         else:
             print("Not Entitled", result)
             return 0     # Not Entitled

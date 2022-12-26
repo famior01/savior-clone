@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9x5e3shen*+a66vk360$0ncpk^4+!o4(mps)e_6tmih(smob^e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # Allowed hosts for the project to run on 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # LOGIN_URL ='/admin/'
 # Here If User logged in then he will be redirected to this page

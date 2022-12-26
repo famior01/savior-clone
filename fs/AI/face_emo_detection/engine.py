@@ -64,7 +64,7 @@ def find_emotion(video_id):
     result = sum(emotions.values())/len(emotions)
     if result >= 6:
       print("Seeker is in trouble", result)
-      return 1 # 1 means Seeker is in trouble
+      return int(result) # to get the percentage of all models
     else:
       print("Seeker is not in trouble", result)
       return 0 # 0 means Seeker is not in trouble

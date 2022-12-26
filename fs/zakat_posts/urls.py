@@ -9,4 +9,5 @@ urlpatterns = [
     path('downvote/', views.downvote, name='downvote'),
     path('delete/<int:pk>/', views.PostDeleteView.as_view(), name='post-delete'),
     path('update/<int:pk>/', views.PostUpdateView.as_view(), name='post-update'),
+    path('satisfied/', views.satisfied, name='satisfied')
 ]

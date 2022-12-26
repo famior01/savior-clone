@@ -3,28 +3,22 @@ from profiles.models import Profile
 from posts.models import Posts
 from django.contrib.auth.models import User
 
-# Create your models here.
 
 class ZakatPosts(models.Model):
   creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
   seeker = models.CharField(max_length=100, blank=True) 
   donor = models.ManyToManyField(Profile, blank=True, related_name='donors') 
-  number1 = models.IntegerField(default=0, blank=True)
-  cnic1 = models.ImageField(upload_to='cnic_image', blank=True)
-  spouse_name = models.CharField(max_length=100, blank=True)
-  number2 = models.IntegerField(default=0, blank=True)
-  cnic2 = models.ImageField(upload_to='cnic_image', blank=True)
-  no_of_children = models.IntegerField(default=0)
   video1 = models.FileField(upload_to='zakat_video', blank=True)
-  video2 = models.FileField(upload_to='zakat_video', blank=True)
-  varified = models.BooleanField(default=False, blank=True)
-  paid = models.BooleanField(default=False, blank=True)
-  expected_money = models.IntegerField(default=0)
+  video2 = models.FileField(upload_to='zakat_video', blank=False)
+  varified = models.IntegerField(default=0, blank=True)
+  paid = models.IntegerField(default=0, blank=True)
+  needed_money = models.IntegerField(default=0, blank=False)
+  satisfied = models.BooleanField(default=False, blank=True)
   upvote = models.IntegerField(default=0)
   downvote = models.IntegerField(default=0)
   created = models.DateTimeField(auto_now_add=True)
   updated = models.DateTimeField(auto_now=True)
-  content = models.TextField(blank=True)
+  content = models.TextField(blank=True, null=True)
 
   def __str__(self):
     return str(self.pk)
