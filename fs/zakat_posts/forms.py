@@ -6,11 +6,11 @@ class ZakatPostForm(forms.ModelForm):
     This form is used to create and update a post
     '''
     # for changing the widget of the fields
-    seeker = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"like Asar", 'style': 'width: 200px;', 'type': 'text'}))
-    needed_money = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"like 10,000", 'type': 'number', 'style': 'width: 200px;'}))
-    video1 = forms.FileField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'video/*' , 'style': 'width: 200px;'}))
-    video2 = forms.FileField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'video/*' , 'style': 'width: 200px;'}))
-    content = forms.CharField(widget=forms.Textarea(attrs={'placeholder':"you can write anything that you have missed in the video, remember it is optional", 'rows':1, 'cols':40}))
+    seeker = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"like Asar", 'style': 'width: 200px;', 'type': 'text', 'required': 'required'}))
+    needed_money = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"like 10,000", 'type': 'number', 'style': 'width: 200px;', 'required': 'required'}))
+    video1 = forms.FileField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'video/*' , 'style': 'width: 200px;', 'required': 'required'}))
+    video2 = forms.FileField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'video/*' , 'style': 'width: 200px;', 'required': 'required'}))
+    content = forms.CharField(widget=forms.Textarea(attrs={'placeholder':"you can write anything that you have missed in the video, remember it is optional", 'rows':1, 'cols':40, }))
     
     class Meta:
       # will we be changed and these fields will be used
@@ -24,15 +24,14 @@ class ZakatPostForm(forms.ModelForm):
       self.fields['needed_money'].label = 'needed Money*'
       self.fields['video1'].label = 'First Video*'
       self.fields['video2'].label = 'Second Video*'
-      self.fields['video1'].required = True
-      self.fields['video2'].required = True
       self.fields['content'].required = False
-      self.fields['seeker'].required = True
-      self.fields['needed_money'].required = True
+
 
       # some css class like field
       for i,field in enumerate(self.fields):
         self.fields[str(field)].widget.attrs['class'] = 'field'+str(i+1)
+    
+    
 
 
 class ZakatPostsCommentForm(forms.ModelForm):

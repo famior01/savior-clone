@@ -5,7 +5,8 @@ Update Post
 {% endblock title %}
 
 {% block content %}
-  <div class='ui segment'>
+<div style = 'margin-top:30px;' class='ui container fluid'>
+  <div class='ui raised black segment'>
     <h3>Update Post</h3>
     <form action="" method='POST' class='ui form' enctype='multipart/form-data'>
       {% csrf_token %}
@@ -13,5 +14,5 @@ Update Post
       <button class='ui button primary mt-5' type='submit'>Update</button>
     </form>
   </div>
-
+</div>
 {% endblock content %}

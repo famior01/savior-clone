@@ -26,13 +26,50 @@
   </header>
   <body>
     <!--For messages to show-->
+    <div class="ui small container">
     {% if messages %}
-    <div>      
-        {% for message in messages %}
-        <div class="ui green message"><strong>{{message}}</strong></div>
-        {% endfor %}
+      <div>      
+          {% for message in messages %}
+            {% if message.tags == 'success' %}
+            <div class="ui positive message" id = 'message_container'>
+              <i class="close icon"></i>
+              div class="header">{{message}}</div>
+            </div>  
+            {% elif message.tags == 'info' %}
+            <div class="ui info message" id='message_container'>
+              <i class="close icon"></i>
+              <div class="header">{{message}}</div>
+            </div>  
+            {% elif message.tags == 'warning' %}
+            <div class="ui warning message" id='message_container' >
+              <i class="close icon"></i>
+              <div class="header">{{message}}</div>
+            </div>  
+            {% elif message.tags == 'error' %}
+            <div class="ui negative message" id='message_container'>
+              <i class="close icon"></i>
+              <div class="header">{{message}}</div>
+            </div>  
+            {% endif %}
+          {% endfor %}
+      </div>
+      {% endif %}
     </div>
-    {% endif %}
+
+    {% comment %} {% block messages %}
+    {% if messages %}
+    <ul class="messages">
+      
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }} ui message"{% endif %}>
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+            {{ message }}
+        </li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+    {% endblock messages %} {% endcomment %}
+    
 
     
     <div class="ui container">
@@ -57,5 +94,15 @@
   <!--Custom js -->
   <script type="text/javascript" src={% static 'main.js' %}>
   </script>
-  </body>
+
+  <script>
+    // suppose the `id` attribute of element is `message_container`.
+    var message_ele = document.getElementById("message_container");
+
+    setTimeout(function(){ 
+      message_ele.style.display = "none"; 
+    }, 13000);
+    // Timeout is 3 sec, you can change it
+  </script> 
+</body>
 </html>

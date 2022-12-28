@@ -7,6 +7,9 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from posts.models import Posts
 from zakat_posts.models import ZakatPosts
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def myprofile(request):
   zp = ZakatPosts.objects.all()
   profile = Profile.objects.get(user=request.user) #get curr user profile
@@ -26,7 +29,8 @@ def myprofile(request):
   }
   return render(request, 'profiles/myprofile.html', context)
 
-# 
+
+@login_required
 def invite_profiles_list_view(request):
   """ 
   Here we will all those profiles which have been sent friend request by the current user
@@ -71,6 +75,7 @@ class ProfileListView(ListView):
 
     return context
 
+@login_required
 def send_invitation(request):
   '''Here we will receive Primary key of the user we want to send the friend request, and then we will create a relationship object'''
 
@@ -85,6 +90,7 @@ def send_invitation(request):
   
   return redirect('profiles:all-profiles')
 
+@login_required
 def remove_from_friends(request):
   '''Here we will receive Primary key of the user we want to remove from friends, and then we will delete the relationship object'''
 
@@ -103,6 +109,7 @@ def remove_from_friends(request):
 
 
 # Accepting and rejecting friend requests all three 
+@login_required
 def invites_received_view(request):
   profile = Profile.objects.get(user=request.user)
   qs = Relationship.objects.invitations_received(profile)
@@ -118,6 +125,7 @@ def invites_received_view(request):
 
   return render(request, 'profiles/my-invites.html', context)
 
+@login_required
 def accept_invitation(request):
   '''Here we will receive Primary key of the user we want to accept the friend request, and then we will update the relationship object'''
 
@@ -132,6 +140,7 @@ def accept_invitation(request):
 
   return redirect('profiles:my-invites')
 
+@login_required
 def reject_invitation(request):
   '''Here we will receive Primary key of the user we want to reject the friend request, and then we will delete the relationship object'''
 

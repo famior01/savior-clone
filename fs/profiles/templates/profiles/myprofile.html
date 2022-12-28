@@ -1,5 +1,6 @@
-{% extends 'base.html' %} {% block title %} my profile {% endblock title %} {%
-block content %}
+{% extends 'base.html' %} 
+{% block title %} my profile {% endblock title %}
+{% block content %}
 <div style="margin-top: 30px" class="ui container large">
   <div class="ui grid">
     <!--Proflie introduction!-->
@@ -62,6 +63,7 @@ block content %}
       <div class="ui container">
         <div class="ui grid">
           {% for obj in zp %}
+          {% if obj.varified %}
           <div class="row">
             <div class="eleven wide column">
               <div class="ui blue raised segment">
@@ -151,8 +153,8 @@ block content %}
                 <details>
                   <summary>{{ obj.num_comments }} Comments</summary>
                   <div class="details-content">
-                    {% if obj.zakat_posts_comments.all %} {% for c in
-                    obj.zakat_posts_comments.all %}
+                    {% if obj.zakat_posts_comments.all %} 
+                    {% for c in obj.zakat_posts_comments.all %}
                     <div class="ui green raised segment">
                       <img
                         class="ui avatar image"
@@ -161,33 +163,13 @@ block content %}
                       <span>{{ c.user }}</span>
                       <div class="mt-5">{{ c.body }}</div>
                     </div>
-                    {% endfor %} {% endif %}
+                    {% endfor %} 
+                    {% endif %}
                   </div>
                 </details>
-
-                <!-- show or hide Comments with effects-->
-                {% comment %}
-                <div class="content">
-                  <button class="cmt_btn ui button mb-5">
-                    {{ obj.num_comments }} Comments
-                  </button>
-                  <div class="comment-box">
-                    {% if obj.zakat_posts_comments.all %} {% for c in
-                    obj.zakat_posts_comments.all %}
-                    <div class="ui green raised segment">
-                      <img
-                        class="ui avatar image"
-                        src="{{c.user.avatar.url}}"
-                      />
-                      <span>{{ c.user }}</span>
-                      <div class="mt-5">{{ c.body }}</div>
-                    </div>
-                    {% endfor %} {% endif %}
-                  </div>
-                </div>
-                {% endcomment %}
               </div>
             </div>
+
             <div class="five wide column">
               <div class="ui black raised segment">
                 <div class="ui grid">
@@ -200,28 +182,19 @@ block content %}
                             action="{% url 'zakat_posts:upvote' %}"
                             method="POST"
                             class="upvote-form"
-                            id="{{obj.id}}"
-                          >
+                            id="{{obj.id}}">
+
                             {% csrf_token %}
-                            <input
-                              type="hidden"
-                              name="post_id"
-                              value="{{obj.id}}"
-                            />
-                            <button
-                              type="submit"
-                              class="ui button upvote-btn{{obj.id}}"
-                            >
+                            <input type="hidden" name="post_id" value="{{obj.id}}"/>
+                            <button type="submit" class="ui button upvote-btn{{obj.id}}">
                               <div class="p-2 rounded-full text-black">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   viewBox="0 0 320 512"
                                   width="35"
-                                  height="60"
-                                >
+                                  height="60">
                                   <path
-                                    d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"
-                                  />
+                                    d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/>
                                 </svg>
                                 <p class="upvote-count{{obj.id}}">
                                   <b>{{obj.upvote}} </b>
@@ -341,6 +314,7 @@ block content %}
               </div>
             </div>
           </div>
+          {% endif %}
           {% endfor %}
         </div>
       </div>

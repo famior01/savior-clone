@@ -1,4 +1,6 @@
 from django.urls import path
+from django.contrib.auth.decorators import login_required
+
 from .views import (
   myprofile,
   invites_received_view,
@@ -14,7 +16,7 @@ from .views import (
 app_name = 'profiles'  # in case we need to use the namespace in the future
 urlpatterns = [
   # all profiles list
-  path('', ProfileListView.as_view(), name='all-profiles'),
+  path('', login_required(ProfileListView.as_view()), name='all-profiles'),
   path('send-invite/', send_invitation, name='send-invite'),
   path('remove-friend/', remove_from_friends, name='remove-friend'),
 
@@ -30,7 +32,7 @@ urlpatterns = [
   path('reject-invite/', reject_invitation, name='reject-invite'),
 
   # see Profiles
-  path('<slug>/', ProfileDetailView.as_view(), name='profile-detail-view'),
+  path('<slug>/', login_required(ProfileDetailView.as_view()), name='profile-detail-view'),
 
 
 ]

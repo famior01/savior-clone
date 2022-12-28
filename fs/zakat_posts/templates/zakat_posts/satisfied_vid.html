@@ -1,6 +1,223 @@
 {% extends 'base.html' %}
 
+{% block title %}Satisfied{% endblock title %}
 
 {% block content %}
-  <h1>HI jani here I am going to show those posts which have been satisfied!, will change the type from admin panels</h1>
+<div style = 'margin-top:30px;' class="ui container">
+    <div class="ui grid">
+        {% for obj in zp %}
+        {% if obj.satisfied and obj.varified%}
+    
+            <div class="row">
+                <div class=" eleven wide column ">
+                    <div class="ui blue raised segment">
+                        <!--Herder line-->
+                        <div class="ui grid">
+                            <div class="row">
+                                <div class="left floated  column eight wide fluid">
+                                    <!--Profile picture and created time-->
+                                    <a href="{{obj.creator.get_absolute_url}}">
+                                    <img class="ui avatar image" src={{obj.creator.avatar.url}}> </a>
+                                    {{ obj.creator}} {{obj.creator.last_name}}
+                                    <br>({{ obj.created|timesince}} ago)
+                                </div>
+        
+                                <div class="right floated column eight wide fluid ">
+                                    {% if request.user == obj.creator.user %}
+                                        <a href="{% url 'zakat_posts:post-update' obj.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
+                                        <a href="{% url 'zakat_posts:post-delete' obj.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+        
+                        <!--video 1-->
+                        <div class="ui grid">
+                            <div class="row">
+                                <div class="column eight wide">
+                                    {% if obj.video1 %}
+                                    <a href="{{obj.video1.url}}">  
+                                        <video width="320" height="240" controls>
+                                            <source src="{{obj.video1.url}}" type="video/mp4">
+                                            {% comment %} <source src="{{obj.video1.url}}" type="video/mp4"> {% endcomment %}
+                                        </video>
+                                    </a>
+                                {% endif %}
+                                </div>
+        
+                                <!--video 1-->
+                                <div class="column eight wide">
+                                    {% if obj.video2 %}
+                                    <a href="{{obj.video2.url}}">  
+                                        <video width="320" height="240" controls>
+                                            <source src="{{obj.video2.url}}" type="video/mp4">
+                                            {% comment %} <source src="{{obj.video2.url}}" type="video/mp4"> {% endcomment %}
+                                        </video>
+                                    </a>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+        
+                        <!--Content-->
+                        <div class="content">
+                            <p> {{ obj.content }} </p>
+                        </div>
+                        <hr>
+        
+                        <!--Commentes-->
+                        <div>
+                            <form action="" method="POST"class='ui form'>
+                                {% csrf_token %}
+                                <input type="hidden" name="post_id" value={{obj.id}}>
+                                {{ c_form }}    
+                                <button type="submit" name="submit_c_form" class="ui primary button mt-5 w-full">send</button>
+                            </form>
+                        </div>
+                        <hr>
+                        <!--Show Comments-->
+                        <details>
+                            <summary>{{ obj.num_comments }} Comments</summary>
+                            <div class="details-content">
+                                    {% if obj.zakat_posts_comments.all %}
+                                        
+                                        {% for c in obj.zakat_posts_comments.all %}
+                                            <div class="ui green raised segment">
+                                                <img class="ui avatar image" src={{c.user.avatar.url}}>
+                                                <span>{{ c.user }}</span>
+                                                <div class='mt-5'>{{ c.body }}</div>
+                                            </div>
+                                        {% endfor %}
+                
+                                    {% endif %}
+                            </div>
+                        </details>
+        
+                        <!-- show or hide Comments with effects-->
+                        {% comment %} <div class="content">
+                            <button class="cmt_btn ui button mb-5">{{ obj.num_comments }} Comments</button>
+                            <div class="comment-box">
+                            {% if obj.zakat_posts_comments.all %}
+                                
+                                {% for c in obj.zakat_posts_comments.all %}
+                                    <div class="ui green raised segment">
+                                        <img class="ui avatar image" src={{c.user.avatar.url}}>
+                                        <span>{{ c.user }}</span>
+                                        <div class='mt-5'>{{ c.body }}</div>
+                                    </div>
+                                {% endfor %}
+        
+                            {% endif %}
+                            </div>
+                        </div> {% endcomment %}
+                    </div>
+                </div>
+                <div class="five wide column">
+                    <div class= 'ui black raised segment'>
+                        <div class="ui grid">
+                        <div class="row">
+                        <div class="column eight wide fluid">
+                            <div class="ui items">
+                                <!--UpVote-->
+                                <div class="item">
+                                    <form action="{% url 'zakat_posts:upvote' %}" method="POST" class='upvote-form' id='{{obj.id}}'>
+                                        {% csrf_token %}
+                                        <input type="hidden" name="post_id" value={{obj.id}}>
+                                        <button type="submit" class="ui button upvote-btn{{obj.id}}">
+                                            <div class="p-2 rounded-full text-black">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60">
+                                                    <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
+                                                <p class="upvote-count{{obj.id}}"><b>{{obj.upvote}} </b></p>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
+                                <!--DownVote-->
+                                <div class="item">
+                                    <form action="{% url 'zakat_posts:downvote' %}" method="POST" class='downvote-form' id='{{obj.id}}'>
+                                        {% csrf_token %}
+                                        <input type="hidden" name="post_id" value={{obj.id}}>
+                                        <button type="submit" class="ui button -btn{{obj.id}}">
+                                            <div class="">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60"><path d="M318 334.5c3.8 8.8 2 19-4.6 26l-136 144c-4.5 4.8-10.8 7.5-17.4 7.5s-12.9-2.7-17.4-7.5l-136-144c-6.6-7-8.4-17.2-4.6-26S14.4 320 24 320h88l0-288c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32l0 288h88c9.6 0 18.2 5.7 22 14.5z"/></svg>
+                                                <p class="downvote-count{{obj.id}}"><b>{{obj.downvote}} </b></p>
+                                            </div>
+                                        </button>
+                                    </form>
+                                </div>
+                                <!--Pay-->
+                                <div class='item'>
+                                    <button class='ui primary button'>Pay</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column eight wide fluid">
+                            <div class="ui items">
+                                <!--NO of varified badge-->
+                                <div class='item'>
+                                    <h2><strong>
+                                        <a class="item">
+                                            <div class="ui red horizontal label"><h5>AI Varification</h5></div><br>
+                                            {{ obj.varified }}%
+                                        </a>
+                                    </strong></h2>
+                                </div>
+                                <!--Needed Money-->
+                                <div class="item">
+                                    <h2><strong>
+                                        <a class="item">
+                                            <div class="ui red horizontal label"><h5>Needed Money</h5></div>
+                                            {{ obj.needed_money }}
+                                        </a>
+                                    </strong></h2>
+                                </div>
+        
+                                <!--Paid money-->
+                                <div class="item">
+                                    <h2><strong>
+                                        <a class="item">
+                                            <div class="ui red horizontal label"><h5>Paid Money</h5></div>
+                                            <br>
+                                            {{ obj.paid }}
+                                        </a>
+                                    </strong></h2>
+                                </div>
+                                <!--Satisfied-->
+                                <div class="item">
+                                    <h2><strong>
+                                        <a class="item">
+                                            <div class="ui red horizontal label"><h5>Satisfied</h5></div>
+                                            <br>
+                                            {% if obj.satisfied %}
+                                                <i class="check circle icon"></i>
+                                            {% else %}
+                                                <i class="times circle icon"></i>
+                                            {% endif %}
+                                        </a>
+                                    </strong></h2>        
+                                </div>
+                            </div>
+                        
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            {% elif not obj.satisfied and  obj.varified and not zp%}
+            <div style = 'margin-top:30px;' class='ui container fluid'>
+                <div class="ui raised blue segment">
+                    <h1>no satisfied post found yet</h1>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+        
+
+
 {% endblock content %}
