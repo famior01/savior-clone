@@ -16,7 +16,8 @@ Delete Post
       {% endif %}
     {% endfor %}
   {% else %}
-    <div class="ui segment">
+  <div style = 'margin-top:30px;' class='ui container fluid'>
+    <div class="ui raised black segment">
       <div class="header">
         <h1>Delete Post?</h1>
       </div>
@@ -26,6 +27,7 @@ Delete Post
         <button class="ui button" type="submit">Yes</button>
         {% comment %} <a class="ui button" href="">No</a> {% endcomment %}
       </form>
+    </div>
   </div>
   {% endif %}
 {% endblock content %}

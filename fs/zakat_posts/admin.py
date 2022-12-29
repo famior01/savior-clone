@@ -4,7 +4,7 @@ from .models import ZakatPosts, ZakatPostsComment, UpVote, DownVote
 
 @admin.register(ZakatPosts)
 class ZakatPostsAdmin(admin.ModelAdmin):
-    list_display = ('id','creator', 'seeker', 'number1', 'spouse_name', 'number2', 'no_of_children', 'varified', 'paid', 'expected_money', 'upvote', 'downvote', 'created', 'updated')
+    list_display = ('id','creator', 'seeker', 'varified', 'paid', 'needed_money','satisfied', 'upvote', 'downvote', 'created', 'updated')
     
 @admin.register(ZakatPostsComment)
 class ZakatPostsCommentAdmin(admin.ModelAdmin):
