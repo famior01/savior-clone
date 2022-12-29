@@ -2,28 +2,7 @@
 
 <!--************** Including Bootstrap ****************-->
 
-
-
-
-
 {% block title %}Zakat Posts{% endblock title %}
-<<<<<<< HEAD
-
-{% block content %}
-
-<div class="ui grid">
-    <div class="eleven wide column">
-        {% for obj in qs %}
-        <div class="ui fluid card">
-            <div class="content">
-                <div class="right floated meta">
-                <div class="ui grid">
-                    <div class="row">
-                        {% if request.user == obj.creator.user %}
-                            <a href="{% url 'zakat_posts:post-update' obj.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
-                            <a href="{% url 'zakat_posts:post-delete' obj.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
-                        {% endif %}
-=======
 {% block content %}
 <div style = 'margin-top:30px;' class='ui container fluid'>
     <div class="ui grid">
@@ -36,10 +15,7 @@
                             {% csrf_token %}
                             {{ p_form}}
                             <button type='submit' name="submit_p_form" class="ui primary button fluid mt-5">Submit</button>
-                        </form>
-                        
-                        
->>>>>>> clean
+                        </form>           
                     </div>
                 </div> 
             </div>
@@ -300,10 +276,6 @@
 </div>
 {% endblock content %}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> clean
 {% block scripts %} 
     {% comment %} <script>
             // suppose the `id` attribute of element is `message_container`.
