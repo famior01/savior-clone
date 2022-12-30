@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
+    # for notifications
+    'notifications',
 ]
 
 # https://django-allauth.readthedocs.io/en/latest/configuration.html 
@@ -207,7 +210,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Karachi'
 
 USE_I18N = True
 
@@ -215,13 +218,13 @@ USE_TZ = True
 
 
 # Celery settings
-CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 # if i want to use redis as a result backend, but i am using django database
 # CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
+CELERY_TIMEZONE = 'Asia/Karachi'
 CELERY_RESULT_BACKEND = 'django-db'
 # CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_CACHE_BACKEND = 'default'
@@ -248,3 +251,12 @@ MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# =====================================================
+# ------------------- Notifications -------------------
+# =====================================================
+# docs = https://github.com/django-notifications/django-notifications
+
+DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}
+DJANGO_NOTIFICATIONS_CONFIG = { 'SOFT_DELETE': True}

@@ -37,7 +37,7 @@ def zakatPosts_comment_create_and_list_view(request):
     time.sleep(5) # wait for 5 seconds, to show the error message
     if p_form.is_valid():
       # video1 = p_form.cleaned_data['video1']
-      instance = p_form.save(commit=True)
+      instance = p_form.save(commit=False)
       instance.creator= profile
       # Sending the video to the AI
       instance.save() # have to save it first, to get the id
@@ -86,7 +86,7 @@ def zakatPosts_comment_create_and_list_view(request):
   return render(request, "zakat_posts/main.html", context=context)
 
 @login_required
-def upvote(request, pk):
+def upvote(request):
   '''
   This will handle the upvote, and will save it recordes in the database.
   'enable_upvote' = is for internal use, to save repitition of code
