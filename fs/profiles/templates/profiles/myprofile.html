@@ -63,10 +63,13 @@
       <div class="ui container">
         <div class="ui grid">
           {% for obj in zp %}
-          {% if obj.varified %}
+          {% if obj.varified and request.user == obj.creator.user %}
           <div class="row">
             <div class="eleven wide column">
               <div class="ui blue raised segment">
+                {% if request.user == obj.creator.user %}
+                    <a class="ui black right ribbon label">Post # {{ obj.post_number }}</a>
+                {% endif %}
                 <!--Herder line-->
                 <div class="ui grid">
                   <div class="row">

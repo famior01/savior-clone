@@ -4,18 +4,22 @@ body{
 
 .nav{
   border-radius: 0% !important;
-  /* border-radius: px 5px 5px 5px !important;  */
+  font-size: small !important;
   background-color: #000 !important;
 }
 
-.mb-7{
-  margin-bottom: 7px !important;
+.mb{
+  margin: 1px !important;
+  padding: 0.4em !important; 
+  word-spacing: 0em !important;
+  font-size: 0.9em !important;
+  font-weight: 1000 !important;
+  color: #fff !important;
 }
 
-/* for update button */
-.mt-5{
-  margin-top: 5px !important;
-}
+
+
+
 /* 
 .mymodel {
   height: 300px !important;
@@ -86,4 +90,11 @@ body{
   padding: 1em;
   border: 1px solid rgb(6, 6, 6);
   border-radius: 1em;
+}
+
+
+/* nofitication scroll bar */
+.scroll{
+  height: 100%;
+  overflow: scroll;
 }
