@@ -17,6 +17,7 @@ class ZakatPosts(models.Model):
   upvote = models.IntegerField(default=0)
   downvote = models.IntegerField(default=0)
   created = models.DateTimeField(auto_now_add=True)
+  post_number = models.IntegerField(default=0)
   updated = models.DateTimeField(auto_now=True)
   content = models.TextField(blank=True, null=True)
 
@@ -24,7 +25,7 @@ class ZakatPosts(models.Model):
     return str(self.pk)
 
   def num_comments(self):
-    return self.zakat_posts_comments.all().count() # type: ignore
+    return self.zakat_posts_comments.all().count() 
   class Meta:
     ordering = ('-created',)
 
@@ -45,6 +46,7 @@ class ZakatPostsComment(models.Model):
 class UpVote(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   post = models.ForeignKey(ZakatPosts, on_delete=models.CASCADE, related_name='upvotes')
+  upvoted = models.BooleanField(default=False)
   created = models.DateTimeField(auto_now_add=True)
   updated = models.DateTimeField(auto_now=True)
 
@@ -56,6 +58,7 @@ class UpVote(models.Model):
 class DownVote(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE)
   post = models.ForeignKey(ZakatPosts, on_delete=models.CASCADE, related_name='downvotes')
+  downvoted = models.BooleanField(default=False)
   created = models.DateTimeField(auto_now_add=True)
   updated = models.DateTimeField(auto_now=True)
 

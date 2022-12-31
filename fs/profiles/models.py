@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from .utils import get_random_code
 from django.template.defaultfilters import slugify
-from django.db.models.signals import post_save
 from django.db.models import Q
 from django.urls import reverse
 # Create your models here.
@@ -37,13 +36,14 @@ class Profile(models.Model):
   first_name = models.CharField(max_length=100, blank=True)
   last_name = models.CharField(max_length=100, blank=True)
   user = models.OneToOneField(User, on_delete=models.CASCADE) #if user deleted then profile will be deleted
+  post_no = models.IntegerField(default=1)
   bio = models.TextField(default="No bio yet", max_length = 100, blank=True)
   email = models.EmailField(max_length=100, blank=True)
   country = models.CharField(max_length=100, blank=True)
   avatar = models.ImageField(default='avatar.jpg', upload_to='avatars/')
   friends = models.ManyToManyField(User, related_name='friends', blank=True)
   slug = models.SlugField(unique=True, blank=True)
-  update = models.DateTimeField(auto_now=True)
+  updated = models.DateTimeField(auto_now=True)
   created = models.DateTimeField(auto_now_add=True)
 
   objects = ProfileManager() # this is the manager

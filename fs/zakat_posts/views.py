@@ -10,12 +10,15 @@ from django.http import JsonResponse, HttpResponseRedirect
 from family_savior.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
 from posts.models import Posts
-from AI.tasks import AI
+from AI.tasks import AI, notify_before_posting, notify_after_posting
 import cv2
 import os
 from datetime import datetime, timedelta
 import time
 from django.contrib import messages
+from notifications.signals import notify
+from celery import shared_task
+from celery import Celery
 
 # from .utils import playvideo
 
@@ -23,44 +26,39 @@ from django.contrib import messages
 def zakatPosts_comment_create_and_list_view(request):
   qs = ZakatPosts.objects.all()
   profile = Profile.objects.all()
-
   # Initializing The forms
   p_form = ZakatPostForm()
   c_form = ZakatPostsCommentForm()
-  
 
   profile = Profile.objects.get(user=request.user)
 
+  
+
   if 'submit_p_form' in request.POST:
-    messages.info(request, 'Abdullah has received your post, will post after varificaiton!')
-    p_form = ZakatPostForm(request.POST, request.FILES)
-    time.sleep(5) # wait for 5 seconds, to show the error message
+
+    p_form = ZakatPostForm(request.POST, request.FILES)    
     if p_form.is_valid():
-      # video1 = p_form.cleaned_data['video1']
       instance = p_form.save(commit=False)
       instance.creator= profile
-      # Sending the video to the AI
-      instance.save() # have to save it first, to get the id
-      
+      instance.save() # have to save it first, to get the 
+      profile.post_no += 1 # this will change each time
+      zp = ZakatPosts.objects.get(id=instance.id)
+      zp.post_number = profile.post_no # on which number the post was created
+      zp.save()
+      profile.save()
       #(=====================   AI   =====================)
       ID = instance.id
       print("\n************", ID, "************\n")
-      # output = AI.apply_async(args=[ID], ignore_result=False)  
+      notify_before_posting.apply_async(args=[ID], ignore_result=False)
       output = AI.apply_async(args=[ID], ignore_result=False)
+      notify_after_posting.apply_async(args=[ID], ignore_result=False)
+
       output = output.get()
 
-      # show success message
-      if type(output) == int: # if output is a int as average
-        messages.success(request, 'Abdullah has varified your post, and posted!')
-
-      print("\n OUTPUT FROM AI", output, "************\n")
-      print("************", type(output), "************\n")
-      
       # for handling the error, which I made in the AI function
-      if type(output) == str: # if output is a string
-        print("\n************\t", output, "\t************\n")
-        messages.error(request, output)
-        zp = ZakatPosts.objects.get(id=ID) # delete full object
+      if type(output) == str: 
+        notify.send(request.user, recipient=instance.creator.user, verb=output)
+        zp = ZakatPosts.objects.get(id=ID) 
         zp.delete()
       
     p_form = ZakatPostForm() # renew the form
@@ -74,6 +72,13 @@ def zakatPosts_comment_create_and_list_view(request):
       instance.user = profile
       instance.post = ZakatPosts.objects.get(id=request.POST.get('post_id'))
       instance.save()
+
+      # Notification Corner
+      body = instance.body[:50] + '...' # to show only 50 characters in the notification
+      if instance.user != instance.post.creator:
+        notify.send(request.user, recipient=instance.post.creator.user, verb=body, action_object=instance.post, description=f'on post # {instance.post.post_number}')
+
+      # Refresh the Form
       c_form = ZakatPostsCommentForm()
 
 
@@ -94,8 +99,8 @@ def upvote(request):
   '''
   if request.method == 'POST':
     def enable_upvote():
-      upvote = UpVote.objects.create(user=user, post=post)
-      upvote.save()
+      upvote = UpVote.objects.create(user=user, post=post, upvoted=True)
+      # upvote.save()
       post.upvote = post.upvote + 1
       post.save()
 
@@ -105,7 +110,7 @@ def upvote(request):
     post = ZakatPosts.objects.get(id=post_id) # get the post object
 
     # check if the user has already upvoted the post
-    upvote = UpVote.objects.filter(user=user, post=post).first()
+    upvote = UpVote.objects.filter(user=user, post=post, upvoted=True).first()
     if upvote != None: # if the user has already upvoted the post
       upvote.delete() # delete the upvote
       post.upvote = post.upvote - 1 
@@ -113,7 +118,7 @@ def upvote(request):
     
     else:
       # check if the user has already downvoted the post
-      downvote = DownVote.objects.filter(user=user, post=post).first()
+      downvote = DownVote.objects.filter(user=user, post=post, downvoted=True).first()
       if downvote != None:
         downvote.delete()
         post.downvote = post.downvote - 1
@@ -136,8 +141,8 @@ def downvote(request):
   if request.method == 'POST':
     def enable_downvote():
       # downvote the post
-      downvote = DownVote.objects.create(user=user, post=post)
-      downvote.save()
+      downvote = DownVote.objects.create(user=user, post=post, downvoted=True)
+      # downvote.save()
       post.downvote = post.downvote + 1
       post.save()
     
@@ -146,14 +151,14 @@ def downvote(request):
     post = ZakatPosts.objects.get(id=post_id)
 
     # check if the user has already downvoted the post
-    downvote = DownVote.objects.filter(user=user, post=post).first()
+    downvote = DownVote.objects.filter(user=user, post=post, downvoted=True).first()
     if downvote != None:
       downvote.delete()
       post.downvote = post.downvote - 1
       post.save()
     else:
       # check if the user has already upvoted the post
-      upvote = UpVote.objects.filter(user=user, post=post).first()
+      upvote = UpVote.objects.filter(user=user, post=post, upvoted=True).first()
       if upvote != None:
         upvote.delete()
         post.upvote = post.upvote - 1

@@ -5,18 +5,26 @@ from .YOLOv7.engine import Object_Detection
 from celery import Celery
 from django.conf import settings
 from celery import shared_task
-# from family_savior.celery import app
 from django.contrib import messages
 from zakat_posts.models import ZakatPosts
 from django.contrib.auth.models import User
 from notifications.signals import notify
 
+@shared_task()
+def notify_before_posting(ID):  
+  zp = ZakatPosts.objects.get(id=ID) # delete full object
+  notify.send(zp.creator.user, recipient=zp.creator.user, verb='Abdullah (AI) is checking your post which might takes more than an hour, after evaluation you will be notified with status of your post. Please wait!')
+
+@shared_task()
+def notify_after_posting(ID):
+  zp = ZakatPosts.objects.get(id=ID) # delete full objec
+  if zp.varified > 50:
+    notify.send(zp.creator.user, recipient=zp.creator.user, verb=f'Abdullah (AI) has varified your post with {zp.varified}%, and posted.')
+  else:
+    notify.send(zp.creator.user, recipient=zp.creator.user, verb='Sorry! Abdullah (AI) did not varify your post, and did not post it.')
 
 @shared_task()
 def AI(ID):
-  # Create notificaiton for the user
-  # creator = ZakatPosts.objects.get(id=ID).creator.user # post>profile>user
-  # notify.send(creator, recipient=creator, verb='Your post has been received, and will be verified and post soon, after the verification by our AI.!')
 
   # messages.info(request, 'Your post has been received, and will be verified and post soon, after the verification by our AI.!')
 
@@ -53,6 +61,8 @@ def AI(ID):
     zp.save()
     return avg
   else:
-    print("******** average is less than 40 ********")
-    return "Abdullah didn't varify your post :(" # object will be delete in view
+    zp = ZakatPosts.objects.get(id=ID) # delete full object
+    zp.varified = avg
+    zp.save()
   
+
