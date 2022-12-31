@@ -9,7 +9,7 @@ body{
 }
 
 .mb{
-  margin: 1px !important;
+  margin: 1em !important;
   padding: 0.4em !important; 
   word-spacing: 0em !important;
   font-size: 0.9em !important;
@@ -19,13 +19,6 @@ body{
 
 
 
-
-/* 
-.mymodel {
-  height: 300px !important;
-  top: 200% !important;
-  font-size: 20px !important;
-} */
 
 /* for posts/main.html*/
 .mb-5 {
@@ -56,28 +49,28 @@ body{
 
 
 .field1 {
-  margin-bottom: 2vw !important;
+  margin-bottom: 1vw !important;
   margin-left: 0.3vw !important;
-  margin-right: 2vw !important;  
+  margin-right: 1vw !important;  
   border:  1px solid rgb(6, 6, 6) !important; 
 }
 
 .field2 {
-  margin-bottom: 2vw !important;
+  margin-bottom: 1vw !important;
   margin-left: 0.3vw !important;
-  margin-right: 2vw !important;
+  margin-right: 1vw !important;
   border:  1px solid rgb(6, 6, 6) !important; 
 }
 
 .field3 {
-  margin-left: 1.2vw !important;
+  margin-left: 1vw !important;
   margin-bottom: 2vw !important;
-  margin-right: 3vw !important;
+  margin-right: 1vw !important;
   border:  1px solid rgb(6, 6, 6) !important; 
 }
 
 .field4 {
-  margin-left: 0.3vw !important;
+  margin-left: 0.5vw !important;
   margin-bottom: 1vw !important;
   margin-right: 2vw !important;
   border:  1px solid rgb(6, 6, 6) !important; 
@@ -97,4 +90,12 @@ body{
 .scroll{
   height: 100%;
   overflow: scroll;
+}
+
+.upvote_btn {
+  background-color: transparent !important;
+  border: none !important;
+  color: #000 !important;
+  font-size: 1.5em !important;
+  font-weight: 1000 !important;
 }

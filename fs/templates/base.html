@@ -87,6 +87,9 @@
   
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  <!--Jquesry-->
+  <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
   
   <!-- semantic UI -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
@@ -94,5 +97,12 @@
   <!--Custom js -->
   <script type="text/javascript" src={% static 'main.js' %}>
   </script>
+
+  <script>
+    setTimeout(function(){
+        window.location.reload();
+    }, 600000); // 10 minutes
+  </script>
+
   </body>
 </html>

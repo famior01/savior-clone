@@ -15,7 +15,7 @@
 <div class="ui inverted menu nav ">
     <div class="ui container fluid ">
     {% if request.user.is_authenticated %}
-        <a href="{{path_to_posts}}" class="{% if request.path == path_to_posts %}active{% endif %} item">
+        <a href="{{zakat_posts_home}}" class="{% if request.path == path_to_posts %}active{% endif %} item">
             <h1>Family Savior</h1>
         </a>
     {% else %}
@@ -93,6 +93,7 @@
                 {% live_notify_badge %}
                 <div class="menu">
                     <!--Delete ALL Notificaitons-->
+                    <div class="ui segment red raised">
                     <a href="{% url 'DeleteAllNotifications'  %}">
                         <button type='submit' name='DeleteAllNotifications' 
                         class="ui button bwhite-lg ">Delete All</button></a>
@@ -134,6 +135,7 @@
                         </div>
                     </div>
                     {% endfor %}
+                </div>
                 </div>
             </div>
         </div>

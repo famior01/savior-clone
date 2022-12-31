@@ -51,7 +51,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_USERNAME_REQUIRED = False
-LOGIN_REDIRECT_URL = '/posts'
+LOGIN_REDIRECT_URL = '/zakat_posts/'
 ACCOUNT_EMAIL_UNIQUE = True
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_CONFIRMATION_HMAC = True
@@ -76,7 +76,7 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_USERNAME_MIN_LENGTH = 5
 
 # instead of website@gmail.com, now it will be abuubaida901@gmail.com
-DEFAULT_FROM_EMAIL = "abuubaida901@gmail.com"
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
 
 
 # Email settings
@@ -85,8 +85,8 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 # we will provide our email and password in the .env file
-EMAIL_HOST_USER = "abuubaida901@gmail.com"
-EMAIL_HOST_PASSWORD = 'fwippydzgpvutvmr'
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
 # --------------- Working for personal messages----------------
 # import smtplib, ssl

@@ -25,9 +25,7 @@ def notify_after_posting(ID):
 
 @shared_task()
 def AI(ID):
-
-  # messages.info(request, 'Your post has been received, and will be verified and post soon, after the verification by our AI.!')
-
+  
   # print("\n\n***********\t IN the AI function \t***********")
   # # getting Video emotion analysis
   # face_ana = find_emotion(video_id=ID)  
@@ -52,9 +50,7 @@ def AI(ID):
   # print("**************Nor_and_add", Nor_and_add, "************************")
   # avg = (Nor_and_add//3)*100 # getting average
   # print("Average of all******", avg, "************************")
-  # return 'Jani how are you, keep doing!'
-  avg = 60
-
+  avg=100
   if avg>50:
     zp = ZakatPosts.objects.get(id=ID) # delete full object
     zp.varified = avg

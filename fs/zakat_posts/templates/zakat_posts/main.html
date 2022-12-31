@@ -10,6 +10,7 @@
 <div style = 'margin-top:30px;' class='ui container fluid'>
     <div class="ui grid">
     <div class="row">
+        <!--Zakat Form-->
         <div class=" eleven wide column ">
             <div class="ui blue raised segment">
                 <div class='ui large form'>
@@ -23,6 +24,7 @@
                 </div> 
             </div>
         </div>
+
         <!--Instructions Eng & Urdu-->
         <div class="five wide column">
             <div class= 'ui red raised segment'>
@@ -70,6 +72,7 @@
                         </details>
                 </div>
         </div>      
+
     </div>
     
     {% for obj in qs %}
@@ -142,7 +145,7 @@
                             {% csrf_token %}
                             <input type="hidden" name="post_id" value={{obj.id}}>
                             {{ c_form }}    
-                            <button type="submit" name="submit_c_form" class="ui primary button mt-5 w-full">send</button>
+                            <button type="submit" name="submit_c_form" class="ui primary button mb">send</button>
                         </form>
                     </div>
                     <hr>
@@ -194,7 +197,7 @@
                                 <form action="{% url 'zakat_posts:upvote' %}" method="POST" class='upvote-form' id='{{obj.id}}'>
                                     {% csrf_token %}
                                     <input type="hidden" name="post_id" value={{obj.id}}>
-                                    <button type="submit" class="ui button upvote-btn{{obj.id}}">
+                                    <button type="submit" class="ui upvote_btn upvote-btn{{obj.id}}">
                                         <div class="p-2 rounded-full text-black">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60">
                                                 <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
@@ -208,7 +211,7 @@
                                 <form action="{% url 'zakat_posts:downvote' %}" method="POST" class='downvote-form' id='{{obj.id}}'>
                                     {% csrf_token %}
                                     <input type="hidden" name="post_id" value={{obj.id}}>
-                                    <button type="submit" class="ui button -btn{{obj.id}}">
+                                    <button type="submit" class="ui upvote_btn downvote-btn{{obj.id}}">
                                         <div class="">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60"><path d="M318 334.5c3.8 8.8 2 19-4.6 26l-136 144c-4.5 4.8-10.8 7.5-17.4 7.5s-12.9-2.7-17.4-7.5l-136-144c-6.6-7-8.4-17.2-4.6-26S14.4 320 24 320h88l0-288c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32l0 288h88c9.6 0 18.2 5.7 22 14.5z"/></svg>
                                             <p class="downvote-count{{obj.id}}"><b>{{obj.downvote}} </b></p>
@@ -223,7 +226,7 @@
                         </div>
                     </div>
                     <div class="column eight wide fluid">
-                        <div class="ui items">
+                        <div class="item">
                             <!--NO of varified badge-->
                             <div class='item'>
                                 <h2><strong>
@@ -278,23 +281,9 @@
     {% endif %}
     {% endfor %}
 </div>
-
 </div>
 {% endblock content %}
 
-{% block scripts %} 
-    {% comment %} <script>
-            // suppose the `id` attribute of element is `message_container`.
-        var message_ele = document.getElementById("message_container");
 
-        setTimeout(function(){ 
-        message_ele.style.display = "none"; 
-        }, 3000);
-        // Timeout is 3 sec, you can change it
-    </script>  {% endcomment %}
-    <script>
-        setTimeout(function(){
-            window.location.reload();
-        }, 600000); // 10 minutes
-    </script>
-{% endblock scripts %}
+<!-- FOR JAVASCRIPT -->
+<!--jquery method to submit zakat_form without reloading screen-->
