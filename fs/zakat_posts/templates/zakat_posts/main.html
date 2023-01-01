@@ -15,7 +15,7 @@
             <div class="ui blue raised segment">
                 <div class='ui large form'>
                     <div class="two fields">
-                        <form action="" method="POST" class='css_form' enctype="multipart/form-data" >
+                        <form class='css_form' id='zakat-form' enctype="multipart/form-data" >
                             {% csrf_token %}
                             {{ p_form}}
                             <button type='submit' name="submit_p_form" class="ui primary button fluid mt-5">Submit</button>
@@ -287,3 +287,37 @@
 
 <!-- FOR JAVASCRIPT -->
 <!--jquery method to submit zakat_form without reloading screen-->
+<script type='text/javascript'>
+    $(document).ready(function(){
+        $('.zakat-form').on('submit', function(event){
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'zakat_posts:zakat_post_create' %}",
+                method: "POST",
+                data:{
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                    'title': $('#id_title').val(),
+                    'description': $('#id_description').val(),
+                    'needed_money': $('#id_needed_money').val(),
+                    'paid': $('#id_paid').val(),
+                    'satisfied': $('#id_satisfied').val(),
+                    'varified': $('#id_varified').val(),
+                    'upvote': $('#id_upvote').val(),
+                    'downvote': $('#id_downvote').val(),
+                },
+                dataType: 'json',
+                success: function(data){
+                    console.log(data);
+                    if (data.is_valid){
+                        $('#zakat_form').html(data.html_form);
+                        alert('Zakat Post Created Successfully');
+                    }
+                    else{
+                        $('#zakat_form').html(data.html_form);
+                    }
+                }
+            });
+        });
+    });
+</script>
