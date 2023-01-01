@@ -43,7 +43,12 @@ INSTALLED_APPS = [
 
     # for notifications
     'notifications',
+    'crispy_forms',
 ]
+
+# ===========================================================
+# ------------------------- ALLAUTH SETTINGS ----------------
+# ===========================================================
 
 # https://django-allauth.readthedocs.io/en/latest/configuration.html 
 SITE_ID = 1
@@ -74,11 +79,13 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 ACCOUNT_SESSION_REMEMBER = True
 # limit of alphanumeric characters in username
 ACCOUNT_USERNAME_MIN_LENGTH = 5
-
 # instead of website@gmail.com, now it will be abuubaida901@gmail.com
 DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
 
 
+# ===========================================================
+# ------------------------- EMAIL SETTINGS ------------------
+# ===========================================================
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -110,6 +117,10 @@ EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 # 'signup': 'family_savior.forms.CustomSignupForm',
 # }
 
+
+# ===========================================================
+# ------------------------- DEFAULT SETTINGS ------------------
+# ===========================================================
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -216,7 +227,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+# ===========================================================
+# --------------------- CELERY SETTINGS ---------------------
+# ===========================================================
 # Celery settings
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 # if i want to use redis as a result backend, but i am using django database
@@ -230,27 +243,40 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'default'
 # CELERY_BEAT
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-result_backend = 'db+sqlite:///results.db'
+RESULT_BACKEND = 'db+sqlite:///results.db'
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-# STATIC_URL = '/static/' 
+
+#=================================================
+# ------------- STATIC FILES ---------------------
+# =================================================
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_project')
+    os.path.join(BASE_DIR, 'static'),
+    BASE_DIR/'posts'/'static',
+    BASE_DIR/'profiles'/'static',
+    BASE_DIR/'zakat_posts'/'static',
 ]
-STATIC_ROOT  = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'static_root')
 
 # Media files (User uploaded files)
 MEDIA_URL = 'media/'
-MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root')
+MEDIA_ROOT = BASE_DIR/'media'
+# MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root')
 
+
+
+
+
+# =====================================================
+# ------------------- DATABASE ------------------------
+# =====================================================
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 
 
 # =====================================================
