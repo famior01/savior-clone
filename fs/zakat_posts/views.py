@@ -23,6 +23,7 @@ from celery import Celery
 
 def create_zakat_posts(request):
   qs = ZakatPosts.objects.all()
+  c_form = ZakatPostsCommentForm()
   profile = Profile.objects.all()
   form = ZakatPostForm(request.POST or None, request.FILES or None)
   # Initializing The forms 
@@ -76,19 +77,25 @@ def create_zakat_posts(request):
     return JsonResponse({'status': 'save'})
   else:
     form = ZakatPostForm()
-  return render(request, 'zakat_posts/main.html', {'form': form, 'qs': qs, 'profile': profile})
+  context = {
+    'form': form,
+    'c_form': c_form,
+    'qs': qs,
+    'profile': profile
+  }
+  return render(request, 'zakat_posts/main.html', context)
 
 
 @login_required
 def create_comment(request):
   c_form = ZakatPostsCommentForm(request.POST or None)
-  comment = ZakatPostsComment()
   profile = Profile.objects.get(user=request.user)
   
   if request.method == 'POST':
-    body = request.POST['comment']
+    body = request.POST['body']
     post_id = request.POST['post_id']
     ZakatPostsComment.objects.create(user=profile, post=ZakatPosts.objects.get(id=post_id), body=body)
+    print("\n\ndon with comment", body, post_id, profile, "*********\n\n")
     
     # print('Adding comment')
     # c_form = ZakatPostsCommentForm(request.POST)

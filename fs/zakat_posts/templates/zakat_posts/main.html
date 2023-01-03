@@ -129,12 +129,14 @@
                     <hr>
 
                     <!--Commentes-->
-                    <form method="POST" id="commentForm" class='ui form' >
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" id='post_id' value={{obj.id}}>
-                        {{ c_form | crispy}}
-                        <button type="submit" name="submit" class="ui primary button mb">Send</button>
-                    </form>
+                    <div>
+                        <form action="" method="POST" class='ui form' id='commentForm'>
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" id='id_post_id' value={{obj.id}}>
+                            {{ c_form }}    
+                            <button type="submit" name="submit_c_form" class="ui primary button mb">send</button>
+                        </form>
+                    </div>
                     {% include "zakat_posts/comment.html" %}
                     <hr>
                     <!--Show Comments-->
