@@ -30,6 +30,8 @@ class ZakatPostForm(forms.ModelForm):
       # some css class like field
       for i,field in enumerate(self.fields):
         self.fields[str(field)].widget.attrs['class'] = 'field'+str(i+1)
+        # id to each field
+        self.fields[str(field)].widget.attrs['id'] = 'field'+str(i+1)
     
     
 
@@ -40,7 +42,7 @@ class ZakatPostsCommentForm(forms.ModelForm):
   '''
 
   # for changing the size of the text area
-  body = forms.CharField(label='', widget=forms.Textarea(attrs={'placeholder':"Add a comment...", 'rows':1, 'cols':40}))
+  body = forms.CharField(label='comment', widget=forms.Textarea(attrs={'placeholder':"Add a comment...", 'rows':1, 'cols':40, 'id':'commentbody'}))
   class Meta:
     # will we be changed and these fields will be used
     model = ZakatPostsComment

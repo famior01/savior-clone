@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
+CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3', 'bootstrap4', 'semantic-ui')
+
+
 # ===========================================================
 # ------------------------- ALLAUTH SETTINGS ----------------
 # ===========================================================

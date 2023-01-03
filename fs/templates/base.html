@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <!--Custom css -->
-    <link rel="stylesheet" type="text/css" href={% static 'style.css' %}>
+    <link rel="stylesheet" type="text/css" href={% static 'css/style.css' %}>
     
     
     <!-- semantic UI -->
@@ -58,20 +58,6 @@
       {% endif %}
     </div>
 
-    {% comment %} {% block messages %}
-    {% if messages %}
-    <ul class="messages">
-      
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }} ui message"{% endif %}>
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
-            {{ message }}
-        </li>
-        {% endfor %}
-    </ul>
-  {% endif %}
-    {% endblock messages %} {% endcomment %}
-    
 
     
     <div class="ui container">
@@ -86,17 +72,15 @@
 
   
   <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
 
-  <!--Jquesry-->
-  <script src="https://code.jquery.com/jquery-3.6.3.slim.min.js" integrity="sha256-ZwqZIVdD3iXNyGHbSYdsmWP//UBokj2FHAxKuSBKDSo=" crossorigin="anonymous"></script>
-  
   <!-- semantic UI -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
 
   <!--Custom js -->
-  <script type="text/javascript" src={% static 'main.js' %}>
-  </script>
+  {% block script %}
+  <script type="text/javascript" src="{% static 'js/base.js' %}" defer></script>
+  {% endblock script %}
 
   <script>
     setTimeout(function(){

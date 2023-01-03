@@ -1,0 +1,60 @@
+{% load static %}
+<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+
+<script>
+
+// *****************************************************************
+// ***************  AJAX POST FORM  ********************************
+// *****************************************************************
+
+const postForm = document.getElementById('postform');
+const field1 = document.getElementById('field1');
+const field2 = document.getElementById('field2');
+const field3 = document.getElementById('field3');
+const field4 = document.getElementById('field4');
+const field5 = document.getElementById('field5');
+
+postForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const csrf_form = document.getElementsByName('csrfmiddlewaretoken')[0].value; 
+
+
+  mydata = {
+    'csrfmiddlewaretoken': csrf_form,
+    'seeker': field1.value,
+    'needed_money': field2.value,
+    'video1': field3.value,
+    'video2': field4.value,
+    'content': field5.value,
+  }
+  //'video1': URL.createObjectURL(field3.files[0]),
+
+  console.log(mydata, '************* field3 value')
+  $('h3').html('your form has been submitted')
+
+
+  $.ajax({
+    type: 'POST',
+    url: '/zakat_posts/',
+    data: mydata,
+    dataType: 'json',
+    //processData: false,  // tell jQuery not to process the data
+    //contentType: false, 
+    success: function(data) {
+      if(data.status=='save'){
+        //console.log('your form has been submitted')
+        $('#postform')[0].reset();
+      }
+      if (data.status=='error'){
+        console.log('your form has not been submitted')
+      }
+    },
+  })
+}
+)  
+
+
+
+
+
+</script>

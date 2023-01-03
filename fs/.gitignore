@@ -6,6 +6,11 @@ __pycache__/
 # C extensions
 *.so
 
+
+# json 
+node_modules
+*.json
+
 # Distribution / packaging
 .Python
 build/
@@ -35,6 +40,7 @@ MANIFEST
 
 # Installer logs
 pip-log.txt
+
 pip-delete-this-directory.txt
 
 # Unit test / coverage reports
@@ -47,7 +53,7 @@ htmlcov/
 nosetests.xml
 coverage.xml
 *.cover
-*.py,cover
+# *.py,cover
 .hypothesis/
 .pytest_cache/
 

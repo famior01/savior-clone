@@ -62,6 +62,9 @@
     <div class="row">
       <div class="ui container">
         <div class="ui grid">
+
+
+
           {% for obj in zp %}
           {% if obj.varified and request.user == obj.creator.user %}
           <div class="row">
@@ -172,6 +175,7 @@
                 </details>
               </div>
             </div>
+
 
             <div class="five wide column">
               <div class="ui black raised segment">
@@ -325,3 +329,4 @@
   </div>
 </div>
 {% endblock content %}
+

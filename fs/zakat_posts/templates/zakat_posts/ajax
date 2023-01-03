@@ -1,71 +1,18 @@
-{% extends 'base.html' %}
-{% load static %}
-{% load crispy_forms_tags %}
-<!--************** Including Bootstrap ****************-->
-
-{% block title %}Zakat Posts{% endblock title %}
-
-
-{% block content %}
-<div style = 'margin-top:30px;' class='ui container fluid'>
-    <div class="ui grid">
-    <div class="row">
-        <!--Zakat Form-->
-        <div class=" eleven wide column ">
-            <div class="ui blue raised segment">
-                <div class='ui large form'>
-                    <form id='postform' method="POST" enctype="multipart/form-data">
-                        <h3 class='ui message blue'></h3>
-                        {% csrf_token %}
-                        {{ form | crispy }}
-                        <button class="ui button primary" type="submit">Submit</button>
-                    </form>         
-                </div> 
-            </div>
-        </div>
-
-        <!--Instructions Eng & Urdu-->
-        <div class="five wide column">
-            <div class= 'ui red raised segment'>
-                {% comment %} <h3>Instructions to fill form in two languages</h3>
-                <button class="ui button b_English">English</button>
-                <button class="ui button b_Urdu">Urdu</button> {% endcomment %}
-                <details>
-                    <summary>
-                        <strong>Instructions in English</strong>
-                    </summary>
-                        <div class='ui play details-content'>
-                        <audio controls>
-                            <source src='/static/audios/video1_eng.mp3'>
-                        </audio>
-                        <audio controls>
-                            <source src='/static/audios/video2_eng.mp3'>
-                        </audio>
-                        </div>
-                    </details>
-                
-                    <details>
-                        <summary>
-                            <strong>Instructions in Urdu</strong>
-                        </summary>
-                            <div class='details-content'>
-                            <audio controls>
-                                <source src='/static/audios/video1_urdu.mp3'>
-                            </audio>
-                            <audio controls>
-                                <source src='/static/audios/video2_urdu.mp3'>
-                            </audio>
-                            </div>
-                        </details>
-                </div>
-        </div>      
-
-    </div>
-    {% comment %} <div id='Post-Box'></div> {% endcomment %}
-    {% include "zakat_posts/form.html" %}
-
-    {% for obj in qs %}
-    {% if obj.varified > 0 and  not obj.satisfied %}
+// **********************************************************************
+// -----------------------) Show All Zakat Posts (-----------------------
+// **********************************************************************
+<script>
+const postBox = document.getElementById('Post-Box');
+$.ajax({
+    type: "GET",
+    url: "/zakat_posts/showPosts/",
+    success : function(response) {
+    console.log(response);
+    const data = response.data;
+    console.data
+    data.forEach(obj => {
+        postBox.innerHTML +=  `
+        {% if obj.varified > 0 and  not obj.satisfied %}
         <div class="row">
             <div class=" eleven wide column ">
                 <div class="ui blue raised segment">
@@ -129,13 +76,14 @@
                     <hr>
 
                     <!--Commentes-->
-                    <form method="POST" id="commentForm" class='ui form' >
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" id='post_id' value={{obj.id}}>
-                        {{ c_form | crispy}}
-                        <button type="submit" name="submit" class="ui primary button mb">Send</button>
-                    </form>
-                    {% include "zakat_posts/comment.html" %}
+                    <div>
+                        <form action="" method="POST" class='ui form'>
+                            {% csrf_token %}
+                            <input type="hidden" name="post_id" value={{obj.id}}>
+                            {{ c_form }}    
+                            <button type="submit" name="submit_c_form" class="ui primary button mb">send</button>
+                        </form>
+                    </div>
                     <hr>
                     <!--Show Comments-->
                     <details>
@@ -267,15 +215,17 @@
             </div> 
         </div>
     {% endif %}
-    {% endfor %}
-</div>
-</div>
-{% endblock content %}
+        `;
+    })
+  },
+  error: function(error) {
+    console.log('errdsf sdor', error);
+  }
+
+})  
 
 
-
-{% comment %} <script>
-    // *****************************************************************************
+// *****************************************************************************
 // ----------------------------) Create Zakat Post (-----------------------------
 // ******************************************************************************
 const postForm = document.getElementById('post-form');
@@ -285,30 +235,53 @@ const field3 = document.getElementById('field3');
 const field4 = document.getElementById('field4');
 const field5 = document.getElementById('field5');
 const csrf = document.getElementsByName('csrfmiddlewaretoken')[0].value; 
+console.log('csrf', csrf)
 
-$(document).on('submit', '#post-form', function(e){
-    e.preventDefault();
-    const data = {
-        'field1': field1.value,
-        'field2': field2.value,
-        'field3': field3.value,
-        'field4': field4.value,
-        'field5': field5.value,
-        'csrfmiddlewaretoken': csrf,
+
+postForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = {
+    'csrfmiddlewaretoken': csrf,
+    'field1': field1.value,
+    'field2': field2.value,
+    'field3': field3.value,
+    'field4': field4.value,
+    'field5': field5.value,
+  }
+  $.ajax({
+    type: 'POST',
+    url: '',
+    data: data,
+    success: function(response) {
+      console.log(response);
+    },
+    error: function(error) {
+      console.log(error);
     }
-    $.ajax({
-        type: 'POST',
-        url: '/zakat_posts/create/',
-        data: data,
-        success: function(response) {
-        $("h2").html(response)
-        },
-        error: function(error) {
-        console.log(error);
-        }
-    });
-})
-</script>
+  })
+}
+)
 
-<script src=" {% static "zakat_posts/main" %} ">
-</script> {% endcomment %}
+
+
+
+// AJAX FOR THE ZAKAT posts
+// const zakatposts = document.getElementById('zakat-box')
+
+// $.ajax({
+//   type:"POST",
+//   url: "/",
+//   success: function(response) {
+//     console.log(response); // get response in console
+//     const data = response.data;
+//     console.log(data)
+//     data.forEach(el => {
+//       
+//           `
+//     });
+//   },
+//   error: function(error) {
+//     console.log(error);
+//   }
+// })
+</script>

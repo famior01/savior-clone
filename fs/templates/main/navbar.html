@@ -9,6 +9,7 @@
 
 
 {% load static %}
+{% load notifications_tags %}
 
 
 
@@ -84,8 +85,7 @@
         
 
         <!-- Notification icon in semantic ui-->
-        {% load notifications_tags %}
-        {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %} 
+        {% comment %} {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}  {% endcomment %}
 
         <div class="item ">
             <div class="ui inline dropdown scrolling">

@@ -10,6 +10,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from family_savior.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
 from posts.models import Posts
+# from django.views.decorators.csrf import csrf_exempt
 from AI.tasks import AI, notify_before_posting, notify_after_posting
 import cv2
 import os
@@ -20,74 +21,94 @@ from notifications.signals import notify
 from celery import shared_task
 from celery import Celery
 
-# from .utils import playvideo
-
-@login_required
-def zakatPosts_comment_create_and_list_view(request):
+def create_zakat_posts(request):
   qs = ZakatPosts.objects.all()
   profile = Profile.objects.all()
-  # Initializing The forms
-  p_form = ZakatPostForm()
-  c_form = ZakatPostsCommentForm()
+  form = ZakatPostForm(request.POST or None, request.FILES or None)
+  # Initializing The forms 
+  if request.method == 'POST':
+    seeker = request.POST['seeker']
+    print(seeker, "*******************\n")
+    needed_money = request.POST['needed_money']
+    print(needed_money, "*******************\n")
+    video1 = request.POST['video1']
+    print(video1, "********************\n")
+    video2 = request.POST['video2']
+    print(video2, "*******************\n")
+    content = request.POST['content']
+    profile = Profile.objects.get(user=request.user)
+    
+    # create object
+    ZakatPosts.objects.create(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2, content=content)
+    
+    # get object
+    zp = ZakatPosts.objects.get(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2)
+    print(zp, "********** post **********\n")
+    
+    # update object
+    profile.post_no += 1 # this will change each time
+    zp.post_number = profile.post_no # on which number the post was created
+    zp.save()
+    profile.save()
 
+    # #(=====================   AI   =====================)
+    # ID = ZakatPosts.objects.filter(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2).values('id')[0]['id']
+    # print(id, '******** id *********')
+
+    # print("\n************", ID, "************\n")
+    # notify_before_posting.apply_async(args=[ID], ignore_result=False)
+    # output = AI.apply_async(args=[ID], ignore_result=False)
+    # notify_after_posting.apply_async(args=[ID], ignore_result=False)
+
+    # output = output.get()
+
+    # # for handling the error, which I made in the AI function
+    # if type(output) == str: 
+    #   notify.send(request.user, recipient=instance.creator.user, verb=output)
+    #   zp = ZakatPosts.objects.get(id=ID) 
+    #   zp.delete()
+
+    # show this valid post to the user
+    # zakat_posts = ZakatPosts.objects.values()
+    # print(zakat_posts, "*****************")
+    # zakat_posts_list = list(zakat_posts)
+    # print(zakat_posts_list, "*****************")
+    return JsonResponse({'status': 'save'})
+  else:
+    form = ZakatPostForm()
+  return render(request, 'zakat_posts/main.html', {'form': form, 'qs': qs, 'profile': profile})
+
+
+@login_required
+def create_comment(request):
+  c_form = ZakatPostsCommentForm(request.POST or None)
+  comment = ZakatPostsComment()
   profile = Profile.objects.get(user=request.user)
-
   
-
-  if 'submit_p_form' in request.POST:
-
-    p_form = ZakatPostForm(request.POST, request.FILES)    
-    if p_form.is_valid():
-      instance = p_form.save(commit=False)
-      instance.creator= profile
-      instance.save() # have to save it first, to get the 
-      profile.post_no += 1 # this will change each time
-      zp = ZakatPosts.objects.get(id=instance.id)
-      zp.post_number = profile.post_no # on which number the post was created
-      zp.save()
-      profile.save()
-      #(=====================   AI   =====================)
-      ID = instance.id
-      print("\n************", ID, "************\n")
-      notify_before_posting.apply_async(args=[ID], ignore_result=False)
-      output = AI.apply_async(args=[ID], ignore_result=False)
-      notify_after_posting.apply_async(args=[ID], ignore_result=False)
-
-      output = output.get()
-
-      # for handling the error, which I made in the AI function
-      if type(output) == str: 
-        notify.send(request.user, recipient=instance.creator.user, verb=output)
-        zp = ZakatPosts.objects.get(id=ID) 
-        zp.delete()
-      
-    p_form = ZakatPostForm() # renew the form
-  
-  # comment form
-  if 'submit_c_form' in request.POST:
-    print('Adding comment')
-    c_form = ZakatPostsCommentForm(request.POST)
-    if c_form.is_valid():
-      instance = c_form.save(commit=False)
-      instance.user = profile
-      instance.post = ZakatPosts.objects.get(id=request.POST.get('post_id'))
-      instance.save()
+  if request.method == 'POST':
+    body = request.POST['comment']
+    post_id = request.POST['post_id']
+    ZakatPostsComment.objects.create(user=profile, post=ZakatPosts.objects.get(id=post_id), body=body)
+    
+    # print('Adding comment')
+    # c_form = ZakatPostsCommentForm(request.POST)
+    # if c_form.is_valid():
+    #   instance = c_form.save(commit=False)
+    #   instance.user = profile
+    #   instance.post = ZakatPosts.objects.get(id=request.POST.get('post_id'))
+    #   instance.save()
 
       # Notification Corner
-      body = instance.body[:50] + '...' # to show only 50 characters in the notification
-      if instance.user != instance.post.creator:
-        notify.send(request.user, recipient=instance.post.creator.user, verb=body, action_object=instance.post, description=f'on post # {instance.post.post_number}')
+    instance = ZakatPostsComment.objects.get(user=profile, post=ZakatPosts.objects.get(id=post_id), body=body)
+    body = instance.body[:50] + '...' # to show only 50 characters in the notification
+    if instance.user != instance.post.creator:
+      notify.send(request.user, recipient=instance.post.creator.user, verb=body, action_object=instance.post, description=f'on post # {instance.post.post_number}')
 
-      # Refresh the Form
-      c_form = ZakatPostsCommentForm()
+    return JsonResponse({'status': 'save'})
 
-
-  context = {
-    'qs':qs,
-    'profile':profile,
-    'p_form':p_form,
-    'c_form':c_form,
-  }
+  else:
+    c_form = ZakatPostsCommentForm()
+    context = {'c_form':c_form}
   return render(request, "zakat_posts/main.html", context=context)
 
 @login_required
