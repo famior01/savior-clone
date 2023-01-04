@@ -1,39 +1,38 @@
 {% load static %}
-<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-
-
+<script src="{% static 'js/jquery.js' %}"></script>
 
 <script>
-const comment = document.getElementById('commentForm');
-const commentField = document.getElementById('commentbody');
-const postid = document.getElementById('id_post_id');
-const csrf_comment = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+console.log("from ------------------ Comments ------------------")
 
-
-comment.addEventListener('submit', (e) => {
-  e.preventDefault();
+$('.commentForm').submit(function(e){
+  e.preventDefault()
   
-  //var pk = $(this).attr('value');
-  mydata = {
-    'csrfmiddlewaretoken': csrf_comment,
-    'body': commentField.value,
-    'post_id': postid.value,
-  }
-  console.log(mydata, '************* commentField value')
+  const post_id = $(this).attr('id')
+  const url = $(this).attr('action')
+  const commentField = document.getElementById('commentbody');
+  console.log(commentField.value, '*************')
 
   $.ajax({
-    type: 'POST',
-    url: '/zakat_posts/create_comment/',
-    data: mydata,
-    dataType: 'json',
-    //processData: false,  // tell jQuery not to process the data
-    //contentType: false, 
-    success: function(data) {
-      if(data.status=='save'){
-        //console.log('your form has been submitted')
-        $('#commentForm')[0].reset();
+      type: 'POST',
+      url: '/zakat_posts/create_comment/',
+      data: {
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+          'post_id':post_id,
+          'body': commentField.value,
+      }, 
+      success: function(data) {
+        $(`#comment_total${post_id}`).html(data['no_of_comments'])
+
+          // if (parseInt(data['upvote']) > 0) {
+          //     console.log(parseInt(data['upvote']), '*************')
+          //     $(`.comment_total${post_id}`).html(99)
+          // }
+          // else {
+          //     $(`.upvote-count${post_id}`).html(0)
+          //     console.log(parseInt(data['upvote']), '*************')
+          // }
       }
-    },
   })
   })
+  
 </script>

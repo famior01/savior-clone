@@ -6,7 +6,7 @@ class ZakatPostForm(forms.ModelForm):
     This form is used to create and update a post
     '''
     # for changing the widget of the fields
-    seeker = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"like Asar", 'style': 'width: 200px;', 'type': 'text', 'required': 'required'}))
+    seeker = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"like Asar", 'style': 'width: 200px;', 'type': 'text', 'required': 'required', 'label':''}))
     needed_money = forms.CharField(widget=forms.TextInput(attrs={'placeholder':"like 10,000", 'type': 'number', 'style': 'width: 200px;', 'required': 'required'}))
     video1 = forms.FileField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'video/*' , 'style': 'width: 200px;', 'required': 'required'}))
     video2 = forms.FileField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'video/*' , 'style': 'width: 200px;', 'required': 'required'}))
@@ -19,11 +19,11 @@ class ZakatPostForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
       super().__init__(*args, **kwargs)
-      self.fields['content'].label = 'Extra Information*'
-      self.fields['seeker'].label = 'Seeker Name*'
-      self.fields['needed_money'].label = 'needed Money*'
-      self.fields['video1'].label = 'First Video*'
-      self.fields['video2'].label = 'Second Video*'
+      self.fields['content'].label = ''
+      self.fields['seeker'].label = ''
+      self.fields['needed_money'].label = ''
+      self.fields['video1'].label = ''
+      self.fields['video2'].label = ''
       self.fields['content'].required = False
 
 

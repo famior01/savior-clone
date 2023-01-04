@@ -22,101 +22,99 @@ from celery import shared_task
 from celery import Celery
 
 def create_zakat_posts(request):
+
   qs = ZakatPosts.objects.all()
   c_form = ZakatPostsCommentForm()
   profile = Profile.objects.all()
   form = ZakatPostForm(request.POST or None, request.FILES or None)
   # Initializing The forms 
-  if request.method == 'POST':
-    seeker = request.POST['seeker']
-    print(seeker, "*******************\n")
-    needed_money = request.POST['needed_money']
-    print(needed_money, "*******************\n")
-    video1 = request.POST['video1']
-    print(video1, "********************\n")
-    video2 = request.POST['video2']
-    print(video2, "*******************\n")
-    content = request.POST['content']
-    profile = Profile.objects.get(user=request.user)
+  if 'submit_p_form' in request.POST:
+    if form.is_valid():
+      instance = form.save(commit=False)
+      instance.creator = Profile.objects.get(user=request.user)
+      instance.save()
+      messages.success(request, f'Your post has been created!')
+      return redirect('zakat_posts:main-post-view')
+      profile = Profile.objects.get(user=request.user)
     
-    # create object
-    ZakatPosts.objects.create(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2, content=content)
-    
-    # get object
-    zp = ZakatPosts.objects.get(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2)
-    print(zp, "********** post **********\n")
-    
-    # update object
-    profile.post_no += 1 # this will change each time
-    zp.post_number = profile.post_no # on which number the post was created
-    zp.save()
-    profile.save()
+      # create object
+      zp = ZakatPosts(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2, content=content)
+      zp.save()
+      print(zp.id, "********** zp.id **********\n")
 
-    # #(=====================   AI   =====================)
-    # ID = ZakatPosts.objects.filter(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2).values('id')[0]['id']
-    # print(id, '******** id *********')
+      # # get object
+      # zp = ZakatPosts.objects.get(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2)
+      # print(zp, "********** post **********\n")
+      
+      # update object
+      profile.post_no += 1 # this will change each time
+      zp.post_number = profile.post_no # on which number the post was created
+      zp.save()
+      profile.save()
 
-    # print("\n************", ID, "************\n")
-    # notify_before_posting.apply_async(args=[ID], ignore_result=False)
-    # output = AI.apply_async(args=[ID], ignore_result=False)
-    # notify_after_posting.apply_async(args=[ID], ignore_result=False)
+      # #(=====================   AI   =====================)
+      # ID = zp.id
+      # print(id, '******** id *********')
 
-    # output = output.get()
+      # print("\n************", ID, "************\n")
+      # notify_before_posting.apply_async(args=[ID], ignore_result=False)
+      # output = AI.apply_async(args=[ID], ignore_result=False)
+      # notify_after_posting.apply_async(args=[ID], ignore_result=False)
 
-    # # for handling the error, which I made in the AI function
-    # if type(output) == str: 
-    #   notify.send(request.user, recipient=instance.creator.user, verb=output)
-    #   zp = ZakatPosts.objects.get(id=ID) 
-    #   zp.delete()
+      # output = output.get()
 
-    # show this valid post to the user
-    # zakat_posts = ZakatPosts.objects.values()
-    # print(zakat_posts, "*****************")
-    # zakat_posts_list = list(zakat_posts)
-    # print(zakat_posts_list, "*****************")
-    return JsonResponse({'status': 'save'})
-  else:
-    form = ZakatPostForm()
+      # # for handling the error, which I made in the AI function
+      # if type(output) == str: 
+      #   notify.send(request.user, recipient=instance.creator.user, verb=output)
+      #   zp = ZakatPosts.objects.get(id=ID) 
+      #   zp.delete()
+
+      # show this valid post to the user
+      # zakat_posts = ZakatPosts.objects.values()
+      # print(zakat_posts, "*****************")
+      # zakat_posts_list = list(zakat_posts)
+      # print(zakat_posts_list, "*****************")
   context = {
     'form': form,
     'c_form': c_form,
     'qs': qs,
     'profile': profile
   }
-  return render(request, 'zakat_posts/main.html', context)
 
+  return render(request, 'zakat_posts/main.html', context)
 
 @login_required
 def create_comment(request):
   c_form = ZakatPostsCommentForm(request.POST or None)
   profile = Profile.objects.get(user=request.user)
+  qs = ZakatPosts.objects.all()
+  form = ZakatPostForm()
   
   if request.method == 'POST':
-    body = request.POST['body']
+    body = request.POST["body"]
     post_id = request.POST['post_id']
-    ZakatPostsComment.objects.create(user=profile, post=ZakatPosts.objects.get(id=post_id), body=body)
-    print("\n\ndon with comment", body, post_id, profile, "*********\n\n")
-    
-    # print('Adding comment')
-    # c_form = ZakatPostsCommentForm(request.POST)
-    # if c_form.is_valid():
-    #   instance = c_form.save(commit=False)
-    #   instance.user = profile
-    #   instance.post = ZakatPosts.objects.get(id=request.POST.get('post_id'))
-    #   instance.save()
 
-      # Notification Corner
-    instance = ZakatPostsComment.objects.get(user=profile, post=ZakatPosts.objects.get(id=post_id), body=body)
-    body = instance.body[:50] + '...' # to show only 50 characters in the notification
-    if instance.user != instance.post.creator:
-      notify.send(request.user, recipient=instance.post.creator.user, verb=body, action_object=instance.post, description=f'on post # {instance.post.post_number}')
+    zpc = ZakatPostsComment(user=profile, post=ZakatPosts.objects.get(id=post_id), body=body)
+    zpc.save()
+  
+    # Notification Corner
+    body = zpc.body[:50] + '...' # to show only 50 characters in the notification
+    if zpc.user != zpc.post.creator:
+      notify.send(request.user, recipient=zpc.post.creator.user, verb=body, action_object=zpc.post, description=f'on post # {zpc.post.post_number}')
 
-    return JsonResponse({'status': 'save'})
+    comments = ZakatPostsComment.objects.filter(post=zpc.post).values()
+    list_of_comments = list(comments)
+    # no_of_comments = zpc.num_comments
+    no_of_comments = 99
+    return JsonResponse({'status': 'save', 'no_of_comments': no_of_comments, 'list_of_comments': list_of_comments})
 
-  else:
-    c_form = ZakatPostsCommentForm()
-    context = {'c_form':c_form}
-  return render(request, "zakat_posts/main.html", context=context)
+  context = {
+    'form': form,
+    'c_form': c_form,
+    'qs': qs,
+    'profile': profile
+  }
+  return render(request, "zakat_posts/main.html", context)
 
 @login_required
 def upvote(request):
@@ -132,9 +130,8 @@ def upvote(request):
       post.upvote = post.upvote + 1
       post.save()
 
-    post_id = request.POST.get('post_id')
+    post_id = request.POST['post_id']
     user= request.user
-    print('################# ',post_id, '**************************')
     post = ZakatPosts.objects.get(id=post_id) # get the post object
 
     # check if the user has already upvoted the post
@@ -153,13 +150,13 @@ def upvote(request):
         post.save()
         enable_upvote()
       else:
-        # upvote the post
         enable_upvote()
-    # data = {
-    #       'value': like.value,
-    #       'likes': post_obj.liked.all().count()
-    #   }
 
+      data = {
+        'upvote': post.upvote,
+      }
+      return JsonResponse(data, safe=False)
+    
     # return JsonResponse(data, safe=False)
   return redirect('zakat_posts:main-post-view')
 
@@ -174,7 +171,7 @@ def downvote(request):
       post.downvote = post.downvote + 1
       post.save()
     
-    post_id = request.POST.get('post_id')
+    post_id = request.POST['post_id']
     user= request.user
     post = ZakatPosts.objects.get(id=post_id)
 
@@ -193,6 +190,11 @@ def downvote(request):
         enable_downvote()
       else:
         enable_downvote()
+
+      data = {
+        'downvote': post.downvote,
+      }
+      return JsonResponse(data, safe=False)
     
   return redirect('zakat_posts:main-post-view')
 

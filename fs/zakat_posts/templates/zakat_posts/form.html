@@ -1,23 +1,75 @@
+{% comment %} # Initializing The forms 
+  if request.method == 'POST':
+    seeker = request.POST['seeker']
+    print(seeker, "********** seeker **********\n")
+    needed_money = request.POST['needed_money']
+    print(needed_money, "********** needed_money **********\n")
+    video1 = request.FILES['video1']
+    print(video1, "********** video1 **********\n")
+    video2 = request.FILES['video2']
+    print(video2, "********** video2 **********\n")
+    content = request.POST['content']
+    print(content, "********** content **********\n")
+
+    profile = Profile.objects.get(user=request.user)
+    
+    # create object
+    zp = ZakatPosts(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2, content=content)
+    zp.save()
+    print(zp.id, "********** zp.id **********\n")
+
+    # # get object
+    # zp = ZakatPosts.objects.get(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2)
+    # print(zp, "********** post **********\n")
+    
+    # update object
+    profile.post_no += 1 # this will change each time
+    zp.post_number = profile.post_no # on which number the post was created
+    zp.save()
+    profile.save()
+
+    # #(=====================   AI   =====================)
+    # ID = zp.id
+    # print(id, '******** id *********')
+
+    # print("\n************", ID, "************\n")
+    # notify_before_posting.apply_async(args=[ID], ignore_result=False)
+    # output = AI.apply_async(args=[ID], ignore_result=False)
+    # notify_after_posting.apply_async(args=[ID], ignore_result=False)
+
+    # output = output.get()
+
+    # # for handling the error, which I made in the AI function
+    # if type(output) == str: 
+    #   notify.send(request.user, recipient=instance.creator.user, verb=output)
+    #   zp = ZakatPosts.objects.get(id=ID) 
+    #   zp.delete()
+
+    # show this valid post to the user
+    # zakat_posts = ZakatPosts.objects.values()
+    # print(zakat_posts, "*****************")
+    # zakat_posts_list = list(zakat_posts)
+    # print(zakat_posts_list, "*****************")
+    return JsonResponse(data={'status': 'save'}, safe=False)
+ {% endcomment %}
+
 {% load static %}
-<script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.js' %}"></script>
 
 <script>
-
-// *****************************************************************
-// ***************  AJAX POST FORM  ********************************
-// *****************************************************************
-
 const postForm = document.getElementById('postform');
-const field1 = document.getElementById('field1');
-const field2 = document.getElementById('field2');
-const field3 = document.getElementById('field3');
-const field4 = document.getElementById('field4');
-const field5 = document.getElementById('field5');
-
 postForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const csrf_form = document.getElementsByName('csrfmiddlewaretoken')[0].value; 
+  e.preventDefault();  
 
+  const field1 = document.getElementById('field1');
+  const field2 = document.getElementById('field2');
+  const field3 = document.getElementById('field3');
+  const field4 = document.getElementById('field4');
+  const field5 = document.getElementById('field5');
+
+  const csrf_form = document.getElementsByName('csrfmiddlewaretoken')[0].value;
+  
+  $('#post_message').html('your form has been submitted')
 
   mydata = {
     'csrfmiddlewaretoken': csrf_form,
@@ -29,32 +81,26 @@ postForm.addEventListener('submit', (e) => {
   }
   //'video1': URL.createObjectURL(field3.files[0]),
 
-  console.log(mydata, '************* field3 value')
-  $('h3').html('your form has been submitted')
-
-
   $.ajax({
     type: 'POST',
     url: '/zakat_posts/',
     data: mydata,
     dataType: 'json',
-    //processData: false,  // tell jQuery not to process the data
-    //contentType: false, 
+    processData: false,
+    contentType: false,
+
     success: function(data) {
-      if(data.status=='save'){
-        //console.log('your form has been submitted')
+      if(data['status']=='save'){
+        alert('your form has been submitted')
         $('#postform')[0].reset();
-      }
-      if (data.status=='error'){
-        console.log('your form has not been submitted')
+        
       }
     },
   })
 }
 )  
 
-
-
-
-
 </script>
+
+
+
