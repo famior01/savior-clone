@@ -48,13 +48,6 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
-CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3', 'bootstrap4', 'semantic-ui')
-
-
-# ===========================================================
-# ------------------------- ALLAUTH SETTINGS ----------------
-# ===========================================================
-
 # https://django-allauth.readthedocs.io/en/latest/configuration.html 
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
@@ -84,22 +77,25 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 ACCOUNT_SESSION_REMEMBER = True
 # limit of alphanumeric characters in username
 ACCOUNT_USERNAME_MIN_LENGTH = 5
+
 # instead of website@gmail.com, now it will be abuubaida901@gmail.com
-DEFAULT_FROM_EMAIL = 'abuubaida901@gmail.com'
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
 
 
-# ===========================================================
-# ------------------------- EMAIL SETTINGS ------------------
-# ===========================================================
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-SMTP_SERVER = "smtp.gmail.com"
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_SERVER ='smtp.gmail.com'
+# # EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = True
+# EMAIL_PORT = 465
 # we will provide our email and password in the .env file
-EMAIL_HOST_USER = 'abuubaida901@gmail.com'
-EMAIL_HOST_PASSWORD = 'gyhjharjyzggzxos'
 
 # --------------- Working for personal messages----------------
 # import smtplib, ssl
@@ -127,8 +123,8 @@ EMAIL_HOST_PASSWORD = 'gyhjharjyzggzxos'
 # ===========================================================
 # ------------------------- DEFAULT SETTINGS ------------------
 # ===========================================================
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# if DEBUG:
+    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
