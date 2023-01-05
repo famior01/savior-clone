@@ -79,52 +79,24 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_USERNAME_MIN_LENGTH = 5
 
 # instead of website@gmail.com, now it will be abuubaida901@gmail.com
-DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
+DEFAULT_FROM_EMAIL = 'famior01@gmail.com'
 
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_SERVER ='smtp.gmail.com'
-# # EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = True
-# EMAIL_PORT = 465
+# EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
 # we will provide our email and password in the .env file
-
-# --------------- Working for personal messages----------------
-# import smtplib, ssl
-# from email.message import EmailMessage
-
-# msg = EmailMessage()
-# msg.set_content("The body of the email is here")
-# msg["Subject"] = "An Email Alert"
-# msg["From"] = "abuubaida901@gmail.com"
-# msg["To"] = "dadajan0011@gmail.com"
-
-# context=ssl.create_default_context()
-
-# with smtplib.SMTP("smtp.gmail.com", port=587) as smtp:
-#     smtp.starttls(context=context)
-#     smtp.login(msg["From"], "fwippydzgpvutvmr")
-#     smtp.send_message(msg)
-
-# # custom settings in Allauth
-# ACCOUNT_FORMS = {
-# 'signup': 'family_savior.forms.CustomSignupForm',
-# }
-
+EMAIL_HOST_USER = 'famior01@gmail.com'
+EMAIL_HOST_PASSWORD = 'ddkbuimnyedhkmpy'
 
 # ===========================================================
 # ------------------------- DEFAULT SETTINGS ------------------
 # ===========================================================
-# if DEBUG:
-    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
