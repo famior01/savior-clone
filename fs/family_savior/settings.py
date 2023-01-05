@@ -1,5 +1,7 @@
 from pathlib import Path
 import os
+import smtplib, ssl
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,12 +93,13 @@ DEFAULT_FROM_EMAIL = 'abuubaida901@gmail.com'
 # ===========================================================
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+# EMAIL_HOST = 'smtp.gmail.com'
+SMTP_SERVER = "smtp.gmail.com"
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
 # we will provide our email and password in the .env file
 EMAIL_HOST_USER = 'abuubaida901@gmail.com'
-EMAIL_HOST_PASSWORD = 'peblfupptggghbcq'
+EMAIL_HOST_PASSWORD = 'gyhjharjyzggzxos'
 
 # --------------- Working for personal messages----------------
 # import smtplib, ssl
