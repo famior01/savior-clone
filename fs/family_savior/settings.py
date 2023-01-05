@@ -76,17 +76,19 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_USERNAME_MIN_LENGTH = 5
 
 # instead of website@gmail.com, now it will be abuubaida901@gmail.com
-DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
+DEFAULT_FROM_EMAIL = 'abuubaida901@gmail.com'
 
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# ssl
+EMAIL_USE_SSL = True
+EMAIL_PORT = 465
 # we will provide our email and password in the .env file
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_USER = 'abuubaida901@gmail.com'
+EMAIL_HOST_PASSWORD = 'gyhjharjyzggzxos'
 
 # --------------- Working for personal messages----------------
 # import smtplib, ssl
