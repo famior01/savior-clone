@@ -9,6 +9,7 @@
 
 
 {% load static %}
+{% load notifications_tags %}
 
 
 
@@ -84,20 +85,20 @@
         
 
         <!-- Notification icon in semantic ui-->
-        {% load notifications_tags %}
-        {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %} 
+        {% comment %} {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}  {% endcomment %}
 
-        <div class="item ">
+        <div class="item" >
             <div class="ui inline dropdown scrolling">
+                
                 <i class="bell icon" ></i>
                 {% live_notify_badge %}
                 <div class="menu">
                     <!--Delete ALL Notificaitons-->
                     <div class="ui segment red raised">
-                    <a href="{% url 'DeleteAllNotifications'  %}">
+                    <a href="{% url 'DeleteAllNotifications'  %}" id='delete_all'>
                         <button type='submit' name='DeleteAllNotifications' 
                         class="ui button bwhite-lg ">Delete All</button></a>
-                    
+
                     <!--Read All notifications-->
                     <a href="{% url 'ReadAllNotifications'  %}">
                         <button type='submit' name='ReadAllNotifications' 
@@ -105,7 +106,7 @@
                     <div class="ui divider" style="margin: 5px 0;"></div>
 
                     {% for qs in user.notifications.unread %}
-                    <div class="ui list segment raised red">  
+                    <div class="ui list segment raised red" id='noti_box'>  
                         <div class="item mb">
                             
                             <div class="ui header"><i class="mail icon"></i>
@@ -121,9 +122,11 @@
                             </div>
                             <div>
                                 {% if request.user.is_authenticated %}
-                                    <a href="{% url 'notifications_read' qs.pk %}">
-                                        <button type='submit' name='mark_as_read' 
-                                        class="ui button bwhite-lg ">Read</button></a>
+                                {% comment %}<form action="{% url 'notifications_read' %}" id='{{qs.pk}}' class='read_one' >
+                                        {% csrf_token %}
+                                        <button type='submit' id='{{qs.pk}}' name='read'
+                                        class="ui button bwhite-lg ">Read</button>
+                                    </form> {% endcomment %}
                                     
                                     <a href="{% url 'notifications_delete' qs.pk %}">
                                         <button type='submit' name='delete' 
@@ -183,3 +186,6 @@
 
 <!--Notification-->
 <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
+{% comment %} <script src="{% static 'js/base.js' %}" defer></script>
+already coming from base.html
+{% endcomment %}

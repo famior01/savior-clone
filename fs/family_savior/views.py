@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from notifications.signals import notify
 from notifications.models import Notification
 from django.urls import reverse_lazy, reverse
+from django.http import JsonResponse
 
 
 
@@ -28,12 +29,18 @@ def home(request):
 
 
 # for notificaitons 
-def notifications_read(request, pk):
-  user = request.user
-  obj = Notification.objects.get(recipient=user, pk=pk)
-  obj.mark_as_read()
-
+def notifications_read(request):
+  print('********** in the notifications_read function ***************\n\n')
+  if request.method == 'POST':
+    print(request.POST['pk'], '***************\n\n')
+    user = request.user
+    pk = request.POST['pk']
+    obj = Notification.objects.get(recipient=user, pk=pk)
+    obj.mark_as_read()
+    return JsonResponse({'success': True})
   return redirect('zakat_posts:main-post-view')
+  
+
 
 
 def notifications_delete(request, pk):
@@ -46,10 +53,9 @@ def notifications_delete(request, pk):
 def DeleteAllNotifications(request):
   user = request.user
   obj = Notification.objects.filter(recipient=user)
-  print(obj, '***************\n\n')
   obj.delete()
   return redirect('zakat_posts:main-post-view')
-
+  
 
 # Read all notification, but remain them to show in the notification list
 def ReadAllNotifications(request):

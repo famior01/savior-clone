@@ -10,6 +10,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from family_savior.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
 from posts.models import Posts
+# from django.views.decorators.csrf import csrf_exempt
 from AI.tasks import AI, notify_before_posting, notify_after_posting
 import cv2
 import os
@@ -20,22 +21,14 @@ from notifications.signals import notify
 from celery import shared_task
 from celery import Celery
 
-# from .utils import playvideo
+def create_zakat_posts(request):
 
-@login_required
-def zakatPosts_comment_create_and_list_view(request):
   qs = ZakatPosts.objects.all()
-  profile = Profile.objects.all()
-  # Initializing The forms
-  p_form = ZakatPostForm()
   c_form = ZakatPostsCommentForm()
-
   profile = Profile.objects.get(user=request.user)
-
-  
-
+  p_form = ZakatPostForm(request.POST or None, request.FILES or None)
+  # Initializing The forms 
   if 'submit_p_form' in request.POST:
-
     p_form = ZakatPostForm(request.POST, request.FILES)    
     if p_form.is_valid():
       instance = p_form.save(commit=False)
@@ -46,6 +39,7 @@ def zakatPosts_comment_create_and_list_view(request):
       zp.post_number = profile.post_no # on which number the post was created
       zp.save()
       profile.save()
+
       #(=====================   AI   =====================)
       ID = instance.id
       print("\n************", ID, "************\n")
@@ -63,32 +57,56 @@ def zakatPosts_comment_create_and_list_view(request):
       
     p_form = ZakatPostForm() # renew the form
   
-  # comment form
-  if 'submit_c_form' in request.POST:
-    print('Adding comment')
-    c_form = ZakatPostsCommentForm(request.POST)
-    if c_form.is_valid():
-      instance = c_form.save(commit=False)
-      instance.user = profile
-      instance.post = ZakatPosts.objects.get(id=request.POST.get('post_id'))
-      instance.save()
+  context = {
+    'p_form': p_form,
+    # 'c_form': c_form,
+    'qs': qs,
+    'profile': profile
+  }
 
-      # Notification Corner
-      body = instance.body[:50] + '...' # to show only 50 characters in the notification
-      if instance.user != instance.post.creator:
-        notify.send(request.user, recipient=instance.post.creator.user, verb=body, action_object=instance.post, description=f'on post # {instance.post.post_number}')
+  return render(request, 'zakat_posts/main.html', context)
 
-      # Refresh the Form
-      c_form = ZakatPostsCommentForm()
+@login_required
+def create_comment(request):
+  # c_form = ZakatPostsCommentForm(request.POST or None)
+  profile = Profile.objects.get(user=request.user)
+  qs = ZakatPosts.objects.all()
+  form = ZakatPostForm()
+  
+  if request.method == 'POST':
+    body = request.POST["body"]
+    post_id = request.POST['post_id']
 
+    zpc = ZakatPostsComment(user=profile, post=ZakatPosts.objects.get(id=post_id), body=body)
+    zpc.save()
+  
+    # Notification Corner
+    body = zpc.body[:50] + '...' # to show only 50 characters in the notification
+    if zpc.user != zpc.post.creator:
+      notify.send(request.user, recipient=zpc.post.creator.user, verb=body, action_object=zpc.post, description=f'on post # {zpc.post.post_number}')
+
+    comments = ZakatPostsComment.objects.filter(post=zpc.post).values()
+    list_of_comments = list(comments)
+    no_of_comments = ZakatPostsComment.objects.filter(post=post_id).count()
+    c_user = zpc.user.user.username
+    c_body = zpc.body
+    c_date = zpc.created_at
+    data = {
+      'status': 'save',
+      'c_user': c_user,
+      'c_body': c_body,
+      'c_date': c_date,
+      'no_of_comments': no_of_comments,
+      'list_of_comments': list_of_comments,
+    }
+    return JsonResponse(data, safe=False)
 
   context = {
-    'qs':qs,
-    'profile':profile,
-    'p_form':p_form,
-    'c_form':c_form,
+    # 'c_form': c_form,
+    'qs': qs,
+    'profile': profile
   }
-  return render(request, "zakat_posts/main.html", context=context)
+  return render(request, "zakat_posts/main.html", context)
 
 @login_required
 def upvote(request):
@@ -104,9 +122,8 @@ def upvote(request):
       post.upvote = post.upvote + 1
       post.save()
 
-    post_id = request.POST.get('post_id')
+    post_id = request.POST['post_id']
     user= request.user
-    print('################# ',post_id, '**************************')
     post = ZakatPosts.objects.get(id=post_id) # get the post object
 
     # check if the user has already upvoted the post
@@ -125,13 +142,13 @@ def upvote(request):
         post.save()
         enable_upvote()
       else:
-        # upvote the post
         enable_upvote()
-    # data = {
-    #       'value': like.value,
-    #       'likes': post_obj.liked.all().count()
-    #   }
 
+      data = {
+        'upvote': post.upvote,
+      }
+      return JsonResponse(data, safe=False)
+    
     # return JsonResponse(data, safe=False)
   return redirect('zakat_posts:main-post-view')
 
@@ -146,7 +163,7 @@ def downvote(request):
       post.downvote = post.downvote + 1
       post.save()
     
-    post_id = request.POST.get('post_id')
+    post_id = request.POST['post_id']
     user= request.user
     post = ZakatPosts.objects.get(id=post_id)
 
@@ -165,6 +182,11 @@ def downvote(request):
         enable_downvote()
       else:
         enable_downvote()
+
+      data = {
+        'downvote': post.downvote,
+      }
+      return JsonResponse(data, safe=False)
     
   return redirect('zakat_posts:main-post-view')
 

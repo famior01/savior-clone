@@ -1,5 +1,7 @@
 from pathlib import Path
 import os
+import smtplib, ssl
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
 
     # for notifications
     'notifications',
+    'crispy_forms',
 ]
 
 # https://django-allauth.readthedocs.io/en/latest/configuration.html 
@@ -76,42 +79,21 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_USERNAME_MIN_LENGTH = 5
 
 # instead of website@gmail.com, now it will be abuubaida901@gmail.com
-DEFAULT_FROM_EMAIL = 'abuubaida901@gmail.com'
+DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
 
 
 # Email settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_USE_TLS = True
-# ssl
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
 # we will provide our email and password in the .env file
-EMAIL_HOST_USER = 'abuubaida901@gmail.com'
-EMAIL_HOST_PASSWORD = 'gyhjharjyzggzxos'
+EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
 
-# --------------- Working for personal messages----------------
-# import smtplib, ssl
-# from email.message import EmailMessage
-
-# msg = EmailMessage()
-# msg.set_content("The body of the email is here")
-# msg["Subject"] = "An Email Alert"
-# msg["From"] = "abuubaida901@gmail.com"
-# msg["To"] = "dadajan0011@gmail.com"
-
-# context=ssl.create_default_context()
-
-# with smtplib.SMTP("smtp.gmail.com", port=587) as smtp:
-#     smtp.starttls(context=context)
-#     smtp.login(msg["From"], "fwippydzgpvutvmr")
-#     smtp.send_message(msg)
-
-# # custom settings in Allauth
-# ACCOUNT_FORMS = {
-# 'signup': 'family_savior.forms.CustomSignupForm',
-# }
-
+# ===========================================================
+# ------------------------- DEFAULT SETTINGS ------------------
+# ===========================================================
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -218,7 +200,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+# ===========================================================
+# --------------------- CELERY SETTINGS ---------------------
+# ===========================================================
 # Celery settings
 CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 # if i want to use redis as a result backend, but i am using django database
@@ -232,27 +216,40 @@ CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'default'
 # CELERY_BEAT
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-result_backend = 'db+sqlite:///results.db'
+RESULT_BACKEND = 'db+sqlite:///results.db'
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-# STATIC_URL = '/static/' 
+
+#=================================================
+# ------------- STATIC FILES ---------------------
+# =================================================
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static_project')
+    os.path.join(BASE_DIR, 'static'),
+    BASE_DIR/'posts'/'static',
+    BASE_DIR/'profiles'/'static',
+    BASE_DIR/'zakat_posts'/'static',
 ]
-STATIC_ROOT  = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'static_root')
 
 # Media files (User uploaded files)
 MEDIA_URL = 'media/'
-MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root')
+MEDIA_ROOT = BASE_DIR/'media'
+# MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root')
 
+
+
+
+
+# =====================================================
+# ------------------- DATABASE ------------------------
+# =====================================================
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
 
 
 # =====================================================
