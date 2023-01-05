@@ -25,58 +25,41 @@ def create_zakat_posts(request):
 
   qs = ZakatPosts.objects.all()
   c_form = ZakatPostsCommentForm()
-  profile = Profile.objects.all()
-  form = ZakatPostForm(request.POST or None, request.FILES or None)
+  profile = Profile.objects.get(user=request.user)
+  p_form = ZakatPostForm(request.POST or None, request.FILES or None)
   # Initializing The forms 
   if 'submit_p_form' in request.POST:
-    if form.is_valid():
-      instance = form.save(commit=False)
-      instance.creator = Profile.objects.get(user=request.user)
-      instance.save()
-      messages.success(request, f'Your post has been created!')
-      return redirect('zakat_posts:main-post-view')
-      profile = Profile.objects.get(user=request.user)
-    
-      # create object
-      zp = ZakatPosts(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2, content=content)
-      zp.save()
-      print(zp.id, "********** zp.id **********\n")
-
-      # # get object
-      # zp = ZakatPosts.objects.get(creator=profile, seeker=seeker, needed_money=needed_money, video1=video1, video2=video2)
-      # print(zp, "********** post **********\n")
-      
-      # update object
+    p_form = ZakatPostForm(request.POST, request.FILES)    
+    if p_form.is_valid():
+      instance = p_form.save(commit=False)
+      instance.creator= profile
+      instance.save() # have to save it first, to get the 
       profile.post_no += 1 # this will change each time
+      zp = ZakatPosts.objects.get(id=instance.id)
       zp.post_number = profile.post_no # on which number the post was created
       zp.save()
       profile.save()
 
-      # #(=====================   AI   =====================)
-      # ID = zp.id
-      # print(id, '******** id *********')
+      #(=====================   AI   =====================)
+      ID = instance.id
+      print("\n************", ID, "************\n")
+      notify_before_posting.apply_async(args=[ID], ignore_result=False)
+      output = AI.apply_async(args=[ID], ignore_result=False)
+      notify_after_posting.apply_async(args=[ID], ignore_result=False)
 
-      # print("\n************", ID, "************\n")
-      # notify_before_posting.apply_async(args=[ID], ignore_result=False)
-      # output = AI.apply_async(args=[ID], ignore_result=False)
-      # notify_after_posting.apply_async(args=[ID], ignore_result=False)
+      output = output.get()
 
-      # output = output.get()
-
-      # # for handling the error, which I made in the AI function
-      # if type(output) == str: 
-      #   notify.send(request.user, recipient=instance.creator.user, verb=output)
-      #   zp = ZakatPosts.objects.get(id=ID) 
-      #   zp.delete()
-
-      # show this valid post to the user
-      # zakat_posts = ZakatPosts.objects.values()
-      # print(zakat_posts, "*****************")
-      # zakat_posts_list = list(zakat_posts)
-      # print(zakat_posts_list, "*****************")
+      # for handling the error, which I made in the AI function
+      if type(output) == str: 
+        notify.send(request.user, recipient=instance.creator.user, verb=output)
+        zp = ZakatPosts.objects.get(id=ID) 
+        zp.delete()
+      
+    p_form = ZakatPostForm() # renew the form
+  
   context = {
-    'form': form,
-    'c_form': c_form,
+    'p_form': p_form,
+    # 'c_form': c_form,
     'qs': qs,
     'profile': profile
   }
@@ -85,7 +68,7 @@ def create_zakat_posts(request):
 
 @login_required
 def create_comment(request):
-  c_form = ZakatPostsCommentForm(request.POST or None)
+  # c_form = ZakatPostsCommentForm(request.POST or None)
   profile = Profile.objects.get(user=request.user)
   qs = ZakatPosts.objects.all()
   form = ZakatPostForm()
@@ -104,13 +87,22 @@ def create_comment(request):
 
     comments = ZakatPostsComment.objects.filter(post=zpc.post).values()
     list_of_comments = list(comments)
-    # no_of_comments = zpc.num_comments
-    no_of_comments = 99
-    return JsonResponse({'status': 'save', 'no_of_comments': no_of_comments, 'list_of_comments': list_of_comments})
+    no_of_comments = ZakatPostsComment.objects.filter(post=post_id).count()
+    c_user = zpc.user.user.username
+    c_body = zpc.body
+    c_date = zpc.created_at
+    data = {
+      'status': 'save',
+      'c_user': c_user,
+      'c_body': c_body,
+      'c_date': c_date,
+      'no_of_comments': no_of_comments,
+      'list_of_comments': list_of_comments,
+    }
+    return JsonResponse(data, safe=False)
 
   context = {
-    'form': form,
-    'c_form': c_form,
+    # 'c_form': c_form,
     'qs': qs,
     'profile': profile
   }

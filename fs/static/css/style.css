@@ -49,34 +49,74 @@ body{
 
 
 .field1 {
-  margin-bottom: 1vw !important;
-  margin-left: 0.3vw !important;
-  margin-right: 1vw !important;  
+  margin-bottom: 1em !important;
+  margin-left: 0em !important;
+  margin-right: 2.5em !important;  
+  border-radius: 1em !important;
+  width: 24em !important;
   border:  1px solid rgb(6, 6, 6) !important; 
+}
+/*field1 hover*/
+.field1:hover {
+  border:  2px solid rgb(84, 192, 255) !important;
+  border-radius: 1em !important;
 }
 
 .field2 {
-  margin-bottom: 1vw !important;
-  margin-left: 0.3vw !important;
-  margin-right: 1vw !important;
+  margin-bottom: 1em !important;
+  margin-left: 0.5em !important;
+  margin-right: 0em !important;  
+  border-radius: 1em !important;
+  width: 23em !important;
   border:  1px solid rgb(6, 6, 6) !important; 
+}
+.field2:hover {
+  border:  2px solid rgb(84, 192, 255) !important;
+  border-radius: 1em !important;
 }
 
 .field3 {
-  margin-left: 1vw !important;
-  margin-bottom: 2vw !important;
-  margin-right: 1vw !important;
+  margin-bottom: 1em !important;
+  margin-left: 0.2em !important;
+  margin-right: 2.5em !important;  
+  border-radius: 1em !important;
+  width: 24em !important;
   border:  1px solid rgb(6, 6, 6) !important; 
+}
+.field3:hover {
+  border:  2px solid rgb(84, 192, 255) !important;
+  border-radius: 1em !important;
 }
 
 .field4 {
-  margin-left: 0.5vw !important;
-  margin-bottom: 1vw !important;
-  margin-right: 2vw !important;
+  margin-bottom: 1em !important;
+  margin-left: 0.2em !important;
+  margin-right: 0em !important;  
+  border-radius: 1em !important;
+  width: 23em !important;
   border:  1px solid rgb(6, 6, 6) !important; 
 }
+.field4:hover {
+  border:  2px solid rgb(84, 192, 255) !important;
+  border-radius: 1em !important;
+}
 
-
+.field5 {
+  margin-bottom: 1em !important;
+  margin-left: 0.2em !important;
+  margin-right: 1em !important;  
+  border-radius: 1em !important;
+  width: 100% !important;
+  border:  1px solid rgb(6, 6, 6) !important; 
+}
+.field5:hover {
+  border:  2px solid rgb(255, 143, 52) !important;
+  border-radius: 1em !important;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1; /* Firefox */
+}
 
 .css_form {
   margin: 0.5em;
@@ -88,8 +128,24 @@ body{
 
 /* nofitication scroll bar */
 .scroll{
-  height: 100%;
-  overflow: scroll;
+  height: 100% !important;
+  overflow: scroll !important;
+}
+
+/* scrolling for comments */
+.comment_scroll{
+  height: 20em !important;
+  overflow: scroll !important;
+  overflow-x: hidden !important;
+  overflow-inline: hidden !important;
+}
+
+.comment_segment{
+  height: 50px !important;
+  padding : 0.5em !important;
+  margin : 0.5em !important;
+  border: 1px solid rgb(6, 6, 6) !important;
+  border-radius: 1em !important;
 }
 
 .upvote_btn {

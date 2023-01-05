@@ -16,7 +16,7 @@ urlpatterns = [
     path('api/', include('zakat_posts.api.urls')),
     # for notifications
     re_path('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
-    path('notifications_read/<int:pk>/', notifications_read, name='notifications_read'),
+    path('notifications_read/', notifications_read, name='notifications_read'),
     path('notifications_delete/<int:pk>/', notifications_delete, name='notifications_delete'),
     path('DeleteAllNotifications/', DeleteAllNotifications, name='DeleteAllNotifications'),
     path('ReadAllNotifications/', ReadAllNotifications, name='ReadAllNotifications'),
@@ -24,4 +24,4 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # for media files (user uploaded files)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # for static files (css, js, images) 
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # for static files (css, js, images)  

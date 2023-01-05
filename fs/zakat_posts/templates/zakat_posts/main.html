@@ -15,8 +15,8 @@
             <div class="ui blue raised segment">
                 <form  id='postform' method="POST" enctype="multipart/form-data" class='ui form'>
                     {% csrf_token %}
-                    {{ form.as_table }}
-                    <button class="ui button primary" name="submit_p_form"  type="submit">Submit</button>
+                    {{ p_form.as_table }}
+                    <button class="ui button primary fluid  " name="submit_p_form"  type="submit">Submit</button>
                 </form>         
             </div>
         </div>
@@ -127,35 +127,43 @@
                     <hr>
 
                     <!--Commentes-->
-                    <form action="{% url 'zakat_posts:create_comment' %}" method="POST"  id='{{obj.id}}' class='commentForm' >
+                    {% comment %} action="{% url 'zakat_posts:create_comment' %}" {% endcomment %}
+                    
+                    
+                    <form  method="POST"  id='{{obj.id}}' class='commentForm' >
                         {% csrf_token %}
                         <input type="hidden" name="post_id" value={{obj.id}}>
-                        {{ c_form }}    
+                        {% comment %} {{ c_form | crispy }}     {% endcomment %}
+                        {% comment %} <textarea name="content" id='comment{{obj.id}}' placeholder="comment here..." rows="2" cols="80"></textarea> {% endcomment %}
+                        <input type="text" class="form-control" id='comment{{obj.id}}'  placeholder="Add your comment" upd="1" uid="2" />
+                            
                         <button type="submit"  class="ui primary button commentbtn{{obj.id}}">Send</button>
-
                     </form>
-                    {% include "zakat_posts/comment.html" %}
-                    {% comment %} <script type="text/javascript" src="{% static 'zakat_posts/comment.js' %}"></script> {% endcomment %}
+                    {% comment %} {% include "zakat_posts/comment.html" %} {% endcomment %}
+                    {% comment %} <script type="text/javascript" src="{% static 'zakat_posts/main.js' %}"></script> {% endcomment %}
 
                     <hr>
                     <!--Show Comments-->
-                    <details>
-                        <summary  id='comment_total{{obj.id}}'>{{ obj.num_comments }} Comments</summary>
-
-                        <div class="details-content">
+                    <div class="row">
+                    <details class='ui raised red segment'>
+                        <summary  id='comment_total{{obj.id}}'><h5><b>{{ obj.num_comments }} Comments</b></h5></summary >
+                        <div class="comment_scroll ui black raised segment ">
+                        <div class="details-content ">
                                 {% if obj.zakat_posts_comments.all %}
-                                    
                                     {% for c in obj.zakat_posts_comments.all %}
                                         <div class="ui green raised segment" id='c_body'>
                                             <img class="ui avatar image" src={{c.user.avatar.url}}>
-                                            <span>{{ c.user }}</span>
-                                            <div class='mt-5' >{{ c.body }}</div>
+                                            <span id='c_user{{obj.id}}'>{{ c.user }}</span>
+                                            <p id='c_date{{obj.id}}'>{{c.created_at | timesince}}</p>
+                                            <div class='' id='c_body{{obj.id}}' >{{ c.body }}</div>
                                         </div>
                                     {% endfor %}
             
                                 {% endif %}
                         </div>
+                    </div>
                     </details>
+                    </div>
 
                 </div>
             </div>
@@ -174,9 +182,10 @@
                                         <div class="p-2 rounded-full text-black">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60">
                                                 <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
+                                        <p class="upvote-count{{obj.id}}">{{obj.upvote}}</p>
+
                                         </div>
                                     </button>
-                                    <h2 class="upvote-count{{obj.id}}">{{obj.upvote}}</h2>
                                 </form>
                             </div>
                             <!--DownVote-->
@@ -187,13 +196,14 @@
                                     <button type="submit" class="ui upvote_btn downvote-btn{{obj.id}}">
                                         <div class="">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60"><path d="M318 334.5c3.8 8.8 2 19-4.6 26l-136 144c-4.5 4.8-10.8 7.5-17.4 7.5s-12.9-2.7-17.4-7.5l-136-144c-6.6-7-8.4-17.2-4.6-26S14.4 320 24 320h88l0-288c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32l0 288h88c9.6 0 18.2 5.7 22 14.5z"/></svg>
+                                            <p class="downvote-count{{obj.id}}"><b>{{obj.downvote}} </b></p>
+
                                         </div>
+
                                     </button>
-                                    <h2 class="downvote-count{{obj.id}}"><b>{{obj.downvote}} </b></h2>
                                 </form>
                             </div>
                             
-                            <script type="text/javascript" src="{% static 'zakat_posts/buttons.js' %}"></script>
 
                             <!--Pay-->
                             <div class='item'>
@@ -239,9 +249,9 @@
                                         <div class="ui red horizontal label"><h5>Satisfied</h5></div>
                                         <br>
                                         {% if obj.satisfied %}
-                                            <i class="check circle icon"></i>
+                                            <i class="check square icon"></i>
                                         {% else %}
-                                            <i class="times circle icon"></i>
+                                        <i class="square full icon"></i>
                                         {% endif %}
                                     </a>
                                 </strong></h2>        
@@ -258,66 +268,9 @@
     {% endfor %}
 </div>
 </div>
+
+<script type="text/javascript" src="{% static 'zakat_posts/main.js' %}"></script>
+
 {% endblock content %}
 
 
-
-<script>
-// clicking on the upvote button
-$('.upvote-form').submit(function(e){
-    e.preventDefault()
-    
-    const post_id = $(this).attr('id')
-    const url = $(this).attr('action')
-    
-    $.ajax({
-        type: 'POST',
-        url: url,
-        data: {
-            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-            'post_id':post_id,
-        }, 
-        success: function(data) {
-            console.log(data['upvote'], '*************')
-            if (parseInt(data['upvote']) > 0) {
-                console.log(parseInt(data['upvote']), '*************')
-                $(`.upvote-count${post_id}`).html(parseInt(data['upvote']))
-            }
-            else {
-                $(`.upvote-count${post_id}`).html(0)
-                console.log(parseInt(data['upvote']), '*************')
-            }
-        }
-    })
-    })
-    
-    
-    
-    // downvote button
-    $('.downvote-form').submit(function(e){
-        e.preventDefault()
-        const post_id = $(this).attr('id')
-        const url = $(this).attr('action')
-    
-        $.ajax({
-        type: 'POST',
-        url: url,
-        data: {
-            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-            'post_id':post_id,
-        }, 
-        success: function(data) {
-            console.log(data['downvote'], '*************')
-            if (parseInt(data['downvote']) > 0) {
-                $(`.downvote-count${post_id}`).html(parseInt(data['downvote']))
-                console.log(parseInt(data['downvote']), '*************')
-            }
-            else {
-                $(`.downvote-count${post_id}`).html(0) // if the downvote is undefined, it will show 0
-                console.log(parseInt(data['downvote']), '*************')
-            }
-        },
-        })
-    
-    })
-</script>
