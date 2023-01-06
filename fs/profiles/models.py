@@ -34,7 +34,7 @@ class ProfileManager(models.Manager):
 
 class Profile(models.Model):
   first_name = models.CharField(max_length=100, blank=True)
-  last_name = models.CharField(max_length=100, blank=True)
+  last_name = models.CharField(max_length=100, blank=True, default='FamilySavior')
   user = models.OneToOneField(User, on_delete=models.CASCADE) #if user deleted then profile will be deleted
   post_no = models.IntegerField(default=1)
   bio = models.TextField(default="No bio yet", max_length = 100, blank=True)
