@@ -1,7 +1,8 @@
 from django.db import models
 from profiles.models import Profile
 from posts.models import Posts
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 class ZakatPosts(models.Model):
@@ -44,7 +45,7 @@ class ZakatPostsComment(models.Model):
 
 
 class UpVote(models.Model):
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
   post = models.ForeignKey(ZakatPosts, on_delete=models.CASCADE, related_name='upvotes')
   upvoted = models.BooleanField(default=False)
   created = models.DateTimeField(auto_now_add=True)
@@ -56,7 +57,7 @@ class UpVote(models.Model):
     ordering = ['-created']
 
 class DownVote(models.Model):
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
   post = models.ForeignKey(ZakatPosts, on_delete=models.CASCADE, related_name='downvotes')
   downvoted = models.BooleanField(default=False)
   created = models.DateTimeField(auto_now_add=True)

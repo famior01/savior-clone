@@ -3,7 +3,7 @@ from notifications.signals import notify
 from .forms import ZakatPostForm, ZakatPostsCommentForm
 from .models import ZakatPosts
 from django.dispatch import receiver
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from .models import UpVote, DownVote, ZakatPosts, ZakatPostsComment
 
 # This will be called when a new post is created. 

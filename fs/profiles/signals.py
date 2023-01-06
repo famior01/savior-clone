@@ -2,11 +2,11 @@
 This file is used to send signals to the user profile app. 
 """
 from django.db.models.signals import post_save, pre_delete # this is the signal that is sent when a user is created
-from django.contrib.auth.models import User # this is the user model
+from django.contrib.auth import get_user_model # this is the user model
 from django.dispatch import receiver # this is the receiver of the signal
 from .models import Profile, Relationship # this is the profile model
 
-@receiver (post_save, sender = User) # user will send information of creation of a user
+@receiver (post_save, sender = get_user_model())
 def create_profile (sender, instance, created, **kwargs):
   '''
   Whenever a user is created, a profile is created for that user too. 

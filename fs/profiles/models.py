@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from .utils import get_random_code
 from django.template.defaultfilters import slugify
 from django.db.models import Q
@@ -35,13 +35,13 @@ class ProfileManager(models.Manager):
 class Profile(models.Model):
   first_name = models.CharField(max_length=100, blank=True)
   last_name = models.CharField(max_length=100, blank=True, default='FamilySavior')
-  user = models.OneToOneField(User, on_delete=models.CASCADE) #if user deleted then profile will be deleted
+  user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE) #if user deleted then profile will be deleted
   post_no = models.IntegerField(default=1)
   bio = models.TextField(default="No bio yet", max_length = 100, blank=True)
   email = models.EmailField(max_length=100, blank=True)
   country = models.CharField(max_length=100, blank=True)
   avatar = models.ImageField(default='avatar.jpg', upload_to='avatars/')
-  friends = models.ManyToManyField(User, related_name='friends', blank=True)
+  friends = models.ManyToManyField(get_user_model(), related_name='friends', blank=True)
   slug = models.SlugField(unique=True, blank=True)
   updated = models.DateTimeField(auto_now=True)
   created = models.DateTimeField(auto_now_add=True)

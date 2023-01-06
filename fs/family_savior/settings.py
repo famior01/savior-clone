@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     'rest_framework',
+    'user',
     'profiles',
     'posts',
     'zakat_posts',
@@ -42,14 +43,30 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'authentications',
+    'authentications', 
 
     # for notifications
     'notifications',
     'crispy_forms',
 ]
 
+AUTH_USER_MODEL = 'user.User'
+
+# ---------------------------------------------------------------------------- #
+#                              PHONE NUMBER FORMAT                             #
+# ---------------------------------------------------------------------------- #
+# https://django-phonenumber-field.readthedocs.io/en/latest/
+PHONE_NUMBER_FORMAT = 'INTERNATIONAL'
+PHONENUMBER_DB_FORMAT = 'E164'
+PHONENUMBER_DEFAULT_REGION = 'PK'
+
+
+# ---------------------------------------------------------------------------- #
+#                               Allauth settings                               #
+# ---------------------------------------------------------------------------- #
+
 # https://django-allauth.readthedocs.io/en/latest/configuration.html 
+
 SITE_ID = 1
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
@@ -69,7 +86,9 @@ ACCOUNT_FORMS = {
 'signup': 'authentications.forms.CustomSignupForm',
 }
 
-
+# ---------------------------------------------------------------------------- #
+#                                Email settings                                #
+# ---------------------------------------------------------------------------- #
 # ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 # # to show the subject of the email
@@ -102,6 +121,7 @@ EMAIL_PORT = 465
 # we will provide our email and password in the .env file
 EMAIL_HOST_USER = 'famior01@gmail.com'
 EMAIL_HOST_PASSWORD = 'ddkbuimnyedhkmpy'
+
 
 # ===========================================================
 # ------------------------- DEFAULT SETTINGS ------------------

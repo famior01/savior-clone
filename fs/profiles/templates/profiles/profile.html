@@ -1,0 +1,58 @@
+
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %} {{user}} {% endblock title %}
+
+{% block content %}
+<div style="margin-top: 20px" class="ui container-xl ">
+  <div class="ui segment">
+  <div class="ui grid">
+    <!--Proflie introduction!-->
+    <div class="row">
+      <i><h1 style="text-align: center">{{profile.slogan}}</h1></i>
+    </div>
+
+    <div class="row">
+
+      <div class="ui items">
+      <div class="item">
+        <div class="image">
+          <img class="ui small circular image" src="{{profile.pic.url}}">
+        </div>
+        <div class="content">
+          <h2>{{profile.username}}</h2>
+          <h4>{{profile.name}}</h4>
+          <p style='width:12em'>{{profile.location}}</p>
+          
+          {% if request.user != profile.user %}
+          <button class='ui large secondary button'>Follow</button>
+          {% else %}
+          <button class='ui large secondary button'>Edit Profile</button>
+          {% endif %}
+          <br><br>
+          <div class="description">
+            <div class="ui label"><b>99</b>&#160;&#160;<a>Following</a></div>
+            <div class="ui label"><b>99</b>&#160;&#160;<a href="">Followers</a></div>
+            <div class="ui label"><b>8</b> Iwatch videos</div>
+            <div class="ui label"><b>99</b> Zakat videos</div>
+            <div class="ui label"><b>99</b> </div>
+          </div>
+        </div>
+        
+      </div>    
+  </div>
+</div>
+
+  </div>    
+  </div>
+</div>
+</div>
+</div>
+
+{% block posts %}
+
+{% include 'profiles/profile_Zakat_posts.html' %}
+
+{% endblock posts %}
+
+{% endblock content %}

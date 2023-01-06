@@ -3,7 +3,7 @@ from .models import Profile, Relationship
 from django.shortcuts import render
 from .forms import ProfileModelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db.models import Q
 from posts.models import Posts
 from zakat_posts.models import ZakatPosts
@@ -27,7 +27,7 @@ def myprofile(request):
     'confirm': confirm,
     'zp': zp
   }
-  return render(request, 'profiles/myprofile.html', context)
+  return render(request, 'profiles/profile.html', context)
 
 
 @login_required
