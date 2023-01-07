@@ -162,11 +162,11 @@ def reject_invitation(request):
 # Profile detail view
 class ProfileDetailView(DetailView):
   model = Profile
-  template = 'profiles/detail.html'
+  template = 'profiles/profile.html'
 
   def get_object(self):
     user = self.kwargs.get('user')
-    profile = Profile.objects.get(user=user)
+    profile = Profile.objects.get(user=user.id)
     return profile # will return the profile object which we are currently looking at
 
   def get_context_data(self, **kwargs):
