@@ -11,6 +11,7 @@ from .views import (
   accept_invitation,
   reject_invitation,
   ProfileDetailView,
+  ProfileUpdateView,
   )
 
 app_name = 'profiles'  # in case we need to use the namespace in the future
@@ -22,6 +23,8 @@ urlpatterns = [
 
   # show own profile
   path('myprofile/', myprofile, name='myprofile'),
+  path('update/<int:pk>/', login_required(ProfileUpdateView.as_view()), name='profile-update'), 
+
 
   # show all those, whom I sent friend request
   path("sent-invites/", invite_profiles_list_view, name="sent-invites"),
@@ -32,7 +35,7 @@ urlpatterns = [
   path('reject-invite/', reject_invitation, name='reject-invite'),
 
   # see Profiles
-  path('<slug>/', login_required(ProfileDetailView.as_view()), name='profile-detail-view'),
+  path('<user>/', login_required(ProfileDetailView.as_view()), name='profile-detail-view'),
 
 
 ]

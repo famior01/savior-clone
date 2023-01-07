@@ -4,6 +4,8 @@ from .utils import get_random_code
 from django.template.defaultfilters import slugify
 from django.db.models import Q
 from django.urls import reverse
+from phonenumber_field.modelfields import PhoneNumberField
+
 # Create your models here.
 
 class ProfileManager(models.Manager):
@@ -33,16 +35,16 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-  first_name = models.CharField(max_length=100, blank=True)
-  last_name = models.CharField(max_length=100, blank=True, default='FamilySavior')
-  user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE) #if user deleted then profile will be deleted
+  user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+  phone_number = PhoneNumberField()
   post_no = models.IntegerField(default=1)
   bio = models.TextField(default="No bio yet", max_length = 100, blank=True)
-  email = models.EmailField(max_length=100, blank=True)
-  country = models.CharField(max_length=100, blank=True)
+  slogan = models.CharField(max_length=100, blank=True)
+  profession = models.CharField(max_length=100, blank=True)
+  cur_add = models.CharField(max_length=200, blank=True) 
   avatar = models.ImageField(default='avatar.jpg', upload_to='avatars/')
   friends = models.ManyToManyField(get_user_model(), related_name='friends', blank=True)
-  slug = models.SlugField(unique=True, blank=True)
+  # slug = models.SlugField(unique=True, blank=True)
   updated = models.DateTimeField(auto_now=True)
   created = models.DateTimeField(auto_now_add=True)
 
@@ -50,11 +52,11 @@ class Profile(models.Model):
   
   def __str__(self):
     # String representation of the model
-    return str(self.slug)
+    return str(self.user)
 
   # to get the absolute url of the profile
   def get_absolute_url(self):
-    return reverse("profiles:profile-detail-view", kwargs={"slug": self.slug}) 
+    return reverse("profiles:profile-detail-view", kwargs={"user": self.user}) 
 
   def get_friends(self):
     return self.friends.all()
@@ -89,30 +91,30 @@ class Profile(models.Model):
       total_posts+= item.likes.all().count()
     return total_posts
 
-  __initial_first_name = None
-  __initial_last_name = None
+  # __initial_first_name = None
+  # __initial_last_name = None
 
   
-  def __init__(self, *args, **kwargs):
-    super().__init__(*args, **kwargs)
-    self.__initial_first_name = self.first_name
-    self.__initial_last_name = self.last_name
+  # def __init__(self, *args, **kwargs):
+  #   super().__init__(*args, **kwargs)
+  #   self.__initial_first_name = self.first_name
+  #   self.__initial_last_name = self.last_name
 
-  # to set the slug
-  def save(self, *args, **kwargs):
-        ex = False
-        to_slug = self.slug
-        if self.first_name != self.__initial_first_name or self.last_name != self.__initial_last_name or self.slug=="":
-            if self.first_name and self.last_name:
-                to_slug = slugify(str(self.first_name) + " " + str(self.last_name))
-                ex = Profile.objects.filter(slug=to_slug).exists()
-                while ex:
-                    to_slug = slugify(to_slug + " " + str(get_random_code()))
-                    ex = Profile.objects.filter(slug=to_slug).exists()
-            else:
-                to_slug = str(self.user)
-        self.slug = to_slug
-        super().save(*args, **kwargs)
+  # # to set the slug
+  # def save(self, *args, **kwargs):
+  #       ex = False
+  #       to_slug = self.slug
+  #       if self.first_name != self.__initial_first_name or self.last_name != self.__initial_last_name or self.slug=="":
+  #           if self.first_name and self.last_name:
+  #               to_slug = slugify(str(self.first_name) + " " + str(self.last_name))
+  #               ex = Profile.objects.filter(slug=to_slug).exists()
+  #               while ex:
+  #                   to_slug = slugify(to_slug + " " + str(get_random_code()))
+  #                   ex = Profile.objects.filter(slug=to_slug).exists()
+  #           else:
+  #               to_slug = str(self.user)
+  #       self.slug = to_slug
+  #       super().save(*args, **kwargs)
 
 
 

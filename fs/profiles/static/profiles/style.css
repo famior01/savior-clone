@@ -1,0 +1,12 @@
+.css-after {
+  position: relative;
+}
+
+.css-after img {
+  position: relative;
+  margin: 2em;
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  border: 2px solid #10100d;
+}

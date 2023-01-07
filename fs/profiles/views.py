@@ -3,11 +3,17 @@ from .models import Profile, Relationship
 from django.shortcuts import render
 from .forms import ProfileModelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.contrib.auth import get_user_model
 from django.db.models import Q
 from posts.models import Posts
 from zakat_posts.models import ZakatPosts
 from django.contrib.auth.decorators import login_required
+from .forms import ProfileModelForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy, reverse
+from family_savior.settings import AUTH_USER_MODEL
+from user.models import User
+from django.contrib.auth import get_user_model
+
 
 @login_required
 def myprofile(request):
@@ -159,8 +165,8 @@ class ProfileDetailView(DetailView):
   template = 'profiles/detail.html'
 
   def get_object(self):
-    slug = self.kwargs.get('slug')
-    profile = Profile.objects.get(slug=slug)
+    user = self.kwargs.get('user')
+    profile = Profile.objects.get(user=user)
     return profile # will return the profile object which we are currently looking at
 
   def get_context_data(self, **kwargs):
@@ -180,3 +186,21 @@ class ProfileDetailView(DetailView):
     context['posts'] = self.get_object().get_all_authors_posts()
     context['len_posts'] = True if len(self.get_object().get_all_authors_posts())>0 else False
     return context
+
+
+# update profile model, class base view
+class ProfileUpdateView(UpdateView):
+  model = Profile
+  form_class = ProfileModelForm  # from forms.py
+  template_name = 'profiles/update.html'
+  success_url = '/profiles/myprofile/'
+
+  # only author will be able to update the post
+  def form_valid(self, form):
+    profile = Profile.objects.get(user=self.request.user)
+
+    if form.instance.user == profile.user:
+      return super().form_valid(form)
+    else:
+      form.add_error(None, "You are not authorized to update this post")
+      return super().form_invalid(form)
