@@ -38,23 +38,22 @@ def notifications_read(request):
     obj = Notification.objects.get(recipient=user, pk=pk)
     obj.mark_as_read()
     return JsonResponse({'success': True})
-  return redirect('zakat_posts:main-post-view')
-  
-
+  # redirect to same page
+  return redirect(request.META.get('HTTP_REFERER'))
 
 
 def notifications_delete(request, pk):
   user = request.user
   obj = Notification.objects.get(recipient=user, pk=pk)
   obj.delete()
-  return redirect('zakat_posts:main-post-view')
+  return redirect(request.META.get('HTTP_REFERER'))
 
 
 def DeleteAllNotifications(request):
   user = request.user
   obj = Notification.objects.filter(recipient=user)
   obj.delete()
-  return redirect('zakat_posts:main-post-view')
+  return redirect(request.META.get('HTTP_REFERER'))
   
 
 # Read all notification, but remain them to show in the notification list
@@ -64,7 +63,7 @@ def ReadAllNotifications(request):
   print(obj, '******from read all*********\n\n')
   for i in obj:
     i.mark_as_read()
-  return redirect('zakat_posts:main-post-view')
+  return redirect(request.META.get('HTTP_REFERER'))
 
 # # show all notification which are unread or read
 # def show_notifications(request):

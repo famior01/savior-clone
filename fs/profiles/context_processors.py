@@ -6,8 +6,9 @@ def profile_picture(request):
   '''
   if request.user.is_authenticated:
       user = request.user # for notifications
-      profile_obj = Profile.objects.get(user=request.user) # for profile picture
-      return {'profile_picture': profile_obj.avatar, 'user': user}
+      profiles = Profile.objects.all()
+      my_profile = Profile.objects.get(user=request.user) # for profile picture
+      return {'profile_picture': my_profile.avatar.url, 'user': user, 'profiles': profiles, 'my_profile': my_profile}
   return {}
 
 #This will return the number of invitaions received by the other User

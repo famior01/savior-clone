@@ -1,6 +1,7 @@
 {% url 'posts:main-post-view' as path_to_posts%}
 {% url 'profiles:myprofile' as path_to_myprofile %}
 
+
 {% url 'profiles:all-profiles' as path_to_all_profiles %}
 {% url 'profiles:my-invites' as path_to_my_invites %}
 {% url 'profiles:sent-invites' as user_friend_request %}
@@ -87,10 +88,16 @@
         <!-- Notification icon in semantic ui-->
         {% comment %} {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}  {% endcomment %}
 
+        <!-- People -->
+        <div class="item">
+            <a href="{{path_to_all_profiles}}">
+            <i class="users icon large"></i>
+            </a>
+        </div>
         <div class="item" >
             <div class="ui inline dropdown scrolling">
                 
-                <i class="bell icon" ></i>
+                <i class="bell icon large" ></i>
                 {% live_notify_badge %}
                 <div class="menu">
                     <!--Delete ALL Notificaitons-->
@@ -107,19 +114,43 @@
 
                     {% for qs in user.notifications.unread %}
                     <div class="ui list segment raised red" id='noti_box'>  
-                        <div class="item mb">
-                            
-                            <div class="ui header"><i class="mail icon"></i>
-                                {{ qs.actor }}
-                            </div>
-                            <div class="description">
-                                {{ qs.verb }}   
-                                {% if qs.description %}{{ qs.description }}{% endif %}
-                                
-                            </div>
-                            <div class="description">
-                                {{ qs.timestamp|timesince }}
-                            </div>
+                            <div class="item mb">
+                            {% for profile in profiles  %}
+                                {% if qs.actor == profile.user %}
+                                    <div class="ui header"> 
+                                    <img class='ui circular image' src="{{profile.avatar.url}}">
+                                    {{ qs.actor.full_name}}
+                                    </div>
+                                    <div class="description">
+                                        {{ qs.verb }}   
+                                    </div>
+                                    <div>
+                                    {% if profile.user not in my_profile.following.all %}
+                                        <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST'>
+                                            {% csrf_token %}
+                                            <input type="hidden" name="profile_pk" value={{profile.pk}}>
+                                            <button class='ui mini basic blue button' type='submit'>
+                                                Follow Back
+                                            </button>
+                                        </form>
+                                    {% else  %}
+                                    <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST'>
+                                        {% csrf_token %}
+                                        <input type="hidden" name="profile_pk" value={{profile.pk}}>
+                                        <button class='ui mini basic green button' type='submit'>
+                                            Following
+                                        </button>
+                                    </form>
+                                    {% endif %}
+                                    </div>
+                                    <br>
+                                    <div class="description">
+                                        {{ qs.timestamp|timesince }}
+                                        
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+
                             <div>
                                 {% if request.user.is_authenticated %}
                                 {% comment %}<form action="{% url 'notifications_read' %}" id='{{qs.pk}}' class='read_one' >
@@ -133,12 +164,12 @@
                                         class="ui button bwhite-lg ">Delete</button>
                                     </a>
                                     {% endif %}
+                                    </div>
+                                <div class="ui divider" style="margin: 5px 0;"></div>
                             </div>
-                            <div class="ui divider" style="margin: 5px 0;"></div>
                         </div>
-                    </div>
                     {% endfor %}
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,7 +179,7 @@
         <!--Profile icon-->
         <div class='item'>
             <a href="{{path_to_myprofile}}" class="{% if request.path == path_to_myprofile %}active{% endif %} item">
-                <img src="{{profile_picture.url}}" class='ui avatar image'>&nbsp;{{request.user.username}}
+                <img src="{{profile_picture}}" class='ui avatar image'>&nbsp;{{request.user.username}}
             </a>
         </div>
 

@@ -12,7 +12,7 @@ class ProfileModelForm(forms.ModelForm):
   profession = forms.CharField(max_length=30, label='Profession', required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (Software Engineer)'}))
   cur_add = forms.CharField(max_length=30, label='Current Address', required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (Karachi, Pakistan)'}))
   avatar = forms.ImageField(label='Avatar', required=False)
-  bio = forms.CharField(max_length=100, label='Bio', required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (I am a software engineer)'}))
+  intro = forms.CharField(max_length=300, label='Introduction', required=False, widget=forms.Textarea(attrs={'placeholder': 'I am a software engineer and I am working in a company', 'rows': 2, 'cols': 30}))
 
   class Meta:
     model = Profile
@@ -22,5 +22,5 @@ class ProfileModelForm(forms.ModelForm):
       'profession',
       'cur_add',
       'avatar',
-      'bio',
+      'intro'
     ]

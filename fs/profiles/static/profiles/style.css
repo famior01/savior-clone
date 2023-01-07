@@ -1,3 +1,7 @@
+.body {
+  background-color: #ff0a0a;
+}
+
 .css-after {
   position: relative;
 }
@@ -9,4 +13,16 @@
   height: 10vw;
   border-radius: 50%;
   border: 2px solid #10100d;
+}
+
+.img {
+  width: 200px;
+  height: 300px;
+  object-fit: contain;
+}
+
+
+
+.profile_card{
+  size: 7em;
 }

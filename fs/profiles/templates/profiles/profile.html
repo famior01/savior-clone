@@ -1,79 +1,141 @@
 
 {% extends 'base.html' %} 
 {% load static %}
-{% block title %}{{user.username}}{% endblock title %}
+{% block title %}{{profile.user.username}}{% endblock title %}
 
 {% block content %}
-
 <link rel="stylesheet" type="text/css" href={% static 'profiles/style.css' %}>
+
+{% comment %} ================== MODELS ========================= {% endcomment %}
+{% comment %} <div class="ui basic modal" style='top:100px; height:400'>
+  <div class="ui icon header">
+    <i class="user plus icon"></i>
+    Ary you sure, you want to follow this {{profile.user.username}}?
+  </div>
+  <div class="content">
+    <p>by clicking Yes, you will be shown all post of this user</p>
+  </div>
+  <div class="actions">
+    
+    <br>
+    <a href=" {% url 'profiles:myprofile' %} ">
+      <div class="ui red basic massive button button">
+      <i class="checkmark icon"></i>
+      NO
+      </div>
+    </a>
+  </div>
+</div> {% endcomment %}
+{% comment %} ======================================================== {% endcomment %}
+
 
 
 <div style="margin-top: 20px" class="ui container-xl ">
   <div class="ui segment">
-  <div class="ui grid">
+    <div class="ui grid">
     <!--Proflie introduction!-->
-    <div class="row">
-      <i><h1 style="text-align: center">{{profile.slogan}}</h1></i>
-    </div>
+      <div class="row">
+        <i><h1 style="text-align: center">{{profile.slogan}}</h1></i>
+      </div>
 
-    <div class="row">
-      <div class="ui grid">
-        <div class="ten wide column">
-          <div class="ui items">
-            <div class="item">
-              <div class="css-after">
-                <img class='' src="{{profile.avatar.url}}">
-              </div>
-              <div class="content">
-                <h2>{{user.username}}</h2>
-                <h4>{{user.full_name}}</h4>
-                <p style='width:12em'>{{profile.bio}}</p>
-                
-                {% if request.user != profile.user %}
-                <button class='ui large secondary button'>Follow</button>
-                {% else %}
-                <a href="{% url 'profiles:profile-update' user.pk %}">
-                  <button class="ui large secondary button">Edit Profile</button>
-                </a>                
-                {% endif %}
-                <br><br>
-                <div class="description">
-                  <div class="ui label"><b>99</b>&#160;&#160;<a>Following</a></div>
-                  <div class="ui label"><b>99</b>&#160;&#160;<a href="">Followers</a></div>
-                  <div class="ui label"><b>8</b> Iwatch videos</div>
-                  <div class="ui label"><b>99</b> Zakat videos</div>
-                  <div class="ui label"><b>99</b> </div>
+      <div class="row">
+        <div class="ui grid">
+          <div class="nine wide column">
+            <div class="ui items">
+              <div class="item">
+                <div class="css-after">
+                  <img class='' src="{{profile.avatar.url}}">
                 </div>
-              </div>
-            </div>    
+                <div class="content">
+                  <h2>{{profile.user.username}}</h2>
+                  <h4>{{profile.user.full_name}}</h4>
+                  <p style='width:12em'>{{profile.bio}}</p>
+                  
+                  {% if request.user != profile.user %}
+                      {% if following %}
+                        <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+                          {% csrf_token %}
+                          <input type="hidden" name="profile_pk" value={{profile.pk}}>
+                          <button class='ui large secondary button' type='submit'>Unfollow</button>
+                        </form>
+                      {% else %}
+                        <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST'>
+                          {% csrf_token %}
+                          <input type="hidden" name="profile_pk" value={{profile.pk}}>
+                          <button class='ui large secondary button' type='submit'>
+                            <i class="user outline icon"></i>
+                            Follow
+                          </button>
+                        </form>
+                      {% endif %}
+                  {% else %}
+                      <a href="{% url 'profiles:profile-update' user.pk %}">
+                        <button class="ui large secondary button">Edit Profile</button>
+                      </a>                
+                  {% endif %}
+
+                  <br><br>
+                  <div class="description">
+                    <div class="ui  label"><b>99</b>&#160;&#160;
+                      <a href=" {% url 'profiles:followers' profile.pk %} ">Followers</a>
+                    </div>
+                    <div class="ui basic dark label">
+                      <a href="{% url 'profiles:following' profile.pk %}">Following</a>
+                    </div>
+                    <div class="ui label"><b>{{profile.get_post_no}}</b></div>
+                    <div class="ui label"><b>99</b>{{profile.profile_zakatpost}}</div>
+                    <div class="ui label"><b>99</b> </div>
+                  </div>
+                </div>
+              </div>    
+            </div>
+          </div>
+          <div class="seven wide column">
+            <h3>Introduction</h3>{{profile.intro}}
+            <br><br>
+            <span><strong>Address</strong></span>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{profile.cur_add}} <br>
+            <span><strong>Profession</strong></span>:&nbsp;&nbsp;&nbsp;{{profile.profession}} <br>
+            <span><strong>Religion</strong></span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.religion}} <br>
+            <span><strong>Phone #</strong></span>: &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{profile.phone_number}} <br>
           </div>
         </div>
-        <div class="six wide column">
-          {{profile.bio}}
-          <br>
-          {{proflie.cur_add}}
-          <br>
-          {{profile.profession}}
-          <br>
-          {{user.religion}}
-          <br>
-          {{profile.phone_number}}
+      </div>
+    
+    </div>    
+  </div>
 
+  <div class="ui top attached tabular menu">
+    <a class="item">
+      Bio
+    </a>
+    <a class="item active">
+      Photos
+    </a>
+    <div class="right menu">
+      <div class="item">
+        <div class="ui transparent icon input">
+          <input type="text" placeholder="Search users...">
+          <i class="search link icon"></i>
         </div>
       </div>
-      
+    </div>
+  </div>
+  <div class="ui bottom attached segment">
+    <p></p>
+  </div>
+  
 </div>
 
-  </div>    
-  </div>
-</div>
-</div>
-</div>
+
+
 
 {% block posts %}
 
 {% include 'profiles/profile_Zakat_posts.html' %}
 
 {% endblock posts %}
+
+<script src= "{% static 'profiles/main.js' %}" defer></script>
+
 
 {% endblock content %}

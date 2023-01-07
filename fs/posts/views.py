@@ -12,7 +12,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url=LOGIN_REDIRECT_URL)
 def post_comment_create_and_list_view(request):
-    qs = Posts.objects.all()
+    # qs = Posts.objects.all()
     profile = Profile.objects.all()
     
     # Initializing the form
@@ -42,9 +42,17 @@ def post_comment_create_and_list_view(request):
         instance.save()
         c_form = CommentModelForm()
 
+    # profile = Profile.objects.all()
+    # following_posts = Posts.objects.filter(author__in=following_profiles)
+    # just see those post which are postes by the user whom current user is following
+    # following_posts = Posts.objects.filter(author__in=profile.following.all())
+    following_users = Profile.objects.get(user=request.user).following.all()
+    following_profiles = Profile.objects.filter(user__in=following_users)
+    following_posts = Posts.objects.filter(author__in=following_profiles)
+
 
     context = {
-      'qs':qs,
+      'qs':following_posts,
       'profile':profile,
       'post_added':post_added,
       'p_form':p_form,
@@ -93,6 +101,15 @@ def like_unlike_post(request):
         return JsonResponse(data, safe=False)
     return redirect('posts:main-post-view')
 
+def post_of_following_profiles(request):
+    qs = Posts.objects.all()
+    
+    context = {
+      'qs':qs,
+      'profile':profile,
+      'following_posts':following_posts,
+    }
+    return render(request, "posts/main.html", context=context)
 
 # delete post
 # @login_required(login_url=LOGIN_REDIRECT_URL)

@@ -58,7 +58,7 @@ AUTH_USER_MODEL = 'user.User'
 # https://django-phonenumber-field.readthedocs.io/en/latest/
 PHONENUMBER_DEFAULT_FORMAT = 'INTERNATIONAL'
 PHONENUMBER_DB_FORMAT = 'E164'
-PHONENUMBER_DEFAULT_REGION = 'PK'
+PHONENUMBER_DEFAULT_REGION = None
 
 
 # ---------------------------------------------------------------------------- #

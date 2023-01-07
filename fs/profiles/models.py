@@ -11,7 +11,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 class ProfileManager(models.Manager):
   '''
-  Here we are going to get all the profiles that are not me and are not my friends
+  Here we are going to get all the profiles that are not me and are not my following
   '''
   def get_all_profiles_to_invite(self, sender):
     profiles = Profile.objects.all().exclude(user=sender)
@@ -28,7 +28,7 @@ class ProfileManager(models.Manager):
     return available
 
   #TODO: HERE YOU WILL WRITE THE LOGIC OF RECOMMENDATION SYSTEM
-  # IT WILL BE DEPENDENT OF MUTUAL FRIENDS, LOCATION 
+  # IT WILL BE DEPENDENT OF MUTUAL following, LOCATION 
 
   def get_all_profiles(self, me):
     profiles = Profile.objects.all().exclude(user=me)
@@ -36,18 +36,17 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-  user = models.OneToOneField(User, on_delete=models.CASCADE)
-  phone_number = PhoneNumberField()
-  post_no = models.IntegerField(default=1)
-  bio = models.TextField(default="No bio yet", max_length = 100, blank=True)
-  slogan = models.CharField(max_length=100, blank=True)
-  profession = models.CharField(max_length=100, blank=True)
-  cur_add = models.CharField(max_length=200, blank=True) 
-  avatar = models.ImageField(default='avatar.jpg', upload_to='avatars/')
-  friends = models.ManyToManyField(User, related_name='friends', blank=True)
-  # slug = models.SlugField(unique=True, blank=True)
-  updated = models.DateTimeField(auto_now=True)
-  created = models.DateTimeField(auto_now_add=True)
+  user                = models.OneToOneField(User, on_delete=models.CASCADE)
+  phone_number        = PhoneNumberField(unique=True)
+  post_no             = models.IntegerField(default=1)
+  intro               = models.TextField(max_length=500, blank=True)
+  slogan              = models.CharField(max_length=100, blank=True)
+  profession          = models.CharField(max_length=200, blank=True)
+  cur_add             = models.CharField(max_length=500, blank=True) 
+  avatar              = models.ImageField(default='avatar.jpg', upload_to='avatars/')
+  following           = models.ManyToManyField(User, related_name='following', blank=True)
+  updated             = models.DateTimeField(auto_now=True)
+  created             = models.DateTimeField(auto_now_add=True)
 
   objects = ProfileManager() # this is the manager
   
@@ -55,16 +54,20 @@ class Profile(models.Model):
     # String representation of the model
     return str(self.user)
 
+  def profile_iwatch(self):
+    return self.post_set.all() 
+  
+
+  def get_following(self):
+    return self.following.all()
+  
+  def get_following_no(self):
+    return self.following.all().count()
+
   # to get the absolute url of the profile
   def get_absolute_url(self):
     return reverse("profiles:profile-detail-view", kwargs={"user": self.user}) 
 
-  def get_friends(self):
-    return self.friends.all()
-  
-  def get_friends_no(self):
-    return self.friends.all().count()
-  
   def get_post_no(self):
     '''
     author has the relationship with the profile model as a name of "posts"
@@ -91,6 +94,9 @@ class Profile(models.Model):
     for item in posts:
       total_posts+= item.likes.all().count()
     return total_posts
+  
+  class Meta:
+    ordering = ['-created']
 
   # __initial_first_name = None
   # __initial_last_name = None

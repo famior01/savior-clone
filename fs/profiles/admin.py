@@ -8,7 +8,7 @@ from .models import Profile, Relationship
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-  list_display = ('id','user','phone_number','cur_add','profession','post_no','bio', 'avatar', 'slogan','created', 'updated')
+  list_display = ('id','user','phone_number','cur_add','profession','post_no','intro', 'avatar', 'slogan','created', 'updated')
 
 @admin.register(Relationship)
 class RelationshipAdmin(admin.ModelAdmin):

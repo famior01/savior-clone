@@ -6,6 +6,7 @@ from profiles.models import Profile
 class Posts(models.Model):
   
   content = models.TextField()
+  
   image = models.ImageField(upload_to='posts/images', blank=True, validators=[FileExtensionValidator(['jpg', 'png', 'jpeg'])])
   liked = models.ManyToManyField(Profile, blank=True, related_name='likes') # track the profliel who liked the post, related_name works when there is reverse relationship
   created_at = models.DateTimeField(auto_now_add=True)

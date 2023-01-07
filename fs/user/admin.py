@@ -20,7 +20,7 @@ class FSUserAdmin(UserAdmin):
     add_form = UserCreationForm
     form = UserChangeForm
     model = User
-    list_display = ('email', 'username','full_name','religion','is_staff', 'is_active', 'date_joined', 'last_login')
+    list_display = ('id','email', 'username','full_name','religion','is_staff', 'is_active', 'date_joined', 'last_login')
     list_filter = ('email', 'username','is_staff', 'is_active',)
     fieldsets = (
         ('FS_USERS_INFO', {'fields': ('email',  'username', 'full_name', 'religion','password',)}),

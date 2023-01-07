@@ -13,6 +13,8 @@ from django.urls import reverse_lazy, reverse
 from family_savior.settings import AUTH_USER_MODEL
 from user.models import User
 from django.contrib.auth import get_user_model
+from notifications.signals import notify
+
 
 
 @login_required
@@ -35,11 +37,89 @@ def myprofile(request):
   }
   return render(request, 'profiles/profile.html', context)
 
+# Profile detail view
+class ProfileDetailView(DetailView):
+  model = Profile
+  template_name = 'profiles/profile.html'
+  context_object_name = 'profile'
 
+  def get_object(self):
+    pk = self.kwargs.get('pk')
+    view_profile = Profile.objects.get(pk=pk)
+    return view_profile # will return the profile object which we are currently looking at
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    view_profile = self.get_object()
+    my_profile = Profile.objects.get(user=self.request.user)
+    if view_profile.user in my_profile.following.all():
+      context['following'] = True
+    else:
+      context['following'] = False
+
+    # user = User.objects.get(username__iexact=self.request.user)
+    # profile = Profile.objects.get(user=user)
+    # rel_r = Relationship.objects.filter(sender=profile)
+    # rel_s = Relationship.objects.filter(receiver=profile)
+    # rel_receiver = []
+    # rel_sender = []
+    # for item in rel_r:
+    #     rel_receiver.append(item.receiver.user)
+    # for item in rel_s:
+    #     rel_sender.append(item.sender.user)
+    # context["rel_receiver"] = rel_receiver
+    # context["rel_sender"] = rel_sender
+    # context['posts'] = self.get_object().get_all_authors_posts()
+    # context['len_posts'] = True if len(self.get_object().get_all_authors_posts())>0 else False
+    return context
+
+class FollowerListView(ListView):
+  model = Profile
+  template_name = 'profiles/followers.html'
+  context_object_name = 'profiles'
+
+  def get_queryset(self):
+    pk = self.kwargs.get('pk')
+    user = User.objects.get(pk=pk)
+    # view_profile = Profile.objects.get(pk=pk)
+    followers_profiles = Profile.objects.filter(following=user).all().exclude(user=user)
+    return followers_profiles
+
+class FollowingListView(ListView):
+  model = Profile
+  template_name = 'profiles/following.html'
+  context_object_name = 'profiles'
+
+  def get_queryset(self):
+    pk = self.kwargs.get('pk')
+    user = User.objects.get(pk=pk)
+    profile = Profile.objects.get(user=user)
+    all_users = profile.get_following()
+    following_profiles = Profile.objects.filter(user__in=all_users).all().exclude(user=user)
+    return following_profiles
+
+def follow_unfollow_profile(request):
+  if request.method == 'POST':
+    user_to_toggle = request.POST.get('username')
+    my_profile = Profile.objects.get(user=request.user)  
+    pk = request.POST.get('profile_pk')
+    obj = Profile.objects.get(pk=pk)
+
+    if obj.user in my_profile.following.all():
+      my_profile.following.remove(obj.user)
+    else:
+      my_profile.following.add(obj.user)
+      recipient = User.objects.get(pk=pk) # notify following user I am following, follow back
+      notify.send(request.user, recipient=recipient, verb="Started following you",description= True)
+    return redirect(request.META.get('HTTP_REFERER'))
+    
+  return redirect('profiles:all-profiles')
+
+  
 @login_required
 def invite_profiles_list_view(request):
   """ 
-  Here we will all those profiles which have been sent friend request by the current user
+  Here we will all those profiles which have been sent following request by the current user
   """
   user = request.user
   qs = Profile.objects.get_all_profiles_to_invite(user)
@@ -51,11 +131,11 @@ def invite_profiles_list_view(request):
 
 class ProfileListView(ListView):
   '''
-  This will show all those profiles which are either friends or not friend of the current user
+  This will show all those profiles which are either following or not following of the current user
   '''
   model = Profile
   template_name = 'profiles/profile_list.html'
-  # context_object_name = 'qs'
+  context_object_name = 'profiles' # object_list*
 
   def get_queryset(self):
     qs = Profile.objects.get_all_profiles(self.request.user)
@@ -64,26 +144,21 @@ class ProfileListView(ListView):
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     user = User.objects.get(username__iexact=self.request.user)
-    profile = Profile.objects.get(user=user)
-    rel_r = Relationship.objects.filter(sender=profile)
-    rel_s = Relationship.objects.filter(receiver=profile)
-    rel_receiver = []
-    rel_sender = []
-    for item in rel_r:
-        rel_receiver.append(item.receiver.user)
-    for item in rel_s:
-        rel_sender.append(item.sender.user)
-    context["rel_receiver"] = rel_receiver
-    context["rel_sender"] = rel_sender
-    context['is_empty'] = False
-    if len(self.get_queryset()) == 0:
-        context['is_empty'] = True
+    myprofile = Profile.objects.get(user=user)
+    
+    # following profiles 
+    following_user = user.profile.get_following()
+    following_profiles= Profile.objects.filter(user__in=following_user)
+    context['following_profiles'] = following_profiles 
 
+    # followers profiles
+    followers = Profile.objects.filter(following=user).all()
+    context['followers'] = followers
     return context
 
 @login_required
 def send_invitation(request):
-  '''Here we will receive Primary key of the user we want to send the friend request, and then we will create a relationship object'''
+  '''Here we will receive Primary key of the user we want to send the following request, and then we will create a relationship object'''
 
   if request.method == 'POST':
     pk = request.POST.get('profile_pk')
@@ -97,8 +172,8 @@ def send_invitation(request):
   return redirect('profiles:all-profiles')
 
 @login_required
-def remove_from_friends(request):
-  '''Here we will receive Primary key of the user we want to remove from friends, and then we will delete the relationship object'''
+def remove_from_following(request):
+  '''Here we will receive Primary key of the user we want to remove from following, and then we will delete the relationship object'''
 
   if request.method == 'POST':
     pk = request.POST.get('profile_pk')
@@ -114,7 +189,7 @@ def remove_from_friends(request):
   return redirect('profiles:all-profiles')
 
 
-# Accepting and rejecting friend requests all three 
+# Accepting and rejecting following requests all three 
 @login_required
 def invites_received_view(request):
   profile = Profile.objects.get(user=request.user)
@@ -133,7 +208,7 @@ def invites_received_view(request):
 
 @login_required
 def accept_invitation(request):
-  '''Here we will receive Primary key of the user we want to accept the friend request, and then we will update the relationship object'''
+  '''Here we will receive Primary key of the user we want to accept the following request, and then we will update the relationship object'''
 
   if request.method == 'POST':
     pk = request.POST.get('profile_pk')
@@ -148,7 +223,7 @@ def accept_invitation(request):
 
 @login_required
 def reject_invitation(request):
-  '''Here we will receive Primary key of the user we want to reject the friend request, and then we will delete the relationship object'''
+  '''Here we will receive Primary key of the user we want to reject the following request, and then we will delete the relationship object'''
 
   if request.method == 'POST':
     pk = request.POST.get('profile_pk')
@@ -158,34 +233,6 @@ def reject_invitation(request):
     rel.delete()
   return redirect('profiles:my-invites')
 
-
-# Profile detail view
-class ProfileDetailView(DetailView):
-  model = Profile
-  template = 'profiles/profile.html'
-
-  def get_object(self):
-    user = self.kwargs.get('user')
-    profile = Profile.objects.get(user=user.id)
-    return profile # will return the profile object which we are currently looking at
-
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    user = User.objects.get(username__iexact=self.request.user)
-    profile = Profile.objects.get(user=user)
-    rel_r = Relationship.objects.filter(sender=profile)
-    rel_s = Relationship.objects.filter(receiver=profile)
-    rel_receiver = []
-    rel_sender = []
-    for item in rel_r:
-        rel_receiver.append(item.receiver.user)
-    for item in rel_s:
-        rel_sender.append(item.sender.user)
-    context["rel_receiver"] = rel_receiver
-    context["rel_sender"] = rel_sender
-    context['posts'] = self.get_object().get_all_authors_posts()
-    context['len_posts'] = True if len(self.get_object().get_all_authors_posts())>0 else False
-    return context
 
 
 # update profile model, class base view
