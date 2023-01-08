@@ -66,29 +66,6 @@
             </form>
         </div>
 
-        <!--Friends icon-->
-        <div class="item right floated">
-            <div class="ui floating dropdown icon button teal"> Friends
-                <i class="dropdown icon"></i>
-                <div class="menu">
-                    <a href="{{path_to_all_profiles}}" class="{% if request.path == path_to_all_profiles %}active{% endif %} item">
-                        All Profiles
-                    </a>
-                    <a href="{{user_friend_request}}" class="{% if request.path == user_friend_request %}active{% endif %} item">
-                        Send Invites
-                    </a>
-                    <!--with notification bannar-->
-                    <a href="{{path_to_my_invites}}" class="{% if request.path == path_to_my_invites %}active{% endif %} item">
-                        Received Invites &nbsp <div class='ui purple horizontal label'>{{invitations_no}}</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        
-
-        <!-- Notification icon in semantic ui-->
-        {% comment %} {% register_notify_callbacks callbacks='fill_notification_list,fill_notification_badge' %}  {% endcomment %}
-
         <!-- People -->
         <div class="item">
             <a href="{{path_to_all_profiles}}">

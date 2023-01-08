@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Profile, Relationship
+from .models import Profile
 from django.shortcuts import render
 from .forms import ProfileModelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -39,7 +39,7 @@ def myprofile(request):
   }
   return render(request, 'profiles/profile.html', context)
 
-
+@login_required
 def IWatch(request, pk):
   profile = Profile.objects.get(pk=pk)
   posts = Posts.objects.filter(author=profile).all()
@@ -50,7 +50,7 @@ def IWatch(request, pk):
   }
   return render(request, 'profiles/profile.html', context)
 
-# Profile list view
+@login_required
 def Zakat_Posts(request, pk):
   profile = Profile.objects.get(pk=pk)
   zp = ZakatPosts.objects.filter(creator=profile).all()
@@ -109,6 +109,7 @@ class FollowingListView(ListView):
     following_profiles = Profile.objects.filter(user__in=all_users).all().exclude(user=user)
     return following_profiles
 
+@login_required
 def follow_unfollow_profile(request):
   if request.method == 'POST':
     user_to_toggle = request.POST.get('username')
@@ -126,30 +127,15 @@ def follow_unfollow_profile(request):
     
   return redirect('profiles:all-profiles')
 
-# Remove me from follower following list
+@login_required
 def remove_follower(request, pk):
   profile = Profile.objects.get(pk=pk)
   profile.following.remove(request.user)
   messages.success(request, f'{profile.user.full_name} will no longer be notified of your activities')
   return redirect(request.META.get('HTTP_REFERER'))
 
-@login_required
-def invite_profiles_list_view(request):
-  """ 
-  Here we will all those profiles which have been sent following request by the current user
-  """
-  user = request.user
-  qs = Profile.objects.get_all_profiles_to_invite(user)
-  
-  context = {
-    'qs': qs
-  }
-  return render(request, 'profiles/to-invite-list.html', context)
 
 class ProfileListView(ListView):
-  '''
-  This will show all those profiles which are either following or not following of the current user
-  '''
   model = Profile
   template_name = 'profiles/profile_list.html'
   context_object_name = 'profiles' # object_list*
@@ -173,86 +159,9 @@ class ProfileListView(ListView):
     context['followers'] = followers
     return context
 
-@login_required
-def send_invitation(request):
-  '''Here we will receive Primary key of the user we want to send the following request, and then we will create a relationship object'''
-
-  if request.method == 'POST':
-    pk = request.POST.get('profile_pk')
-    user = request.user
-    sender = Profile.objects.get(user=user)
-    receiver = Profile.objects.get(pk=pk)
-    rel = Relationship.objects.create(sender=sender, receiver=receiver, status='send')
-    rel.save()
-    return redirect(request.META.get('HTTP_REFERER'))
-  
-  return redirect('profiles:all-profiles')
-
-@login_required
-def remove_from_following(request):
-  '''Here we will receive Primary key of the user we want to remove from following, and then we will delete the relationship object'''
-
-  if request.method == 'POST':
-    pk = request.POST.get('profile_pk')
-    user = request.user
-    sender = Profile.objects.get(user=user)
-    receiver = Profile.objects.get(pk=pk)
-    rel = Relationship.objects.get(
-      (Q(sender=sender) & Q(receiver=receiver)) |
-      (Q(sender=receiver) & Q(receiver=sender)))
-    rel.delete()
-    return redirect(request.META.get('HTTP_REFERER'))
-  
-  return redirect('profiles:all-profiles')
-
-
-# Accepting and rejecting following requests all three 
-@login_required
-def invites_received_view(request):
-  profile = Profile.objects.get(user=request.user)
-  qs = Relationship.objects.invitations_received(profile)
-  results = list(map(lambda x: x.sender, qs))
-  is_empty = False
-  if len(results) == 0:
-      is_empty = True
-
-  context = {
-      'qs': results,
-      'is_empty': is_empty,
-  }
-
-  return render(request, 'profiles/my-invites.html', context)
-
-@login_required
-def accept_invitation(request):
-  '''Here we will receive Primary key of the user we want to accept the following request, and then we will update the relationship object'''
-
-  if request.method == 'POST':
-    pk = request.POST.get('profile_pk')
-    sender = Profile.objects.get(pk=pk)
-    receiver = Profile.objects.get(user=request.user)
-    rel = get_object_or_404(Relationship,sender=sender, receiver=receiver)
-    if rel.status == 'send':
-      rel.status = 'accepted'
-      rel.save()
-
-  return redirect('profiles:my-invites')
-
-@login_required
-def reject_invitation(request):
-  '''Here we will receive Primary key of the user we want to reject the following request, and then we will delete the relationship object'''
-
-  if request.method == 'POST':
-    pk = request.POST.get('profile_pk')
-    sender = Profile.objects.get(pk=pk)
-    receiver = Profile.objects.get(user=request.user)
-    rel = get_object_or_404(Relationship, sender=sender, receiver=receiver)
-    rel.delete()
-  return redirect('profiles:my-invites')
 
 
 
-# update profile model, class base view
 class ProfileUpdateView(UpdateView):
   model = Profile
   form_class = ProfileModelForm  # from forms.py

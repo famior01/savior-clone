@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Profile, Relationship
+from .models import Profile
 # Register your models here.
 
 
@@ -9,7 +9,3 @@ from .models import Profile, Relationship
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
   list_display = ('id','user','phone_number','cur_add','profession','post_no','avatar', 'slogan','created', 'updated')
-
-@admin.register(Relationship)
-class RelationshipAdmin(admin.ModelAdmin):
-  list_display = ('id', 'sender', 'receiver', 'status', 'created', 'updated')

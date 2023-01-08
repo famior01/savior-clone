@@ -167,8 +167,6 @@ TEMPLATES = [
                 # Enable {{ profile_picture }}
                 'profiles.context_processors.profile_picture',
 
-                # Enable {{ notification badges for received invitations }}
-                'profiles.context_processors.invitaions_received_no',
             ],
         },
     },

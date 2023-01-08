@@ -10,23 +10,6 @@ from phonenumber_field.modelfields import PhoneNumberField
 # Create your models here.
 
 class ProfileManager(models.Manager):
-  '''
-  Here we are going to get all the profiles that are not me and are not my following
-  '''
-  def get_all_profiles_to_invite(self, sender):
-    profiles = Profile.objects.all().exclude(user=sender)
-    profile = Profile.objects.get(user=sender)
-    qs = Relationship.objects.filter(Q(sender=profile) | Q(receiver=profile)) # Q is a query object which means or
-    print(qs)
-    accepted = set([])
-    for rel in qs:
-      if rel.status == 'accepted':
-        accepted.add(rel.receiver)
-        accepted.add(rel.sender)
-    print(accepted)
-    available = [profile for profile in profiles if profile not in accepted]
-    return available
-
   #TODO: HERE YOU WILL WRITE THE LOGIC OF RECOMMENDATION SYSTEM
   # IT WILL BE DEPENDENT OF MUTUAL following, LOCATION 
 
@@ -134,35 +117,3 @@ class Profile(models.Model):
   #       self.slug = to_slug
   #       super().save(*args, **kwargs)
 
-
-
-STATUS_CHOICES = (
-    ('send', 'send'),
-    ('accepted', 'accepted')
-) # choices for the status of the friend request
-
-class RelationshipManager(models.Manager):
-  '''
-  here this will handle the friend request
-  '''
-  def invitations_received(self, receiver):
-    qs = Relationship.objects.filter(receiver=receiver, status='send')
-    return qs
-
-
-class Relationship(models.Model):
-  """
-  Here we need to define the relationship btw users, like who send the request, who received the request and the status of the request.
-  """
-  sender = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='sender') # if the sender is deleted, delete the relationship
-  receiver = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='receiver') # if the receiver is deleted, delete the relationship
-  status = models.CharField(max_length=8, choices=STATUS_CHOICES)
-  updated = models.DateTimeField(auto_now=True)
-  created = models.DateTimeField(auto_now_add=True)
-
-  objects = RelationshipManager() # this is the manager
-
-
-  def __str__(self):
-    return f'{self.sender}-{self.receiver}-{self.status}'
-    
