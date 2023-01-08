@@ -4,14 +4,12 @@ from profiles.models import Profile
 
 # Create your models here.
 class Posts(models.Model):
-  
   content = models.TextField()
-  
   image = models.ImageField(upload_to='posts/images', blank=True, validators=[FileExtensionValidator(['jpg', 'png', 'jpeg'])])
   liked = models.ManyToManyField(Profile, blank=True, related_name='likes') # track the profliel who liked the post, related_name works when there is reverse relationship
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
-  author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts') # track the profile who created the post as a foreign key to the profile model
+  author = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='posts') 
 
   def __str__(self):
     return self.content + ' | ' + str(self.author)

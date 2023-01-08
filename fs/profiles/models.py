@@ -64,19 +64,30 @@ class Profile(models.Model):
   def get_following_no(self):
     return self.following.all().count()
 
+  def get_follower_no(self):
+    total_user = Profile.objects.filter(following=self.user).count()
+    return total_user
+  
+  def get_followers(self):
+    all_users = Profile.objects.filter(following=self.user).all()
+    return all_users
+  
   # to get the absolute url of the profile
   def get_absolute_url(self):
     return reverse("profiles:profile-detail-view", kwargs={"user": self.user}) 
 
   def get_post_no(self):
-    '''
-    author has the relationship with the profile model as a name of "posts"
-    '''
-    return self.posts.all().count() # type: ignore
+    return self.posts.all().count() 
 
   def get_all_authors_posts(self):
-    return self.posts.all()  # type: ignore
+    return self.posts.all()  
 
+  def get_zakat_posts(self):
+    return self.zakat_posts.all()
+
+  def get_zakat_posts_no(self):
+    return self.zakat_posts.all().count()
+  
   def get_likes_given_no(self):
     """
     like has a relationship with the profile model

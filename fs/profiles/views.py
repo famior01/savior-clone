@@ -14,14 +14,16 @@ from family_savior.settings import AUTH_USER_MODEL
 from user.models import User
 from django.contrib.auth import get_user_model
 from notifications.signals import notify
+from django.contrib import messages
 
 
 
 @login_required
 def myprofile(request):
-  zp = ZakatPosts.objects.all()
+  # zp = ZakatPosts.objects.all()
   profile = Profile.objects.get(user=request.user) #get curr user profile
-  form = ProfileModelForm(request.POST or None, request.FILES or None ,instance=profile) # get curr user form to update
+  form = ProfileModelForm(request.POST or None, request.FILES or None ,instance=profile) # get 
+  zp = profile.get_zakat_posts() 
 
   confirm = False
   if request.method == "POST":
@@ -37,16 +39,40 @@ def myprofile(request):
   }
   return render(request, 'profiles/profile.html', context)
 
+
+def IWatch(request, pk):
+  profile = Profile.objects.get(pk=pk)
+  posts = Posts.objects.filter(author=profile).all()
+  context = {
+    'IWatch': True,
+    'posts': posts,
+    'profile': profile
+  }
+  return render(request, 'profiles/profile.html', context)
+
+# Profile list view
+def Zakat_Posts(request, pk):
+  profile = Profile.objects.get(pk=pk)
+  zp = ZakatPosts.objects.filter(creator=profile).all()
+  context = {
+    'ZakatPosts': True,
+    'profile': profile,
+    'zp': zp
+  }
+  return render(request, 'profiles/profile.html', context)
+  
+
+
 # Profile detail view
 class ProfileDetailView(DetailView):
   model = Profile
   template_name = 'profiles/profile.html'
-  context_object_name = 'profile'
+  # context_object_name = 'profile'
 
   def get_object(self):
     pk = self.kwargs.get('pk')
     view_profile = Profile.objects.get(pk=pk)
-    return view_profile # will return the profile object which we are currently looking at
+    return view_profile 
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
@@ -56,21 +82,6 @@ class ProfileDetailView(DetailView):
       context['following'] = True
     else:
       context['following'] = False
-
-    # user = User.objects.get(username__iexact=self.request.user)
-    # profile = Profile.objects.get(user=user)
-    # rel_r = Relationship.objects.filter(sender=profile)
-    # rel_s = Relationship.objects.filter(receiver=profile)
-    # rel_receiver = []
-    # rel_sender = []
-    # for item in rel_r:
-    #     rel_receiver.append(item.receiver.user)
-    # for item in rel_s:
-    #     rel_sender.append(item.sender.user)
-    # context["rel_receiver"] = rel_receiver
-    # context["rel_sender"] = rel_sender
-    # context['posts'] = self.get_object().get_all_authors_posts()
-    # context['len_posts'] = True if len(self.get_object().get_all_authors_posts())>0 else False
     return context
 
 class FollowerListView(ListView):
@@ -115,7 +126,13 @@ def follow_unfollow_profile(request):
     
   return redirect('profiles:all-profiles')
 
-  
+# Remove me from follower following list
+def remove_follower(request, pk):
+  profile = Profile.objects.get(pk=pk)
+  profile.following.remove(request.user)
+  messages.success(request, f'{profile.user.full_name} will no longer be notified of your activities')
+  return redirect(request.META.get('HTTP_REFERER'))
+
 @login_required
 def invite_profiles_list_view(request):
   """ 

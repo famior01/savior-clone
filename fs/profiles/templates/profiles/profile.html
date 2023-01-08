@@ -6,30 +6,6 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href={% static 'profiles/style.css' %}>
 
-{% comment %} ================== MODELS ========================= {% endcomment %}
-{% comment %} <div class="ui basic modal" style='top:100px; height:400'>
-  <div class="ui icon header">
-    <i class="user plus icon"></i>
-    Ary you sure, you want to follow this {{profile.user.username}}?
-  </div>
-  <div class="content">
-    <p>by clicking Yes, you will be shown all post of this user</p>
-  </div>
-  <div class="actions">
-    
-    <br>
-    <a href=" {% url 'profiles:myprofile' %} ">
-      <div class="ui red basic massive button button">
-      <i class="checkmark icon"></i>
-      NO
-      </div>
-    </a>
-  </div>
-</div> {% endcomment %}
-{% comment %} ======================================================== {% endcomment %}
-
-
-
 <div style="margin-top: 20px" class="ui container-xl ">
   <div class="ui segment">
     <div class="ui grid">
@@ -63,28 +39,51 @@
                           {% csrf_token %}
                           <input type="hidden" name="profile_pk" value={{profile.pk}}>
                           <button class='ui large secondary button' type='submit'>
-                            <i class="user outline icon"></i>
                             Follow
                           </button>
                         </form>
                       {% endif %}
                   {% else %}
-                      <a href="{% url 'profiles:profile-update' user.pk %}">
+                      <a href="{% url  'profiles:profile-update' user.pk %}">
                         <button class="ui large secondary button">Edit Profile</button>
                       </a>                
                   {% endif %}
 
                   <br><br>
                   <div class="description">
-                    <div class="ui  label"><b>99</b>&#160;&#160;
-                      <a href=" {% url 'profiles:followers' profile.pk %} ">Followers</a>
+                    <div class="ui blue labels">
+                      {% if user == profile.user %}
+                        {% if myfollowers > 1 %}
+                          <a href=" {% url 'profiles:followers' profile.pk %} ">
+                            <div class="ui label">{{myfollowers}}&#160;&#160;
+                              Followers
+                            </div>
+                          </a>
+                        {% else %}
+                          <a href=" {% url 'profiles:followers' profile.pk %} ">
+                            <div class="ui label">{{profile.get_follower_no}}&#160;&#160;
+                              Follower
+                            </div>
+                          </a>
+                        {% endif %}
+                      {% else %}
+                        <a href=" {% url 'profiles:followers' profile.pk %} ">
+                          <div class="ui label">{{profile.get_follower_no}}&#160;&#160;
+                            Followers
+                          </div>
+                        </a>
+                      {% endif %}
+                      
+                      {% if user == profile.user %}
+                      <a href="{% url 'profiles:following' profile.pk %}">
+                        <div class="ui label" data-tooltip="Only you can see your following" data-position="bottom left"><b>{{profile.get_following_no}}</b>&nbsp; Following
+                        </div>
+                      </a>
+                      {% endif %}
+                    
+                      <div class="ui label"><b>{{profile.get_post_no}} &nbsp; IWatch Posts</b></div>
+                      <div class="ui label"><b>{{profile.get_zakat_posts_no}}</b> &nbsp;Zakat Posts</div>
                     </div>
-                    <div class="ui basic dark label">
-                      <a href="{% url 'profiles:following' profile.pk %}">Following</a>
-                    </div>
-                    <div class="ui label"><b>{{profile.get_post_no}}</b></div>
-                    <div class="ui label"><b>99</b>{{profile.profile_zakatpost}}</div>
-                    <div class="ui label"><b>99</b> </div>
                   </div>
                 </div>
               </div>    
@@ -97,45 +96,52 @@
             <span><strong>Profession</strong></span>:&nbsp;&nbsp;&nbsp;{{profile.profession}} <br>
             <span><strong>Religion</strong></span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.religion}} <br>
             <span><strong>Phone #</strong></span>: &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{profile.phone_number}} <br>
+
           </div>
         </div>
       </div>
-    
+      
     </div>    
   </div>
+</div>
 
-  <div class="ui top attached tabular menu">
-    <a class="item">
-      Bio
-    </a>
-    <a class="item active">
-      Photos
-    </a>
-    <div class="right menu">
-      <div class="item">
-        <div class="ui transparent icon input">
-          <input type="text" placeholder="Search users...">
-          <i class="search link icon"></i>
-        </div>
+
+<div style="margin-top: 20px" class="ui container-xl">
+  <div class="ui grid">
+    <div class="ui row">
+      <div style='width:50em; margin-left:17%' class="ui menu">
+        <button style='margin-left:33%;' class="ui black basic button">
+          <a href="{% url 'profiles:zakat_posts' profile.pk %}">
+            Zakat Posts
+          </a>
+        </button>
+        <br>
+        <button style='margin-right:33%;' class="ui black basic button">
+        <a href="{% url 'profiles:iwatch' profile.pk %}">
+          IWatch
+        </a>
+        </button>
       </div>
     </div>
   </div>
-  <div class="ui bottom attached segment">
-    <p></p>
-  </div>
+</div>
   
+  <!--in prof_zakat_posts, I applied conditon that fetch all those post where user is creator-->
+  <!--by default this will be shown-->
+
+<div style="margin-top: 20px" class="ui container-xl ">
+
+  {% block posts %}
+    {% if IWatch %}
+      {% include "profiles/profile_IWatch.html" %}
+    {% else %} <!--else ZakatPosts-->
+      {% include "profiles/profile_zakat_posts.html" %}
+    {% endif %}
+  {% endblock posts %} 
+
 </div>
 
 
 
-
-{% block posts %}
-
-{% include 'profiles/profile_Zakat_posts.html' %}
-
-{% endblock posts %}
-
 <script src= "{% static 'profiles/main.js' %}" defer></script>
-
-
 {% endblock content %}

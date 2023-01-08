@@ -2,18 +2,19 @@
 {% load static %}
 
 {% block title %}
-All Profiles
+People
 {% endblock title %}
 
 
 {% block content %}
 
   <link rel="stylesheet" type="text/css" href={% static 'profiles/style.css' %}>
-
-  <!-- if no people -->
+  <div style="margin-top: 20px" class="ui container-xl">
+    <!-- if no people -->
   {% if is_empty %}
     No People to interact with
   {% endif %}
+  <h1>People around the World</h1>
   <!-- People to show -->
   <div class="ui link cards">
     {% for obj in  profiles%}
@@ -70,8 +71,7 @@ All Profiles
 
     {% endfor %}
   </div>
-
-
+  </div>
 {% endblock content %}
 
 {% comment %} 

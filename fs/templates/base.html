@@ -35,7 +35,7 @@
             {% if message.tags == 'success' %}
             <div class="ui positive message" id = 'message_container'>
               <i class="close icon"></i>
-              div class="header">{{message}}</div>
+              <div class="header">{{message}}</div>
             </div>  
             {% elif message.tags == 'info' %}
             <div class="ui info message" id='message_container'>
@@ -60,11 +60,12 @@
 
 
     
-    <div class="ui container">
-      {% block content %}
-      {% endblock content %}
-    </div>
-    
+
+    {% block content %}
+      {% block posts %}
+      {% endblock posts %}
+    {% endblock content %}
+  
 
     <!--Extra body incase of other uses-->
     {% block extra_body %}

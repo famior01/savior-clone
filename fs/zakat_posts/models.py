@@ -7,27 +7,43 @@ from user.models import User
 
 
 class ZakatPosts(models.Model):
-  creator = models.ForeignKey(Profile, on_delete=models.CASCADE)
-  seeker = models.CharField(max_length=100, blank=True) 
-  donor = models.ManyToManyField(Profile, blank=True, related_name='donors') 
-  video1 = models.FileField(upload_to='zakat_video', blank=True)
-  video2 = models.FileField(upload_to='zakat_video', blank=False)
-  varified = models.IntegerField(default=0, blank=True)
-  paid = models.IntegerField(default=0, blank=True)
-  needed_money = models.IntegerField(default=0, blank=False)
-  satisfied = models.BooleanField(default=False, blank=True)
-  upvote = models.IntegerField(default=0)
-  downvote = models.IntegerField(default=0)
-  created = models.DateTimeField(auto_now_add=True)
-  post_number = models.IntegerField(default=0)
-  updated = models.DateTimeField(auto_now=True)
-  content = models.TextField(blank=True, null=True)
+  creator       = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='zakat_posts')
+  seeker        = models.CharField(max_length=100, blank=True) 
+  donor         = models.ManyToManyField(Profile, blank=True, related_name='donors') 
+  video1        = models.FileField(upload_to='zakat_video', blank=True)
+  video2        = models.FileField(upload_to='zakat_video', blank=False)
+  varified      = models.IntegerField(default=0, blank=True)
+  paid          = models.IntegerField(default=0, blank=True)
+  needed_money  = models.IntegerField(default=0, blank=False)
+  satisfied     = models.BooleanField(default=False, blank=True)
+  upvote        = models.IntegerField(default=0)
+  downvote      = models.IntegerField(default=0)
+  created       = models.DateTimeField(auto_now_add=True)
+  post_number   = models.IntegerField(default=0)
+  updated       = models.DateTimeField(auto_now=True)
+  content       = models.TextField(blank=True, null=True)
 
   def __str__(self):
     return str(self.pk)
 
-  def num_comments(self):
+  def get_num_upvotes(self):
+    return self.upvotes.all().count()
+  
+  def get_num_satified(self):
+    return self.satisfied.all().count()
+
+  def get_num_donors(self):
+    return self.donors.all().count()
+
+  def get_num_downvotes(self):
+    return self.downvotes.all().count()
+
+  def get_total_zp(self):
+    return ZakatPosts.objects.all().count()
+  
+  def get_num_comments(self):
     return self.zakat_posts_comments.all().count() 
+
   class Meta:
     ordering = ('-created',)
 

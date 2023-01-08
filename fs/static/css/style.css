@@ -4,8 +4,17 @@ body{
 
 .nav{
   border-radius: 0% !important;
-  font-size: small !important;
+  font-size: 12px !important;
   background-color: #000 !important;
+  /* margin-top: 0em !important;
+  padding: 0em !important;
+  overflow: hidden !important;
+  /* position: fixed !important; */
+  /* top: 0 !important;
+  width: 100% !important; */
+  /* height: 5em !important; */
+  /* z-index: 1 !important; */
+
 }
 
 .mb{

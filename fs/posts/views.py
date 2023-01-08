@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.http import JsonResponse
 from family_savior.settings import LOGIN_REDIRECT_URL
+from user.models import User
 from django.contrib.auth.decorators import login_required
 
 @login_required(login_url=LOGIN_REDIRECT_URL)
@@ -46,8 +47,10 @@ def post_comment_create_and_list_view(request):
     # following_posts = Posts.objects.filter(author__in=following_profiles)
     # just see those post which are postes by the user whom current user is following
     # following_posts = Posts.objects.filter(author__in=profile.following.all())
-    following_users = Profile.objects.get(user=request.user).following.all()
+    profile = Profile.objects.get(user=request.user)
+    following_users = profile.following.all()
     following_profiles = Profile.objects.filter(user__in=following_users)
+    following_profiles |= Profile.objects.filter(user=request.user)
     following_posts = Posts.objects.filter(author__in=following_profiles)
 
 
