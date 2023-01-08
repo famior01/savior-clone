@@ -28,21 +28,36 @@
                   <p style='width:12em'>{{profile.bio}}</p>
                   
                   {% if request.user != profile.user %}
-                      {% if following %}
+                    {% if profile in my_profile.get_followers%}
+                      <div class="ui compact menu">
+                        <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+                          {% csrf_token %}
+                            <input type="hidden" name="profile_pk" value={{profile.pk}}>
+                            <button class='ui mini secondary button' type='submit'>Follow Back</button>
+                        </form>
+                        <br>
+                          <a href=" {% url 'profiles:remove-follower'  profile.pk %} ">
+                            <button class='ui mini secondary button' type='submit'>Remove from my follower</button>
+                          </a>
+                      </div>
+                    {% elif my_profile in profile.get_followers %}
+                      <div class="ui left floated">
                         <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
                           {% csrf_token %}
                           <input type="hidden" name="profile_pk" value={{profile.pk}}>
-                          <button class='ui large secondary button' type='submit'>Unfollow</button>
+                          <button class='ui large secondary button' type='submit'>UnFollow</button>
                         </form>
-                      {% else %}
-                        <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST'>
+                      </div>
+                    {% else %}
+                      <div class="ui left floated">
+                        <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
                           {% csrf_token %}
                           <input type="hidden" name="profile_pk" value={{profile.pk}}>
-                          <button class='ui large secondary button' type='submit'>
-                            Follow
-                          </button>
+                          <button class='ui large secondary button' type='submit'>Follow</button>
                         </form>
-                      {% endif %}
+                      </div>
+                    {% endif %}
+
                   {% else %}
                       <a href="{% url  'profiles:profile-update' user.pk %}">
                         <button class="ui large secondary button">Edit Profile</button>

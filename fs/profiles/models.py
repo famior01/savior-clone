@@ -19,7 +19,7 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-  user                = models.OneToOneField(User, on_delete=models.CASCADE)
+  user                = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
   phone_number        = PhoneNumberField(unique=True)
   post_no             = models.IntegerField(default=1)
   intro               = models.TextField(max_length=500, blank=True)
@@ -43,13 +43,15 @@ class Profile(models.Model):
 
   def get_following(self):
     return self.following.all()
+
   
   def get_following_no(self):
-    return self.following.all().count()
+    user = self.following.all()
+    return Profile.objects.filter(user__in=user).exclude(user=self.user).count()
 
   def get_follower_no(self):
-    total_user = Profile.objects.filter(following=self.user).count()
-    return total_user
+    total_profiles = Profile.objects.filter(following=self.user).exclude(user=self.user).count()
+    return total_profiles
   
   def get_followers(self):
     all_users = Profile.objects.filter(following=self.user).all()

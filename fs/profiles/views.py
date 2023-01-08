@@ -74,27 +74,32 @@ class ProfileDetailView(DetailView):
     view_profile = Profile.objects.get(pk=pk)
     return view_profile 
 
-  def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    view_profile = self.get_object()
-    my_profile = Profile.objects.get(user=self.request.user)
-    if view_profile.user in my_profile.following.all():
-      context['following'] = True
-    else:
-      context['following'] = False
-    return context
+  # def get_context_data(self, **kwargs):
+  #   context = super().get_context_data(**kwargs)
+  #   view_profile = self.get_object()
+  #   my_profile = Profile.objects.get(user=self.request.user)
+  #   if view_profile.user in my_profile.following.all():
+  #     context['following'] = True
+  #   else:
+  #     context['following'] = False
+  #   return context
 
 class FollowerListView(ListView):
   model = Profile
-  template_name = 'profiles/followers.html'
-  context_object_name = 'profiles'
+  template_name = 'profiles/followers.html'  
 
   def get_queryset(self):
     pk = self.kwargs.get('pk')
     user = User.objects.get(pk=pk)
-    # view_profile = Profile.objects.get(pk=pk)
-    followers_profiles = Profile.objects.filter(following=user).all().exclude(user=user)
-    return followers_profiles
+    return user
+
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    user = self.get_queryset()
+    context['followers_profiles'] = Profile.objects.filter(following=user).all().exclude(user=user)
+    context['view_profile'] = Profile.objects.get(user=user)
+    return context
+
 
 class FollowingListView(ListView):
   model = Profile
