@@ -9,11 +9,11 @@ class ProfileModelForm(forms.ModelForm):
   Here we are going to create a form that will allow us to update our profile
   """
   phone_number = PhoneNumberField(label="Phone Number", widget =PhoneNumberPrefixWidget(initial='PK'))
-  slogan = forms.CharField(max_length=100, label='Slogan', required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (I am a programmer)'}))
-  profession = forms.CharField(max_length=100, label='Profession', required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (Software Engineer)'}))
-  cur_add = forms.CharField(max_length=500, label='Current Address', required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (Karachi, Pakistan)'}))
+  slogan = forms.CharField(max_length=80, label='Slogan', required=False, widget=forms.TextInput(attrs={'placeholder': 'People are waiting for your slogan!!'}))
+  profession = forms.CharField(max_length=60, label='Profession', required=False, widget=forms.TextInput(attrs={'placeholder': 'Ary you Doctor🤔?'}))
+  cur_add = forms.CharField(max_length=100, label='Current Address', required=False, widget=forms.TextInput(attrs={'placeholder': 'ABC(Area), Karachi, Pakistan. By the way, do you live in Mars?'}))
   avatar = forms.ImageField(label='Avatar', required=False)
-  intro = forms.CharField(max_length=500, label='Introduction', required=False, widget=forms.Textarea(attrs={'placeholder': 'I am a software engineer and I am working in a company', 'rows': 3, 'cols': 30}))
+  intro = forms.CharField(max_length=250, label='Introduction', required=False, widget=forms.Textarea(attrs={'placeholder': 'write your Introduction under 250 letters', 'rows': 2, 'cols': 30}))
 
   class Meta:
     model = Profile
