@@ -48,6 +48,9 @@ INSTALLED_APPS = [
     # for notifications
     'notifications',
     'crispy_forms',
+
+    # phone number field
+    "phonenumber_field",
 ]
 
 AUTH_USER_MODEL = 'user.User'
@@ -58,7 +61,7 @@ AUTH_USER_MODEL = 'user.User'
 # https://django-phonenumber-field.readthedocs.io/en/latest/
 PHONENUMBER_DEFAULT_FORMAT = 'INTERNATIONAL'
 PHONENUMBER_DB_FORMAT = 'E164'
-PHONENUMBER_DEFAULT_REGION = None
+PHONENUMBER_DEFAULT_REGION = "PK"
 
 
 # ---------------------------------------------------------------------------- #

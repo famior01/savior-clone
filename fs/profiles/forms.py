@@ -1,13 +1,14 @@
 from django import forms
 from .models import Profile
 from phonenumber_field.formfields import PhoneNumberField
+from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
 
 class ProfileModelForm(forms.ModelForm):
   """
   Here we are going to create a form that will allow us to update our profile
   """
-  phone_number = PhoneNumberField(label="Phone Number", required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (+92300-1234567)'}))
+  phone_number = PhoneNumberField(label="Phone Number", widget =PhoneNumberPrefixWidget(initial='PK'))
   slogan = forms.CharField(max_length=30, label='Slogan', required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (I am a programmer)'}))
   profession = forms.CharField(max_length=30, label='Profession', required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (Software Engineer)'}))
   cur_add = forms.CharField(max_length=30, label='Current Address', required=False, widget=forms.TextInput(attrs={'placeholder': 'Like (Karachi, Pakistan)'}))

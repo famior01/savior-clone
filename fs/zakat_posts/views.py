@@ -61,7 +61,7 @@ def create_zakat_posts(request):
     'p_form': p_form,
     # 'c_form': c_form,
     'qs': qs,
-    'profile': profile
+    'my_profile': profile
   }
 
   return render(request, 'zakat_posts/main.html', context)
