@@ -28,19 +28,7 @@
                   <p style='width:12em'>{{profile.bio}}</p>
                   
                   {% if request.user != profile.user %}
-                    {% if profile in my_profile.get_followers%}
-                      <div class="ui compact menu">
-                        <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
-                          {% csrf_token %}
-                            <input type="hidden" name="profile_pk" value={{profile.pk}}>
-                            <button class='ui mini secondary button' type='submit'>Follow Back</button>
-                        </form>
-                        <br>
-                          <a href=" {% url 'profiles:remove-follower'  profile.pk %} ">
-                            <button class='ui mini secondary button' type='submit'>Remove from my follower</button>
-                          </a>
-                      </div>
-                    {% elif my_profile in profile.get_followers %}
+                    {% if my_profile in profile.get_followers %}
                       <div class="ui left floated">
                         <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
                           {% csrf_token %}
@@ -48,7 +36,19 @@
                           <button class='ui large secondary button' type='submit'>UnFollow</button>
                         </form>
                       </div>
-                    {% else %}
+                    {% elif profile in my_profile.get_followers%}
+                    <div class="ui compact menu">
+                      <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+                        {% csrf_token %}
+                          <input type="hidden" name="profile_pk" value={{profile.pk}}>
+                          <button class='ui mini secondary button' type='submit'>Follow Back</button>
+                      </form>
+                      <br>
+                        <a href=" {% url 'profiles:remove-follower'  profile.pk %} ">
+                          <button class='ui mini secondary button' type='submit'>Remove from my follower</button>
+                        </a>
+                    </div>
+                  {% else %}
                       <div class="ui left floated">
                         <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
                           {% csrf_token %}
@@ -105,8 +105,7 @@
             </div>
           </div>
           <div class="seven wide column">
-            <h3>Introduction</h3>{{profile.intro}}
-            <br><br>
+            <h3>Introduction</h3><p style='width: 33em;'>{{profile.intro}}</p>
             <span><strong>Address</strong></span>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{profile.cur_add}} <br>
             <span><strong>Profession</strong></span>:&nbsp;&nbsp;&nbsp;{{profile.profession}} <br>
             <span><strong>Religion</strong></span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.religion}} <br>

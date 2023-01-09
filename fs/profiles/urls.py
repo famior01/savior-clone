@@ -12,6 +12,7 @@ from .views import (
   IWatch,
   Zakat_Posts,
   remove_follower,
+  UserSearch,
   )
 
 app_name = 'profiles'  # in case we need to use the namespace in the future
@@ -32,5 +33,8 @@ urlpatterns = [
 
   # Profile Posts
   path('iwatch/<int:pk>/', IWatch ,name='iwatch'),
-  path('Zakat_Posts/<int:pk>/', Zakat_Posts ,name='zakat_posts')
+  path('Zakat_Posts/<int:pk>/', Zakat_Posts ,name='zakat_posts'),
+
+  # Searching for Profiles
+  path("search/", UserSearch.as_view(), name='search-user')
 ]

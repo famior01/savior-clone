@@ -56,15 +56,7 @@
     {% if request.user.is_authenticated %}
 
         <!--Search icon-->
-        <div class="item">
-            <form action="" method="GET">
-                <div class="ui action left icon input">
-                <input class="prompt" type="text" name='q' placeholder="name of a friend...">
-                <i class="search icon"></i>
-                <button type='submit' class="ui button">Search</button>
-                </div>
-            </form>
-        </div>
+        
 
         <!-- People -->
         <div class="item">
@@ -200,3 +192,4 @@
 {% comment %} <script src="{% static 'js/base.js' %}" defer></script>
 already coming from base.html
 {% endcomment %}
+

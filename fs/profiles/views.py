@@ -15,6 +15,8 @@ from user.models import User
 from django.contrib.auth import get_user_model
 from notifications.signals import notify
 from django.contrib import messages
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 
 
@@ -143,25 +145,14 @@ def remove_follower(request, pk):
 class ProfileListView(ListView):
   model = Profile
   template_name = 'profiles/profile_list.html'
-  context_object_name = 'profiles' # object_list*
+  # context_object_name = 'profiles' # object_list*
 
-  def get_queryset(self):
-    qs = Profile.objects.get_all_profiles(self.request.user)
-    return qs
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
     user = User.objects.get(username__iexact=self.request.user)
-    myprofile = Profile.objects.get(user=user)
-    
-    # following profiles 
-    following_user = user.profile.get_following()
-    following_profiles= Profile.objects.filter(user__in=following_user)
-    context['following_profiles'] = following_profiles 
-
-    # followers profiles
-    followers = Profile.objects.filter(following=user).all()
-    context['followers'] = followers
+    my_profile = Profile.objects.get(user=user)
+    context['profiles'] = Profile.objects.all().exclude(user=self.request.user)
     return context
 
 
@@ -182,3 +173,25 @@ class ProfileUpdateView(UpdateView):
     else:
       form.add_error(None, "You are not authorized to update this post")
       return super().form_invalid(form)
+
+
+class UserSearch(ListView):
+  def get(self, request, *args, **kwargs):
+    query = self.request.GET.get('query')
+    profile_list = Profile.objects.filter(
+      Q(user__username__icontains=query) | Q(user__full_name__icontains=query)
+    )    
+    context = {
+      'search_list': profile_list,
+    }
+    return render(request, "profiles/profile_list.html", context)
+
+
+# class SendAllProfiles(ListView):
+#   model = Profile
+#   template_name = 'profiles/profile_list.html'
+  
+#   def get_context_data(self, **kwargs):
+#       context = super().get_context_data(**kwargs)
+#       context['all_Profiles'] = json.dumps(list(Profile.objects.values()))
+#       return context

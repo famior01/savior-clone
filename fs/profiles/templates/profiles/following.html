@@ -16,7 +16,7 @@ Following
   {% endif %}
   <!-- People to show -->
   <h1>You Follow these peoples</h1>
-  <div class="ui link cards">
+  <div class="ui six cards">
     {% for obj in  profiles %}
       <a href="{% url 'profiles:profile-detail-view' obj.pk %}">
         <div class="card">
@@ -35,7 +35,7 @@ Following
           <div class="extra content">
             <span>
               <i class="user icon"></i>
-              {{obj.get_follower_no|length}} Followers
+              {{obj.get_followers|length}} Followers
             </span>
             <div class="ui right floated">
               <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>

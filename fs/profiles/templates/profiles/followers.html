@@ -17,7 +17,7 @@ All Profiles
 
   <h2>{{view_profile.user.full_name}}'s Followers</h2>
   <!-- People to show -->
-  <div class="ui link cards">
+  <div class="ui six cards">
     {% for obj in  followers_profiles %}
       <a href="{% url 'profiles:profile-detail-view' obj.pk %}">
         <div class="card">
@@ -36,10 +36,18 @@ All Profiles
           <div class="extra content">
             <span>
               <i class="user icon"></i>
-              {{obj.get_follower_no}} Followers
+              {{obj.get_followers|length}} Followers
             </span>
 
-            {% if obj == my_profile %}
+            {% if my_profile in obj.get_followers %}
+            <div class="ui right floated">
+              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+                {% csrf_token %}
+                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+                <button class='ui large secondary button' type='submit'>UnFollow</button>
+              </form>
+            </div>
+            {% elif obj == my_profile %}
               <div class="ui right floated">
                 <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
                   {% csrf_token %}
@@ -58,14 +66,6 @@ All Profiles
               <a href=" {% url 'profiles:remove-follower'  obj.pk%} ">
                 <button class='ui mini secondary button' type='submit'>Remove</button>
               </a>
-            </div>
-            {% elif my_profile in obj.get_followers %}
-            <div class="ui right floated">
-              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
-                {% csrf_token %}
-                <input type="hidden" name="profile_pk" value={{obj.pk}}>
-                <button class='ui large secondary button' type='submit'>UnFollow</button>
-              </form>
             </div>
             {% else %}
             <div class="ui right floated">
