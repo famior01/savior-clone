@@ -70,6 +70,11 @@ class UpVote(models.Model):
 
   def __str__(self):
     return f"{self.user}-{self.post}"
+  
+  def get_users(self):
+    return self.user.all()
+
+
   class Meta:
     ordering = ['-created']
 

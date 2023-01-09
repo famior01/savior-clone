@@ -1,69 +1,141 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}
 People
 {% endblock title %}
 
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href={% static 'profiles/style.css' %}>
+  
 
-  <link rel="stylesheet" type="text/css" href={% static 'profiles/style.css' %}>
-  <div style="margin-top: 20px" class="ui container-xl">
-    <!-- if no people -->
-  {% if is_empty %}
-    No People to interact with
+<div class="search_bar">
+    <form action="{% url 'profiles:search-user' %}" method="GET"> 
+        <div style='width: 45em;' class="ui right action left icon input">
+            <i class="search icon"></i>
+            <input  type="text" name='query' id='search_here' value='{{ request.GET.query }}' placeholder="name of a friend...">
+            <button type='submit' class="ui button">Search</button>
+            <a href="{% url 'profiles:all-profiles' %}"><i class="black window close outline huge icon"></i></a> 
+        </div>
+    </form>
+</div>
+
+<div style="margin-top: 20px" class="ui container-xl">
+  {% if search_list %}
+    <h1>😊 Found {{search_list|length}} results for "{{request.GET.query}}"</h1><br>
   {% endif %}
+  <div class="ui six cards">
+  {% for obj in  search_list %}
+    <a href="{% url 'profiles:profile-detail-view' obj.pk %}">
+      <div class="black card">
+        <div class="ui small image ">
+          <center><img class='ui center aligned' src="{{obj.avatar.url}}"></center>
+        </div>
+        <div class="content">
+          <div class="header">{{obj.user.full_name}}</div>
+          <div class="meta">
+            <a href="{% url 'profiles:profile-detail-view' obj.pk %}">@{{obj.user.username}}</a>
+          </div>
+        </div>
+        <div class="extra content">
+          <span>
+            <i class="user icon"></i>
+            {{obj.get_followers|length}} Followers
+          </span>
+          {% if obj.user in my_profile.get_following %}
+          <div class="ui right floated">
+            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+              {% csrf_token %}
+              <input type="hidden" name="profile_pk" value={{obj.pk}}>
+              <button class='ui large secondary button' type='submit'>Unfollow</button>
+            </form>
+          </div>
+          {% elif obj in my_profile.get_followers%}
+          <div class="ui right floated">
+            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+              {% csrf_token %}
+              <input type="hidden" name="profile_pk" value={{obj.pk}}>
+              <button class='ui large secondary button' type='submit'>Follow Back</button>
+            </form>
+          </div>
+          {% else %}
+          <div class="ui right floated">
+            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+              {% csrf_token %}
+              <input type="hidden" name="profile_pk" value={{obj.pk}}>
+              <button class='ui large secondary button' type='submit'>Follow</button>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+  </div>
+</div>
+
+<div style="margin-top: 20px" class="ui container-xl">
+  <!-- if no people -->
   <h1>People around the World</h1>
   <!-- People to show -->
-  <div class="ui link cards">
-    {% for obj in  profiles%}
+  <div class="ui six cards">
+    {% for obj in  profiles %}
       <a href="{% url 'profiles:profile-detail-view' obj.pk %}">
-        <div class="card">
+        <div class="center aligned card">
           <div class="ui small image">
-            <center><img src="{{obj.avatar.url}}"></center>
+            <img src="{{obj.avatar.url}}">
           </div>
           <div class="content">
             <div class="header">{{obj.user.full_name}}</div>
             <div class="meta">
-              <a>@{{obj.user.username}}</a>
+              <a href="{% url 'profiles:profile-detail-view' obj.pk %}">@{{obj.user.username}}</a>
             </div>
             <div class="description">
-              {{obj.bio}}
+              {{obj.intor|truncatechars:10}}
             </div>
           </div>
           <div class="extra content">
             <span>
               <i class="user icon"></i>
-              {{obj.followers.all|length}} Followers
+              {{obj.get_followers|length}} Followers
             </span>
-            {% if obj in following_profiles %}
-            
+            {% if my_profile in obj.get_followers %}
+          <div class="ui right floated">
+            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+              {% csrf_token %}
+              <input type="hidden" name="profile_pk" value={{obj.pk}}>
+              <button class='ui large secondary button' type='submit'>UnFollow</button>
+            </form>
+          </div>
+          {% elif obj == my_profile %}
             <div class="ui right floated">
               <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
                 {% csrf_token %}
                 <input type="hidden" name="profile_pk" value={{obj.pk}}>
-                <button class='ui large secondary button' type='submit'>Unfollow</button>
+                <button class='ui large secondary button' type='submit'>Following</button>
               </form>
             </div>
-            {% elif obj in followers%}
-            <div class="ui right floated">
-              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
-                {% csrf_token %}
-                <input type="hidden" name="profile_pk" value={{obj.pk}}>
-                <button class='ui large secondary button' type='submit'>Follow Back</button>
-              </form>
-            </div>
-            {% else %}
-            {{myprofile.}}
-            <div class="ui right floated">
-              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
-                {% csrf_token %}
-                <input type="hidden" name="profile_pk" value={{obj.pk}}>
-                <button class='ui large secondary button' type='submit'>Follow</button>
-              </form>
-            </div>
-            {% endif %}
+          {% elif obj in my_profile.get_followers%}
+          <div class="ui compact menu">
+            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+              {% csrf_token %}
+              <input type="hidden" name="profile_pk" value={{obj.pk}}>
+              <button class='ui mini secondary button' type='submit'>Follow Back</button>
+            </form>
+            <br>
+            <a href=" {% url 'profiles:remove-follower'  obj.pk%} ">
+              <button class='ui mini secondary button' type='submit'>Remove</button>
+            </a>
+          </div>
+          {% else %}
+          <div class="ui right floated">
+            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+              {% csrf_token %}
+              <input type="hidden" name="profile_pk" value={{obj.pk}}>
+              <button class='ui large secondary button' type='submit'>Follow</button>
+            </form>
+          </div>
+          {% endif %}
           </div>
         </div>
       </a>
@@ -71,61 +143,11 @@ People
 
     {% endfor %}
   </div>
-  </div>
+</div>
+
+
+
 {% endblock content %}
-
-{% comment %} 
-
-<div class='ui segment'>
-      <div class="ui grid">
-        <div class="row">
-          <div class="three wide column">
-            <img class="ui small circular image" src="{{ obj.avatar.url }}">
-          </div>
-          <div class="thirteen wide column">
-            <h3>{{ obj.user.username }}</h3>
-            <p>{{ obj.bio }}</p>
-            <a href=" {% url 'profiles:profile-detail-view' obj.pk %} ">
-              <button class='ui primary button sizebtn mb-5'>See Profile</button>
-            </a>
-            <br>
-          
-            {% if obj.user not in rel_receiver and obj.user not in rel_sender%}
-            <form action="{% url 'profiles:send-invite' %}" method='POST'>
-              {% csrf_token %}
-              <input type="hidden" name='profile_pk' value={{obj.pk}}>
-                <button type='submit' class='ui positive basic button sizebtn mb-5'><i class='plus square icon'></i>Add to Friends</button>
-            </form>
-            {% endif %}
-            
-            {% if obj.user in rel_receiver and request.user not in obj.friends.all %}
-              <button class='ui disabled button'>
-                <i class='user icon sizebtn mb-5'></i>
-                Pending...
-              </button>
-            {% endif %}
-
-            <!--to remove from firend list-->
-            {% if request.user in obj.friends.all %}
-            <form action="{% url 'profiles:remove-friend' %}" method='POST'>
-              {% csrf_token %}
-              <input type="hidden" name='profile_pk' value={{obj.pk}}>
-              
-              <button class='ui negative basic button'>
-                <i class='minus square icon sizebtn mb-5'></i>
-                Remove from Friends
-              </button>
-            </form>
-            {% endif %}
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-{% endcomment %}
-
-
 
 
 
