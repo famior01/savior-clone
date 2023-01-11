@@ -9,8 +9,8 @@
                   <div class="ui grid">
                       <div class="row">
                           {% if request.user == obj.author.user %}
-                              <a href="{% url 'posts:post-update' obj.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
-                              <a href="{% url 'posts:post-delete' obj.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
+                              <a href="{% url 'IWatch:post-update' obj.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
+                              <a href="{% url 'IWatch:post-delete' obj.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
                           {% endif %}
                       </div>
                   </div>
@@ -31,7 +31,7 @@
               </div>
               <div>
                   <div class="right floated">
-                      <form action="{% url 'posts:like-post-view' %}" method="POST" class='like-form' id='{{obj.id}}'>
+                      <form action="{% url 'IWatch:like-post-view' %}" method="POST" class='like-form' id='{{obj.id}}'>
                           {% csrf_token %}
                           <input type="hidden" name="post_id" value={{obj.id}}>
                           

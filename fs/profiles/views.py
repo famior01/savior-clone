@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .forms import ProfileModelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
-from posts.models import Posts
+from IWatch.models import IWatch
 from zakat_posts.models import ZakatPosts
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileModelForm
@@ -42,9 +42,9 @@ def myprofile(request):
   return render(request, 'profiles/profile.html', context)
 
 @login_required
-def IWatch(request, pk):
+def IWatch_videos(request, pk):
   profile = Profile.objects.get(pk=pk)
-  posts = Posts.objects.filter(author=profile).all()
+  posts = IWatch.objects.filter(creator=profile).all()
   context = {
     'IWatch': True,
     'posts': posts,
@@ -150,7 +150,7 @@ class ProfileListView(ListView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    user = User.objects.get(username__iexact=self.request.user)
+    user = User.objects.get(username__exact=self.request.user)
     my_profile = Profile.objects.get(user=user)
     context['profiles'] = Profile.objects.all().exclude(user=self.request.user)
     return context
@@ -177,14 +177,18 @@ class ProfileUpdateView(UpdateView):
 
 class UserSearch(ListView):
   def get(self, request, *args, **kwargs):
-    query = self.request.GET.get('query')
-    profile_list = Profile.objects.filter(
-      Q(user__username__icontains=query) | Q(user__full_name__icontains=query)
-    )    
-    context = {
-      'search_list': profile_list,
-    }
-    return render(request, "profiles/profile_list.html", context)
+    query = self.request.GET.get('query').strip()
+    if query:
+      profile_list = Profile.objects.filter(
+        Q(user__username__contains=query) | Q(user__full_name__icontains=query)
+      )    
+      context = {
+        'search_list': profile_list,
+      }
+      return render(request, "profiles/profile_list.html", context)
+    else:
+      return redirect(request.META.get('HTTP_REFERER'))
+      
 
 
 # class SendAllProfiles(ListView):

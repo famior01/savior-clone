@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Show-IWatch
+{% endblock title %}
+
+{% block content %}  
+{% comment %} <link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}> {% endcomment %}
+<link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
+
+  
+  <div class="ui container-xl">
+  <div class="ui grid">
+    <!--========================== Video to show =======================-->
+    <div class="row">
+
+      <div class="showvideosize ui segment ">
+          <video id="player"></video>
+        </div>
+      </div>
+
+
+    <!--Infor of creator to show (option of follow(etc), and comments)-->
+    <div class="row">
+    </div>
+
+    <!--========================= video cards ====================-->
+    
+    <div class="row">
+      <div class="ui four cards">
+        {% for i in random_objects %}
+        <div class="card">
+          <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
+            <div class="ui small image">
+              <center><img src="{{i.thumbnail.url}}"></center>
+            </div>              
+            <div class='content'>
+              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus explicabo molestiae, doloremque minima 
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+  
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!--Script for plyr-->
+<script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
+
+<script>
+
+  const player = new Plyr('#player', {
+    /* options */
+  });
+  player.source = {
+    type: 'video',
+    title: '{{IWatch.title}}',
+    sources: [
+      {
+        src: '{{IWatch.video.url}}',
+        type: 'video/mp4',
+        size: 1080,
+      },
+      {
+        src: '{{IWatch.video.url}}',
+        type: 'video/webm',
+        size: 1080,
+      },
+    ],
+    poster: '{{ IWatch.thumbnail.thumbnails.small.url }} ',
+    previewThumbnails: {
+      src: '{{ IWatch.thumbnail.thumbnails.small.url }}',
+    },
+    tracks: [
+      {
+        kind: 'captions',
+        label: 'English',
+        srclang: 'en',
+        src: '/path/to/captions.en.vtt',
+        default: true,
+      },
+      {
+        kind: 'captions',
+        label: 'Urdu',
+        srclang: 'ur',
+        src: '/path/to/captions.ur.vtt',
+      },
+    ],
+  };
+
+</script>
+
+{% endblock content %}

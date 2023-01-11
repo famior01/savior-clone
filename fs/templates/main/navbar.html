@@ -1,4 +1,4 @@
-{% url 'posts:main-post-view' as path_to_posts%}
+{% url 'IWatch:IWatch-main' as path_to_posts%}
 {% url 'profiles:myprofile' as path_to_myprofile %}
 
 
@@ -15,7 +15,7 @@
 {% comment %} <link rel="stylesheet" type="text/css" href={% static 'css/style.css' %}> {% endcomment %}
 
 
-<div class="ui inverted menu nav">
+<div class="ui inverted top fixed menu nav">
     <div class="ui container fluid  ">
     {% if request.user.is_authenticated %}
         <a href="{{zakat_posts_home}}" class="{% if request.path == path_to_posts %}active{% endif %} item">

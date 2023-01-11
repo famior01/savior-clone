@@ -38,7 +38,7 @@ class Profile(models.Model):
     return str(self.user)
 
   def profile_iwatch(self):
-    return self.post_set.all() 
+    return self.IWatch_set.all() 
   
 
   def get_following(self):
@@ -62,34 +62,39 @@ class Profile(models.Model):
     return reverse("profiles:profile-detail-view", kwargs={"user": self.user}) 
 
   def get_post_no(self):
-    return self.posts.all().count() 
+    return self.IWatch.all().count() 
 
   def get_all_authors_posts(self):
-    return self.posts.all()  
+    return self.IWatch.all()  
 
   def get_zakat_posts(self):
     return self.zakat_posts.all()
 
   def get_zakat_posts_no(self):
     return self.zakat_posts.all().count()
-  
-  def get_likes_given_no(self):
-    """
-    like has a relationship with the profile model
-    """
-    likes = self.like_set.all() # type: ignore
-    total_liked = 0
-    for item in likes:
-      if item.value == 'Like':
-          total_liked += 1
-    return total_liked
 
-  def get_likes_recieved_no(self):
-    posts = self.posts.all() # type: ignore
-    total_posts = 0
-    for item in posts:
-      total_posts+= item.likes.all().count()
-    return total_posts
+  def total_IWatch_likes_by_curruser(self):
+    return self.IWatch_likes.all().count()
+
+  def total_IWatch_dislikes_by_curruser(self):
+    return self.IWatch_dislike.all().count()
+  # def get_likes_given_no(self):
+  #   """
+  #   like has a relationship with the profile model
+  #   """
+  #   likes = self.like_set.all() # type: ignore
+  #   total_liked = 0
+  #   for item in likes:
+  #     if item.value == 'Like':
+  #         total_liked += 1
+  #   return total_liked
+
+  # def get_likes_recieved_no(self):
+  #   posts = self.IWatch.all() # type: ignore
+  #   total_posts = 0
+  #   for item in posts:
+  #     total_posts+= item.likes.all().count()
+  #   return total_posts
   
   class Meta:
     ordering = ['-created']

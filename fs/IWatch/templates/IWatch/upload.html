@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Upload{% endblock title %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>
+
+
+<div style = 'margin-top:30px;' class='ui container-md'>
+  <div class='ui raised black segment'>
+    <h3>Upload video</h3>
+    <form action="" method='POST' class='ui form' enctype='multipart/form-data'>
+      {% csrf_token %}
+      {{ form.as_table }}
+      <button class='ui large secondary button fluid mt-3' type='submit'>Upload</button>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}

@@ -11,7 +11,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', home, name='home'),
     path('profiles/', include('profiles.urls', namespace='profiles')),
-    path('posts/', include('posts.urls', namespace='posts')),
+    path('IWatch/', include('IWatch.urls', namespace='IWatch')),
     path('zakat_posts/', include('zakat_posts.urls', namespace='zakat_posts')),
     path('api/', include('zakat_posts.api.urls')),
     # for notifications
