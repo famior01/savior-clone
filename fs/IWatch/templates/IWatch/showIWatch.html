@@ -6,56 +6,133 @@
 {% endblock title %}
 
 {% block content %}  
-{% comment %} <link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}> {% endcomment %}
+<link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
 
-  
-  <div class="ui container-xl">
   <div class="ui grid">
     <!--========================== Video to show =======================-->
-    <div class="row">
-
-      <div class="showvideosize ui segment ">
-          <video id="player"></video>
+    <div class="ui container-xxl ">
+      <div class="row">
+        <div class="ui sixteen wide column ">
+            <video id="player" controls></video>
         </div>
       </div>
-
-
-    <!--Infor of creator to show (option of follow(etc), and comments)-->
-    <div class="row">
     </div>
 
-    <!--========================= video cards ====================-->
-    
-    <div class="row">
-      <div class="ui four cards">
-        {% for i in random_objects %}
-        <div class="card">
-          <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
-            <div class="ui small image">
-              <center><img src="{{i.thumbnail.url}}"></center>
-            </div>              
-            <div class='content'>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus explicabo molestiae, doloremque minima 
+    <!--Infor of creator to show (option of follow(etc), and comments)-->
+    <div class="ui container-xl">
+      <div class="ui grid">
+      <div class="row">     
+        <div class="six wide column">
+          <div class="ui very relaxed items">
+            <div class="item">
+              <div class="ui tiny circular image">
+                <img src="{{IWatch.creator.avatar.url}}">
+              </div>
+              <div class="middle aligned content">
+                <p class="header">{{IWatch.creator.user.full_name}}</p><br>
+                <a href="">@{{IWatch.creator.user.username}}</a><br>
+              </div>
+              <button class='ui secondary button m-3'>Follow</button>
             </div>
-          </a>
-        </div>
-        {% endfor %}
+          </div>
       </div>
-  
+
+      <div class=" wide column">
+        <div class="ui very relaxed items">
+          <div class="item">
+            <form  method="POST"  id='{{obj.id}}' class='commentForm' >
+              {% csrf_token %}
+              <input type="hidden" name="post_id" value={{obj.id}}>
+              <input type="text" class="form-control" id='comment{{obj.id}}'  placeholder="Add your comment" upd="1" uid="2" />
+              <button type="submit"  class="ui primary button commentbtn{{obj.id}}">Send</button>
+          </form>
+          </div>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+
+      <!--========================= video cards ====================-->
+      
+      <div class="row">
+        <div class="ui four cards">
+          {% for i in random_objects %}
+          <div class="card">
+            <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
+              <div class="ui small image">
+                <center><img src="{{i.thumbnail.url}}"></center>
+              </div>              
+              <div class='content'>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus explicabo molestiae, doloremque minima 
+              </div>
+            </a>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
     </div>
   </div>
 
-</div>
-</div>
 
 <!--Script for plyr-->
 <script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
 
 <script>
+  {% comment %} i18n: {
+    restart: 'Restart',
+    rewind: 'Rewind {seektime} secs',
+    play: 'Play',
+    pause: 'Pause',
+    fastForward: 'Forward {seektime} secs',
+    seek: 'Seek',
+    played: 'Played',
+    buffered: 'Buffered',
+    currentTime: 'Current time',
+    duration: 'Duration',
+    volume: 'Volume',
+    mute: 'Mute',
+    unmute: 'Unmute',
+    enableCaptions: 'Enable captions',
+    disableCaptions: 'Disable captions',
+    enterFullscreen: 'Enter fullscreen',
+    exitFullscreen: 'Exit fullscreen',
+    frameTitle: 'Player for {title}',
+    captions: 'Captions',
+    settings: 'Settings',
+    speed: 'Speed',
+    normal: 'Normal',
+    quality: 'Quality',
+    loop: 'Loop',
+    start: 'Start',
+    end: 'End',
+    all: 'All',
+    reset: 'Reset',
+    disabled: 'Disabled',
+    advertisement: 'Ad',
+  }, {% endcomment %}
 
-  const player = new Plyr('#player', {
-    /* options */
+  const player = new Plyr('#player',  {
+
+    ratio	: '16:5',
+    loop: { active: false },
+    seekTime: 10,
+    disableContextMenu: true,
+    tooltips: { controls: true, seek: true},
+    captions	: { active: true, language: 'en', update: true },
+
+    ads: {
+      enabled: false,
+      publisherId: '',
+      tagUrl: '' ,
+    },
+    mediaMetadata: {
+      title: '{{IWatch.title}}',
+      artist: '{{IWatch.creator.user.full_name}}',
+      album: '',
+    },
   });
   player.source = {
     type: 'video',
@@ -64,7 +141,7 @@
       {
         src: '{{IWatch.video.url}}',
         type: 'video/mp4',
-        size: 1080,
+        size: 720,
       },
       {
         src: '{{IWatch.video.url}}',
@@ -72,9 +149,9 @@
         size: 1080,
       },
     ],
-    poster: '{{ IWatch.thumbnail.thumbnails.small.url }} ',
+    poster: '{{ IWatch.thumbnail.url }} ',
     previewThumbnails: {
-      src: '{{ IWatch.thumbnail.thumbnails.small.url }}',
+      src: '{{ IWatch.thumbnail.url }}',
     },
     tracks: [
       {
@@ -92,6 +169,15 @@
       },
     ],
   };
+
+  player.on('seeking', (event) => {
+    //increase seeking time
+    player.currentTime += 10;
+  });
+
+  player.rewind(4);
+  player.forward(4);
+
 
 </script>
 

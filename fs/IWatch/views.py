@@ -64,6 +64,7 @@ class IWatchDetailView(DetailView):
       # change 3 to how many random items you want
       random_objects = random.sample(items, 8)
       context['random_objects'] = random_objects
+      context['seektime'] = 10
       return context
   
 

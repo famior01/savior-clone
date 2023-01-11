@@ -95,5 +95,22 @@ body{
 /* ===================== Plyr for playing Video ========================== */
 /* ======================================================================= */
 :root {
-  --plyr-color-main: #fd0101;
+  --plyr-color-main: #21ff03;
 }
+
+.containervideo {
+	margin: 50px auto;
+	max-width: 500px;
+}
+
+/* ======================== for ShowIWatch.html/video ========================== */
+/* #videodiv{
+  width: 80% !important;
+  height:400px !important;
+  /* top: 0 !important; */
+  /* margin-right: 5em; */
+  /* margin-left: 5em; */
+  /* padding: 50px; */
+  /* overflow: auto; */
+  /* border: 1px solid rgb(106, 0, 255);; */
+/* }
