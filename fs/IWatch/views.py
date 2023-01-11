@@ -11,13 +11,27 @@ from family_savior.settings import LOGIN_REDIRECT_URL
 from user.models import User
 from django.contrib.auth.decorators import login_required
 import random
+from notifications.signals import notify
+
+#TODO; add a search bar to search for videos
+#TODO; desige the card for thumbnail, title, and Profile.
+#TODO; design profile own iwatches
+#TODO; Recommendation system
+#TODO; solve the bug of video skeetime
+
+
+
+class SearchVideo():
+  pass
+
+
 
 
 class UploadVideoView(CreateView):
   model = IWatch
   form_class =  IWatchModelForm
   template_name = 'IWatch/upload.html'
-  success_url = reverse_lazy('IWatch:Show-IWatch')
+  success_url = reverse_lazy('IWatch:IWatch-main')
 
 
   # only author will be able to update the post
@@ -45,6 +59,12 @@ class IWatchListView(ListView):
       following_Videos = IWatch.objects.filter(creator__in=following_profiles)
       context['qs'] = following_Videos
       context['following_profiles'] = following_profiles
+
+      # random objects
+      items = list(IWatch.objects.all())
+      # change 8 to how many random items you want
+      random_objects = random.sample(items, 8)
+      context['random_objects'] = random_objects
       return context
 
 class IWatchDetailView(DetailView):
@@ -69,136 +89,161 @@ class IWatchDetailView(DetailView):
   
 
 
-# @login_required(login_url=LOGIN_REDIRECT_URL)
-# def post_comment_create_and_list_view(request):
-#     # qs = IWatch.objects.all()
-#     profile = Profile.objects.all()
-    
-#     # Initializing the form
-#     p_form = IWatchModelForm()
-#     c_form = CommentModelForm() 
-#     post_added = False  # Flag to check if post is added or not
-#     profile = Profile.objects.get(user=request.user)
+@login_required
+def create_comment(request):
+  ''' It will get comment from js, and return json response! '''
+  profile = Profile.objects.get(user=request.user)
 
-#     if 'submit_p_form' in request.POST:
-#       print('Adding post')
-#       p_form = IWatchModelForm(request.POST, request.FILES)
-#       if p_form.is_valid():
-#         instance = p_form.save(commit=False)
-#         instance.creator = profile  
-#         instance.save()
-#         p_form = IWatchModelForm()
-#         post_added = True
+  if request.method == 'POST':
+    body = request.POST["body"]
+    post_id = request.POST['post_id']
 
-#     # comment form
-#     if 'submit_c_form' in request.POST:
-#       print('Adding comment')
-#       c_form = CommentModelForm(request.POST)
-#       if c_form.is_valid():
-#         instance = c_form.save(commit=False)
-#         instance.user = profile
-#         instance.post = IWatch.objects.get(id=request.POST.get('post_id'))
-#         instance.save()
-#         c_form = CommentModelForm()
+    iw = IWatchComment(user=profile, IWatch=IWatch.objects.get(id=post_id), body=body)
+    iw.save()
+  
+    # Notification Corner
+    body = iw.body[:50] + '...' # to show only 50 characters in the notification
+    if iw.user != iw.IWatch.creator:
+      notify.send(request.user, recipient=iw.IWatch.creator.user, verb=body, action_object=iw.IWatch, description='on post ') #{IWatch.post.post_number}
 
-#     # profile = Profile.objects.all()
-#     # following_posts = Posts.objects.filter(author__in=following_profiles)
-#     # just see those post which are postes by the user whom current user is following
-#     # following_posts = Posts.objects.filter(author__in=profile.following.all())
-    
-#     # profile = Profile.objects.get(user=request.user)
-    
-#     profiles = Profile.objects.all()
+    comments = IWatchComment.objects.filter(IWatch=iw.IWatch).values()
+    list_of_comments = list(comments)
 
-
-#     context = {
-#       'qs':following_posts,
-#       'profiles':profiles,
-#       'post_added':post_added,
-#       'p_form':p_form,
-#       'c_form':c_form,
-#     }
-#     return render(request, "IWatch/main.html", context=context)
-
-
-@login_required(login_url=LOGIN_REDIRECT_URL)
-def like_unlike_post(request):
-    user = request.user
-    if request.method == 'POST':
-        post_id = request.POST.get('post_id')
-        post_obj = IWatch.objects.get(id=post_id)
-        profile = Profile.objects.get(user=user)
-
-        like, created = Like.objects.get_or_create(user=profile, post_id=post_id)
-
-        if profile in post_obj.liked.all():
-            post_obj.liked.remove(profile)
-            like.delete()
-        else:
-            post_obj.liked.add(profile)
-            like.value = 'Like'
-            like.save()
-        post_obj.save()
-
-        
-
-        # if not created:
-        #     if like.value=='Like':
-        #         like.value='Unlike'
-        #     else:
-        #         like.value='Like'
-        # else:
-        #     like.value='Like'
-
-        #     post_obj.save()
-        #     like.save()
-
-        data = {
-            'value': like.value,
-            'likes': post_obj.liked.all().count()
-        }
-
-        return JsonResponse(data, safe=False)
-    return redirect('IWatch:main-post-view')
-
-def post_of_following_profiles(request):
-    qs = IWatch.objects.all()
-    
-    context = {
-      'qs':qs,
-      'profile':profile,
-      'following_posts':following_posts,
+    no_of_comments = iw.IWatch.get_total_comments() # comment > IWatch > func :) 
+    c_user = iw.user.user.username
+    c_body = iw.body
+    c_date = iw.created
+    data = {
+      'status': 'save',
+      'c_user': c_user,
+      'c_body': c_body,
+      'c_date': c_date,
+      'no_of_comments': no_of_comments,
+      'list_of_comments': list_of_comments,
     }
-    return render(request, "IWatch/main.html", context=context)
+    # print('data***************\n\n', data.values())
+    return JsonResponse(data, safe=False)
 
-# delete post
-# @login_required(login_url=LOGIN_REDIRECT_URL)
+  return render(request, "IWatch/showIWatch.html")
+
+
+@login_required
+def like(request):
+  '''
+  This will handle the like, and will save it recordes in the database.
+  'enable_like' = is for internal use, to save repitition of code
+  post = is the Object of Post class declared in models.py
+  '''
+  if request.method == 'POST':
+    def enable_like():
+      like = Like.objects.create(user=user, IWatch=iw, liked=True)
+      # upvote.save()
+      iw.liked = iw.liked + 1
+      iw.save()
+
+    post_id = request.POST['post_id']
+    user= request.user
+    iw = IWatch.objects.get(id=post_id) # get the post object
+
+    # check if the user has already upvoted the post
+    like = Like.objects.filter(user=user, IWatch=iw, liked=True).first()
+    if like != None: # if the user has already upvoted the post
+      like.delete() # delete the upvote
+      iw.liked = iw.liked - 1
+      iw.save()
+
+  
+    else:
+      # check if the user has already downvoted the post
+      dislike = Dislike.objects.filter(user=user, IWatch=iw, disliked=True).first()
+      if dislike != None:
+        dislike.delete()
+        iw.disliked = iw.disliked - 1
+        iw.save()
+        enable_like()
+      else:
+        enable_like()
+
+      data = {
+        'like': iw.liked,
+      }
+      return JsonResponse(data, safe=False)
+    
+    # return JsonResponse(data, safe=False)
+  return redirect('IWatch:IWatch-main')
+
+@login_required
+def dislike(request):
+  '''
+  This will handle the like, and will save it recordes in the database.
+  'enable_like' = is for internal use, to save repitition of code
+  post = is the Object of Post class declared in models.py
+  '''
+  if request.method == 'POST':
+    def enable_dislike():
+      dislike = Dislike.objects.create(user=user, IWatch=iw, disliked=True)
+      # upvote.save()
+      iw.disliked = iw.disliked + 1
+      iw.save()
+
+    post_id = request.POST['post_id']
+    user= request.user
+    iw = IWatch.objects.get(id=post_id) # get the post object
+
+    # check if the user has already upvoted the post
+    dislike = Dislike.objects.filter(user=user, IWatch=iw, disliked=True).first()
+    if dislike != None: # if the user has already upvoted the post
+      dislike.delete() # delete the upvote
+      iw.liked = iw.liked - 1
+      iw.save()
+
+  
+    else:
+      # check if the user has already downvoted the post
+      like = Like.objects.filter(user=user, IWatch=iw, liked=True).first()
+      if like != None:
+        like.delete()
+        iw.liked = iw.liked - 1
+        iw.save()
+        enable_dislike()
+
+      else:
+        enable_dislike()
+
+      data = {
+        'dislike': iw.disliked,
+      }
+      return JsonResponse(data, safe=False)
+    
+    # return JsonResponse(data, safe=False)
+  return redirect('IWatch:IWatch-main')
+
+
 class PostDeleteView(DeleteView): 
     model = IWatch
     template_name = 'IWatch/confirm_delete.html'
-    success_url = reverse_lazy('IWatch:main-post-view') # reverse_lazy is used to avoid circular import
+    success_url = reverse_lazy('IWatch:IWatch-main') 
 
     # only author will be able to delete the post
     def get_object(self, *args, **kwargs):
       pk = self.kwargs.get('pk')
       obj = IWatch.objects.get(pk=pk)
-      if not obj.author.user == self.request.user:
+      if not obj.creator.user == self.request.user:
         messages.warning(self.request, "You are not authorized to delete this post")
       return obj
     
+
 # post update
-
-
 class PostUpdateView(UpdateView):
     model = IWatch
     form_class = IWatchModelForm  # from forms.py
     template_name = 'IWatch/update.html'
-    success_url = reverse_lazy('IWatch:main-post-view')
+    success_url = reverse_lazy('IWatch:IWatch-main')
 
     # only author will be able to update the post
     def form_valid(self, form):
       profile = Profile.objects.get(user=self.request.user)
-      if form.instance.author == profile:
+      if form.instance.creator == profile:
         return super().form_valid(form)
       else:
         form.add_error(None, "You are not authorized to update this post")

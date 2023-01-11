@@ -71,5 +71,8 @@
   z-index: 1;
 }
 
-
+/* ======================== for showIWatch.html ========================== */
+.userinfo{
+  margin-right: 2em !important;
+}
 

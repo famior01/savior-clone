@@ -44,8 +44,6 @@ class IWatch(models.Model):
     ordering = ('-created',)
 
 
-
-
 class IWatchComment(models.Model):
   user    = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='IWatch_users')
   IWatch  = models.ForeignKey(IWatch,  on_delete=models.CASCADE, related_name='IWatch_comments')

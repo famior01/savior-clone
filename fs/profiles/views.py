@@ -17,6 +17,7 @@ from notifications.signals import notify
 from django.contrib import messages
 import json
 from django.core.serializers.json import DjangoJSONEncoder
+from django.http import JsonResponse
 
 
 
@@ -122,16 +123,21 @@ def follow_unfollow_profile(request):
     user_to_toggle = request.POST.get('username')
     my_profile = Profile.objects.get(user=request.user)  
     pk = request.POST.get('profile_pk')
+    print("******************\t\t = ",pk)
     obj = Profile.objects.get(pk=pk)
-
+    data = {}
     if obj.user in my_profile.following.all():
       my_profile.following.remove(obj.user)
+      data['status'] = 'Follow'
+      return JsonResponse(data, safe=False)  
+
     else:
       my_profile.following.add(obj.user)
       recipient = User.objects.get(pk=pk) # notify following user I am following, follow back
+      data['status'] = 'UnFollow'
       notify.send(request.user, recipient=recipient, verb="Started following you",description= True)
-    return redirect(request.META.get('HTTP_REFERER'))
-    
+      return JsonResponse(data, safe=False)  
+
   return redirect('profiles:all-profiles')
 
 @login_required

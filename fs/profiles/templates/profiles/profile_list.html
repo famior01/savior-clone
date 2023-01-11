@@ -43,29 +43,29 @@ People
             {{obj.get_followers|length}} Followers
           </span>
           {% if obj.user in my_profile.get_following %}
-          <div class="ui right floated">
-            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
-              {% csrf_token %}
-              <input type="hidden" name="profile_pk" value={{obj.pk}}>
-              <button class='ui large secondary button' type='submit'>Unfollow</button>
-            </form>
-          </div>
+            <div class="ui right floated">
+              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
+                {% csrf_token %}
+                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+                <button class='ui large secondary button' type='submit' id='status{{obj.pk}}'>Unfollow</button>
+              </form>
+            </div>
           {% elif obj in my_profile.get_followers%}
-          <div class="ui right floated">
-            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
-              {% csrf_token %}
-              <input type="hidden" name="profile_pk" value={{obj.pk}}>
-              <button class='ui large secondary button' type='submit'>Follow Back</button>
-            </form>
-          </div>
+            <div class="ui right floated">
+              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
+                {% csrf_token %}
+                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+                <button class='ui large secondary button' type='submit' id='status{{obj.pk}}'>Follow Back</button>
+              </form>
+            </div>
           {% else %}
-          <div class="ui right floated">
-            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
-              {% csrf_token %}
-              <input type="hidden" name="profile_pk" value={{obj.pk}}>
-              <button class='ui large secondary button' type='submit'>Follow</button>
-            </form>
-          </div>
+            <div class="ui right floated">
+              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
+                {% csrf_token %}
+                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+                <button class='ui large secondary button' type='submit' id='status{{obj.pk}}'>Follow</button>
+              </form>
+            </div>
           {% endif %}
         </div>
       </div>
@@ -101,26 +101,26 @@ People
             </span>
             {% if my_profile in obj.get_followers %}
           <div class="ui right floated">
-            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
               {% csrf_token %}
               <input type="hidden" name="profile_pk" value={{obj.pk}}>
-              <button class='ui large secondary button' type='submit'>UnFollow</button>
+              <button class='ui large secondary button' type='submit' id='status{{obj.pk}}'>UnFollow</button>
             </form>
           </div>
           {% elif obj == my_profile %}
             <div class="ui right floated">
-              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
                 {% csrf_token %}
                 <input type="hidden" name="profile_pk" value={{obj.pk}}>
-                <button class='ui large secondary button' type='submit'>Following</button>
+                <button class='ui large secondary button' type='submit' id='status{{obj.pk}}'>Following</button>
               </form>
             </div>
           {% elif obj in my_profile.get_followers%}
           <div class="ui compact menu">
-            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
               {% csrf_token %}
               <input type="hidden" name="profile_pk" value={{obj.pk}}>
-              <button class='ui mini secondary button' type='submit'>Follow Back</button>
+              <button class='ui mini secondary button' type='submit' id='status{{obj.pk}}'>Follow Back</button>
             </form>
             <br>
             <a href=" {% url 'profiles:remove-follower'  obj.pk%} ">
@@ -129,10 +129,10 @@ People
           </div>
           {% else %}
           <div class="ui right floated">
-            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+            <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
               {% csrf_token %}
               <input type="hidden" name="profile_pk" value={{obj.pk}}>
-              <button class='ui large secondary button' type='submit'>Follow</button>
+              <button class='ui large secondary button' type='submit' id='status{{obj.pk}}'>Follow</button>
             </form>
           </div>
           {% endif %}
@@ -144,6 +144,7 @@ People
     {% endfor %}
   </div>
 </div>
+
 
 
 

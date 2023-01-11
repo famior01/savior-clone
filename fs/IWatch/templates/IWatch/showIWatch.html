@@ -6,59 +6,149 @@
 {% endblock title %}
 
 {% block content %}  
-<link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>
+<link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>  
+
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
 
+<div class="ui container-xl">
   <div class="ui grid">
-    <!--========================== Video to show =======================-->
-    <div class="ui container-xxl ">
-      <div class="row">
-        <div class="ui sixteen wide column ">
-            <video id="player" controls></video>
-        </div>
-      </div>
-    </div>
-
-    <!--Infor of creator to show (option of follow(etc), and comments)-->
-    <div class="ui container-xl">
-      <div class="ui grid">
-      <div class="row">     
-        <div class="six wide column">
-          <div class="ui very relaxed items">
-            <div class="item">
-              <div class="ui tiny circular image">
-                <img src="{{IWatch.creator.avatar.url}}">
-              </div>
-              <div class="middle aligned content">
-                <p class="header">{{IWatch.creator.user.full_name}}</p><br>
-                <a href="">@{{IWatch.creator.user.username}}</a><br>
-              </div>
-              <button class='ui secondary button m-3'>Follow</button>
+    <div class="row">
+      
+      <div class="twelve wide column">
+        <div class="ui grid">
+          <!--Video Player-->
+          <div class="row">
+            <div class='ui '>
+              <video id='player' controls></video>
             </div>
           </div>
-      </div>
+          
+          <!--info-->
+          <div class="row">
+            
+              <div class="ui gird">
+                <!--User header Info-->
+                <div class="row">
+                  <div class="ui items">
+                  <div class="item">
+                    <div class="ui tiny circular image ">
+                      <a href="{% url 'profiles:profile-detail-view' IWatch.creator.pk %}"><img src="{{IWatch.creator.avatar.url}}"></a>
+                    </div>
+                    <div class="">
+                      <p class="header">{{IWatch.creator.user.full_name}}</p><br>
+                      <a href="{% url 'profiles:profile-detail-view' IWatch.creator.pk %}">@{{IWatch.creator.user.username}}</a><br>
+                    </div>
+                    <div class="">
+                    <!--LIke, Unlike, support buttons-->
+                      {% if IWatch.creator.user in my_profile.get_following %}
+                        <div class="ui right floated">
+                          <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
+                            {% csrf_token %}
+                            <input type="hidden" name="profile_pk" value={{IWatch.creator.pk}}>
+                            <button class='ui large secondary button' type='submit' id='status{{IWatch.creator.pk}}'>Unfollow</button>
+                          </form>
+                        </div>
+                      {% elif IWatch.creator in my_profile.get_followers%}
+                        <div class="ui right floated">
+                          <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
+                            {% csrf_token %}
+                            <input type="hidden" name="profile_pk" value={{IWatch.creator.pk}}>
+                            <button class='ui large secondary button' type='submit' id='status{{IWatch.creator.pk}}'>Follow Back</button>
+                          </form>
+                        </div>
+                      {% else %}
+                        <div class="ui right floated">
+                          <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
+                            {% csrf_token %}
+                            <input type="hidden" name="profile_pk" value={{IWatch.creator.pk}}>
+                            <button class='ui large secondary button' type='submit' id='status{{IWatch.creator.pk}}'>Follow</button>
+                          </form>
+                        </div>
+                      {% endif %}
+                    </div>
 
-      <div class=" wide column">
-        <div class="ui very relaxed items">
-          <div class="item">
-            <form  method="POST"  id='{{obj.id}}' class='commentForm' >
-              {% csrf_token %}
-              <input type="hidden" name="post_id" value={{obj.id}}>
-              <input type="text" class="form-control" id='comment{{obj.id}}'  placeholder="Add your comment" upd="1" uid="2" />
-              <button type="submit"  class="ui primary button commentbtn{{obj.id}}">Send</button>
-          </form>
+
+                      <form action="{% url 'IWatch:like' %}" method="POST" class='like-form' id='{{IWatch.id}}'>
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value={{IWatch.id}}>
+                        <button type="submit" class="ui large basic upvote-btn{{IWatch.id}}">
+                        <h1><i class="fa-solid fa-thumbs-up "></i>
+                        <p class="like-count{{IWatch.id}}">{{IWatch.liked}}</p></h1>
+                        </button>
+                      </form>
+
+                      <form action="{% url 'IWatch:dislike' %}" method="POST" class='dislike-form' id='{{IWatch.id}}'>
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value={{IWatch.id}}>
+                        <button type="submit" class="ui large basic downvote-btn{{IWatch.id}}">
+                        <h1><i class="fa-solid fa-thumbs-down"></i></i>
+                        <p class="dislike-count{{IWatch.id}}">{{IWatch.disliked}}</p></h1>
+                        </button>
+                      </form>
+
+                      <div class="right floated column eight wide fluid ">
+                        {% if request.user == IWatch.creator.user %}
+                            <a href="{% url 'IWatch:post-update' IWatch.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
+                            <a href="{% url 'IWatch:post-delete' IWatch.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!--Video descriptions-->
+                <div class="row">
+                  <div class="sixteen wide column">
+                    <div style='width:60em' class="ui black raised segment fluid">
+                      <p>{{IWatch.description}}</p>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
           </div>
+          
+          <!--Video comments-->
+          <div class="row">
+            <div class="sixteen wide column">
+                <div class="fluid">
+                  <form  method="POST"  id='{{IWatch.id}}' class='commentForm' >
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value={{IWatch.id}}>
+                    <input type="text" class="form-control" id='comment{{IWatch.id}}'  placeholder="Add your comment" upd="1" uid="2" />
+                    <button type="submit"  class="ui primary button commentbtn{{IWatch.id}}">Send</button>
+                  </form>
+                </div>
+
+                <details class='ui raised red segment'>
+                  <summary  id='comment_total{{IWatch.id}}'><b>{{ IWatch.get_total_comments }} Comments</b></summary >
+                  <div class="comment_scroll ui black raised segment ">
+                  <div class="details-content">
+                          {% if IWatch.IWatch_comments.all %}
+                              {% for c in IWatch.IWatch_comments.all %}
+                                  <div class="ui green raised segment" id='c_body'>
+                                      <img class="ui avatar image" src={{c.user.avatar.url}}>
+                                      <span id='c_user{{IWatch.id}}'>{{ c.user }}</span>
+                                      <p id='c_date{{IWatch.id}}'>{{c.created |timesince}}</p>
+                                      <div class='' id='c_body{{IWatch.id}}' >{{ c.body }}</div>
+                                  </div>
+                              {% endfor %}
+                          {% endif %}
+                      </div>
+                  </div>
+                </details>
+              </div>
+            </div>
+
         </div>
       </div>
-      
-      </div>
-    </div>
 
-      <!--========================= video cards ====================-->
-      
-      <div class="row">
-        <div class="ui four cards">
-          {% for i in random_objects %}
+      <!--Random Videos-->
+      <div class="four wide column">
+        <header>Random Videos</header>
+          {% for i in random_objects  %}
           <div class="card">
             <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
               <div class="ui small image">
@@ -70,11 +160,12 @@
             </a>
           </div>
           {% endfor %}
-        </div>
       </div>
-
+      
     </div>
   </div>
+</div>
+
 
 
 <!--Script for plyr-->
@@ -116,7 +207,7 @@
 
   const player = new Plyr('#player',  {
 
-    ratio	: '16:5',
+    ratio	: '10:5',
     loop: { active: false },
     seekTime: 10,
     disableContextMenu: true,
@@ -158,14 +249,14 @@
         kind: 'captions',
         label: 'English',
         srclang: 'en',
-        src: '/path/to/captions.en.vtt',
+        //src: '/path/to/captions.en.vtt',
         default: true,
       },
       {
         kind: 'captions',
         label: 'Urdu',
         srclang: 'ur',
-        src: '/path/to/captions.ur.vtt',
+        //src: '/path/to/captions.ur.vtt',
       },
     ],
   };
@@ -181,4 +272,41 @@
 
 </script>
 
+<script>
+// =========================== Dislike Button ==========================
+// =====================================================================
+$('.dislike-form').submit(function(e){
+  e.preventDefault()
+  
+  const post_id = $(this).attr('id')
+  const url = $(this).attr('action')
+  console.log("***************", post_id, url)
+  
+  $.ajax({
+      type: 'POST',
+      url: url,
+      data: {
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+          'post_id':post_id,
+      }, 
+      success: function(data) {
+          console.log(data['dislike'], '*************')
+          if (parseInt(data['dislike']) > 0) {
+              console.log(parseInt(data['dislike']), '*************')
+              $(`.dislike-count${post_id}`).html(parseInt(data['dislike']))
+          }
+          else {
+              $(`.dislike-count${post_id}`).html(0)
+              console.log(parseInt(data['dislike']), '*************')
+          }
+      }
+  })
+})
+</script>
+
 {% endblock content %}
+
+{% block script %}
+<script type="text/javascript" src="{% static 'IWatch/main.js' %}"></script>
+
+{% endblock script %}
