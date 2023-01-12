@@ -20,6 +20,8 @@ urlpatterns = [
     path('notifications_delete/<int:pk>/', notifications_delete, name='notifications_delete'),
     path('DeleteAllNotifications/', DeleteAllNotifications, name='DeleteAllNotifications'),
     path('ReadAllNotifications/', ReadAllNotifications, name='ReadAllNotifications'),
+    re_path(r'hitcount/', include('hitcount.urls', namespace='hitcount')),
+
 
 ]
 

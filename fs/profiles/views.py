@@ -45,10 +45,10 @@ def myprofile(request):
 @login_required
 def IWatch_videos(request, pk):
   profile = Profile.objects.get(pk=pk)
-  posts = IWatch.objects.filter(creator=profile).all()
+  videos = IWatch.objects.filter(creator=profile).all()
   context = {
     'IWatch': True,
-    'posts': posts,
+    'videos': videos,
     'profile': profile
   }
   return render(request, 'profiles/profile.html', context)
@@ -182,6 +182,7 @@ class ProfileUpdateView(UpdateView):
 
 
 class UserSearch(ListView):
+
   def get(self, request, *args, **kwargs):
     query = self.request.GET.get('query').strip()
     if query:

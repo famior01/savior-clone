@@ -39,7 +39,7 @@ def create_zakat_posts(request):
       zp.post_number = profile.post_no # on which number the post was created
       zp.save()
       profile.save()
-
+      
       #(=====================   AI   =====================)
       ID = instance.id
       print("\n************", ID, "************\n")

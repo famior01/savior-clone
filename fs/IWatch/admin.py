@@ -9,6 +9,7 @@ from .models import IWatch, IWatchComment, Like, Dislike
 @admin.register(IWatch)
 class IWatchAdmin(admin.ModelAdmin):
     list_display = ('id','creator', 'title', 'video','description','liked', 'disliked', 'created')
+      
 
 @admin.register(IWatchComment)
 class IWatchCommentAdmin(admin.ModelAdmin):

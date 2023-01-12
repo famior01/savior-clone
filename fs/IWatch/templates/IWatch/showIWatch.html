@@ -4,6 +4,9 @@
 {% block title %}
   Show-IWatch
 {% endblock title %}
+{% comment %} # remember to load the tags first {% endcomment %}
+{% load hitcount_tags %}
+
 
 {% block content %}  
 <link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>  
@@ -40,7 +43,11 @@
                     </div>
                     <div class="">
                     <!--LIke, Unlike, support buttons-->
-                      {% if IWatch.creator.user in my_profile.get_following %}
+                      {% if request.user == IWatch.creator.user %}
+                        <a href="{% url 'IWatch:post-update' IWatch.pk %}"><button class="ui  secondary small button ">Update</button></a>
+                        <a href="{% url 'IWatch:post-delete' IWatch.pk %}"><button class="ui secondary small button  ">Delete</button></a>
+                      
+                      {% elif IWatch.creator.user in my_profile.get_following %}
                         <div class="ui right floated">
                           <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
                             {% csrf_token %}
@@ -87,10 +94,9 @@
                       </form>
 
                       <div class="right floated column eight wide fluid ">
-                        {% if request.user == IWatch.creator.user %}
-                            <a href="{% url 'IWatch:post-update' IWatch.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
-                            <a href="{% url 'IWatch:post-delete' IWatch.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
-                        {% endif %}
+                        <a>{{hitcount.total_hits}} Views</a> <!--you can show viewers-->
+                        <a>{% if not hitcount.hit_counted  %}Watched{% endif %}</a>
+                        
                       </div>
                     </div>
 
@@ -147,19 +153,80 @@
 
       <!--Random Videos-->
       <div class="four wide column">
-        <header>Random Videos</header>
-          {% for i in random_objects  %}
-          <div class="card">
+        <style>
+          #card_style{
+            width: 320px !important;
+            height: 250px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 15px;
+            border: 1px solid #000;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            overflow: scroll;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            margin-bottom: 1em;
+          }
+          
+          .card_image img{
+            width: 100%;
+            height: 130px;
+            border-radius: 6px;
+          }
+          
+          .user-img img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-left: 10px;
+            /* margin-right: 10px; */
+            margin-top:5px;
+          }
+          
+          .card_title{
+            width:100%;
+            font-weight: 500;
+            font-size: 15px;
+            margin-top: 10px;
+            /* margin-left: 5px; */
+            line-height: 1.7em;
+            color:rgb(4, 4, 4) ;
+          }
+          
+        </style>
+        {% for i in random_objects %}
+        <div id='card_style' class="card">
             <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
-              <div class="ui small image">
-                <center><img src="{{i.thumbnail.url}}"></center>
-              </div>              
-              <div class='content'>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus explicabo molestiae, doloremque minima 
+              <div class="card_image">
+                <img src="{{ i.thumbnail.url }}">
               </div>
             </a>
-          </div>
-          {% endfor %}
+            <div class="ui grid">
+              <div class="row">
+                <div class="four wide column">
+                  <div class="user-img">
+                    <img src="{{ i.creator.avatar.url }}">
+                  </div> 
+                </div>
+                <div class="twelve wide column">
+                  <div class="card_title">
+                    <p>{{i.title|truncatechars:50}}</p>
+                  </div> 
+                  <div class="footer">
+                    <div class="creator_name">
+                      <a href="{% url 'profiles:profile-detail-view' i.creator.pk %}"><p>{{i.creator.user.full_name}}</p></a>
+                    </div>
+                    <div class="info">
+                      {{i.current_hit_count}} Views
+                      {{i.creator.get_follower_no}} Followers
+                      {{i.created|timesince}}ago
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      {% endfor %}
       </div>
       
     </div>

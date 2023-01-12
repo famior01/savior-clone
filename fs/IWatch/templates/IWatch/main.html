@@ -5,17 +5,27 @@
   IWatch
 {% endblock title %}
 
+
 {% block content %}
+
+
 <link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>
 
-  <div class='ui container-fluid'>
+<div class='ui container-fluid'>
     <div class="ui grid">
+      
       <div class="row">
+        
         <div class="three wide column">
-          <div class="sidebar ">
+          <div class="sidebar">
           <div class="ui segment scroll">
+            <a href="{% url 'IWatch:top-IWatch'  %}">
+              <button class="ui secondary button">Top IWatched</button>
+            </a>
+            <hr>
             <h3>You Follow them</h3>
             {% for i in following_profiles %}
+
             <div class="ui celled list">
               <div class="item">
                 <img class="ui avatar image" src="{{i.avatar.url}}">
@@ -25,9 +35,19 @@
               </div>
             </div>
             {% endfor %}
+            <h3>You might Follow</h3>
+              {% for i in random_people %}
+              <div class="ui celled list">
+                <div class="item">
+                  <img class="ui avatar image" src="{{i.avatar.url}}">
+                  <div class="content">
+                    <a href="{% url 'profiles:profile-detail-view' i.pk %}"><div class="header">{{i.user.full_name}}</div></a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
             </div>
           </div>
-        
         </div>
 
         <div class="thirteen wide column">
@@ -36,12 +56,12 @@
             <div class="row ">
               <!--========================= Search Bar ====================-->
               <div class="ui eight wide column centered aligned"> 
-                <form action="{% url 'profiles:search-user' %}" method="GET"> 
+                <form action="{% url 'IWatch:search-IWatch' %}" method="GET"> 
                     <div style='width: 45em;' class="ui right action left icon input">
                         <i class="search icon"></i>
-                        <input  type="text" name='query' id='search_here' value='{{ request.GET.query }}' placeholder="name of a friend...">
+                        <input  type="text" name='query' id='search_here' value='{{ request.GET.query }}' placeholder="name of a Video by title, name, descriptions, username...">
                         <button type='submit' class="ui button">Search</button>
-                        <a href="{% url 'profiles:all-profiles' %}">
+                        <a href="{% url 'IWatch:IWatch-main' %}">
                           <i class="black window close outline huge icon"></i>
                         </a> 
                     </div>
@@ -59,43 +79,86 @@
 
             </div>
 
-            <h1>Video from People you follow</h1>
             <div class="row">
+              <div class="ui black raised segment"><h2>Video from people you follow</h2></div>
               <!--========================= video cards ====================-->
-              <div class="ui four cards">
-                {% for i in qs %}
-                <div class="card">
-                  <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
-                    <div class="ui small image">
-                      <center><img src="{{ i.thumbnail.url }}"></center>
-                    </div>              
-                    <div class='content'>
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus explicabo molestiae, doloremque minima 
+            <div class="ui four cards">
+              {% for i in qs %}
+                <div id='card_style' class="card">
+                    <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
+                      <div class="card_image">
+                        <img src="{{ i.thumbnail.url }}">
+                      </div>
+                    </a>
+                    <div class="ui grid">
+                      <div class="row">
+                        <div class="four wide column">
+                          <div class="user-img">
+                            <img src="{{ i.creator.avatar.url }}">
+                          </div> 
+                        </div>
+                        <div class="twelve wide column">
+                          <div class="card_title">
+                            <p>{{i.title|truncatechars:50}}</p>
+                          </div> 
+                          <div class="footer">
+                            <div class="creator_name">
+                              <a href="{% url 'profiles:profile-detail-view' i.creator.pk %}"><p>{{i.creator.user.full_name}}</p></a>
+                            </div>
+                            <div class="info">
+                              {{i.current_hit_count}} Views
+                              {{i.creator.get_follower_no}} Followers
+                              {{i.created|timesince}}ago
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </a>
+                  
                 </div>
-                {% endfor %}
-              </div>
-
+              {% endfor %}
             </div>
 
-            <h2>Suggestions (Random for now, will change in near future)</h2>
+            <div class="ui black raised segment"><h2>Suggestions (Random for now, will change in near future)</h2></div>            
             <div class="row">
-              <div class="ui four cards">
-                {% for i in random_objects %}
-                <div class="card">
-                  <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
-                    <div class="ui small image">
-                      <center><img src="{{ i.thumbnail.url }}"></center>
-                    </div>              
-                    <div class='content'>
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim accusamus explicabo molestiae, doloremque minima 
+                <div class="ui four cards">
+                  {% for i in random_objects %}
+                    <div id='card_style' class="card">
+                        <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
+                          <div class="card_image">
+                            <img src="{{ i.thumbnail.url }}">
+                          </div>
+                        </a>
+                        <div class="ui grid">
+                          <div class="row">
+                            <div class="four wide column">
+                              <div class="user-img">
+                                <img src="{{ i.creator.avatar.url }}">
+                              </div> 
+                            </div>
+                            <div class="twelve wide column">
+                              <div class="card_title">
+                                <p>{{i.title|truncatechars:50}}</p>
+                              </div> 
+                              <div class="footer">
+                                <div class="creator_name">
+                                  <a href="{% url 'profiles:profile-detail-view' i.creator.pk %}"><p>{{i.creator.user.full_name}}</p></a>
+                                </div>
+                                <div class="info">
+                                  {{i.get_hit_count}} Views
+                                  {{i.creator.get_follower_no}} Followers
+                                  {{i.created|timesince}}ago
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      
                     </div>
-                  </a>
+                  {% endfor %}
                 </div>
-                {% endfor %}
-              </div>
             </div>
+
           </div>
           
         </div>
@@ -104,4 +167,23 @@
       </div>
     </div>
   </div>
+</div>
+
+
+  {% comment %} <script src="{% static 'hitcount/jquery.postcsrf.js' %}"></script>
+
+  {% get_hit_count_js_variables for IWatch as hitcount %}
+  <script type="text/javascript">
+  jQuery(document).ready(function($) {
+    $.postCSRF("{{ hitcount.ajax_url }}", { hitcountPK : "{{ hitcount.pk }}" })
+      .done(function(data){
+        $('<i />').text(data.hit_counted).attr('id','hit-counted-value').appendTo('#hit-counted');
+        $('#hit-response').text(data.hit_message);
+    }).fail(function(data){
+        console.log('POST failed');
+        console.log(data);
+    });
+  });
+  </script> {% endcomment %}
+
 {% endblock content %}

@@ -12,21 +12,80 @@ from user.models import User
 from django.contrib.auth.decorators import login_required
 import random
 from notifications.signals import notify
+from django.db.models import Q
+from hitcount.views import HitCountDetailView
 
-#TODO; add a search bar to search for videos
-#TODO; desige the card for thumbnail, title, and Profile.
-#TODO; design profile own iwatches
+from hitcount.utils import get_hitcount_model
+from hitcount.views import HitCountMixin
+
+
 #TODO; Recommendation system
 #TODO; solve the bug of video skeetime
 
 
+#  I need hitcoutn herer
+class IWatchDetailView(HitCountDetailView):
+  model = IWatch
+  template_name = 'IWatch/showIWatch.html'
+  count_hit = True
 
-class SearchVideo():
-  pass
+  # context_object_name = 'IWatch'
+
+  def get_object(self, *args, **kwargs):
+    pk = self.kwargs.get('pk')
+    iwatch = IWatch.objects.get(pk=pk)
+    return iwatch
+  
+  def get_context_data(self, **kwargs):
+      context = super(IWatchDetailView, self).get_context_data(**kwargs)
+      context['IWatch'] = self.get_object()
+      items = list(IWatch.objects.all())
+      # change 3 to how many random items you want
+      random_objects = random.sample(items, 8)
+      context['random_objects'] = random_objects
+      context['seektime'] = 10
+      return context
+
+
+
+class TopWatchedView(ListView):
+  model = IWatch
+  template_name = 'IWatch/top_watched.html'
+  # count_hit = True
+
+  def get_context_data(self, **kwargs):
+      context = super(TopWatchedView, self).get_context_data(**kwargs)
+      context.update({
+          'top_watched': IWatch.objects.order_by('-hit_count_generic__hits'),
+      })
+      return context
 
 
 
 
+class SearchIWatch(ListView):
+
+  def get(self, request, *args, **kwargs):
+    query = self.request.GET.get('query').strip()
+    if query:
+      print("************************", query)
+      IWatch_list = IWatch.objects.filter(
+        Q(creator__user__username__contains=query) | 
+        Q(creator__user__full_name__icontains=query) | 
+        Q(title__icontains=query) |
+        Q(description__icontains=query)
+      )    
+      context = {
+        'IWatch_list': IWatch_list,
+      }
+      return render(request, "IWatch/Search.html", context)
+    else:
+      return redirect(request.META.get('HTTP_REFERER'))
+      
+
+
+
+# i dn't need views count here
 class UploadVideoView(CreateView):
   model = IWatch
   form_class =  IWatchModelForm
@@ -46,46 +105,37 @@ class UploadVideoView(CreateView):
       return super().form_invalid(form)
 
 
+
+
 class IWatchListView(ListView):
   model = IWatch
   template_name = 'IWatch/main.html'
 
+
   def get_context_data(self, **kwargs):
-      context = super().get_context_data(**kwargs)
+      context = super(IWatchListView, self).get_context_data(**kwargs)
       profile = Profile.objects.get(user=self.request.user)
       following_users = profile.following.all()
       following_profiles = Profile.objects.filter(user__in=following_users)
       following_profiles |= Profile.objects.filter(user=self.request.user)
       following_Videos = IWatch.objects.filter(creator__in=following_profiles)
       context['qs'] = following_Videos
-      context['following_profiles'] = following_profiles
+      context['following_profiles'] = following_profiles.exclude(user=self.request.user)
 
-      # random objects
+      # Recommendation system for now
       items = list(IWatch.objects.all())
+      people = list(Profile.objects.all())
       # change 8 to how many random items you want
       random_objects = random.sample(items, 8)
+      random_people = random.sample(people, 8)
       context['random_objects'] = random_objects
+      context['random_people'] = random_people
+
+      # context['IWatch_list'] = IWatch.objects.all()[:5]
+      # context['post_views'] = ["ajax", "detail", "detail-with-count"]
       return context
 
-class IWatchDetailView(DetailView):
-  model = IWatch
-  template_name = 'IWatch/showIWatch.html'
-  # context_object_name = 'IWatch'
 
-  def get_object(self, *args, **kwargs):
-    pk = self.kwargs.get('pk')
-    iwatch = IWatch.objects.get(pk=pk)
-    return iwatch
-  
-  def get_context_data(self, **kwargs):
-      context = super().get_context_data(**kwargs)
-      context['IWatch'] = self.get_object()
-      items = list(IWatch.objects.all())
-      # change 3 to how many random items you want
-      random_objects = random.sample(items, 8)
-      context['random_objects'] = random_objects
-      context['seektime'] = 10
-      return context
   
 
 
@@ -233,7 +283,6 @@ class PostDeleteView(DeleteView):
       return obj
     
 
-# post update
 class PostUpdateView(UpdateView):
     model = IWatch
     form_class = IWatchModelForm  # from forms.py
@@ -248,6 +297,3 @@ class PostUpdateView(UpdateView):
       else:
         form.add_error(None, "You are not authorized to update this post")
         return super().form_invalid(form)
-
-
-

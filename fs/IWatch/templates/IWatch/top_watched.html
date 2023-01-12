@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Search Items{% endblock title %}
+{% block title %}Top IWatched{% endblock title %}
 {% block css %}
   <link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>
 {% endblock css %}
@@ -30,7 +30,7 @@
     <div class="row">
       <div class="sixteen wide column">
 
-          {% for iw in IWatch_list %}
+          {% for iw in top_watched %}
               <div id='item_card'>
                 <div class="ui grid">
                   <div class="row">

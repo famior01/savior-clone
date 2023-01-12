@@ -51,6 +51,10 @@ INSTALLED_APPS = [
 
     # phone number field
     "phonenumber_field",
+
+    # count views
+    # https://django-hitcount.readthedocs.io/en/latest/installation.html
+    'hitcount',
 ]
 
 # ---------------------------------------------------------------------------- #

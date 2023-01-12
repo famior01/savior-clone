@@ -3,10 +3,15 @@ from django.core.validators import FileExtensionValidator
 from profiles.models import Profile
 from user.models import User
 from thumbnails.fields import ImageField
+from django.contrib.contenttypes.fields import GenericRelation
+
+# https://django-hitcount.readthedocs.io/en/latest/installation.html
+from hitcount.models import HitCountMixin 
+from hitcount.settings import MODEL_HITCOUNT
 
 
 # Create your models here.
-class IWatch(models.Model):
+class IWatch(models.Model,  HitCountMixin):
   creator       = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='IWatch')
   title         = models.TextField(max_length=100, blank=True, null=True)
   description   = models.TextField(blank=True, null=True)
@@ -21,12 +26,21 @@ class IWatch(models.Model):
                     validators=[FileExtensionValidator(
                     allowed_extensions=['MOV','avi','mp4','webm','mkv'])
                     ])  
-  
-
+  hit_count_generic = GenericRelation(
+        MODEL_HITCOUNT, object_id_field='object_pk',
+        related_query_name='hit_count_generic_relation')
 
   def __str__(self):
     return str(self.creator) + "|" + str(self.title)
   
+  # count all hits on the object
+  def current_hit_count(self):
+    return self.hit_count.hits
+
+  # # has watched the pk
+  # def has_watched(self, pk):
+  #   return self.hit_count_generic.filter(pk=pk).exists()
+
   def get_num_likes(self):
     return self.likes.all().count()
   
