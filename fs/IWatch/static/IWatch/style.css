@@ -130,7 +130,7 @@
   width: 100% !important;
   height: 250px !important;
   background-color: rgb(255, 255, 255);
-  border-radius: 15px;
+  border-radius: 10px;
   border: 1px solid #000;
   box-shadow: 0 0 10px rgba(0,0,0,0.5);
   /* cursor: pointer; */
@@ -144,6 +144,8 @@
 #video_card img{
   width: 100%;
   height: 248px;
+  margin-left:10px;
+  border-radius:10px;
   /* cursor: pointer; */
   transition: all 0.3s ease;
   /* overflow: scroll;
