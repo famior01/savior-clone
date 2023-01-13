@@ -4,7 +4,7 @@ from django.shortcuts import render
 from .forms import ProfileModelForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.db.models import Q
-from posts.models import Posts
+from IWatch.models import IWatch
 from zakat_posts.models import ZakatPosts
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileModelForm
@@ -17,6 +17,7 @@ from notifications.signals import notify
 from django.contrib import messages
 import json
 from django.core.serializers.json import DjangoJSONEncoder
+from django.http import JsonResponse
 
 
 
@@ -42,12 +43,12 @@ def myprofile(request):
   return render(request, 'profiles/profile.html', context)
 
 @login_required
-def IWatch(request, pk):
+def IWatch_videos(request, pk):
   profile = Profile.objects.get(pk=pk)
-  posts = Posts.objects.filter(author=profile).all()
+  videos = IWatch.objects.filter(creator=profile).all()
   context = {
     'IWatch': True,
-    'posts': posts,
+    'videos': videos,
     'profile': profile
   }
   return render(request, 'profiles/profile.html', context)
@@ -122,16 +123,21 @@ def follow_unfollow_profile(request):
     user_to_toggle = request.POST.get('username')
     my_profile = Profile.objects.get(user=request.user)  
     pk = request.POST.get('profile_pk')
+    print("******************\t\t = ",pk)
     obj = Profile.objects.get(pk=pk)
-
+    data = {}
     if obj.user in my_profile.following.all():
       my_profile.following.remove(obj.user)
+      data['status'] = 'Follow'
+      return JsonResponse(data, safe=False)  
+
     else:
       my_profile.following.add(obj.user)
       recipient = User.objects.get(pk=pk) # notify following user I am following, follow back
+      data['status'] = 'UnFollow'
       notify.send(request.user, recipient=recipient, verb="Started following you",description= True)
-    return redirect(request.META.get('HTTP_REFERER'))
-    
+      return JsonResponse(data, safe=False)  
+
   return redirect('profiles:all-profiles')
 
 @login_required
@@ -150,7 +156,7 @@ class ProfileListView(ListView):
 
   def get_context_data(self, **kwargs):
     context = super().get_context_data(**kwargs)
-    user = User.objects.get(username__iexact=self.request.user)
+    user = User.objects.get(username__exact=self.request.user)
     my_profile = Profile.objects.get(user=user)
     context['profiles'] = Profile.objects.all().exclude(user=self.request.user)
     return context
@@ -176,15 +182,20 @@ class ProfileUpdateView(UpdateView):
 
 
 class UserSearch(ListView):
+
   def get(self, request, *args, **kwargs):
-    query = self.request.GET.get('query')
-    profile_list = Profile.objects.filter(
-      Q(user__username__icontains=query) | Q(user__full_name__icontains=query)
-    )    
-    context = {
-      'search_list': profile_list,
-    }
-    return render(request, "profiles/profile_list.html", context)
+    query = self.request.GET.get('query').strip()
+    if query:
+      profile_list = Profile.objects.filter(
+        Q(user__username__contains=query) | Q(user__full_name__icontains=query)
+      )    
+      context = {
+        'search_list': profile_list,
+      }
+      return render(request, "profiles/profile_list.html", context)
+    else:
+      return redirect(request.META.get('HTTP_REFERER'))
+      
 
 
 # class SendAllProfiles(ListView):

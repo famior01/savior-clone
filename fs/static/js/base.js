@@ -1,4 +1,8 @@
 console.log('================= from js/base.js ======================')
+console.log('============= for Follow/Unfollow from base.js ===============')
+
+
+
 // to popup a update card in myprofile page
 $(document).ready(function() {
   $('#model-btn').click(function() {

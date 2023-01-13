@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.http import JsonResponse, HttpResponseRedirect
 from family_savior.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
-from posts.models import Posts
+from IWatch.models import IWatch
 # from django.views.decorators.csrf import csrf_exempt
 from AI.tasks import AI, notify_before_posting, notify_after_posting
 import cv2
@@ -39,7 +39,7 @@ def create_zakat_posts(request):
       zp.post_number = profile.post_no # on which number the post was created
       zp.save()
       profile.save()
-
+      
       #(=====================   AI   =====================)
       ID = instance.id
       print("\n************", ID, "************\n")

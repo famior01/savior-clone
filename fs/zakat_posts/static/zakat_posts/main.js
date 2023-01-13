@@ -25,6 +25,7 @@ $.ajax({
     }
 })
 
+// get comment if enter presss
 $(document).ready(function() {
     $("#comment" + post_id).keypress(function(e) {
         if (e.which == 13) {

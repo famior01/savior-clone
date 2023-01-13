@@ -1,6 +1,6 @@
 from django.db import models
 from profiles.models import Profile
-from posts.models import Posts
+from IWatch.models import IWatch
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from user.models import User

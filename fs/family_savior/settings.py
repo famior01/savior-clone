@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'user',
     'profiles',
-    'posts',
+    'IWatch',
     'zakat_posts',
     'AI',
 
@@ -51,7 +51,25 @@ INSTALLED_APPS = [
 
     # phone number field
     "phonenumber_field",
+
+    # count views
+    # https://django-hitcount.readthedocs.io/en/latest/installation.html
+    'hitcount',
 ]
+
+# ---------------------------------------------------------------------------- #
+#                                   THUMBNAIL                                  #
+# ---------------------------------------------------------------------------- #
+# https://pypi.org/project/django-thumbnails/
+THUMBNAILS = {
+    'METADATA': {
+        'PREFIX': 'thumbs',
+        'BACKEND': 'thumbnails.backends.metadata.RedisBackend',
+        'db': 2,
+        'port': 6379,
+        'host': 'localhost',
+    },
+}
 
 AUTH_USER_MODEL = 'user.User'
 
@@ -264,7 +282,7 @@ RESULT_BACKEND = 'db+sqlite:///results.db'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
-    BASE_DIR/'posts'/'static',
+    BASE_DIR/'IWatch'/'static',
     BASE_DIR/'profiles'/'static',
     BASE_DIR/'zakat_posts'/'static',
     BASE_DIR/'authentications'/'static',

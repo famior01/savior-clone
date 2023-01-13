@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Top IWatched{% endblock title %}
+{% block css %}
+  <link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>
+{% endblock css %}
+
+
+{% block content %}
+
+<div class="ui container-md">
+  <div class="ui grid">
+    <div class="row">
+      <!--========================= Search Bar ====================-->
+      <div class="ui eight wide column centered aligned"> 
+        <form action="{% url 'IWatch:search-IWatch' %}" method="GET"> 
+            <div style='width: 45em;' class="ui right action left icon input">
+                <i class="search icon"></i>
+                <input  type="text" name='query' id='search_here' value='{{ request.GET.query }}' placeholder="name of a Video by title, name, descriptions, username...">
+                <button type='submit' class="ui button">Search</button>
+                <a href="{% url 'IWatch:IWatch-main' %}">
+                  <i class="black window close outline huge icon"></i>
+                </a> 
+            </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="sixteen wide column">
+
+          {% for iw in top_watched %}
+              <div id='item_card'>
+                <div class="ui grid">
+                  <div class="row">
+                    
+                    <div class="five wide column">
+                      <a href="{% url 'IWatch:Show-IWatch' iw.pk %}">
+                      <div id='video_card' class="image">
+                        <img src="{{iw.thumbnail.url}}">
+                      </div>
+                      </a>
+                    </div>
+
+                    <div  class="eleven wide column">
+                      <div id='info_container'>
+                        <div id="video_title">
+                          <b>{{iw.title|truncatechars:150}}</b>
+                        </div>
+
+                        <div id="video_description">
+                          <p>{{iw.description|truncatechars:100}}</p>
+                        </div>
+
+                        <div id="video_creator_avatar">
+                          <img src="{{iw.creator.avatar.url}}">
+                          <p>{{iw.creator.user.username}}</p>
+                          <div id="followbtn">
+                            {% if request.user == iw.creator.user %}
+                              <a href="{% url 'IWatch:post-update' iw.creator.pk %}"><button class="ui  secondary small button ">Update</button></a>
+                              <a href="{% url 'IWatch:post-delete' iw.creator.pk %}"><button class="ui secondary small button  ">Delete</button></a>
+                            
+                            {% elif iw.creator.user in my_profile.get_following %}
+                              <div class="ui right floated">
+                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{iw.creator.pk}}'>
+                                  {% csrf_token %}
+                                  <input type="hidden" name="profile_pk" value={{iw.creator.pk}}>
+                                  <button class='ui large secondary button' type='submit' id='status{{iw.creator.pk}}'>Unfollow</button>
+                                </form>
+                              </div>
+                            {% elif iw.creator in my_profile.get_followers%}
+                              <div class="ui right floated">
+                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{iw.creator.pk}}'>
+                                  {% csrf_token %}
+                                  <input type="hidden" name="profile_pk" value={{iw.creator.pk}}>
+                                  <button class='ui large secondary button' type='submit' id='status{{iw.creator.pk}}'>Follow Back</button>
+                                </form>
+                              </div>
+                            {% else %}
+                              <div class="ui right floated">
+                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{iw.creator.pk}}'>
+                                  {% csrf_token %}
+                                  <input type="hidden" name="profile_pk" value={{iw.creator.pk}}>
+                                  <button class='ui large secondary button' type='submit' id='status{{iw.creator.pk}}'>Follow</button>
+                                </form>
+                              </div>
+                            {% endif %}
+                          </div>
+                        </div>  
+
+                        <div id='extra_info'>
+                          <a class="ui teal tag label">{{iw.creator.get_follower_no}} Followers</a>
+                          <a class="ui teal tag label">{{iw.current_hit_count}} Views</a>
+                          <a class="ui teal tag label">{{iw.created|timesince}}</a>
+                          <!--you can show viewers-->
+                          <a>{% if iw.has_watched %} <!--No working right now-->
+                            Watched
+                            {% endif %}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                
+
+                
+              </div>
+          {% endfor %}
+
+      
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

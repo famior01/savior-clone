@@ -9,7 +9,7 @@ from .views import (
   follow_unfollow_profile,
   FollowerListView,
   FollowingListView,
-  IWatch,
+  IWatch_videos,
   Zakat_Posts,
   remove_follower,
   UserSearch,
@@ -32,7 +32,7 @@ urlpatterns = [
   path('remove-follower/<int:pk>', remove_follower, name='remove-follower'),
 
   # Profile Posts
-  path('iwatch/<int:pk>/', IWatch ,name='iwatch'),
+  path('iwatch/<int:pk>/', IWatch_videos ,name='iwatch'),
   path('Zakat_Posts/<int:pk>/', Zakat_Posts ,name='zakat_posts'),
 
   # Searching for Profiles

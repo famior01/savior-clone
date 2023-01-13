@@ -38,10 +38,10 @@ Following
               {{obj.get_followers|length}} Followers
             </span>
             <div class="ui right floated">
-              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post>
+              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
                 {% csrf_token %}
                 <input type="hidden" name="profile_pk" value={{obj.pk}}>
-                <button class='ui large secondary button' type='submit'>Unfollow</button>
+                <button class='ui large secondary button' type='submit' id='status{{obj.pk}}' >Unfollow</button>
               </form>
             </div>
           </div>
