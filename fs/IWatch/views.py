@@ -19,6 +19,7 @@ from hitcount.utils import get_hitcount_model
 from hitcount.views import HitCountMixin
 
 
+
 #TODO; Recommendation system
 #TODO; solve the bug of video skeetime
 
@@ -96,6 +97,7 @@ class UploadVideoView(CreateView):
   template_name = 'IWatch/upload.html'
   success_url = reverse_lazy('IWatch:IWatch-main')
 
+  # upload_video().apply_async(args=[form], ignore_result=False)
 
   # only author will be able to update the post
   def form_valid(self, form):
