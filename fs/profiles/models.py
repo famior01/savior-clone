@@ -44,7 +44,11 @@ class Profile(models.Model):
   def get_following(self):
     return self.following.all()
 
-  
+  # Get all profiles that are not being followed by the user
+  def get_unfollowing(self):
+    user = self.following.all()
+    return Profile.objects.exclude(user__in=user).exclude(user=self.user)
+
   def get_following_no(self):
     user = self.following.all()
     return Profile.objects.filter(user__in=user).exclude(user=self.user).count()

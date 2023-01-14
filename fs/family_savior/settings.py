@@ -57,19 +57,7 @@ INSTALLED_APPS = [
     'hitcount',
 ]
 
-# ---------------------------------------------------------------------------- #
-#                                   THUMBNAIL                                  #
-# ---------------------------------------------------------------------------- #
-# https://pypi.org/project/django-thumbnails/
-THUMBNAILS = {
-    'METADATA': {
-        'PREFIX': 'thumbs',
-        'BACKEND': 'thumbnails.backends.metadata.RedisBackend',
-        'db': 2,
-        'port': 6379,
-        'host': 'localhost',
-    },
-}
+
 
 AUTH_USER_MODEL = 'user.User'
 

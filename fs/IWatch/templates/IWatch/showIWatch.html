@@ -15,91 +15,144 @@
 
 <div class="ui container-xl">
   <div class="ui grid">
-    <div class="row">
+    <div style='margin-top:2em;' class="row">
       
       <div class="twelve wide column">
         <div class="ui grid">
           <!--Video Player-->
           <div class="row">
-            <div class='ui '>
-              <video id='player' controls></video>
-            </div>
+            
+              {% if not hitcount.hit_counted  %} <!--it is false, when watched, else true-->
+              <div class='video_played'>
+              <video  id='player' controls></video>
+              </div>
+
+              {% else %}
+              <div>
+                <video id='player' controls></video>
+              </div>
+
+              {% endif %}
           </div>
           
           <!--info-->
-          <div class="row">
+          <div  class="row">
             
               <div class="ui gird">
                 <!--User header Info-->
                 <div class="row">
-                  <div class="ui items">
-                  <div class="item">
-                    <div class="ui tiny circular image ">
-                      <a href="{% url 'profiles:profile-detail-view' IWatch.creator.pk %}"><img src="{{IWatch.creator.avatar.url}}"></a>
-                    </div>
-                    <div class="">
-                      <p class="header">{{IWatch.creator.user.full_name}}</p><br>
-                      <a href="{% url 'profiles:profile-detail-view' IWatch.creator.pk %}">@{{IWatch.creator.user.username}}</a><br>
-                    </div>
-                    <div class="">
-                    <!--LIke, Unlike, support buttons-->
-                      {% if request.user == IWatch.creator.user %}
-                        <a href="{% url 'IWatch:post-update' IWatch.pk %}"><button class="ui  secondary small button ">Update</button></a>
-                        <a href="{% url 'IWatch:post-delete' IWatch.pk %}"><button class="ui secondary small button  ">Delete</button></a>
-                      
-                      {% elif IWatch.creator.user in my_profile.get_following %}
-                        <div class="ui right floated">
-                          <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
-                            {% csrf_token %}
-                            <input type="hidden" name="profile_pk" value={{IWatch.creator.pk}}>
-                            <button class='ui large secondary button' type='submit' id='status{{IWatch.creator.pk}}'>Unfollow</button>
-                          </form>
+                  
+                  <div id='user_info' class="item">
+                    <p class='title'>{{IWatch.title}}</p>
+                    <div class="sixteen wide column">
+                      <div class="ui grid">
+                        <div class="row">
+                          <div class="two wide column">
+                            <div id='first_head'>
+                              <a href="{% url 'profiles:profile-detail-view' IWatch.creator.pk %}">
+                                <img src="{{IWatch.creator.avatar.url}}">
+                              </a>
+                            </div>
+                          </div>
+                          
+                          <div class="three wide column">
+                            <div class='second_head'>
+                              <p>{{IWatch.creator.user.full_name}}</p>
+                              <a href="{% url 'profiles:profile-detail-view' IWatch.creator.pk %}">
+                                @{{IWatch.creator.user.username}}
+                              </a>  
+                              <span>{{IWatch.creator.get_follower_no}} Followers
+                                <br>{% if hitcount.total_hits > 1 %}{{hitcount.total_hits}} views{% else %} 1 view{% endif %} 
+                              </span>
+                            </div>
+                          </div>
+
+                          <div class="four wide column">
+                            <div class='follow_btn'>
+                              {% if request.user == IWatch.creator.user %}
+                              <a href="{% url 'IWatch:post-update' IWatch.pk %}"><button class="ui  secondary small button ">Update</button></a>
+                              <a href="{% url 'IWatch:post-delete' IWatch.pk %}"><button class="ui secondary small button  ">Delete</button></a>
+                            
+                              {% elif IWatch.creator.user in my_profile.get_following %}
+                                <div class="ui right floated">
+                                  <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
+                                    {% csrf_token %}
+                                    <input type="hidden" name="profile_pk" value={{IWatch.creator.pk}}>
+                                    <button class='ui large secondary button' type='submit' id='status{{IWatch.creator.pk}}'>Unfollow</button>
+                                  </form>
+                                </div>
+                              {% elif IWatch.creator in my_profile.get_followers%}
+                                <div class="ui right floated">
+                                  <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
+                                    {% csrf_token %}
+                                    <input type="hidden" name="profile_pk" value={{IWatch.creator.pk}}>
+                                    <button class='ui large secondary button' type='submit' id='status{{IWatch.creator.pk}}'>Follow Back</button>
+                                  </form>
+                                </div>
+                              {% else %}
+                                <div class="ui right floated">
+                                  <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
+                                    {% csrf_token %}
+                                    <input type="hidden" name="profile_pk" value={{IWatch.creator.pk}}>
+                                    <button class='ui large secondary button' type='submit' id='status{{IWatch.creator.pk}}'>Follow</button>
+                                  </form>
+                                </div>
+                              {% endif %}
+                            </div>
+                          </div>  
+                          
+                          <div class="three wide column">
+                            <div class="ui grid">
+                              <div class="row">
+                                <div class="eight wide column">
+                                  <div class='like-button'>
+                                    <form action="{% url 'IWatch:like' %}" method="POST" class='like-form' id='{{IWatch.id}}'>
+                                      {% csrf_token %}
+                                      <input type="hidden" name="post_id" value={{IWatch.id}}>
+                                      <button type="submit" class='ui upvote_btn'>
+                                      <i class="fa-solid fa-thumbs-up "></i>
+                                      <p class="like-count{{IWatch.id}}">{{IWatch.liked}}</p>
+                                      </button>
+                                    </form>
+                                  </div>
+                                </div>
+                                <div class="eight wide column">
+                                  <div class='dislike-button'>
+                                    <form action="{% url 'IWatch:dislike' %}" method="POST" class='dislike-form' id='{{IWatch.id}}'>
+                                      {% csrf_token %}
+                                      <input type="hidden" name="post_id" value={{IWatch.id}}>
+                                      <button type="submit" class='upvote_btn'>
+                                      <i class="fa-solid fa-thumbs-down"></i>
+                                      <p class="dislike-count{{IWatch.id}}">{{IWatch.disliked}}</p>
+                                      </button>
+                                    </form>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                              
+                              
+                          </div>
+                              
+                          <div class="four wide column">
+                            <div class="ui blue labels">
+                            <div class="ui grid">
+                              <div class="row">
+                                <div class="sixteen wide column">
+                                  <button class='ui secondary button'>Pay for Content</button>
+                                </div>
+                                {% comment %} <div class="eight wide column">
+                                  <a class="ui label">{% if not hitcount.hit_counted  %}You've Watched
+                                    {% endif %}</a>    
+                                </div> {% endcomment %}
+                              </div>
+                            </div>    
+                            </div>
+                          </div>
+
                         </div>
-                      {% elif IWatch.creator in my_profile.get_followers%}
-                        <div class="ui right floated">
-                          <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
-                            {% csrf_token %}
-                            <input type="hidden" name="profile_pk" value={{IWatch.creator.pk}}>
-                            <button class='ui large secondary button' type='submit' id='status{{IWatch.creator.pk}}'>Follow Back</button>
-                          </form>
-                        </div>
-                      {% else %}
-                        <div class="ui right floated">
-                          <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{IWatch.creator.pk}}'>
-                            {% csrf_token %}
-                            <input type="hidden" name="profile_pk" value={{IWatch.creator.pk}}>
-                            <button class='ui large secondary button' type='submit' id='status{{IWatch.creator.pk}}'>Follow</button>
-                          </form>
-                        </div>
-                      {% endif %}
-                    </div>
-
-
-                      <form action="{% url 'IWatch:like' %}" method="POST" class='like-form' id='{{IWatch.id}}'>
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value={{IWatch.id}}>
-                        <button type="submit" class="ui large basic upvote-btn{{IWatch.id}}">
-                        <h1><i class="fa-solid fa-thumbs-up "></i>
-                        <p class="like-count{{IWatch.id}}">{{IWatch.liked}}</p></h1>
-                        </button>
-                      </form>
-
-                      <form action="{% url 'IWatch:dislike' %}" method="POST" class='dislike-form' id='{{IWatch.id}}'>
-                        {% csrf_token %}
-                        <input type="hidden" name="post_id" value={{IWatch.id}}>
-                        <button type="submit" class="ui large basic downvote-btn{{IWatch.id}}">
-                        <h1><i class="fa-solid fa-thumbs-down"></i></i>
-                        <p class="dislike-count{{IWatch.id}}">{{IWatch.disliked}}</p></h1>
-                        </button>
-                      </form>
-
-                      <div class="right floated column eight wide fluid ">
-                        <a>{{hitcount.total_hits}} Views</a> <!--you can show viewers-->
-                        <a>{% if not hitcount.hit_counted  %}Watched{% endif %}</a>
-                        
                       </div>
                     </div>
-
                   </div>
                 </div>
 
@@ -155,7 +208,7 @@
       <div class="four wide column">
         <style>
           #card_style{
-            width: 320px !important;
+            width: 260px !important;
             height: 250px;
             background-color: rgb(255, 255, 255);
             border-radius: 15px;
@@ -176,16 +229,16 @@
           .user-img img{
             width: 50px;
             height: 50px;
+            margin-left:20px;
+            margin-top:20px;
             border-radius: 50%;
-            margin-left: 10px;
             /* margin-right: 10px; */
-            margin-top:5px;
           }
           
           .card_title{
             width:100%;
-            font-weight: 500;
-            font-size: 15px;
+            font-weight: bold;
+            font-size: 18px;
             margin-top: 10px;
             /* margin-left: 5px; */
             line-height: 1.7em;

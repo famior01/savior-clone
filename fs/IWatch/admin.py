@@ -1,14 +1,10 @@
 from django.contrib import admin
 from .models import IWatch, IWatchComment, Like, Dislike
-# Register your models here.
 
-# admin.site.register(Posts)
-# admin.site.register(Comment)
-# admin.site.register(Like)
 
 @admin.register(IWatch)
 class IWatchAdmin(admin.ModelAdmin):
-    list_display = ('id','creator', 'title', 'video','description','liked', 'disliked', 'created')
+    list_display = ('id','creator', 'title', 'video','liked', 'disliked', 'created')
       
 
 @admin.register(IWatchComment)

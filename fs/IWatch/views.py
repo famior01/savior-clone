@@ -41,8 +41,12 @@ class IWatchDetailView(HitCountDetailView):
       context['IWatch'] = self.get_object()
       items = list(IWatch.objects.all())
       # change 3 to how many random items you want
-      random_objects = random.sample(items, 8)
-      context['random_objects'] = random_objects
+      no = int(len(items)*0.4)
+      print("************** total no of people", no)
+      if items: #if more than one 
+        random_objects = random.sample(items, no)
+        context['random_objects'] = random_objects
+      
       context['seektime'] = 10
       return context
 
@@ -124,13 +128,20 @@ class IWatchListView(ListView):
 
       # Recommendation system for now
       items = list(IWatch.objects.all())
-      people = list(Profile.objects.all())
+      unfollowing_profiles = profile.get_unfollowing()
+      people = list(unfollowing_profiles)
       # change 8 to how many random items you want
-      random_objects = random.sample(items, 8)
-      random_people = random.sample(people, 8)
-      context['random_objects'] = random_objects
-      context['random_people'] = random_people
-
+      no = int(len(items)*0.4)
+      no1 = int(len(people)*0.4)
+      if items:
+        random_objects = random.sample(items, no)
+        context['random_objects'] = random_objects
+      elif people:
+        random_people = random.sample(people, no1)
+        context['random_people'] = random_people
+      else:
+        context['random_objects'] = items
+        context['random_people'] = people
       # context['IWatch_list'] = IWatch.objects.all()[:5]
       # context['post_views'] = ["ajax", "detail", "detail-with-count"]
       return context

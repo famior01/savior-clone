@@ -73,3 +73,14 @@ $('#delete_all').submit(function(e){
 //         }}
 //     })
 // })
+
+
+// show password
+function myFunction() {
+  var x = document.getElementById("div_id_oldpassword");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}

@@ -62,10 +62,15 @@
         </li>
 
         <li>
+            {% if request.user.is_authenticated %}
             <div class="item" >
                 <div class="ui inline dropdown scrolling">
                     <i class="bell inverted icon large" ></i>
-                    {% live_notify_badge %}
+                    {% notifications_unread as unread_count %}
+                    {% if unread_count %}
+                    <div class="floating ui tiny  red label"><strong>{{ unread_count }}</strong> 
+                    </div>
+                    {% endif %}
                     <div class="menu">
                         <!--Delete ALL Notificaitons-->
                         <div class="ui segment red raised">
@@ -142,15 +147,19 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </li>
 
         <li>
+            {% if request.user.is_authenticated %}
             <a href="{{path_to_myprofile}}" class="{% if request.path == path_to_myprofile %}active{% endif %} item">
                 <img src="{{profile_picture}}" class='ui avatar image'>&nbsp;{{request.user.username}}
             </a>
+            {% endif %}
         </li>
 
         <li>
+            {% if request.user.is_authenticated %}
             <div class="ui floating dropdown icon button teal">
                 <i class="align justify icon"></i>
                 <div class="menu">
@@ -163,17 +172,22 @@
                     </a>
                 </div>
             </div>
+            {% endif %}
         </li>
+
         <li>
 
             <!--for sign up-->
             {% if not request.user.is_authenticated %}
-            <div class='item'>
-                <a href="{% url 'account_login' %}" class="ui item">Login</a>
-            </div>
-            <div class='item'>
-                <a href="{% url 'account_signup' %}" class="ui item">Signup</a>
-            </div>
+                <li style='marign-right:2em;'>
+                    <button class='ui primary button'>
+                        <a href="{% url 'account_login' %}" class="ui item">Login</a>
+                    </button>
+                    <button class='ui primary button'>
+                        <a href="{% url 'account_signup' %}" class="ui item">Signup</a>
+                    </button>
+                </li>
+
             {% endif %}
         </li>
 

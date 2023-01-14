@@ -12,7 +12,7 @@ class IWatchModelForm(forms.ModelForm):
 
     video = forms.FileField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'video/*' , 'style': 'width: 200px;'}))
 
-    thumbnail = forms.ImageField()
+    thumbnail = forms.ImageField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'image/*' , 'style': 'width: 200px;'}))
 
     description = forms.CharField(widget=forms.Textarea(attrs={'placeholder':"Write description upto", 'rows':3, 'cols':40 }))
     
@@ -25,7 +25,7 @@ class IWatchModelForm(forms.ModelForm):
       super().__init__(*args, **kwargs)
       self.fields['title'].required = True 
       self.fields['video'].required = True
-      self.fields['thumbnail'].required= False
+      self.fields['thumbnail'].required= True
       self.fields['description'].required = False
 
 

@@ -18,7 +18,7 @@ THE EASIEST WAY TO PAY ZAKAT!
 
 - [X] Post (Content, Pictures, Videos )
 - [X] Like and dislike, comments, share
-- [ ] notification of like, dislike, comments, and sharing
+- [X] notification of like, dislike, comments, and sharing
 
 ## 3. Zakat Posts
 
@@ -26,9 +26,8 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [X] Updating and Deleting Zakat Post
 - [X] Varification from AI
 - [X] Upvoting and DownVoting
-- [ ] Sharing Experience
-- [ ] Direct message option with in the app
-- [ ] Display Expected amount, varified badge, Pade badge 
+- [X] Sharing Experience
+- [X] Display Expected amount, varified badge, Pade badge 
 
 
 ## 4. AI Varification systems
@@ -67,32 +66,39 @@ THE EASIEST WAY TO PAY ZAKAT!
 
 ### Zakat Posts
 
-- [ ] Adjustment of all features with in the post shape
+- [X] Adjustment of all features with in the post shape
 - [ ] if post is getting upvotes then take it up in the feed, else if it is getting downvotes then take it down in the feed
-- [ ] Take a look at the form of the Zakat post, and make it more attractive, ask sensible stuffs, position it, add loading button, instructions to posts in urdu voice, and make it more attractive and user friendly 
-- [ ] if expacted money got acheived, then move it to the satisfy page with having one video of receiving money with that post!
+- [X] Take a look at the form of the Zakat post, and make it more attractive, ask sensible stuffs, position it, add loading button, instructions to posts in urdu voice, and make it more attractive and user friendly 
+- [X] if expacted money got acheived, then move it to the satisfy page with having one video of receiving money with that post!
 
 ---
 
 ### IWatch
 
-- [ ] User must be able to upload video.
-- [ ] User should be able to see his connectes' videos.
-- [ ] Hearth, Comment, Pay, Share, and Report options should be there.
-- [ ] show recommendations and connected people on the side panaels and notification badge on the top right corner, options to follow.
+- [X] User must be able to upload video.
+- [X] User should be able to see his connectes' videos.
+- [X] Hearth, Comment, Pay, Share, and Report options should be there.
+- [X] show recommendations and connected people on the side panaels and notification badge on the top right corner, options to follow.
 
 ---
 
 ### Profile
 
-- [ ] slogan, bio, Name, location and profile picture should be there.
-- [ ] Show all videos as grid.  
+- [X] slogan, bio, Name, location and profile picture should be there.
+- [X] Show all videos as grid.  
 
 ### Search Engine
 
-- [ ] simple search engine, with search by name, location, and tags.
+- [X] simple search engine, with search by name, location, and tags.
 
 ### Real time updates of likes, comments
 
-- [ ]  use ajax to update the likes and comments in real time.
-- [ ]  use javascript to update the likes and comments in real time. either of them are fine.
+- [X]  use ajax to update the likes and comments in real time.
+- [X]  use javascript to update the likes and comments in real time. either of them are fine.
+
+
+
+### ISSUES
+
+- [ ] seektime is not working in the video player, it is not going to the desired time, it is going to the end of the video.
+- [ ] Notification improvements

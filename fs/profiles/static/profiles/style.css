@@ -31,3 +31,68 @@
   width: 45em;
 }
 
+/* ======================== for search bar ========================== */
+#search_bar{
+  margin-top: 1em !important;
+  width: 100% !important;
+  height: 3em !important;
+  margin-left: 0em;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border:  4px solid rgb(6, 6, 6) !important; 
+  
+}
+
+#search_bar:hover{
+  border:  4px solid rgb(84, 84, 84) !important;
+  box-shadow: 0 0 20px rgba(54, 54, 54, 0.5);  
+}
+
+#cross{
+  margin-top: 0.4em !important;
+  margin-left: 0.5em !important;
+  margin-right: 0.1em !important;
+  font-size: large;
+  width: 1em !important;
+  height: 1em !important;
+  /* background-color: rgb(255, 255, 255); */
+  /* border:  1px solid rgb(6, 6, 6) !important;  */
+}
+
+
+#card1{
+  width: 200px !important;
+  height: 260px !important;
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  border: 1px solid #000;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  /* cursor: pointer; */
+}
+
+#card1:hover{
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+#card1 img{
+  width: 100px !important;
+  height: 100px !important;
+  margin-left: 50px !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important; 
+  border-radius: 50%;
+}
+
+#card1 a{
+  color:rgb(0, 0, 17);
+  font-weight: 600;
+  margin-left: 0em;
+  margin-top: 0em;
+  margin-bottom: 0em;
+}
+
+#card1 button{
+  margin-right: 3em;
+  margin-top: 0em;
+  margin-bottom: 4em;
+}

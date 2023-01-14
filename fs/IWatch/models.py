@@ -2,8 +2,8 @@ from django.db import models
 from django.core.validators import FileExtensionValidator
 from profiles.models import Profile
 from user.models import User
-from thumbnails.fields import ImageField
 from django.contrib.contenttypes.fields import GenericRelation
+from hitcount.models import Hit
 
 # https://django-hitcount.readthedocs.io/en/latest/installation.html
 from hitcount.models import HitCountMixin 
@@ -15,7 +15,7 @@ class IWatch(models.Model,  HitCountMixin):
   creator       = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='IWatch')
   title         = models.TextField(max_length=100, blank=True, null=True)
   description   = models.TextField(blank=True, null=True)
-  thumbnail    = ImageField(upload_to='IWatch/Videos_thumbnails', null=True)
+  thumbnail     = models.ImageField(upload_to='IWatch/Thumbnails', blank=True, null=True)
   liked         = models.IntegerField(default=0)
   disliked      = models.IntegerField(default=0)
   created       = models.DateTimeField(auto_now_add=True)
@@ -30,6 +30,7 @@ class IWatch(models.Model,  HitCountMixin):
         MODEL_HITCOUNT, object_id_field='object_pk',
         related_query_name='hit_count_generic_relation')
 
+
   def __str__(self):
     return str(self.creator) + "|" + str(self.title)
   
@@ -37,11 +38,12 @@ class IWatch(models.Model,  HitCountMixin):
   def current_hit_count(self):
     return self.hit_count.hits
 
-  # # has watched the pk
-  # def has_watched(self, pk):
-  #   return self.hit_count_generic.filter(pk=pk).exists()
+  # # check if the user has watched the pk
+  def has_watched(self):
+    return self.hit_count.objects.filter(user=self.creator.user).exists()
 
-  def get_num_likes(self):
+
+  def get_num_likes(self):  
     return self.likes.all().count()
   
   def get_num_dislikes(self):
