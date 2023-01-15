@@ -67,7 +67,6 @@ class TopWatchedView(ListView):
 
 
 
-
 class SearchIWatch(ListView):
 
   def get(self, request, *args, **kwargs):
@@ -97,7 +96,6 @@ class UploadVideoView(CreateView):
   template_name = 'IWatch/upload.html'
   success_url = reverse_lazy('IWatch:IWatch-main')
 
-  # upload_video().apply_async(args=[form], ignore_result=False)
 
   # only author will be able to update the post
   def form_valid(self, form):
@@ -109,8 +107,6 @@ class UploadVideoView(CreateView):
     else:
       form.add_error(None, "You are not authorized to update this post")
       return super().form_invalid(form)
-
-
 
 
 class IWatchListView(ListView):
@@ -148,8 +144,6 @@ class IWatchListView(ListView):
       # context['post_views'] = ["ajax", "detail", "detail-with-count"]
       return context
 
-
-  
 
 
 @login_required

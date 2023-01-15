@@ -21,7 +21,10 @@
     <link rel="stylesheet" type='text/css' href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.14/semantic.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 
+  
+
     <!--Plyr -->
+    
     {% block css %}{% endblock css %}
     <title>FS~{% block title %}{% endblock title %}</title>
     {% block extra_head %}
@@ -32,9 +35,11 @@
   </header>
   <body>
     <!--For messages to show-->
-    <div class="ui small container">
+    <div style='margin-top:3em;'>
+
+    <div class="ui container-md">
     {% if messages %}
-      <div>      
+      <div >      
           {% for message in messages %}
             {% if message.tags == 'success' %}
             <div class="ui positive message" id = 'message_container'>
@@ -64,7 +69,6 @@
 
 
     
-    <div style='margin-top:3em;'>
     {% block content %}
       {% block posts %}
       {% endblock posts %}
@@ -93,8 +97,12 @@
 
   {% block script %}
   {% endblock script %}
+  
 
   <script>
+    // ========================= for message ======================
+    $('#message_container').delay(6000).fadeOut('slow');
+
     setTimeout(function(){
         window.location.reload();
     }, 600000); // 10 minutes

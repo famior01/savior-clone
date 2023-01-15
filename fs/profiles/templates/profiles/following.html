@@ -19,34 +19,47 @@ Following
   <div class="ui six cards">
     {% for obj in  profiles %}
       <a href="{% url 'profiles:profile-detail-view' obj.pk %}">
-        <div class="card">
-          <div class="ui small image">
-            <center><img src="{{obj.avatar.url}}"></center>
+      <div id='card1'class="card">
+        <div class="ui small image ">
+          <img src="{{obj.avatar.url}}">
+        </div>
+        <div class="content">
+          <div class="header">{{obj.user.full_name}}</div>
+          <div class="meta">
+            <a href="{% url 'profiles:profile-detail-view' obj.pk %}">@{{obj.user.username}}</a>
           </div>
-          <div class="content">
-            <div class="header">{{obj.user.full_name}}</div>
-            <div class="meta">
-              <a>@{{obj.user.username}}</a>
-            </div>
-            <div class="description">
-              {{obj.bio}}
-            </div>
-          </div>
-          <div class="extra content">
-            <span>
-              <i class="user icon"></i>
-              {{obj.get_followers|length}} Followers
-            </span>
+          <i class="user icon"></i>
+            {{obj.get_followers|length}} Followers
+        </div>
+        <div>
+          {% if obj.user in my_profile.get_following %}
             <div class="ui right floated">
               <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
                 {% csrf_token %}
                 <input type="hidden" name="profile_pk" value={{obj.pk}}>
-                <button class='ui large secondary button' type='submit' id='status{{obj.pk}}' >Unfollow</button>
+                <button class='ui small secondary button' type='submit' id='status{{obj.pk}}'>Unfollow</button>
               </form>
             </div>
-          </div>
+          {% elif obj in my_profile.get_followers%}
+            <div class="ui right floated">
+              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
+                {% csrf_token %}
+                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+                <button class='ui small secondary button' type='submit' id='status{{obj.pk}}'>Follow Back</button>
+              </form>
+            </div>
+          {% else %}
+            <div class="ui right floated">
+              <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
+                {% csrf_token %}
+                <input type="hidden" name="profile_pk" value={{obj.pk}}>
+                <button class='ui small secondary button' type='submit' id='status{{obj.pk}}'>Follow</button>
+              </form>
+            </div>
+          {% endif %}
         </div>
-      </a>
+      </div>
+    </a>
   
 
     {% endfor %}

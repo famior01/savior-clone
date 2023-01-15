@@ -1,3 +1,30 @@
+/* do not group these rules */
+*::-webkit-input-placeholder {
+  color: rgb(22, 20, 20);
+}
+*:-moz-placeholder {
+  /* FF 4-18 */
+  color: rgb(10, 9, 9);
+  opacity: 1;
+}
+*::-moz-placeholder {
+  /* FF 19+ */
+  color: rgb(10, 9, 9);
+  opacity: 1;
+}
+*:-ms-input-placeholder {
+  /* IE 10+ */
+  color: rgb(10, 9, 9);
+}
+*::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: rgb(10, 9, 9);
+}
+*::placeholder {
+  /* modern browser */
+  color: rgb(10, 9, 9);
+}
+
 .field1 {
   margin-bottom: 1em !important;
   margin-left: 0em !important;
@@ -6,24 +33,29 @@
   width: 24em !important;
   border:  1px solid rgb(6, 6, 6) !important; 
 }
-/*field1 hover*/
-.field1:hover {
-  border:  2px solid rgb(84, 192, 255) !important;
-  border-radius: 1em !important;
-}
 
-.field2 {
+
+#field2_0 {
   margin-bottom: 1em !important;
-  margin-left: 0.5em !important;
+  margin-left: 0em !important;
   margin-right: 0em !important;  
   border-radius: 1em !important;
-  width: 23em !important;
+  width: 10em !important;
+  border:  1px solid rgb(6, 6, 6) !important; 
+  display: inline;
+}
+
+
+
+#field2_1{
+  margin-bottom: 1em !important;
+  margin-left: 0em !important;
+  margin-right: 0em !important;  
+  border-radius: 1em !important;
+  width: 15em !important;
   border:  1px solid rgb(6, 6, 6) !important; 
 }
-.field2:hover {
-  border:  2px solid rgb(84, 192, 255) !important;
-  border-radius: 1em !important;
-}
+
 
 .field3 {
   margin-bottom: 1em !important;
@@ -33,25 +65,45 @@
   width: 24em !important;
   border:  1px solid rgb(6, 6, 6) !important; 
 }
-.field3:hover {
-  border:  2px solid rgb(84, 192, 255) !important;
-  border-radius: 1em !important;
-}
+
 
 .field4 {
   margin-bottom: 1em !important;
   margin-left: 0.2em !important;
   margin-right: 0em !important;  
   border-radius: 1em !important;
-  width: 23em !important;
+  width: 24.5em !important;
   border:  1px solid rgb(6, 6, 6) !important; 
 }
-.field4:hover {
-  border:  2px solid rgb(84, 192, 255) !important;
-  border-radius: 1em !important;
-}
+
 
 .field5 {
+  margin-bottom: 1em !important;
+  margin-left: 0em !important;
+  margin-right: 3em !important;  
+  border-radius: 1em !important;
+  width: 20em !important;
+  border:  1px solid rgb(6, 6, 6) !important; 
+}
+.field4 label{
+  font-size: large;
+  font-weight: bold;
+  color: rgb(6, 6, 6);
+
+}
+
+
+.field6 {
+  margin-bottom: 1em !important;
+  margin-left: 0em !important;
+  margin-right: 0em !important;  
+  border-radius: 1em !important;
+  width: 20em !important;
+  border:  1px solid rgb(6, 6, 6) !important; 
+}
+
+
+.field7 {
   margin-bottom: 1em !important;
   margin-left: 0.2em !important;
   margin-right: 1em !important;  
@@ -59,18 +111,34 @@
   width: 100% !important;
   border:  1px solid rgb(6, 6, 6) !important; 
 }
-.field5:hover {
-  border:  2px solid rgb(255, 143, 52) !important;
+
+.field8 {
+  margin-bottom: 1em !important;
+  margin-left: 0.2em !important;
+  margin-right: 1em !important;  
   border-radius: 1em !important;
+  width: 100% !important;
+  border:  1px solid rgb(6, 6, 6) !important; 
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: red;
-  opacity: 1; /* Firefox */
-}
+
 
 .css_form {
   margin: 0.5em;
   padding: 1em;
   border: 1px solid rgb(6, 6, 6);
   border-radius: 1em;
+}
+
+
+#Details{
+  border-radius: 1em !important;
+  width: 400px !important;
+  border:  1px solid rgb(6, 6, 6) !important;
+}
+
+#payment{
+  border-radius:5px !important;
+  width: 100% !important;
+  height: 2em !important;
+  border:  1px solid rgb(6, 6, 6) !important;
 }

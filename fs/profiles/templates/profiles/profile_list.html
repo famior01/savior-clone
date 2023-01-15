@@ -111,7 +111,7 @@ People
               </form>
             </div>
           {% elif obj in my_profile.get_followers%}
-          <div class="ui compact menu">
+          <div id='list_rem_folback_btn' class="ui menu">
             <form action="{% url 'profiles:follow-unfollow-profile' %}" method=post class='follow_unfollow' id='{{obj.pk}}'>
               {% csrf_token %}
               <input type="hidden" name="profile_pk" value={{obj.pk}}>

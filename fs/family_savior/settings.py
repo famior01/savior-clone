@@ -55,6 +55,10 @@ INSTALLED_APPS = [
     # count views
     # https://django-hitcount.readthedocs.io/en/latest/installation.html
     'hitcount',
+
+    # https://pypi.org/project/django-mathfilters/
+    'mathfilters',
+
 ]
 
 
@@ -274,6 +278,7 @@ STATICFILES_DIRS = [
     BASE_DIR/'profiles'/'static',
     BASE_DIR/'zakat_posts'/'static',
     BASE_DIR/'authentications'/'static',
+    BASE_DIR/'user'/'static',
 ]
 
 # Media files (User uploaded files)

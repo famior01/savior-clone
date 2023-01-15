@@ -99,18 +99,18 @@
                                         <div>
                                         {% if 'following' in qs.verb %}
                                             {% if profile.user not in my_profile.following.all %}
-                                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST'>
+                                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST' class='follow_unfollow' id='{{profile.pk}}'>
                                                     {% csrf_token %}
                                                     <input type="hidden" name="profile_pk" value={{profile.pk}}>
-                                                    <button class='ui mini basic blue button' type='submit'>
+                                                    <button class='ui mini basic blue button' type='submit' id='status{{profile.pk}}'>
                                                         Follow Back
                                                     </button>
                                                 </form>
                                             {% else  %}
-                                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST'>
+                                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST' class='follow_unfollow' id='{{profile.pk}}'>
                                                     {% csrf_token %}
                                                     <input type="hidden" name="profile_pk" value={{profile.pk}}>
-                                                    <button class='ui mini basic green button' type='submit'>
+                                                    <button class='ui mini basic green button' type='submit' id='status{{profile.pk}}'>
                                                         Following
                                                     </button>
                                                 </form>
@@ -196,7 +196,28 @@
 </div>
 <!--Notification-->
 <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
-{% comment %} <script src="{% static 'js/base.js' %}" defer></script>
-already coming from base.html
-{% endcomment %}
 
+
+
+<script>
+    // ========================= Follow / Unfollow ======================
+    $('.follow_unfollow').submit(function(e){
+    e.preventDefault()
+    
+    const profile_pk = $(this).attr('id')
+    const url = $(this).attr('action')
+
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+            'profile_pk':profile_pk,
+        }, 
+        success: function(data) {
+            $(`#status${profile_pk}`).html(data['status'])
+        
+        }
+    })
+})
+</script>

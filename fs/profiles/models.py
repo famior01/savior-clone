@@ -21,7 +21,7 @@ class ProfileManager(models.Manager):
 class Profile(models.Model):
   user                = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
   phone_number        = PhoneNumberField(null=True, unique=True)
-  post_no             = models.IntegerField(default=1)
+  post_no             = models.IntegerField(default=0)
   intro               = models.TextField(max_length=500, blank=True)
   slogan              = models.CharField(max_length=100, blank=True)
   profession          = models.CharField(max_length=200, blank=True)

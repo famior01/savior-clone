@@ -23,9 +23,14 @@
                   <img class='' src="{{profile.avatar.url}}">
                 </div>
                 <div class="content">
-                  <h2>{{profile.user.username}}</h2>
+                  <h2>{{profile.user.username}} 
+                    {% if request.user == profile.user %}
+                    <a href="{% url 'user:user-update' my_profile.pk %}">
+                      <i class="fa-solid fa-user-pen"></i>
+                    </a>
+                    {% endif %}
+                  </h2>
                   <h4>{{profile.user.full_name}}</h4>
-                  <p style='width:12em'>{{profile.bio}}</p>
                   
                   {% if request.user != profile.user %}
                     {% if my_profile in profile.get_followers %}
@@ -105,11 +110,21 @@
             </div>
           </div>
           <div class="seven wide column">
-            <h3>Introduction</h3><p style='width: 33em;'>{{profile.intro}}</p>
-            <span><strong>Address</strong></span>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{profile.cur_add}} <br>
-            <span><strong>Profession</strong></span>:&nbsp;&nbsp;&nbsp;{{profile.profession}} <br>
-            <span><strong>Religion</strong></span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.religion}} <br>
-            <span><strong>Phone #</strong></span>: &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{profile.phone_number}} <br>
+            <div class='information'>
+              {% if profile.intro %}
+              <h3>Introduction</h3><p style='width: 33em;'>{{profile.intro}}</p>
+              {% endif %}
+              {% if profile.profession %}
+              <span><strong>Profession</strong></span>:&nbsp;&nbsp;&nbsp;{{profile.profession}} <br>
+              {% endif %}
+              {% if profile.cur_add %}
+              <span><strong>Address</strong></span>: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{profile.cur_add}} <br>
+              {% endif %}
+              {% if profile.phone_number %}
+              <span><strong>Phone #</strong></span>: &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{profile.phone_number}}<br>
+              {% endif %}
+              <span><strong>Religion</strong></span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.religion}} <br>
+            </div>
 
           </div>
         </div>

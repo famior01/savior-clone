@@ -6,12 +6,12 @@
 {% block title %}Satisfied{% endblock title %}
 
 {% block content %}
-<div style = 'margin-top:30px;' class="ui container">
+<div class="ui container">
     <div class="ui grid">
         {% for obj in zp %}
         {% if obj.satisfied and obj.varified%}
     
-            <div class="row">
+            <div style = 'margin-top:5em;' class="row">
                 <div class=" eleven wide column ">
                     <div class="ui blue raised segment">
                         {% if request.user == obj.creator.user %}
@@ -22,7 +22,7 @@
                             <div class="row">
                                 <div class="left floated  column eight wide fluid">
                                     <!--Profile picture and created time-->
-                                    <a href="{{obj.creator.get_absolute_url}}">
+                                    <a href="{% url 'profiles:profile-detail-view'  obj.pk%}">
                                     <img class="ui avatar image" src={{obj.creator.avatar.url}}> </a>
                                     {{ obj.creator}} {{obj.creator.last_name}}
                                     <br>({{ obj.created|timesince}} ago)
@@ -33,6 +33,23 @@
                                         <a href="{% url 'zakat_posts:post-update' obj.pk %}"><button class="ui button bwhite-lg ">Update</button></a>
                                         <a href="{% url 'zakat_posts:post-delete' obj.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
                                     {% endif %}
+                                    <div class="ui tiny modal" id='donors'>
+                                        <div class="header">All Donors</div>
+                                        <div class="content">
+                                            <div class="ui large list">
+                                                {% for d in obj.donor.all %}
+                                                    <div class="item">
+                                                        <img class="ui avatar image" src={{d.avatar.url}}>
+                                                        <div class="content">
+                                                            <a class="header" href="{% url 'profiles:profile-detail-view'  d.pk%}">{{d}}</a>
+                                                            <div class="description">{{d.}}</div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -78,55 +95,36 @@
                             {% csrf_token %}
                             <input type="hidden" name="post_id" value={{obj.id}}>
                             {% comment %} {{ c_form | crispy }}     {% endcomment %}
-                            {% comment %} <textarea name="content" id='comment{{obj.id}}' placeholder="Write your comment here..."></textarea> {% endcomment %}
+                            {% comment %} <textarea name="content" id='comment{{obj.id}}' placeholder="comment here..." rows="2" cols="80"></textarea> {% endcomment %}
                             <input type="text" class="form-control" id='comment{{obj.id}}'  placeholder="Add your comment" upd="1" uid="2" />
-
+                                
                             <button type="submit"  class="ui primary button commentbtn{{obj.id}}">Send</button>
                         </form>
                         {% comment %} {% include "zakat_posts/comment.html" %} {% endcomment %}
                         {% comment %} <script type="text/javascript" src="{% static 'zakat_posts/main.js' %}"></script> {% endcomment %}
     
                         <hr>
-                        <!--Show Comments-->
-                        <div class="row">
-                            <details class='ui raised red segment'>
-                                <summary  id='comment_total{{obj.id}}'><h5><b>{{ obj.num_comments }} Comments</b></h5></summary >
-                                <div class="comment_scroll ui black raised segment ">
-                                <div class="details-content ">
-                                        {% if obj.zakat_posts_comments.all %}
-                                            {% for c in obj.zakat_posts_comments.all %}
-                                                <div class="ui green raised segment" id='c_body'>
-                                                    <img class="ui avatar image" src={{c.user.avatar.url}}>
-                                                    <span id='c_user{{obj.id}}'>{{ c.user }}</span>
-                                                    <p id='c_date{{obj.id}}'>{{c.created_at | timesince}}</p>
-                                                    <div class='' id='c_body{{obj.id}}' >{{ c.body }}</div>
-                                                </div>
-                                            {% endfor %}
-                    
-                                        {% endif %}
-                                </div>
-                            </div>
-                            </details>
-                            </div>
-    
-        
-                        <!-- show or hide Comments with effects-->
-                        {% comment %} <div class="content">
-                            <button class="cmt_btn ui button mb-5">{{ obj.num_comments }} Comments</button>
-                            <div class="comment-box">
-                            {% if obj.zakat_posts_comments.all %}
-                                
-                                {% for c in obj.zakat_posts_comments.all %}
-                                    <div class="ui green raised segment">
-                                        <img class="ui avatar image" src={{c.user.avatar.url}}>
-                                        <span>{{ c.user }}</span>
-                                        <div class='mt-5'>{{ c.body }}</div>
-                                    </div>
-                                {% endfor %}
-        
-                            {% endif %}
-                            </div>
-                        </div> {% endcomment %}
+                    <!--Show Comments-->
+                    <div class="row">
+                    <details class='ui raised red segment'>
+                        <summary  id='comment_total{{obj.id}}'><h5><b>{{ obj.num_comments }} Comments</b></h5></summary >
+                        <div class="comment_scroll ui black raised segment ">
+                        <div class="details-content ">
+                                {% if obj.zakat_posts_comments.all %}
+                                    {% for c in obj.zakat_posts_comments.all %}
+                                        <div class="ui green raised segment" id='c_body'>
+                                            <img class="ui avatar image" src={{c.user.avatar.url}}>
+                                            <span id='c_user{{obj.id}}'>{{ c.user }}</span>
+                                            <p id='c_date{{obj.id}}'>{{c.created_at | timesince}}</p>
+                                            <div class='' id='c_body{{obj.id}}' >{{ c.body }}</div>
+                                        </div>
+                                    {% endfor %}
+            
+                                {% endif %}
+                        </div>
+                    </div>
+                    </details>
+                    </div>
                     </div>
                 </div>
                 <div class="five wide column">
@@ -164,7 +162,7 @@
                                 </div>
                                 <!--Pay-->
                                 <div class='item'>
-                                    <button class='ui primary button'>Pay</button>
+                                    <button class='ui primary button' onclick='showDonors()'>Donors</button>
                                 </div>
                             </div>
                         </div>
@@ -232,9 +230,7 @@
         </div>
     </div>
 
-<script type="text/javascript" src="{% static 'zakat_posts/main.js' %}"></script>
-
-        
-
-
 {% endblock content %}
+{% block script %}
+<script type="text/javascript" src="{% static 'zakat_posts/main.js' %}"></script>
+{% endblock script %}

@@ -39,7 +39,7 @@ def create_zakat_posts(request):
       zp.post_number = profile.post_no # on which number the post was created
       zp.save()
       profile.save()
-      
+      print('in the Zakat posts view.py **********\n\n')
       #(=====================   AI   =====================)
       ID = instance.id
       print("\n************", ID, "************\n")
@@ -65,6 +65,26 @@ def create_zakat_posts(request):
   }
 
   return render(request, 'zakat_posts/main.html', context)
+
+@login_required
+def paid_money(request):
+  if request.method == 'POST':
+    post_id = request.POST['post_id']
+    amount = request.POST['amount'] 
+    print("*********** post_id", post_id, "***********")
+    print("*********** amount", amount, "***********")
+    profile = Profile.objects.get(user=request.user)
+    zp = ZakatPosts.objects.get(id=post_id)
+    zp.paid += int(amount)
+    zp.donor.add(profile)
+    if zp.paid >= zp.needed_money:
+      zp.satisfied = True
+    zp.save()
+    messages.success(request, f'You have paid {amount} to {zp.seeker}, Thank you for your generosity!')
+    notify.send(request.user, recipient=zp.creator.user, verb=f'{profile.user.full_name} have paid {amount} to {zp.seeker}, You should check out your bank account!')
+    return redirect(request.META.get('HTTP_REFERER'))
+  
+  return redirect(request.META.get('HTTP_REFERER'))
 
 @login_required
 def create_comment(request):
@@ -224,7 +244,6 @@ def satisfied(request):
   zp = ZakatPosts.objects.all()
   c_form = ZakatPostsCommentForm()
   profile = Profile.objects.get(user=request.user)
-
   # comment form
   if 'submit_c_form' in request.POST:
     print('Adding comment')

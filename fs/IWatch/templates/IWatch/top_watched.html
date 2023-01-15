@@ -46,7 +46,9 @@
                     <div  class="eleven wide column">
                       <div id='info_container'>
                         <div id="video_title">
+                          <a href="{% url 'IWatch:Show-IWatch' iw.pk %}">
                           <b>{{iw.title|truncatechars:150}}</b>
+                          </a>
                         </div>
 
                         <div id="video_description">
@@ -54,8 +56,10 @@
                         </div>
 
                         <div id="video_creator_avatar">
+                          <a href="{% url 'profiles:profile-detail-view' iw.creator.pk %}">
                           <img src="{{iw.creator.avatar.url}}">
-                          <p>{{iw.creator.user.username}}</p>
+                          <p>{{iw.creator.user.full_name}}</p>
+                          </a>
                           <div id="followbtn">
                             {% if request.user == iw.creator.user %}
                               <a href="{% url 'IWatch:post-update' iw.creator.pk %}"><button class="ui  secondary small button ">Update</button></a>
