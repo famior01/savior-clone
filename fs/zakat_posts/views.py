@@ -75,15 +75,18 @@ def paid_money(request):
     print("*********** amount", amount, "***********")
     profile = Profile.objects.get(user=request.user)
     zp = ZakatPosts.objects.get(id=post_id)
-    zp.paid += int(amount)
-    zp.donor.add(profile)
-    if zp.paid >= zp.needed_money:
-      zp.satisfied = True
-    zp.save()
-    messages.success(request, f'You have paid {amount} to {zp.seeker}, Thank you for your generosity!')
-    notify.send(request.user, recipient=zp.creator.user, verb=f'{profile.user.full_name} have paid {amount} to {zp.seeker}, You should check out your bank account!')
-    return redirect(request.META.get('HTTP_REFERER'))
-  
+    if amount: # if the amount is not 0
+      zp.paid += int(amount)
+      zp.donor.add(profile)
+      if zp.paid >= zp.needed_money:
+        zp.satisfied = True
+      zp.save()
+      messages.success(request, f'You have paid {amount} to {zp.seeker}, Thank you for your generosity!')
+      notify.send(request.user, recipient=zp.creator.user, verb=f'{profile.user.full_name} have paid {amount} to {zp.seeker}, You should info seeker about this payment.')
+      return redirect(request.META.get('HTTP_REFERER'))
+    else:
+      messages.error(request, f'You have paid nothing :)')
+      return redirect(request.META.get('HTTP_REFERER'))
   return redirect(request.META.get('HTTP_REFERER'))
 
 @login_required

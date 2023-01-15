@@ -12,6 +12,8 @@
 <link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>  
 
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
+<link rel="stylesheet" href="path/to/plyr.css" />
+
 
 <div class="ui container-xl">
   <div class="ui grid">
@@ -33,6 +35,10 @@
               </div>
 
               {% endif %}
+              {% comment %} <video width="500" height="700" controls>
+                <source src="{{IWatch.video.url}}" type="video/mp4">
+                Error Message
+              </video> {% endcomment %}
           </div>
           
           <!--info-->
@@ -289,41 +295,9 @@
 
 
 <!--Script for plyr-->
-<script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
-
+{% comment %} <script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script> {% endcomment %}
+<script src="https://cdn.plyr.io/3.7.3/plyr.js"></script>
 <script>
-  {% comment %} i18n: {
-    restart: 'Restart',
-    rewind: 'Rewind {seektime} secs',
-    play: 'Play',
-    pause: 'Pause',
-    fastForward: 'Forward {seektime} secs',
-    seek: 'Seek',
-    played: 'Played',
-    buffered: 'Buffered',
-    currentTime: 'Current time',
-    duration: 'Duration',
-    volume: 'Volume',
-    mute: 'Mute',
-    unmute: 'Unmute',
-    enableCaptions: 'Enable captions',
-    disableCaptions: 'Disable captions',
-    enterFullscreen: 'Enter fullscreen',
-    exitFullscreen: 'Exit fullscreen',
-    frameTitle: 'Player for {title}',
-    captions: 'Captions',
-    settings: 'Settings',
-    speed: 'Speed',
-    normal: 'Normal',
-    quality: 'Quality',
-    loop: 'Loop',
-    start: 'Start',
-    end: 'End',
-    all: 'All',
-    reset: 'Reset',
-    disabled: 'Disabled',
-    advertisement: 'Ad',
-  }, {% endcomment %}
 
   const player = new Plyr('#player',  {
 

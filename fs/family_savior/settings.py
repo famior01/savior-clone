@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     # https://pypi.org/project/django-mathfilters/
     'mathfilters',
 
+    'mediaplayer',
 ]
 
 
