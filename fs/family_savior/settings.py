@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     # django-allauth
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    # 'allauth.socialaccount',
     'authentications', 
 
     # for notifications

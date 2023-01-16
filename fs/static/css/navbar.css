@@ -52,8 +52,8 @@ nav ul ul {
 } */
 
 .navbar ul li a.active{
-    background-color: rgb(255, 255, 255);
-    color: rgb(0, 0, 0);
+    /* background-color: rgb(255, 255, 255); */
+    color: rgb(43, 255, 0);
 }
 
 .navbar ul li{
