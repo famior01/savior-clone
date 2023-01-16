@@ -26,11 +26,13 @@ class Get_frames:
 
     # Get Length of video
     def get_length(self, filename):
+        print('************', filename, '**********filename**')
         result = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
                                 "format=duration", "-of",
                                 "default=noprint_wrappers=1:nokey=1", filename],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT)
+        print('************', result.stdout, '*******stdout*****')
         total_sec = int(float(result.stdout))
         return total_sec
 
@@ -58,9 +60,9 @@ class Get_frames:
             except ValueError:
                 return 'video1'
             
-        video = "C:/Product/FS_1.1/static_cdn" + video
-        video = video.replace('/media/', '/media_root/')
-        print('************', video, '************')
+        video = "C:/Product/FS_1.1/fs/" + video
+        # video = video.replace('/media/', '/media_root/')
+        print('************', video, '******video******')
         
         # if video reached to its limit then break it!
         length_of_video = self.get_length(video)
@@ -69,7 +71,7 @@ class Get_frames:
         I want to manage the size of video, to get stuff faster!
         Here Suppose the video of 24 fps, and I need to get frames with respect to fps and length of video
 
-        if I reduce Percentage, No of Frames should decrease, (FPS X PERCENTAGE X LENGTH OF VID) and no jump btw frames should be large to complete all frames in the given time(FPS X (1-PERCENTAGE)). 
+        if I reduce Percentage, No of Frames should decrease, (FPS X PERCENTAGE X LENGTH OF VID) and no of jumps btw frames should be large to complete all frames in the given time(FPS X (1-PERCENTAGE)). 
             ## 0.1 Means get only 10 % Frames, by increasing the jumps
         
         if I increase Percentage, No of Frames should increase, (FPS X PERCENTAGE X LENGTH OF VID) and no jump btw frames should be small to complete all frames in the given time(FPS X (1-PERCENTAGE)).

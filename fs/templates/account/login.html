@@ -2,12 +2,12 @@
 {% extends "account/base.html" %}
 
 {% load i18n %}
-{% load account socialaccount %}
+{% comment %} {% load account socialaccount %} {% endcomment %}
 
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-{% get_providers as socialaccount_providers %}
+{% comment %} {% get_providers as socialaccount_providers %}
 
 {% if socialaccount_providers %}
 <p>{% blocktrans with site.name as site_name %}Please sign in with one
@@ -27,9 +27,7 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 {% include "socialaccount/snippets/login_extra.html" %}
 
 {% else %}
-{% comment %} <p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ account_signup }}">Sign up</a> first.{% endblocktrans %}</p> {% endcomment %}
-{% endif %}
+{% endif %} {% endcomment %}
 
 <!--    Log in page start here-->
 <div style="margin-top:7em;" class="ui container-xxl">

@@ -24,7 +24,6 @@ from celery import Celery
 def create_zakat_posts(request):
 
   qs = ZakatPosts.objects.all()
-  c_form = ZakatPostsCommentForm()
   profile = Profile.objects.get(user=request.user)
   p_form = ZakatPostForm(request.POST or None, request.FILES or None)
   # Initializing The forms 
@@ -46,20 +45,25 @@ def create_zakat_posts(request):
       notify_before_posting.apply_async(args=[ID], ignore_result=False)
       output = AI.apply_async(args=[ID], ignore_result=False)
       notify_after_posting.apply_async(args=[ID], ignore_result=False)
-
+      print("***********", output, "***********")
       output = output.get()
+
+      # if didn't varify, then save in db, and don't show, and minus the post number
+      if type(output) == int and output<50:
+        profile.post_no -= 1 
 
       # for handling the error, which I made in the AI function
       if type(output) == str: 
+        '''Not saving posts, because the AI function returned an error'''
         notify.send(request.user, recipient=instance.creator.user, verb=output)
-        zp = ZakatPosts.objects.get(id=ID) 
+        zp = ZakatPosts.objects.get(id=ID)
+        profile.post_no -= 1 # this will change each time
         zp.delete()
       
     p_form = ZakatPostForm() # renew the form
   
   context = {
     'p_form': p_form,
-    # 'c_form': c_form,
     'qs': qs,
     'my_profile': profile
   }

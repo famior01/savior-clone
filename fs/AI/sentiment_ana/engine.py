@@ -15,8 +15,8 @@ import shutil
 def get_voice_ana(ID):
   obj = ZakatPosts.objects.filter(id=ID).first()
   video1 = str(obj.video1.url)
-  video1 = "C:/Product/FS_1.1/static_cdn" + video1
-  video1 = video1.replace('/media/', '/media_root/')
+  video1 = "C:/Product/FS_1.1/fs/" + video1
+  # video1 = video1.replace('/media/', '/media_root/')
   print('************\n\t In Audio Analysis \n\t************')
 
   # first I need to extract audio from video
