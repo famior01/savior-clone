@@ -12,8 +12,9 @@ class ProfileModelForm(forms.ModelForm):
   slogan = forms.CharField(max_length=80, label='Slogan', required=False, widget=forms.TextInput(attrs={'placeholder': 'People are waiting for your slogan or any favorite line.'}))
   profession = forms.CharField(max_length=60, label='Profession', required=False, widget=forms.TextInput(attrs={'placeholder': 'Ary you Doctor🤔?'}))
   cur_add = forms.CharField(max_length=100, label='Current Address', required=False, widget=forms.TextInput(attrs={'placeholder': 'ABC(Area), Karachi, Pakistan. By the way, do you live on Mars?'}))
-  avatar = forms.ImageField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'image/*' , 'style': 'width: 20em; height: 50px;'}))
+  picture = forms.ImageField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'image/*' , 'style': 'width: 20em; height: 50px;'}))
   intro = forms.CharField(max_length=250, label='Introduction', required=False, widget=forms.Textarea(attrs={'placeholder': 'write your Introduction under 250 letters', 'rows': 2, 'cols': 30}))
+  bank_details = forms.CharField(max_length=500, label='Bank Details', required=False, widget=forms.Textarea(attrs={'placeholder': 'Give your Bank details, if you want to create video content', 'rows': 1, 'cols': 30}))
 
   class Meta:
     model = Profile
@@ -23,7 +24,8 @@ class ProfileModelForm(forms.ModelForm):
       'phone_number',
       'profession',
       'cur_add',
-      'avatar',
+      'bank_details',
+      'picture',
     ]
 
   def __init__(self, *args, **kwargs):
@@ -32,8 +34,9 @@ class ProfileModelForm(forms.ModelForm):
     self.fields['slogan'].required = False
     self.fields['profession'].required = False
     self.fields['cur_add'].required = False
-    self.fields['avatar'].required = False
+    self.fields['picture'].required = False
     self.fields['intro'].required = False
+    self.fields['bank_details'].required = False
       
     # some css class like field
     for i,field in enumerate(self.fields):

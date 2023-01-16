@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import IWatch, IWatchComment, Like, Dislike
+from .models import IWatch, IWatchComment, Like, Dislike, IWatchIncome
 from profiles.models import Profile
 from django.shortcuts import render, redirect
 from .forms import IWatchModelForm, CommentModelForm
@@ -104,6 +104,7 @@ class UploadVideoView(CreateView):
 
     if form.instance.creator == profile:
       return super().form_valid(form)
+      
     else:
       form.add_error(None, "You are not authorized to update this post")
       return super().form_invalid(form)
@@ -304,3 +305,23 @@ class PostUpdateView(UpdateView):
       else:
         form.add_error(None, "You are not authorized to update this post")
         return super().form_invalid(form)
+
+@login_required
+def payment(request):
+  if request.method == 'POST':
+    post_id = request.POST['post_id']
+    amount = request.POST['amount'] 
+    print("*********** post_id", post_id, "***********")
+    print("*********** amount", amount, "***********")
+    profile = Profile.objects.get(user=request.user)
+    iw = IWatch.objects.get(id=post_id)
+    if amount: # if the amount is not 0
+      iw_income = IWatchIncome.objects.create(user=profile, IWatch=iw, amount=int(amount))
+      iw_income.save()
+      messages.success(request, f'You have paid {amount} to {iw.creator}, Thank you for your generosity, Creator will make more awesome content!')
+      notify.send(request.user, recipient=iw.creator.user, verb=f'{profile.user.full_name} have paid {amount} to you check out your bank accont.')
+      return redirect(request.META.get('HTTP_REFERER'))
+    else:
+      messages.error(request, f'You have paid nothing :)')
+      return redirect(request.META.get('HTTP_REFERER'))
+  return redirect(request.META.get('HTTP_REFERER'))

@@ -20,7 +20,7 @@
             <div class="ui items">
               <div class="item">
                 <div class="css-after">
-                  <img class='' src="{{profile.avatar.url}}">
+                  <img class='' src="{{profile.picture.url}}">
                 </div>
                 <div class="content">
                   <h2>{{profile.user.username}} 
@@ -124,6 +124,12 @@
               <span><strong>Phone #</strong></span>: &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;{{profile.phone_number}}<br>
               {% endif %}
               <span><strong>Religion</strong></span>:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{user.religion}} <br>
+              {% if request.user == profile.user %}
+                {% if profile.total_IWatchIncome %}
+                  <div class="ui label" data-tooltip="Only you can see your following" data-position="bottom left">Your total income from IWatch is <strong>{{profile.total_IWatchIncome}}</strong>
+                  </div>
+                {% endif %}
+              {% endif %}
             </div>
 
           </div>

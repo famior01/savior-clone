@@ -84,7 +84,7 @@
                             <div class="left floated  column eight wide fluid">
                                 <!--Profile picture and created time-->
                                 <a href="{% url 'profiles:myprofile' %}" >
-                                <img class="ui avatar image" src={{obj.creator.avatar.url}}> </a>
+                                <img class="ui avatar image" src={{obj.creator.picture.url}}> </a>
                                 {{ obj.creator}} {{obj.creator.last_name}}
                                 <br>({{ obj.created|timesince}} ago)
                             </div>
@@ -95,7 +95,6 @@
                                     <a href="{% url 'zakat_posts:post-delete' obj.pk %}"><button class="ui button  bwhite-lg ">Delete</button></a>
                                     {% endif %}
                                     <!--MODAL TO SHOW DETAIL OF USER-->
-                                    {% if not obj.satisfied %}
                                     <div class="ui tiny modal" id='Details'>
                                         <div class="header">Seeker Information</div>
                                         <div class="content">
@@ -110,7 +109,7 @@
                                         <div class="content">
                                             <p>Savior Payment Method is not avalible right now, soon it will be there.</p>
                                             <p>For now, you can pay to the seeker directly.</p>
-                                            <p>After paying the seeker, kindly let us know how much have you paid, so that we can track him/her.</p>
+                                            <p>After paying the seeker, kindly let us know how much  you have paid, so that we can track him/her.</p>
                                             <form action="{% url 'zakat_posts:paid'%}" method=post>
                                                 {% csrf_token %}
                                                 <input type="hidden" name="post_id" value={{obj.id}}>
@@ -119,9 +118,23 @@
                                             </form>
                                         </div>
                                     </div>
-                                    {% else %}
-                                    <div class="header">Seeker has been Satisfied 😊</div>
-                                    {% endif %}
+                                    <div class="ui tiny modal" id='donors'>
+                                        <div class="header">All Donors</div>
+                                        <div class="content">
+                                            <div class="ui large list">
+                                                {% for d in obj.donor.all %}
+                                                    <div class="item">
+                                                        <img class="ui avatar image" src={{d.picture.url}}>
+                                                        <div class="content">
+                                                            <a class="header" href="{% url 'profiles:profile-detail-view'  d.pk%}">{{d}}</a>
+                                                            <div class="description">{{d.}}</div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                             </div>
 
                         </div>
@@ -189,7 +202,7 @@
                                 {% if obj.zakat_posts_comments.all %}
                                     {% for c in obj.zakat_posts_comments.all %}
                                         <div class="ui green raised segment" id='c_body'>
-                                            <img class="ui avatar image" src={{c.user.avatar.url}}>
+                                            <img class="ui avatar image" src={{c.user.picture.url}}>
                                             <span id='c_user{{obj.id}}'>{{ c.user }}</span>
                                             <p id='c_date{{obj.id}}'>{{c.created_at | timesince}}</p>
                                             <div class='' id='c_body{{obj.id}}' >{{ c.body }}</div>
@@ -216,12 +229,10 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="post_id" value={{obj.id}}>
                                     <button type="submit" class="ui upvote_btn upvote-btn{{obj.id}}">
-                                        <div class="p-2 rounded-full text-black">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60">
-                                                <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
-                                            <p class="upvote-count{{obj.id}}"><b>{{obj.upvote}} </b></p>
-                                        </div>
-                                    </button>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="40">
+                                            <path d="M318 177.5c3.8-8.8 2-19-4.6-26l-136-144C172.9 2.7 166.6 0 160 0s-12.9 2.7-17.4 7.5l-136 144c-6.6 7-8.4 17.2-4.6 26S14.4 192 24 192h88l0 288c0 17.7 14.3 32 32 32h32c17.7 0 32-14.3 32-32l0-288h88c9.6 0 18.2-5.7 22-14.5z"/></svg>
+                                        <span class="upvote-count{{obj.id}}">{{obj.upvote}}</span>   
+                                    </button>upvote
                                 </form>
                             </div>
                             <!--DownVote-->
@@ -230,13 +241,9 @@
                                     {% csrf_token %}
                                     <input type="hidden" name="post_id" value={{obj.id}}>
                                     <button type="submit" class="ui upvote_btn downvote-btn{{obj.id}}">
-                                        <div class="">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="35" height="60"><path d="M318 334.5c3.8 8.8 2 19-4.6 26l-136 144c-4.5 4.8-10.8 7.5-17.4 7.5s-12.9-2.7-17.4-7.5l-136-144c-6.6-7-8.4-17.2-4.6-26S14.4 320 24 320h88l0-288c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32l0 288h88c9.6 0 18.2 5.7 22 14.5z"/></svg>
-                                            <p class="downvote-count{{obj.id}}"><b>{{obj.downvote}} </b></p>
-
-                                        </div>
-
-                                    </button>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="20" height="40"><path d="M318 334.5c3.8 8.8 2 19-4.6 26l-136 144c-4.5 4.8-10.8 7.5-17.4 7.5s-12.9-2.7-17.4-7.5l-136-144c-6.6-7-8.4-17.2-4.6-26S14.4 320 24 320h88l0-288c0-17.7 14.3-32 32-32h32c17.7 0 32 14.3 32 32l0 288h88c9.6 0 18.2 5.7 22 14.5z"/></svg>
+                                        <span class="downvote-count{{obj.id}}">{{obj.downvote}}</span>
+                                    </button>downvote
                                 </form>
                             </div>
                             
@@ -244,6 +251,10 @@
                             <!--Pay-->
                             <div class='item'>
                                 <button   onclick='opendetail()' class='ui primary button'>Pay</button>
+                            </div>
+
+                            <div class='item'>
+                                <button class='ui primary button' onclick='showDonors()   '>Donors</button>
                             </div>
                         </div>
                     </div>

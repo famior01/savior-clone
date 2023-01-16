@@ -104,4 +104,14 @@ class Dislike(models.Model):
   class Meta:
     ordering = ['-created']
 
-  
+class IWatchIncome(models.Model):
+  user    = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='profile_income')
+  IWatch  = models.ForeignKey(IWatch, on_delete=models.CASCADE, related_name='IWatch_income')
+  amount  = models.DecimalField(max_digits=10, decimal_places=2)
+  created = models.DateTimeField(auto_now_add=True)
+
+  def __str__(self):
+    return f"{self.user}-{self.IWatch}"
+
+  class Meta:
+    ordering = ['-created']

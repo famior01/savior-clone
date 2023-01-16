@@ -31,7 +31,7 @@ People
     <a href="{% url 'profiles:profile-detail-view' obj.pk %}">
       <div id='card1'class="card">
         <div class="ui small image ">
-          <img src="{{obj.avatar.url}}">
+          <img src="{{obj.picture.url}}">
         </div>
         <div class="content">
           <div class="header">{{obj.user.full_name}}</div>
@@ -83,7 +83,7 @@ People
       <a href="{% url 'profiles:profile-detail-view' obj.pk %}">
         <div id='card1' class="card">
           <div class="ui small image">
-            <img src="{{obj.avatar.url}}">
+            <img src="{{obj.picture.url}}">
           </div>
           <div class="content">
             <div class="header">{{obj.user.full_name}}</div>
@@ -139,8 +139,6 @@ People
     {% endfor %}
   </div>
 </div>
-
-
 
 
 {% endblock content %}

@@ -179,7 +179,7 @@
   font-weight: 300;
 }
 
-#video_creator_avatar img{
+#video_creator_picture img{
   margin-top: 1em;
   width: 60px;
   height: 60px;
@@ -187,7 +187,7 @@
 
 }
 
-#video_creator_avatar p{
+#video_creator_picture p{
   display: inline-block;
   font-weight: bolder;
   font-size: 17px;
@@ -367,9 +367,11 @@
   width: 100%;  
 }
 
-#support_btn{
-  display: inline-block;
-  margin-bottom: 0em;
-  margin-left: 3em;
-  margin-right: 0em;
+
+
+#payment{
+  border-radius: 5px !important;
+  border:  1px solid rgb(6, 6, 6) !important;
+  margin-top: 1em;
+  padding: 1em;
 }

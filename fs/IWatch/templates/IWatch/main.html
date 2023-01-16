@@ -30,7 +30,7 @@
 
             <div class="ui celled list">
               <div class="item">
-                <img class="ui avatar image" src="{{i.avatar.url}}">
+                <img class="ui avatar image" src="{{i.picture.url}}">
                 <div class="content">
                   <a href="{% url 'profiles:profile-detail-view' i.pk %}"><div class="header">{{i.user.full_name}}</div></a>
                 </div>
@@ -41,7 +41,7 @@
               {% for i in random_people %}
               <div class="ui celled list">
                 <div class="item">
-                  <img class="ui avatar image" src="{{i.avatar.url}}">
+                  <img class="ui picture image" src="{{i.picture.url}}">
                   <div class="content">
                     <a href="{% url 'profiles:profile-detail-view' i.pk %}"><div class="header">{{i.user.full_name}}</div></a>
                   </div>
@@ -97,7 +97,7 @@
                       <div class="row">
                         <div class="four wide column">
                           <div class="user-img">
-                            <img src="{{ i.creator.avatar.url }}">
+                            <img src="{{ i.creator.picture.url }}">
                           </div> 
                         </div>
                         <div class="twelve wide column">
@@ -136,7 +136,7 @@
                           <div class="row">
                             <div class="four wide column">
                               <div class="user-img">
-                                <img src="{{ i.creator.avatar.url }}">
+                                <img src="{{ i.creator.picture.url }}">
                               </div> 
                             </div>
                             <div class="twelve wide column">

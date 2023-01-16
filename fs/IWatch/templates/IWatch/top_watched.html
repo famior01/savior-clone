@@ -55,9 +55,9 @@
                           <p>{{iw.description|truncatechars:100}}</p>
                         </div>
 
-                        <div id="video_creator_avatar">
+                        <div id="video_creator_picture">
                           <a href="{% url 'profiles:profile-detail-view' iw.creator.pk %}">
-                          <img src="{{iw.creator.avatar.url}}">
+                          <img src="{{iw.creator.picture.url}}">
                           <p>{{iw.creator.user.full_name}}</p>
                           </a>
                           <div id="followbtn">

@@ -8,4 +8,4 @@ from .models import Profile
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-  list_display = ('id','user','phone_number','cur_add','profession','post_no','avatar', 'slogan','created', 'updated')
+  list_display = ('id','user','phone_number','cur_add','profession','post_no','picture', 'slogan','created', 'updated')

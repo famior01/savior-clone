@@ -21,7 +21,7 @@ Following
       <a href="{% url 'profiles:profile-detail-view' obj.pk %}">
       <div id='card1'class="card">
         <div class="ui small image ">
-          <img src="{{obj.avatar.url}}">
+          <img src="{{obj.picture.url}}">
         </div>
         <div class="content">
           <div class="header">{{obj.user.full_name}}</div>
@@ -73,7 +73,7 @@ Following
       <div class="ui grid">
         <div class="row">
           <div class="three wide column">
-            <img class="ui small circular image" src="{{ obj.avatar.url }}">
+            <img class="ui small circular image" src="{{ obj.picture.url }}">
           </div>
           <div class="thirteen wide column">
             <h3>{{ obj.user.username }}</h3>
