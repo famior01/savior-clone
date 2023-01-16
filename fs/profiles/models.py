@@ -20,13 +20,14 @@ class ProfileManager(models.Manager):
 
 class Profile(models.Model):
   user                = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-  phone_number        = PhoneNumberField(null=True, unique=True)
-  post_no             = models.IntegerField(default=1)
+  phone_number        = PhoneNumberField(null=True, unique=True, blank=True)
+  bank_details       = models.CharField(max_length=500, blank=True)
+  post_no             = models.IntegerField(default=0)
   intro               = models.TextField(max_length=500, blank=True)
   slogan              = models.CharField(max_length=100, blank=True)
   profession          = models.CharField(max_length=200, blank=True)
   cur_add             = models.CharField(max_length=500, blank=True) 
-  avatar              = models.ImageField(default='avatar.jpg', upload_to='avatars/')
+  picture              = models.ImageField(default='picture.jpg', upload_to='picture/')
   following           = models.ManyToManyField(User, related_name='following', blank=True)
   updated             = models.DateTimeField(auto_now=True)
   created             = models.DateTimeField(auto_now_add=True)
@@ -44,7 +45,11 @@ class Profile(models.Model):
   def get_following(self):
     return self.following.all()
 
-  
+  # Get all profiles that are not being followed by the user
+  def get_unfollowing(self):
+    user = self.following.all()
+    return Profile.objects.exclude(user__in=user).exclude(user=self.user)
+
   def get_following_no(self):
     user = self.following.all()
     return Profile.objects.filter(user__in=user).exclude(user=self.user).count()
@@ -78,6 +83,9 @@ class Profile(models.Model):
 
   def total_IWatch_dislikes_by_curruser(self):
     return self.IWatch_dislike.all().count()
+
+  def total_IWatchIncome(self):
+    return self.profile_income.aggregate(models.Sum('amount'))['amount__sum'] or 0.00
   # def get_likes_given_no(self):
   #   """
   #   like has a relationship with the profile model

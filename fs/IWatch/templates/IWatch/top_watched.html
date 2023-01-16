@@ -11,17 +11,17 @@
 
 <div class="ui container-md">
   <div class="ui grid">
-    <div class="row">
+    <div style='margin-top:3em;' class="row">
       <!--========================= Search Bar ====================-->
       <div class="ui eight wide column centered aligned"> 
         <form action="{% url 'IWatch:search-IWatch' %}" method="GET"> 
-            <div style='width: 45em;' class="ui right action left icon input">
+            <div style='width: 45em;' id='search_bar' class="ui right action left icon input">
                 <i class="search icon"></i>
                 <input  type="text" name='query' id='search_here' value='{{ request.GET.query }}' placeholder="name of a Video by title, name, descriptions, username...">
-                <button type='submit' class="ui button">Search</button>
                 <a href="{% url 'IWatch:IWatch-main' %}">
-                  <i class="black window close outline huge icon"></i>
-                </a> 
+                  <i id='cross' class="fa-solid fa-xmark ui large"></i>
+                </a>
+                <button type='submit' class="ui button">Search</button>
             </div>
         </form>
       </div>
@@ -46,16 +46,20 @@
                     <div  class="eleven wide column">
                       <div id='info_container'>
                         <div id="video_title">
+                          <a href="{% url 'IWatch:Show-IWatch' iw.pk %}">
                           <b>{{iw.title|truncatechars:150}}</b>
+                          </a>
                         </div>
 
                         <div id="video_description">
                           <p>{{iw.description|truncatechars:100}}</p>
                         </div>
 
-                        <div id="video_creator_avatar">
-                          <img src="{{iw.creator.avatar.url}}">
-                          <p>{{iw.creator.user.username}}</p>
+                        <div id="video_creator_picture">
+                          <a href="{% url 'profiles:profile-detail-view' iw.creator.pk %}">
+                          <img src="{{iw.creator.picture.url}}">
+                          <p>{{iw.creator.user.full_name}}</p>
+                          </a>
                           <div id="followbtn">
                             {% if request.user == iw.creator.user %}
                               <a href="{% url 'IWatch:post-update' iw.creator.pk %}"><button class="ui  secondary small button ">Update</button></a>
@@ -94,10 +98,6 @@
                           <a class="ui teal tag label">{{iw.current_hit_count}} Views</a>
                           <a class="ui teal tag label">{{iw.created|timesince}}</a>
                           <!--you can show viewers-->
-                          <a>{% if iw.has_watched %} <!--No working right now-->
-                            Watched
-                            {% endif %}
-                          </a>
                         </div>
                       </div>
                     </div>

@@ -17,19 +17,24 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
 
   
-    <title>Family Savior - {% block title %}{% endblock title %}</title>
+    <title>FS: Log in | sign up{% block title %}{% endblock title %}</title>
     {% block extra_head %}
     {% endblock %}
   </head>
   <body>
+    <!--Navigation bar-->
+    {% include 'main/navbar.html' %}
     <!--For messages to show-->
+    <div class="ui container-md">
+
     {% if messages %}
-    <div>      
-        {% for message in messages %}
-        <div class="ui green message"><strong>{{message}}</strong></div>
-        {% endfor %}
-    </div>
+      <div>      
+          {% for message in messages %}
+          <div class="ui green message"><strong>{{message}}</strong></div>
+          {% endfor %}
+      </div>
     {% endif %}
+    </div>
 
     <div class="ui container">
       {% block content %}

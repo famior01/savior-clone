@@ -10,5 +10,6 @@ urlpatterns = [
     path('downvote/', views.downvote, name='downvote'),
     path('delete/<int:pk>/', login_required(views.PostDeleteView.as_view()), name='post-delete'),
     path('update/<int:pk>/', login_required(views.PostUpdateView.as_view()), name='post-update'),
-    path('satisfied/', views.satisfied, name='satisfied')
+    path('satisfied/', views.satisfied, name='satisfied'),
+    path('paid/', views.paid_money, name='paid'),
 ]   

@@ -12,25 +12,28 @@
 {% load static %}
 {% load notifications_tags %}
 
+<link rel="stylesheet" type="text/css" href={% static 'css/navbar.css' %}> 
+
 
 <div class="navbar fluid">
-    <link rel="stylesheet" type="text/css" href={% static 'css/navbar.css' %}> 
     <ul>
         <li>
             {% if request.user.is_authenticated %}
-            <a href="{{zakat_posts_home}}" class="{% if request.path == path_to_posts %}active{% endif %} item">
-                <h1>Family Savior</h1>
+            <a href="{{zakat_posts_home}}" class="{% if request.path == path_to_posts %}{% endif %} item">
+                <h1>Savior</h1>
             </a>
             {% else %}
             <!--for sign up-->
-            <a href="#" class="item"><h1>Family Savior</h1></a>
+            <a href="#" class="item"><h1>Savior</h1></a>
             {% endif %}
         </li>
 
+        
         <li>
             {% if request.user.is_authenticated %}
             <a href="{{path_to_posts}}" class="{% if request.path == path_to_posts %}active{% endif %} item">
-                <i class="youtube icon"></i>IWatch
+                <i class="fa-solid fa-play"></i>
+                IWatch
             </a>
             {% endif %}
         </li>
@@ -56,16 +59,21 @@
         <li>
             {% if request.user.is_authenticated %}
             <a href="{{path_to_all_profiles}}" class="{% if request.path == path_to_all_profiles %}active{% endif %} item">
-                <i class="users icon"></i>Peoples
+                <i class="users icon"></i>People
             </a>
             {% endif %}
         </li>
-
+        
         <li>
+            {% if request.user.is_authenticated %}
             <div class="item" >
                 <div class="ui inline dropdown scrolling">
                     <i class="bell inverted icon large" ></i>
-                    {% live_notify_badge %}
+                    {% notifications_unread as unread_count %}
+                    {% if unread_count %}
+                    <div class="floating ui tiny  red label"><strong>{{ unread_count }}</strong> 
+                    </div>
+                    {% endif %}
                     <div class="menu">
                         <!--Delete ALL Notificaitons-->
                         <div class="ui segment red raised">
@@ -85,7 +93,7 @@
                                 {% for profile in profiles  %}
                                     {% if qs.actor == profile.user %}
                                         <div class="ui header"> 
-                                        <img class='ui circular image' src="{{profile.avatar.url}}">
+                                        <img class='ui circular image' src="{{profile.picture.url}}">
                                         {{ qs.actor.full_name}}
                                         </div>
                                         <div class="description">
@@ -94,18 +102,18 @@
                                         <div>
                                         {% if 'following' in qs.verb %}
                                             {% if profile.user not in my_profile.following.all %}
-                                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST'>
+                                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST' class='follow_unfollow' id='{{profile.pk}}'>
                                                     {% csrf_token %}
                                                     <input type="hidden" name="profile_pk" value={{profile.pk}}>
-                                                    <button class='ui mini basic blue button' type='submit'>
+                                                    <button class='ui mini basic blue button' type='submit' id='status{{profile.pk}}'>
                                                         Follow Back
                                                     </button>
                                                 </form>
                                             {% else  %}
-                                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST'>
+                                                <form action="{% url 'profiles:follow-unfollow-profile' %}" method='POST' class='follow_unfollow' id='{{profile.pk}}'>
                                                     {% csrf_token %}
                                                     <input type="hidden" name="profile_pk" value={{profile.pk}}>
-                                                    <button class='ui mini basic green button' type='submit'>
+                                                    <button class='ui mini basic green button' type='submit' id='status{{profile.pk}}'>
                                                         Following
                                                     </button>
                                                 </form>
@@ -142,15 +150,19 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
         </li>
 
         <li>
+            {% if request.user.is_authenticated %}
             <a href="{{path_to_myprofile}}" class="{% if request.path == path_to_myprofile %}active{% endif %} item">
-                <img src="{{profile_picture}}" class='ui avatar image'>&nbsp;{{request.user.username}}
+                <img src="{{my_profile.picture.url}}"  class="profile_img">&nbsp;{{request.user.username}}
             </a>
+            {% endif %}
         </li>
 
-        <li>
+        <li id='menu'>
+            {% if request.user.is_authenticated %}
             <div class="ui floating dropdown icon button teal">
                 <i class="align justify icon"></i>
                 <div class="menu">
@@ -163,17 +175,21 @@
                     </a>
                 </div>
             </div>
+            {% endif %}
         </li>
         <li>
 
             <!--for sign up-->
             {% if not request.user.is_authenticated %}
-            <div class='item'>
-                <a href="{% url 'account_login' %}" class="ui item">Login</a>
-            </div>
-            <div class='item'>
-                <a href="{% url 'account_signup' %}" class="ui item">Signup</a>
-            </div>
+                <li style='marign-right:2em;'>
+                    <button class='ui primary button'>
+                        <a href="{% url 'account_login' %}" class="ui item">Login</a>
+                    </button>
+                    <button class='ui primary button'>
+                        <a href="{% url 'account_signup' %}" class="ui item">Signup</a>
+                    </button>
+                </li>
+
             {% endif %}
         </li>
 
@@ -182,7 +198,28 @@
 </div>
 <!--Notification-->
 <script src="{% static 'notifications/notify.js' %}" type="text/javascript"></script>
-{% comment %} <script src="{% static 'js/base.js' %}" defer></script>
-already coming from base.html
-{% endcomment %}
 
+
+
+<script>
+    // ========================= Follow / Unfollow ======================
+    $('.follow_unfollow').submit(function(e){
+    e.preventDefault()
+    
+    const profile_pk = $(this).attr('id')
+    const url = $(this).attr('action')
+
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {
+            'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+            'profile_pk':profile_pk,
+        }, 
+        success: function(data) {
+            $(`#status${profile_pk}`).html(data['status'])
+        
+        }
+    })
+})
+</script>

@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
 
 {% block title %}
-Update Post
+Update full_name | username
 {% endblock title %}
 
 {% block content %}
 <div class="ui container-md">
   <div style='margin-top:5em;' class='ui segment'>
-    <h3>Update Post</h3>
+    <h3>Update User Info</h3>
     <form action="" method='POST' class='ui form' enctype='multipart/form-data'>
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form|crispy }}
       <button class='ui button primary mt-5' type='submit'>Update</button>
     </form>
   </div>

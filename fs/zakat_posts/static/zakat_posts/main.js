@@ -100,3 +100,13 @@ $('.downvote-form').submit(function(e){
     })
 
 })
+
+
+// ======================== Details Modal ========================
+function opendetail(){
+    $('#Details').modal('show');
+}
+
+function showDonors(){
+    $('#donors').modal('show');
+}

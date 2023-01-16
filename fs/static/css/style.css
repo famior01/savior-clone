@@ -114,3 +114,94 @@ body{
   /* overflow: auto; */
   /* border: 1px solid rgb(106, 0, 255);; */
 /* }
+
+
+/* ======================== for password change.html ========================== */
+.controls{
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  width: 100%;
+  margin-bottom: 1em;
+
+}
+
+.controls input{
+  width: 40%;
+  height: 2em;
+  border: 1px solid #000;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: 1em;
+  font-weight: 500;
+  color: #000;
+}
+
+.controls input:hover{
+  border: 1px solid rgb(16, 227, 255);
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: 1em;
+  font-weight: 500;
+  color: #000;
+}
+
+
+
+.control-label{
+  font-size: 17px;
+  font-weight: 500;
+  color: #000;
+}
+
+#forgot_pass{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
+/* ======================== for login card ========================== */
+
+.login_card{
+  width: 25em !important;
+  height: 25em !important;
+  margin: 0 auto !important;
+  margin-top: 1em !important;
+  padding: 2em !important;
+  border-radius: 1em !important;
+  background-color: #fff !important;
+  box-shadow: 0 0 10px #000 !important;
+}
+
+
+/* ======================== for sign up card ========================== */
+.signup_card{
+  width: 30em !important;
+  height: 85% !important;
+  margin: 0 auto !important;
+  margin-top: 1em !important;
+  margin-left: 0em !important;
+  margin-bottom: 5em !important;
+  padding: 1em !important;
+  border-radius: 1em !important;
+  background-color: #fff !important;
+  box-shadow: 0 0 10px #000 !important;
+}
+
+#signup_form{
+  margin-top:0em;
+}
+.control-group input{
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #000 !important;
+}
+
+
+#signup_form label{
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #000 !important;
+}

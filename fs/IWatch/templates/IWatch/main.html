@@ -5,11 +5,13 @@
   IWatch
 {% endblock title %}
 
+{% block css %}
+<link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>
+{% endblock css %}
 
 {% block content %}
 
 
-<link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>
 
 <div class='ui container-fluid'>
     <div class="ui grid">
@@ -28,7 +30,7 @@
 
             <div class="ui celled list">
               <div class="item">
-                <img class="ui avatar image" src="{{i.avatar.url}}">
+                <img class="ui avatar image" src="{{i.picture.url}}">
                 <div class="content">
                   <a href="{% url 'profiles:profile-detail-view' i.pk %}"><div class="header">{{i.user.full_name}}</div></a>
                 </div>
@@ -39,7 +41,7 @@
               {% for i in random_people %}
               <div class="ui celled list">
                 <div class="item">
-                  <img class="ui avatar image" src="{{i.avatar.url}}">
+                  <img class="ui picture image" src="{{i.picture.url}}">
                   <div class="content">
                     <a href="{% url 'profiles:profile-detail-view' i.pk %}"><div class="header">{{i.user.full_name}}</div></a>
                   </div>
@@ -53,17 +55,18 @@
         <div class="thirteen wide column">
           <div class="ui grid ">
             
-            <div class="row ">
+            <div style='margin-top:2em;' class="row ">
               <!--========================= Search Bar ====================-->
-              <div class="ui eight wide column centered aligned"> 
+              <div class="ui ten wide column centered aligned"> 
                 <form action="{% url 'IWatch:search-IWatch' %}" method="GET"> 
-                    <div style='width: 45em;' class="ui right action left icon input">
+                    <div style='width: 45em;' id='search_bar' class="ui right action left icon input">
                         <i class="search icon"></i>
-                        <input  type="text" name='query' id='search_here' value='{{ request.GET.query }}' placeholder="name of a Video by title, name, descriptions, username...">
-                        <button type='submit' class="ui button">Search</button>
+                        <input  type="text" name='query' id='search_here' value='{{ request.GET.query }}' placeholder="name of a Video by title, name, descriptions, username..."> 
                         <a href="{% url 'IWatch:IWatch-main' %}">
-                          <i class="black window close outline huge icon"></i>
-                        </a> 
+                          <i id='cross' class="fa-solid fa-xmark ui large"></i>
+                        </a>
+                        <button type='submit' class="ui button">Search</button>
+                        
                     </div>
                 </form>
               </div>
@@ -80,9 +83,9 @@
             </div>
 
             <div class="row">
-              <div class="ui black raised segment"><h2>Video from people you follow</h2></div>
+              <div style="width:95%; margin-left:2.5em; font-size:10px;" class="ui black raised segment"><h4>Videos from people you follow</h4></div>
               <!--========================= video cards ====================-->
-            <div class="ui four cards">
+            <div style='margin-left:3em;' class="ui four cards">
               {% for i in qs %}
                 <div id='card_style' class="card">
                     <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
@@ -94,7 +97,7 @@
                       <div class="row">
                         <div class="four wide column">
                           <div class="user-img">
-                            <img src="{{ i.creator.avatar.url }}">
+                            <img src="{{ i.creator.picture.url }}">
                           </div> 
                         </div>
                         <div class="twelve wide column">
@@ -108,7 +111,7 @@
                             <div class="info">
                               {{i.current_hit_count}} Views
                               {{i.creator.get_follower_no}} Followers
-                              {{i.created|timesince}}ago
+                              {{i.created|timesince}} ago
                             </div>
                           </div>
                         </div>
@@ -119,9 +122,9 @@
               {% endfor %}
             </div>
 
-            <div class="ui black raised segment"><h2>Suggestions (Random for now, will change in near future)</h2></div>            
-            <div class="row">
-                <div class="ui four cards">
+            <div style="width:95%; margin-left:2.5em; font-size:10px;" class="ui black raised segment"><h4>Suggestions for you</h4></div>           
+            <div style='margin-left:3em;' class="row">
+                <div  class="ui four cards">
                   {% for i in random_objects %}
                     <div id='card_style' class="card">
                         <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
@@ -133,7 +136,7 @@
                           <div class="row">
                             <div class="four wide column">
                               <div class="user-img">
-                                <img src="{{ i.creator.avatar.url }}">
+                                <img src="{{ i.creator.picture.url }}">
                               </div> 
                             </div>
                             <div class="twelve wide column">

@@ -55,21 +55,13 @@ INSTALLED_APPS = [
     # count views
     # https://django-hitcount.readthedocs.io/en/latest/installation.html
     'hitcount',
+
+    # https://pypi.org/project/django-mathfilters/
+    'mathfilters',
+
 ]
 
-# ---------------------------------------------------------------------------- #
-#                                   THUMBNAIL                                  #
-# ---------------------------------------------------------------------------- #
-# https://pypi.org/project/django-thumbnails/
-THUMBNAILS = {
-    'METADATA': {
-        'PREFIX': 'thumbs',
-        'BACKEND': 'thumbnails.backends.metadata.RedisBackend',
-        'db': 2,
-        'port': 6379,
-        'host': 'localhost',
-    },
-}
+
 
 AUTH_USER_MODEL = 'user.User'
 
@@ -286,6 +278,7 @@ STATICFILES_DIRS = [
     BASE_DIR/'profiles'/'static',
     BASE_DIR/'zakat_posts'/'static',
     BASE_DIR/'authentications'/'static',
+    BASE_DIR/'user'/'static',
 ]
 
 # Media files (User uploaded files)

@@ -81,8 +81,8 @@
                     <div class="left floated column eight wide fluid">
                       <!--Profile picture and created time-->
                       <img
-                        class="ui avatar image"
-                        src="{{obj.creator.avatar.url}}"
+                        class="ui picture image"
+                        src="{{obj.creator.picture.url}}"
                       />
                       {{ obj.creator }} {{obj.creator.last_name}}
                       <br />({{ obj.created|timesince}} ago)
@@ -165,8 +165,8 @@
                     {% for c in obj.zakat_posts_comments.all %}
                     <div class="ui green raised segment">
                       <img
-                        class="ui avatar image"
-                        src="{{c.user.avatar.url}}"
+                        class="ui picture image"
+                        src="{{c.user.picture.url}}"
                       />
                       <span>{{ c.user }}</span>
                       <div class="mt-5">{{ c.body }}</div>

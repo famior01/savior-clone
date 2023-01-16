@@ -74,5 +74,68 @@ $.ajax({
 
 
 /// =================================================================
-// ========================= Dislike Follow =========================
+// ========================= video player =========================
 // =================================================================
+// const player = new Plyr('#player',  {
+
+//     ratio	: '10:5',
+//     loop: { active: false },
+//     seekTime: 10,
+//     disableContextMenu: true,
+//     tooltips: { controls: true, seek: true},
+//     captions	: { active: true, language: 'en', update: true },
+
+//     ads: {
+//         enabled: false,
+//         publisherId: '',
+//         tagUrl: '' ,
+//     },
+//     mediaMetadata: {
+//         title: '{{IWatch.title}}',
+//         artist: '{{IWatch.creator.user.full_name}}',
+//         album: '',
+//     },
+//     });
+//     player.source = {
+//     type: 'video',
+//     title: '{{IWatch.title}}',
+//     sources: [
+//         {
+//         src: '{{IWatch.video.url}}',
+//         type: 'video/mp4',
+//         size: 720,
+//     },
+//     {
+//         src: '{{IWatch.video.url}}',
+//         type: 'video/webm',
+//         size: 1080,
+//     },
+//     ],
+//     poster: '{{ IWatch.thumbnail.url }} ',
+//     previewThumbnails: {
+//         src: '{{ IWatch.thumbnail.url }}',
+//     },
+//     tracks: [
+//         {
+//         kind: 'captions',
+//         label: 'English',
+//         srclang: 'en',
+//         //src: '/path/to/captions.en.vtt',
+//         default: true,
+//         },
+//         {
+//         kind: 'captions',
+//         label: 'Urdu',
+//         srclang: 'ur',
+//         //src: '/path/to/captions.ur.vtt',
+//         },
+//     ],
+//     };
+
+//     player.on('seeking', (event) => {
+//     //increase seeking time
+//     player.currentTime += 10;
+//     });
+
+//     // player.rewind(4);
+//     // player.forward(4);

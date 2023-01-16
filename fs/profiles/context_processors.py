@@ -8,6 +8,6 @@ def profile_picture(request):
       user = request.user # for notifications
       profiles = Profile.objects.all()
       my_profile = Profile.objects.get(user=request.user) # for profile picture
-      return {'profile_picture': my_profile.avatar.url, 'user': user, 'profiles': profiles, 'my_profile': my_profile}
+      return {'profile_picture': my_profile.picture.url, 'user': user, 'profiles': profiles, 'my_profile': my_profile}
   return {}
 

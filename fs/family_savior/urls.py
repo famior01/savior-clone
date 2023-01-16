@@ -13,6 +13,7 @@ urlpatterns = [
     path('profiles/', include('profiles.urls', namespace='profiles')),
     path('IWatch/', include('IWatch.urls', namespace='IWatch')),
     path('zakat_posts/', include('zakat_posts.urls', namespace='zakat_posts')),
+    path('user/', include('user.urls', namespace='user')),
     path('api/', include('zakat_posts.api.urls')),
     # for notifications
     re_path('^inbox/notifications/', include(notifications.urls, namespace='notifications')),

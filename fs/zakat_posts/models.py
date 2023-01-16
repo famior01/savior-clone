@@ -4,11 +4,16 @@ from IWatch.models import IWatch
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from user.models import User
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 
 class ZakatPosts(models.Model):
   creator       = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='zakat_posts')
   seeker        = models.CharField(max_length=100, blank=True) 
+  phone_number  = PhoneNumberField(null=True, unique=True)
+  address       = models.CharField(max_length=150, blank=True)
+  bank_details  = models.CharField(max_length=200, blank=True)
   donor         = models.ManyToManyField(Profile, blank=True, related_name='donors') 
   video1        = models.FileField(upload_to='zakat_video', blank=True)
   video2        = models.FileField(upload_to='zakat_video', blank=False)
