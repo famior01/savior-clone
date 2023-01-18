@@ -402,7 +402,7 @@ fabric.properties
 
 
 # Models
-*.txt
+# *.txt
 *.jpeg
 *.jpg
 *.png
