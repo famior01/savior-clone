@@ -83,7 +83,11 @@
             </div>
 
             <div class="row">
-              <div style="width:95%; margin-left:2.5em; font-size:10px;" class="ui black raised segment"><h4>Videos from people you follow</h4></div>
+              {% if qs %}
+              <div style="width:95%; margin-left:2.5em; font-size:10px;" class="ui black raised segment">
+                <h4>Videos from people you follow</h4>
+              </div>
+              {% endif %}
               <!--========================= video cards ====================-->
             <div style='margin-left:3em;' class="ui four cards">
               {% for i in qs %}
