@@ -4,27 +4,19 @@ import smtplib, ssl
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# with open(os.path .join(BASE_DIR, 'secret_key.txt')) as f:
-    # SECRET_KEY = f.read().strip()   
 secret_key = 'django-insecure-9x5e3shen*+a66vk360$0ncpk^4+!o4(mps)e_6tmih(smob^e'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# Allowed hosts for the project to run on 
-# ALLOWED_HOSTS = ['192.168.0.102']
 ALLOWED_HOSTS = []
 # LOGIN_URL ='/admin/'
 # Here If User logged in then he will be redirected to this page
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic', # overide runserver for static files
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -152,6 +144,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -283,7 +276,6 @@ STATICFILES_DIRS = [
     BASE_DIR/'user'/'static',
 ]
 
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Media files (User uploaded files)

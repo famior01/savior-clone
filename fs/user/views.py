@@ -3,7 +3,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponseRedirect
-from family_savior.settings import LOGIN_REDIRECT_URL
 from django.contrib.auth.decorators import login_required
 from profiles.models import Profile
 from user.models import User 

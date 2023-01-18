@@ -10,7 +10,6 @@ from django.contrib.auth.decorators import login_required
 from .forms import ProfileModelForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
-from family_savior.settings import AUTH_USER_MODEL
 from user.models import User
 from django.contrib.auth import get_user_model
 from notifications.signals import notify
