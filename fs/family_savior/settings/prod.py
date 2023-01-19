@@ -8,6 +8,6 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['128.199.29.110']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
