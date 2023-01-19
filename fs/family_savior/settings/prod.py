@@ -11,3 +11,16 @@ DEBUG = True
 ALLOWED_HOSTS = ['128.199.29.110']
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'myproject',
+        'USER': 'abuubaida01',
+        'PASSWORD': 'Fd1|@Fn2|7*dn',
+        'HOST': '128.199.29.110',
+        'PORT': '',
+    }
+}

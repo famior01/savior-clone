@@ -96,9 +96,10 @@ ACCOUNT_FORMS = {
 'signup': 'authentications.forms.CustomSignupForm',
 }
 
-# ---------------------------------------------------------------------------- #
-#                                Email settings                                #
-# ---------------------------------------------------------------------------- #
+# ========================================
+# -=-=-=-=-=  EMAIL SETTINGS  =-=-=-=-=-=
+# ========================================
+
 # ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_LOGOUT_REDIRECT_URL = '/'
 # # to show the subject of the email
