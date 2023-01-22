@@ -1,7 +1,6 @@
 from transformers import RobertaTokenizerFast, TFRobertaForSequenceClassification, pipeline
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import whisper
-from scipy import stats
 from collections import Counter
 
 
