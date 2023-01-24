@@ -8,8 +8,14 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 """
 
 import os
+import dotenv
+import pathlib
 
 from django.core.wsgi import get_wsgi_application
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+ENV_FILE_PATH = BASE_DIR / '.env'
+dotenv.read_dotenv(str(ENV_FILE_PATH))
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings')
 

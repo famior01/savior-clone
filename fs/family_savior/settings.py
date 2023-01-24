@@ -6,9 +6,11 @@ import smtplib, ssl
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-9x5e3shen*+a66vk360$0ncpk^4+!o4(mps)e_6tmih(smob^e'
+# SECRET_KEY = 'django-insecure-9x5e3shen*+a66vk360$0ncpk^4+!o4(mps)e_6tmih(smob^e'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
-DEBUG = True
+DEBUG = str(os.environ.get('DEBUG')) == '1'
+
 
 ALLOWED_HOSTS = []
 # LOGIN_URL ='/admin/'
@@ -202,6 +204,29 @@ DATABASES = {
     }
 }
 
+POSTGRES_READY=os.environ.get('POSTGRES_READY', False)
+DB_DATABASE=os.environ.get('POSTGRES_DB')
+DB_USERNAME=os.environ.get('POSTGRES_USER')
+DB_PASSWORD=os.environ.get('POSTGRES_PASSWORD')
+DB_HOST=os.environ.get('POSTGRES_HOST')
+DB_PORT=os.environ.get('POSTGRES_PORT')
+DB_IS_AVAILABLE = all([
+    DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
+])
+
+POSTGRES_READY = str(os.environ.get('POSTGRES_READY')) == '1'
+
+if POSTGRES_READY and DB_IS_AVAILABLE:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': DB_DATABASE,
+            'USER': DB_USERNAME,
+            'PASSWORD': DB_PASSWORD,
+            'HOST': DB_HOST,
+            'PORT': DB_PORT,
+        }
+    }
 
 # Cashe
 # django setting.

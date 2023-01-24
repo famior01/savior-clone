@@ -1,0 +1,13 @@
+version: 3.10.7
+services:
+  web:
+    build: 
+      context: ./fs
+      dockerfile: Dockerfile
+    image: savior:1.1
+    environment:
+      - PORT=8020
+    env_file:
+      - fs/.env
+    ports:
+      - "8001:8020"
