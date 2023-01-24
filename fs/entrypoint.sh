@@ -1,4 +1,4 @@
 #!/bin/bash
-APP_PORT = ${POST:-8000}
+APP_PORT = ${PORT:-8000}
 cd /app/
 /opt/venv/bin/gunicorn --worker-tem-dir /dev/shm family_savior.wsgi:application --bind "0.0.0.0:${APP_PORT}"
