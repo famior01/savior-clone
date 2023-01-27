@@ -14,14 +14,14 @@ will appear in the video, one at a time, without saying anything.
 7. video should be in 16:9 ratio
 '''
 
-from .get_frames import Get_frames
-from .find_similar_faces import GatherSimilarFaces
-from .emotion_detection import Analyze_pics
-from .img_purification import  Purification
+from AI.face_emo_detection.get_frames import Get_frames
+from AI.face_emo_detection.find_similar_faces import GatherSimilarFaces
+from AI.face_emo_detection.emotion_detection import Analyze_pics
+from AI.face_emo_detection.img_purification import  Purification
 import os
 import shutil
 
- 
+
 def find_emotion(video_id):
   obj = Get_frames(video_id=video_id)
   path = obj.get_frames()

@@ -9,10 +9,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-9x5e3shen*+a66vk360$0ncpk^4+!o4(mps)e_6tmih(smob^e'
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
-DEBUG = str(os.environ.get('DEBUG')) == '1'
+DEBUG = str(os.environ.get('DEBUG')) == "1"
 
 
 ALLOWED_HOSTS = []
+
+# if ENV_ALLOWED_HOST:
+#   ALLOWED_HOSTS = [ ENV_ALLOWED_HOST ]
+
 # LOGIN_URL ='/admin/'
 # Here If User logged in then he will be redirected to this page
 
@@ -95,7 +99,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_CONFIRMATION_HMAC = True
 
 ACCOUNT_FORMS = {
-'signup': 'authentications.forms.CustomSignupForm',
+'signup':'authentications.forms.CustomSignupForm',
 }
 
 # ========================================
@@ -193,8 +197,9 @@ AUTHENTICATION_BACKENDS = [
 
 WSGI_APPLICATION = 'family_savior.wsgi.application'
 
-
-# Database
+# ======================================================================
+# ------------------------- SQLit3 DATABASE SETTINGS -------------------
+# ======================================================================
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
@@ -204,19 +209,23 @@ DATABASES = {
     }
 }
 
+# ======================================================================
+# ------------------------- Postgres DATABASE SETTINGS -------------------
+# ======================================================================
+# https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
+
 POSTGRES_READY=os.environ.get('POSTGRES_READY', False)
 DB_DATABASE=os.environ.get('POSTGRES_DB')
 DB_USERNAME=os.environ.get('POSTGRES_USER')
 DB_PASSWORD=os.environ.get('POSTGRES_PASSWORD')
 DB_HOST=os.environ.get('POSTGRES_HOST')
 DB_PORT=os.environ.get('POSTGRES_PORT')
+
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
 ])
 
-POSTGRES_READY = str(os.environ.get('POSTGRES_READY')) == '1'
-
-if POSTGRES_READY and DB_IS_AVAILABLE:
+if DB_IS_AVAILABLE:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
