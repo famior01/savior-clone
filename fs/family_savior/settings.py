@@ -180,7 +180,6 @@ TEMPLATES = [
 
                 # Enable {{ profile_picture }}
                 'profiles.context_processors.profile_picture',
-
             ],
         },
     },
@@ -228,7 +227,7 @@ DB_IS_AVAILABLE = all([
 if DB_IS_AVAILABLE:
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            "ENGINE": "django.db.backends.postgresql",
             'NAME': DB_DATABASE,
             'USER': DB_USERNAME,
             'PASSWORD': DB_PASSWORD,
