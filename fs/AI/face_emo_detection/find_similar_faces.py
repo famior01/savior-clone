@@ -75,6 +75,6 @@ class GatherSimilarFaces():
     
 
 # if __name__ == '__main__':
-#     obj = GatherSimilarFaces(r'C:\Product\FS_1.1\fs\AI\face_emo_detection\data\Frames')
+#     obj = GatherSimilarFaces(r'C:\Product\Savior\fs\AI\face_emo_detection\data\Frames')
 #     obj.similar_face()
 #     obj.remove_rest()

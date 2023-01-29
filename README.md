@@ -1,4 +1,4 @@
-# FS_1.1
+# Savior
 
 THE EASIEST WAY TO PAY ZAKAT!
 

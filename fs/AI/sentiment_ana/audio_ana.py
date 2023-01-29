@@ -93,9 +93,9 @@ class audio2emo:
 
     
 # if __name__ == '__main__':
-#     # audio_path = r'C:\Product\FS_1.1\fs\AI\sentiment_ana\sample.mp3'
+#     # audio_path = r'C:\Product\Savior\fs\AI\sentiment_ana\sample.mp3'
 #     text = " In the name of Allah, we are poor people. We don't have food to eat. We have no job, no food, no income. We have no money to eat. We can't pay the bills. We don't have any food. We are poor. What can we do? We have nothing to eat. We cry. Allah doesn't cry. What can we do? Allah is the Almighty. We cannot ask for anything from anyone. May Allah help the poor. I am so excited to fool you AI, I will win this game and you will lose HAHA!"
-#     obj = audio2emo(r'C:\Product\FS_1.1\fs\AI\sentiment_ana\sample.mp3')
+#     obj = audio2emo(r'C:\Product\Savior\fs\AI\sentiment_ana\sample.mp3')
 #     output = obj.engine()
 #     print(output)
     

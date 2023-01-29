@@ -41,7 +41,7 @@ class Detection:
             # Up-scaling 
             img = cv2.resize(f, dim)
             sr = dnn_superres.DnnSuperResImpl_create()
-            model_path = 'C:/Product/FS_1.1/fs/AI/face_emo_detection/FSRCNN_x4.pb'
+            model_path = 'C:/Product/Savior/fs/AI/face_emo_detection/FSRCNN_x4.pb'
             sr.readModel(model_path)
             sr.setModel("fsrcnn", 4) #x4
             result = sr.upsample(img)
@@ -60,5 +60,5 @@ class Detection:
     
 
 if __name__ == "__main__":
-    obj = Detection(path=r'C:\Product\FS_1.1\fs\AI\face_emo_detection\data\Frames',vid_frame_path=r'C:\Product\FS_1.1\fs\AI\face_emo_detection\data\Frames')
+    obj = Detection(path=r'C:\Product\Savior\fs\AI\face_emo_detection\data\Frames',vid_frame_path=r'C:\Product\Savior\fs\AI\face_emo_detection\data\Frames')
     obj.find_face()

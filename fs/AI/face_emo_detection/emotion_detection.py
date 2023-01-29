@@ -65,7 +65,7 @@ def Analyze_pics(path):
 
 # if __name__ == "__main__":
 
-#         path = r"C:\Product\FS_1.1\fs\AI\face_emo_detection\data\People_faces"
+#         path = r"C:\Product\Savior\fs\AI\face_emo_detection\data\People_faces"
 #         total_Persons = os.listdir(path)
 #         for i in range(len(total_Persons)):
 #                 name, emo = Analyze_pics(path + "\\" + total_Persons[i])
