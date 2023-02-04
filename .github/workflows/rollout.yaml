@@ -1,4 +1,4 @@
-name: Rollout Django Deploym
+name: Rollout Django Deployment
 
 on:
   workflow_call:
