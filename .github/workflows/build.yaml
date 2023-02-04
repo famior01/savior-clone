@@ -56,7 +56,7 @@ jobs:
         POSTGRES_USER=${{ secrets.DATABASE_USER }}
         POSTGRES_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
         POSTGRES_HOST=${{ secrets.DATABASE_HOST }} 
-        POSTGRES_PORT=${{ secrets.DATABASE_PORT }
+        POSTGRES_PORT=${{ secrets.DATABASE_PORT }}
         EOF
         kubectl delete secret savior-prod-secret
         kubectl create secret generic savior-prod-secret --from-env-file=fs/.env.prod
