@@ -1,0 +1,24 @@
+name: Rollout Django Deploym
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  rollout:
+    runs-on: ubuntu-latest
+    env:
+      CLUSTER_NAME: savior-cluster
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    - name: k8s cluster kubeconfig file short-live creds
+      run: |
+        doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ env.CLUSTER_NAME }} 
+    - name: Run Rollout on Deployment
+      run: |
+        kubectl rollout restart deployment/savior-deployment

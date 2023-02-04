@@ -11,14 +11,12 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 DEBUG = str(os.environ.get('DEBUG')) == "1"
 
+ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOSTS')
 
-ALLOWED_HOSTS = []
-
-# if ENV_ALLOWED_HOST:
-#   ALLOWED_HOSTS = [ ENV_ALLOWED_HOST ]
-
-# LOGIN_URL ='/admin/'
-# Here If User logged in then he will be redirected to this page
+if ENV_ALLOWED_HOST:
+    ALLOWED_HOSTS = [ ENV_ALLOWED_HOST ]
+else:
+    ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic', # overide runserver for static files
@@ -31,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django_celery_results',
     'django_celery_beat',
+    'storages',
     'rest_framework',
     'user',
     'profiles',
@@ -196,6 +195,13 @@ AUTHENTICATION_BACKENDS = [
 
 WSGI_APPLICATION = 'family_savior.wsgi.application'
 
+
+# -------------------------------------------------------------------------------
+# ------------------------- DATABASE SETTINGS -------------------
+# -------------------------------------------------------------------------------
+DB_IGNORE_SSL=os.environ.get('DB_IGNORE_SSL')=='true'
+
+
 # ======================================================================
 # ------------------------- SQLit3 DATABASE SETTINGS -------------------
 # ======================================================================
@@ -226,6 +232,8 @@ else:
         DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
     ])
 
+
+
     if DB_IS_AVAILABLE:
         DATABASES = {
             'default': {
@@ -237,6 +245,10 @@ else:
                 'PORT': DB_PORT,
             }
         }
+        if not DB_IGNORE_SSL:
+            DATABASES['default']['OPTIONS'] = {
+                'sslmode': 'require',
+            }
 
 # Cashe
 # django setting.
@@ -281,9 +293,8 @@ USE_TZ = True
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
 # Celery settings
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-# if i want to use redis as a result backend, but i am using django database
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_REDIS_URL')
+CELERY_RESULT_BACKEND = "django-db"
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -291,9 +302,9 @@ CELERY_TIMEZONE = 'Asia/Karachi'
 CELERY_RESULT_BACKEND = 'django-db'
 # CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_CACHE_BACKEND = 'default'
-# CELERY_BEAT
 CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-RESULT_BACKEND = 'db+sqlite:///results.db'
+RESULT_BACKEND = 'db+sqlite://results.db'
+
 
 
 
@@ -302,22 +313,20 @@ RESULT_BACKEND = 'db+sqlite:///results.db'
 # ------------- STATIC FILES ---------------------
 # =================================================
 STATIC_URL = 'static/'
+
+STATIC_ROOT = BASE_DIR/"staticfiles-cdn"
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    BASE_DIR/'IWatch'/'static',
-    BASE_DIR/'profiles'/'static',
-    BASE_DIR/'zakat_posts'/'static',
-    BASE_DIR/'authentications'/'static',
-    BASE_DIR/'user'/'static',
+    BASE_DIR/"staticfiles"
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+from .cdn.conf import * # noqa
+
 
 # Media files (User uploaded files)
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR/'media'
 # MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root')
-
 
 
 

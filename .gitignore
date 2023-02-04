@@ -1,4 +1,6 @@
 .kube/
+.env.pord
+zdocs/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -418,3 +420,4 @@ yolov5
 *.avi
 *.data
 fs/db.sqlite3
+fs/.env.prod

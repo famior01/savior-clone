@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: savior-deployment
+  labels:
+    app: savior-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: savior-deployment
+  template:
+    metadata:
+      labels:
+        app: savior-deployment
+    spec:
+      containers:
+      - name: savior
+        image: registry.digitalocean.com/savior/savior:latest
+        imagePullPolicy: Always
+        envFrom:
+          - secretRef:
+              name: savior-prod-secret
+        env:
+          - name: PORT
+            value: "8001"
+        ports:
+        - containerPort: 8001
+      imagePullSecrets:
+        - name: savior
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: savior-deployment
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8001
+  selector:
+    app: savior-deployment
