@@ -25,7 +25,9 @@ jobs:
       with:
         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
     - name: lOGIN TO DO REGISTRY FOR 20 MINUTES
-      run: doctl registry login  
+      run: | 
+        doctl registry login \
+        print("hello world")  
     - name: Build conainer Image
       working-directory: ./fs
       run: |
