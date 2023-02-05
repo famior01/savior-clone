@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     # needs: [test_django_job]
     env:
-      CLUSTER_NAME: savior-cluster
+      CLUSTER_NAME: savior
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -35,7 +35,7 @@ jobs:
           . 
     - name: Push container Image
       run: |
-        docker push registry.digitalocean.com/savior/savior --all-tags
+        docker push registry.digitalocean.com/${{ env.CLUSTER_NAME }}/savior --all-tags
     - name: k8s cluster kubeconfig file short-live creds
       run: |
         doctl kubernetes cluster kubeconfig save  ${{ env.CLUSTER_NAME }} 
