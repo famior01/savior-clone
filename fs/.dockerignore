@@ -1,7 +1,5 @@
 db.sqlite3
-.env.pord
-zdocs/
-sqlite3
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -115,7 +113,6 @@ celerybeat.pid
 
 # Environments
 .venv
-env/
 venv/
 ENV/
 env.bak/
@@ -224,7 +221,6 @@ __pycache__/
 
 # Distribution / packaging
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -410,7 +406,6 @@ fabric.properties
 *.jpg
 *.png
 *.zip
-yolov7
 yolov5
 *.mp3
 *.mp4

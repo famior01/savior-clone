@@ -1,5 +1,6 @@
 .kube/
 .env.pord
+.env
 zdocs/
 db.sqlite3
 
