@@ -38,7 +38,7 @@ jobs:
         docker push registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior --all-tags
     - name: k8s cluster kubeconfig file short-live creds
       run: |
-        doctl kubernetes cluster kubeconfig save --expiry-seconds 600  config 
+        doctl kubernetes cluster kubeconfig save --expiry-seconds 600  savior-cluster
 
     - name: update deployment secrets
       run: |
