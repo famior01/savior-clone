@@ -35,7 +35,7 @@ jobs:
           . 
     - name: Push container Image
       run: |
-        docker push registry.digitalocean.com/${{ env.CLUSTER_NAME }}/savior --all-tags
+        docker push registry.digitalocean.com/savior/savior --all-tags
     - name: k8s cluster kubeconfig file short-live creds
       run: |
         doctl kubernetes cluster kubeconfig save  ${{ env.CLUSTER_NAME }} 
