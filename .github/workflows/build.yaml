@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     # needs: [test_django_job]
     env:
-      CLUSTER_NAME: savior
+      CONTAINER_NAME: savior
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -25,20 +25,20 @@ jobs:
       with:
         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
     - name: LOGIN TO DO REGISTRY FOR 20 MINUTES
-      run: doctl registry login  
+      run: doctl registry login  --expiry-seconds 1200
     - name: Build conainer Image
       working-directory: ./fs
       run: |
         docker build -f Dockerfile \
-          -t registry.digitalocean.com/${{ env.CLUSTER_NAME }}/savior:latest \
-          -t registry.digitalocean.com/${{ env.CLUSTER_NAME }}/savior:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5} \
+          -t registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior:latest \
+          -t registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5} \
           . 
     - name: Push container Image
       run: |
-        docker push registry.digitalocean.com/${{ env.CLUSTER_NAME }}/savior --all-tags
+        docker push registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior --all-tags
     - name: k8s cluster kubeconfig file short-live creds
       run: |
-        doctl kubernetes cluster kubeconfig save  ${{ env.CLUSTER_NAME }} 
+        doctl kubernetes cluster kubeconfig save --expiry-seconds 600  config 
 
     - name: update deployment secrets
       run: |
@@ -63,7 +63,7 @@ jobs:
 
     - name: update Deployment Image
       run: |
-        kubectl set image deployment/savior-deployment savior=registry.digitalocean.com/${{ env.CLUSTER_NAME }}/savior:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5}
+        kubectl set image deployment/savior-deployment savior=registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5}
 
     - name: wait for rollout to finish
       run: |
