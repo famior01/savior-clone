@@ -72,5 +72,5 @@ jobs:
     - name: Migrate Database
       run: |
         export SINGLE_POD_NAME=$(kubectl get pod -l app=savior-deployment -o jsonpath="{.items[0].metadata.name}")
-        winpty kubectl exec -it $SINGLE_POD_NAME -- bash /app/migrate.sh 
-        winpty kubectl exec -it $SINGLE_POD_NAME -- bash /app/collectstatic.sh 
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/migrate.sh 
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh 
