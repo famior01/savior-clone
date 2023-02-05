@@ -18,6 +18,10 @@ BASE_DIR = CURRENT_DIR.parent
 ENV_FILE_PATH = BASE_DIR / '.env'
 dotenv.read_dotenv(str(ENV_FILE_PATH))
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings')
+production = os.environ.get('USE_PRODUCTION')
+if production=='1':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.local')
 
 application = get_wsgi_application()

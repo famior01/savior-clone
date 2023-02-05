@@ -3,20 +3,8 @@ import os
 import smtplib, ssl
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# SECRET_KEY = 'django-insecure-9x5e3shen*+a66vk360$0ncpk^4+!o4(mps)e_6tmih(smob^e'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
-
-DEBUG = str(os.environ.get('DEBUG')) == "1"
-
-ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOSTS')
-
-if ENV_ALLOWED_HOST:
-    ALLOWED_HOSTS = [ ENV_ALLOWED_HOST ]
-else:
-    ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'whitenoise.runserver_nostatic', # overide runserver for static files
@@ -27,40 +15,30 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    
+    # External apps
     'django_celery_results',
     'django_celery_beat',
     'storages',
     'rest_framework',
+    'allauth',
+    'allauth.account',
+    'authentications', 
+    'notifications',
+    'crispy_forms',
+    "phonenumber_field",
+    'hitcount',  # https://django-hitcount.readthedocs.io/en/latest/installation.html
+    'mathfilters', # https://pypi.org/project/django-mathfilters/
+
+    # Internal apps
     'user',
     'profiles',
     'IWatch',
     'zakat_posts',
     'AI',
-
-    # django-allauth
-    'allauth',
-    'allauth.account',
-    # 'allauth.socialaccount',
-    'authentications', 
-
-    # for notifications
-    'notifications',
-    'crispy_forms',
-
-    # phone number field
-    "phonenumber_field",
-
-    # count views
-    # https://django-hitcount.readthedocs.io/en/latest/installation.html
-    'hitcount',
-
-    # https://pypi.org/project/django-mathfilters/
-    'mathfilters',
-
 ]
 
-
-
+# My Custom User
 AUTH_USER_MODEL = 'user.User'
 
 # ---------------------------------------------------------------------------- #
@@ -101,6 +79,8 @@ ACCOUNT_FORMS = {
 'signup':'authentications.forms.CustomSignupForm',
 }
 
+
+
 # ========================================
 # -=-=-=-=-=  EMAIL SETTINGS  =-=-=-=-=-=
 # ========================================
@@ -123,28 +103,6 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 ACCOUNT_SESSION_REMEMBER = True
 # limit of alphanumeric characters in username
 ACCOUNT_USERNAME_MIN_LENGTH = 5
-
-# instead of website@gmail.com, now it will be abuubaida901@gmail.com
-DEFAULT_FROM_EMAIL = 'famior01@gmail.com'
-
-
-# Email settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_USE_TLS = True
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
-# we will provide our email and password in the .env file
-EMAIL_HOST_USER = 'famior01@gmail.com'
-EMAIL_HOST_PASSWORD = 'ddkbuimnyedhkmpy'
-
-
-# ===========================================================
-# ------------------------- DEFAULT SETTINGS ------------------
-# ===========================================================
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
 MIDDLEWARE = [
@@ -184,6 +142,7 @@ TEMPLATES = [
     },
 ]
 
+
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -196,59 +155,11 @@ AUTHENTICATION_BACKENDS = [
 WSGI_APPLICATION = 'family_savior.wsgi.application'
 
 
-# -------------------------------------------------------------------------------
-# ------------------------- DATABASE SETTINGS -------------------
-# -------------------------------------------------------------------------------
-DB_IGNORE_SSL=os.environ.get('DB_IGNORE_SSL')=='true'
 
 
 # ======================================================================
 # ------------------------- SQLit3 DATABASE SETTINGS -------------------
 # ======================================================================
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-if  str(os.environ.get('USE_LOCAL_DB')) == "1":
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
-else:
-# ======================================================================
-# ------------------------- Postgres DATABASE SETTINGS -------------------
-# ======================================================================
-# https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
-
-    POSTGRES_READY=os.environ.get('POSTGRES_READY', False)
-    DB_DATABASE=os.environ.get('POSTGRES_DB')
-    DB_USERNAME=os.environ.get('POSTGRES_USER')
-    DB_PASSWORD=os.environ.get('POSTGRES_PASSWORD')
-    DB_HOST=os.environ.get('POSTGRES_HOST')
-    DB_PORT=os.environ.get('POSTGRES_PORT')
-
-    DB_IS_AVAILABLE = all([
-        DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
-    ])
-
-
-
-    if DB_IS_AVAILABLE:
-        DATABASES = {
-            'default': {
-                "ENGINE": "django.db.backends.postgresql",
-                'NAME': DB_DATABASE,
-                'USER': DB_USERNAME,
-                'PASSWORD': DB_PASSWORD,
-                'HOST': DB_HOST,
-                'PORT': DB_PORT,
-            }
-        }
-        if not DB_IGNORE_SSL:
-            DATABASES['default']['OPTIONS'] = {
-                'sslmode': 'require',
-            }
 
 # Cashe
 # django setting.
@@ -289,44 +200,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-# ===========================================================
-# --------------------- CELERY SETTINGS ---------------------
-# ===========================================================
-# Celery settings
-CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_REDIS_URL')
-CELERY_RESULT_BACKEND = "django-db"
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Karachi'
-CELERY_RESULT_BACKEND = 'django-db'
-# CELERY_CACHE_BACKEND = 'django-cache'
-CELERY_CACHE_BACKEND = 'default'
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-RESULT_BACKEND = 'db+sqlite://results.db'
 
 
 
 
-
-#=================================================
-# ------------- STATIC FILES ---------------------
-# =================================================
-STATIC_URL = 'static/'
-
-STATIC_ROOT = BASE_DIR/"staticfiles-cdn"
-
-STATICFILES_DIRS = [
-    BASE_DIR/"staticfiles"
-]
-
-from .cdn.conf import * # noqa
-
-
-# Media files (User uploaded files)
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR/'media'
-# MEDIA_ROOT  = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn', 'media_root')
 
 
 
@@ -351,21 +228,3 @@ DJANGO_NOTIFICATIONS_CONFIG = { 'USE_JSONFIELD': True}
 DJANGO_NOTIFICATIONS_CONFIG = { 'SOFT_DELETE': True}
 
 
-# =====================================================
-# ------------------- HTTPS SETTINGS -------------------------
-# =====================================================
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_BROWSER_XSS_FILTER = True
-# X_FRAME_OPTIONS = 'DENY'
-
-# =====================================================
-# -------------------   HSTS SETTINGS-------------------------
-# =====================================================
-
-# SECURE_HSTS_SECONDS = 31536000 # 1 year
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True # include all subdomains
-# SECURE_HSTS_PRELOAD = True # preload HSTS on browser start

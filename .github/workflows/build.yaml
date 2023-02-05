@@ -43,6 +43,7 @@ jobs:
     - name: update deployment secrets
       run: |
         cat << EOF >> fs/.env.prod
+        USE_PRODUCTION=1
         AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
         DJANGO_ALLOWED_HOSTS=${{ secrets.ALLOWED_HOST }}
@@ -57,6 +58,8 @@ jobs:
         POSTGRES_PASSWORD=${{ secrets.DATABASE_PASSWORD }}
         POSTGRES_HOST=${{ secrets.DATABASE_HOST }} 
         POSTGRES_PORT=${{ secrets.DATABASE_PORT }}
+        EMAIL_USER=${{ secrets.EMAIL_USER }} 
+        EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
         EOF
         kubectl delete secret savior-prod-secret
         kubectl create secret generic savior-prod-secret --from-env-file=fs/.env.prod

@@ -1,7 +1,7 @@
 from __future__ import absolute_import, unicode_literals
 from AI.face_emo_detection.engine import find_emotion
 from AI.sentiment_ana.engine import get_voice_ana
-from AI.YOLOv7.engine import Object_Detection
+from AI.object_detection.engine import Object_Detection
 from celery import Celery
 from django.conf import settings
 from celery import shared_task

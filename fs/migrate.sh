@@ -21,5 +21,5 @@ cd /app/
 # celery -A family_savior worker -l INFO -P eventlet
 
 # /opt/venv/bin/celery -A family_savior worker -l INFO -P eventlet
-# /opt/venv/bin/celery -A family_savior worker -l INFO 
+/opt/venv/bin/celery -A family_savior worker -l INFO 
 

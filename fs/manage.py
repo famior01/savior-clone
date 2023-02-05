@@ -7,7 +7,11 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings')
+    production = os.environ.get('USE_PRODUCTION')
+    if production=='1':
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
+    else:
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.local')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
