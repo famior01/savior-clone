@@ -1,8 +1,8 @@
 #!/bin/bash
-SUPERUSER_EMAIL=${DJANGO_SUPERUSER_EMAIL:-"abuubaida901@gmail.com"}
-SUPERUSER_FULLNAME=${DJANGO_SUPERUSER_FULLNAME:-"Abu-Ubaida"}
-SUPERUSER_RELIGION=${DJANGO_SUPERUSER_RELIGION:-"Islam"}
-SUPERUSER_USERNAME=${DJANGO_SUPERUSER_USERNAME:-"abuubaida01"}
+SUPERUSER_EMAIL="abuubaida901@gmail.com"
+SUPERUSER_FULLNAME="Abu-Ubaida"
+SUPERUSER_RELIGION="Islam"
+SUPERUSER_USERNAME="abuubaida01"
 cd /app/
 
 /opt/venv/bin/python3 manage.py makemigrations
