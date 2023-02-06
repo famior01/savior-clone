@@ -1,4 +1,3 @@
-django-dotenv
 Django==4.1.5
 Celery
 eventlet
@@ -31,3 +30,4 @@ psycopg2-binary
 requests
 django-storages
 boto3
+python-decouple

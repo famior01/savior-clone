@@ -8,18 +8,18 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 """
 
 import os
-import dotenv
 import pathlib
+from decouple import config
 
 from django.core.wsgi import get_wsgi_application
 
-CURRENT_DIR = pathlib.Path(__file__).resolve().parent
-BASE_DIR = CURRENT_DIR.parent
-ENV_FILE_PATH = BASE_DIR / '.env'
-dotenv.read_dotenv(str(ENV_FILE_PATH))
+# CURRENT_DIR = pathlib.Path(__file__).resolve().parent
+# BASE_DIR = CURRENT_DIR.parent
+# ENV_FILE_PATH = BASE_DIR / '.env'
+# dotenv.read_dotenv(str(ENV_FILE_PATH))
 
-production = os.environ.get('USE_PRODUCTION')
-if production=='1':
+production = config('USE_PRODUCTION', cast=bool)
+if production==True:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
 else:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.local')

@@ -1,6 +1,7 @@
 from .base import *
+from decouple import config
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = True
 ALLOWED_HOSTS = []
 
@@ -8,12 +9,12 @@ ALLOWED_HOSTS = []
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
-DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
+DEFAULT_FROM_EMAIL = config('EMAIL_USER')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER') 
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_USER = config('EMAIL_USER') 
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 

@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
-import dotenv
 import sys
+from decouple import config
 
 
 def main():
     """Run administrative tasks."""
-    production = os.environ.get('USE_PRODUCTION')
-    if production=='1':
+    production = config('USE_PRODUCTION', cast=bool)
+    if production==True:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
     else:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.local')
@@ -24,5 +24,4 @@ def main():
 
 
 if __name__ == '__main__':
-    dotenv.read_dotenv()
     main()
