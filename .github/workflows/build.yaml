@@ -4,14 +4,14 @@ on:
   workflow_call:
   workflow_dispatch:
   push:
-    branches: [ "dev" ]
+    branches: [ "Deployment" ]
   pull_request:
-    branches: [ "dev" ]
+    branches: [ "Deployment" ]
   
 
 jobs:
   # test_django_job:
-    # uses: abuubaida01/Savior/.github/workflows/test-django.yaml@dev
+    # uses: abuubaida01/Savior/.github/workflows/test-django.yaml@Deployment
   build:
     runs-on: ubuntu-latest
     # needs: [test_django_job]
