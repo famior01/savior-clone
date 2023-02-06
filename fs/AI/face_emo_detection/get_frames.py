@@ -39,7 +39,7 @@ class Get_frames:
         
     def mk_dir(self):
         if self.object_det:
-            curr_dir = r'C:/Product/Savior/fs/AI/object_detection'
+            curr_dir = r'AI/object_detection'
         else:
             curr_dir = os.path.realpath(os.path.dirname(__file__)) # for finding the curr dir
         curr_dir = curr_dir+'/data/Frames'
@@ -60,7 +60,7 @@ class Get_frames:
             except ValueError:
                 return 'video1'
             
-        video = "C:/Product/Savior/fs/" + video
+        video = "D:/Savior/fs/" + video
         # video = video.replace('/media/', '/media_root/')
         print('************', video, '******video******')
         
