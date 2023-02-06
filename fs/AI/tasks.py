@@ -27,7 +27,6 @@ def notify_after_posting(ID):
 
 @shared_task()
 def AI(ID):
-  
   print("\n\n***********\t IN the AI function \t***********")
   # getting Video emotion analysis
   face_ana = find_emotion(video_id=ID)  

@@ -87,7 +87,6 @@ DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
 ])
 
-
 if DB_IS_AVAILABLE:
     DATABASES = {
         'default': {
@@ -109,9 +108,9 @@ if DB_IS_AVAILABLE:
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
 # CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_REDIS_URL')
-CELERY_BROKER_URL = f'redis://{ENV_ALLOWED_HOST}:6379'
-CELERY_RESULT_BACKEND = f'redis://{ENV_ALLOWED_HOST}:6379'
-CELERY_RESULT_BACKEND = "django-db"
+REDIS_HOST = os.environ.get('DO_REDIS_URL')
+CELERY_BROKER_URL = REDIS_HOST
+# CELERY_RESULT_BACKEND = f'redis://{ENV_ALLOWED_HOST}:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
