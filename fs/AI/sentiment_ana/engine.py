@@ -15,7 +15,7 @@ import shutil
 def get_voice_ana(ID):
   obj = ZakatPosts.objects.filter(id=ID).first()
   video1 = str(obj.video1.url)
-  video1 = "C:/Product/Savior/fs/" + video1
+  video1 = "D:/Savior/fs/" + video1
   # video1 = video1.replace('/media/', '/media_root/')
   print('************\n\t In Audio Analysis \n\t************')
 
@@ -31,11 +31,11 @@ def get_voice_ana(ID):
   print("********* Made MP3 file! *********")
   
   # now I need to pass this audio to emotion_detection.py
-  obj = audio2emo(audio_path='C:/Product/Savior/fs/AI/sentiment_ana/sample.mp3')
+  obj = audio2emo(audio_path='D:/Savior/fs/AI/sentiment_ana/sample.mp3')
   output = obj.engine()
 
   # remove traced_model.pt and runs folder
-  shutil.rmtree('C:/Product/Savior/fs/AI/sentiment_ana/traced_model.pt', ignore_errors=True)
-  shutil.rmtree("C:/Product/Savior/fs/AI/sentiment_ana/runs", ignore_errors=True)
+  shutil.rmtree('D:/Savior/fs/AI/sentiment_ana/traced_model.pt', ignore_errors=True)
+  shutil.rmtree("D:/Savior/fs/AI/sentiment_ana/runs", ignore_errors=True)
 
   return output

@@ -23,7 +23,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'allauth',
     'allauth.account',
-    'authentications', 
     'notifications',
     'crispy_forms',
     "phonenumber_field",
@@ -34,6 +33,7 @@ INSTALLED_APPS = [
     'user',
     'profiles',
     'IWatch',
+    'authentications', 
     'zakat_posts',
     'AI',
 ]
