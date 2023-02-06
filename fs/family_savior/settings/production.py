@@ -1,9 +1,10 @@
 from .base import *
+from decouple import config
 
 
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = False
-ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOSTS')
+ENV_ALLOWED_HOST = config('DJANGO_ALLOWED_HOSTS')
 ALLOWED_HOSTS = [ ENV_ALLOWED_HOST ]
 
 # ====================================================
@@ -58,12 +59,12 @@ LOGGING = {
 }
 
 
-DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_USER')
+DEFAULT_FROM_EMAIL = config('EMAIL_USER')
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_SSL = True
 EMAIL_PORT = 465
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER') 
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_USER = config('EMAIL_USER') 
+EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
@@ -74,11 +75,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # ======================================================================
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
 
-DB_DATABASE=os.environ.get('POSTGRES_DB')
-DB_USERNAME=os.environ.get('POSTGRES_USER')
-DB_PASSWORD=os.environ.get('POSTGRES_PASSWORD')
-DB_HOST=os.environ.get('POSTGRES_HOST')
-DB_PORT=os.environ.get('POSTGRES_PORT')
+DB_DATABASE=config('POSTGRES_DB')
+DB_USERNAME=config('POSTGRES_USER')
+DB_PASSWORD=config('POSTGRES_PASSWORD')
+DB_HOST=config('POSTGRES_HOST')
+DB_PORT=config('POSTGRES_PORT')
 
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
@@ -104,8 +105,8 @@ if DB_IS_AVAILABLE:
 # ===========================================================
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
-# CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_REDIS_URL')
-REDIS_HOST = os.environ.get('DO_REDIS_URL')
+# CELERY_BROKER_URL = config('CELERY_BROKER_REDIS_URL')
+REDIS_HOST = config('DO_REDIS_URL')
 CELERY_BROKER_URL = REDIS_HOST
 # CELERY_RESULT_BACKEND = f'redis://{ENV_ALLOWED_HOST}:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']

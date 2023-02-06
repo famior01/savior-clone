@@ -5,12 +5,12 @@ instance is used to define tasks and schedule periodic tasks.
 '''
 from __future__ import absolute_import, unicode_literals
 import os
-
+from decouple import config
 from celery import Celery
 from django.conf import settings
 
-production = os.environ.get('USE_PRODUCTION')
-if production=='1':
+production = config('USE_PRODUCTION', cast=bool)
+if production==True:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
 else:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.local')

@@ -1,7 +1,8 @@
 import os 
+from decouple import config
 
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = osconfig("AWS_SECRET_ACCESS_KEY")
 AWS_STORAGE_BUCKET_NAME ="savior-staticfiles"
 AWS_S3_ENDPOINT_URL="https://sgp1.digitaloceanspaces.com"
 AWS_SE_OBJECT_PARAMETERS ={
