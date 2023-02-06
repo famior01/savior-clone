@@ -2,12 +2,9 @@ from .base import *
 
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
-
 DEBUG = False
-
 ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOSTS')
 ALLOWED_HOSTS = [ ENV_ALLOWED_HOST ]
-
 
 # ====================================================
 # ----------------- Email Settings -----------------

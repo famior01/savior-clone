@@ -9,11 +9,11 @@ import os
 from celery import Celery
 from django.conf import settings
 
-# production = os.environ.get('USE_PRODUCTION')
-# if production=='0':
-#     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
-# else:
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
+production = os.environ.get('USE_PRODUCTION')
+if production=='1':
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
+else:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.local')
 
 
 app = Celery('family_savior')
