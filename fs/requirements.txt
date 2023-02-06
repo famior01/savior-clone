@@ -1,3 +1,4 @@
+django-dotenv
 Django==4.1.5
 Celery
 eventlet
