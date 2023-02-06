@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   push:
     branches: [ "Deployment" ]
-  pull_request:
+  pull_request: 
     branches: [ "Deployment" ]
   
 
