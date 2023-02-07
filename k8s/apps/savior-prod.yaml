@@ -44,3 +44,4 @@ spec:
       targetPort: 8001
   selector:
     app: savior-deployment
+
