@@ -72,7 +72,7 @@ jobs:
     - name: wait for rollout to finish
       run: |
         kubectl rollout restart deployment/savior-deployment
-        kubectl rollout status deployment/savior-deployment  --Watch=true 
+        kubectl rollout status deployment/savior-deployment
       
 
     - name: Migrate Database
