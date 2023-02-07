@@ -3,6 +3,8 @@
 .env
 zdocs/
 db.sqlite3
+.ipynb
+.ipynb_checkpoints
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -292,7 +294,7 @@ target/
 
 # pyenv
 .python-version
-
+.
 # celery beat schedule file
 celerybeat-schedule
 
