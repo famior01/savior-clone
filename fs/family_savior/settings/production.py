@@ -1,5 +1,6 @@
 from .base import *
 from decouple import config
+import ssl
 
 
 SECRET_KEY = config('DJANGO_SECRET_KEY')
@@ -106,8 +107,9 @@ if DB_IS_AVAILABLE:
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
 # CELERY_BROKER_URL = config('CELERY_BROKER_REDIS_URL')
-REDIS_HOST = config('DO_REDIS_URL')
+REDIS_HOST = config('DO_REDIS_URL', default='redis://localhost:6379/0')
 CELERY_BROKER_URL = REDIS_HOST
+BROKER_USE_SSL=True
 # CELERY_RESULT_BACKEND = f'redis://{ENV_ALLOWED_HOST}:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'

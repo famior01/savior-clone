@@ -18,7 +18,7 @@ jobs:
         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
     - name: k8s cluster kubeconfig file short-live creds
       run: |
-        doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ env.CLUSTER_NAME }} 
+        doctl kubernetes cluster kubeconfig save --expiry-seconds 1200 ${{ env.CLUSTER_NAME }} 
     - name: Run Rollout on Deployment
       run: |
         kubectl rollout restart deployment/savior-deployment
