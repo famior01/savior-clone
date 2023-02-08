@@ -49,7 +49,7 @@ def find_emotion(video_id):
     emotions[name] = emotion
   
   # remove utilized files
-  path = r'C:\Product\Savior\fs\AI\face_emo_detection\data'
+  path = r'D:\Savior\fs\AI\face_emo_detection\data'
   shutil.rmtree(path, ignore_errors=True) # remove Frames
   
   # logic to get overall emotion of the video

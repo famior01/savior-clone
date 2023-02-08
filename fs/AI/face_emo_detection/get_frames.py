@@ -39,7 +39,7 @@ class Get_frames:
         
     def mk_dir(self):
         if self.object_det:
-            curr_dir = r'D:/Savior/fs/AI/object_detection'
+            curr_dir = r"D:\Savior\fs\AI\object_detection"
         else:
             curr_dir = os.path.realpath(os.path.dirname(__file__)) # for finding the curr dir
         curr_dir = curr_dir+'/data/Frames'

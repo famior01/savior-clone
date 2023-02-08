@@ -36,13 +36,14 @@ class GatherSimilarFaces():
             df = DeepFace.find(img_path = self.faces_list[0],
                 db_path = self.db_path,
                 model_name = 'Facenet512', 
-                model = DeepFace.build_model('Facenet512'),
+                model = DeepFace.build_model("Facenet512"),
                 enforce_detection=False,
                 detector_backend='retinaface'
                 )
         except AttributeError or ValueError:
             pass
         else:
+            #ERROR01;
             # df is pandas dataframe
             similar_images_path = df['identity']
             os.makedirs('Person'+str(self.index), exist_ok=True)
