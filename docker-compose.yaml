@@ -8,24 +8,25 @@ services:
       dockerfile: Dockerfile
     image: savior:1.1
     environment:
-      - PORT=8020
+      - PORT=8001
     env_file:
       - fs/.env
     ports:
-      - "8001:8020"
+      - "8001:8001"
     command: sh -c "chmod +x /app/migrate.sh && /app/migrate.sh && /app/entrypoint.sh"
-    # volumes:
-      # - staticfiles:/app/staticfiles/
+    volumes:
+      - staticfiles:/app/staticfiles/
+      
   postgres_db:
     image: postgres
     restart: always
     env_file:
       - fs/.env
-    command: -p 5432
+    command: -p 25060
     expose:
-      - 5432
+      - 25060
     ports:
-      - "5432:5432"
+      - "25060:25060"
     volumes:
       - postgres_data:/var/lib/postgresql/data
   
@@ -33,15 +34,15 @@ services:
     image: redis
     restart: always
     expose:
-      - 6388
+      - 25061
     ports:
-      - "6388:6388"
+      - "25061:25061"
     volumes:
         - redis_data:/data
-    entrypoint: redis-server --appendonly yes --port 6388
+    entrypoint: redis-server --appendonly yes --port 25061
 
 volumes:
-  # staticfiles:
-  #   external: true
+  staticfiles:
+    external: true
   postgres_data:
   redis_data:
