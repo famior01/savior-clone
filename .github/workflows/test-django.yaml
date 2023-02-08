@@ -10,6 +10,7 @@ jobs:
       run:
         working-directory: ./fs
     env:
+      USE_PRODUCTION: 0
       DJANGO_SECRET_KEY: goodluck_noone_will_guess_this_key_ever_ever_ever_dont_even_try_it
       POSTGRES_DB: testingdb
       POSTGRES_USER: test-user
