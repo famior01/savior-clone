@@ -11,6 +11,10 @@ jobs:
         working-directory: ./fs
     env:
       USE_PRODUCTION: 0
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      EMAIL_USER: ${{ secrets.EMAIL_USER }} 
+      EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
       DJANGO_SECRET_KEY: goodluck_noone_will_guess_this_key_ever_ever_ever_dont_even_try_it
       POSTGRES_DB: testingdb
       POSTGRES_USER: test-user
