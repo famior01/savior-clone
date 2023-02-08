@@ -5,8 +5,9 @@ from .models import Profile
 # Create your tests here.
 class ProfileTestCast(TestCase):
   def setUp(self):
-    User.objects.create(username='test', password='test', email='test@gamil.com', full_name='test', religion='Muslim')
+    User.objects.create(username='Profile', password='Profile', email='Profile@gamil.com', full_name='Profile', religion='Muslim')
 
-  def test_failure(self):
-    qs=User.objects.all()
-    self.assertEqual(qs.exists(), True)
+  def test_profileCreation(self):
+    profile=Profile.objects.get(user__username='Profile')
+    print("**************", profile.user.username)
+    self.assertEqual(profile.user.username, 'Profile')
