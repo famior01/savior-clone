@@ -21,7 +21,9 @@ opencv-python
 pandas
 deepface
 moviepy
-transformers[torch]
+# transformers[torch]
+torch
+transformers
 openai-whisper
 setuptools-rust
 ffmpeg-python
@@ -32,3 +34,10 @@ requests
 django-storages
 boto3
 python-decouple
+sentencepiece
+torchvision
+torchaudio
+huggingface-hub
+glob2
+seaborn
+scipy

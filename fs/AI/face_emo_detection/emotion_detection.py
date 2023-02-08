@@ -30,12 +30,12 @@ def Analyze_pics(path):
                 enforce_detection=False      
                 )
                 # print(Analysis)
-                angry.append(Analysis['emotion']['angry'])
-                disgust.append(Analysis['emotion']['disgust'])
-                happy.append(Analysis['emotion']['happy'])
-                sad.append(Analysis['emotion']['sad'])
-                surprise.append(Analysis['emotion']['surprise'])
-                neutral.append(Analysis['emotion']['neutral'])
+                angry.append(Analysis[0]['emotion']['angry'])
+                disgust.append(Analysis[0]['emotion']['disgust'])
+                happy.append(Analysis[0]['emotion']['happy'])
+                sad.append(Analysis[0]['emotion']['sad'])
+                surprise.append(Analysis[0]['emotion']['surprise'])
+                neutral.append(Analysis[0]['emotion']['neutral'])
                 # gender.append(Analysis['gender'])
                 # age.append(Analysis['age'])
 

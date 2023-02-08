@@ -1,0 +1,1598 @@
+Namespace(weights=['D:/Savior/fs/AI/object_detection/new_weights/group2.pt'], source='D:/Savior/fs/AI/object_detection/sample.mp4', img_size=640, conf_thres=0.75, iou_thres=0.55, device='', view_img=False, save_txt=False, save_conf=False, nosave=False, classes=None, agnostic_nms=False, augment=False, update=False, project='runs/detect', name='exp', exist_ok=False, no_trace=False)
+Fusing layers... 
+RepConv.fuse_repvgg_block
+RepConv.fuse_repvgg_block
+RepConv.fuse_repvgg_block
+IDetect.fuse
+ Convert model to Traced-model... 
+ traced_script_module saved! 
+ model is traced! 
+
+video 1/1 (1/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (3114.5ms) Inference, (7.8ms) NMS
+video 1/1 (2/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (2516.4ms) Inference, (0.0ms) NMS
+video 1/1 (3/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (2146.7ms) Inference, (0.1ms) NMS
+video 1/1 (4/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1095.7ms) Inference, (1.6ms) NMS
+video 1/1 (5/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1045.2ms) Inference, (0.0ms) NMS
+video 1/1 (6/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1213.2ms) Inference, (0.0ms) NMS
+video 1/1 (7/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1086.5ms) Inference, (0.5ms) NMS
+video 1/1 (8/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (992.2ms) Inference, (0.0ms) NMS
+video 1/1 (9/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (962.8ms) Inference, (0.0ms) NMS
+video 1/1 (10/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (954.7ms) Inference, (0.0ms) NMS
+video 1/1 (11/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (994.8ms) Inference, (1.6ms) NMS
+video 1/1 (12/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (974.8ms) Inference, (0.0ms) NMS
+video 1/1 (13/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 Washine-Machine, Done. (919.9ms) Inference, (11.6ms) NMS
+video 1/1 (14/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (946.3ms) Inference, (0.0ms) NMS
+video 1/1 (15/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1216.4ms) Inference, (0.0ms) NMS
+video 1/1 (16/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.2ms) Inference, (0.0ms) NMS
+video 1/1 (17/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (757.2ms) Inference, (0.0ms) NMS
+video 1/1 (18/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (784.3ms) Inference, (1.0ms) NMS
+video 1/1 (19/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (757.2ms) Inference, (0.0ms) NMS
+video 1/1 (20/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (757.0ms) Inference, (0.0ms) NMS
+video 1/1 (21/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (888.0ms) Inference, (0.0ms) NMS
+video 1/1 (22/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.0ms) Inference, (0.0ms) NMS
+video 1/1 (23/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (758.0ms) Inference, (0.0ms) NMS
+video 1/1 (24/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (770.0ms) Inference, (0.0ms) NMS
+video 1/1 (25/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (748.0ms) Inference, (0.0ms) NMS
+video 1/1 (26/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (763.0ms) Inference, (0.0ms) NMS
+video 1/1 (27/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (746.2ms) Inference, (0.0ms) NMS
+video 1/1 (28/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (736.3ms) Inference, (0.0ms) NMS
+video 1/1 (29/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.6ms) Inference, (0.0ms) NMS
+video 1/1 (30/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (766.9ms) Inference, (0.0ms) NMS
+video 1/1 (31/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (32/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (752.2ms) Inference, (0.0ms) NMS
+video 1/1 (33/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (15.6ms) NMS
+video 1/1 (34/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (778.9ms) Inference, (0.0ms) NMS
+video 1/1 (35/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.4ms) Inference, (0.0ms) NMS
+video 1/1 (36/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (37/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (828.1ms) Inference, (0.0ms) NMS
+video 1/1 (38/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (798.2ms) Inference, (0.0ms) NMS
+video 1/1 (39/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.2ms) Inference, (0.0ms) NMS
+video 1/1 (40/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.9ms) Inference, (0.0ms) NMS
+video 1/1 (41/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (828.1ms) Inference, (0.0ms) NMS
+video 1/1 (42/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.9ms) Inference, (0.0ms) NMS
+video 1/1 (43/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.2ms) Inference, (0.0ms) NMS
+video 1/1 (44/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (812.5ms) Inference, (0.0ms) NMS
+video 1/1 (45/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (798.2ms) Inference, (0.0ms) NMS
+video 1/1 (46/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (812.5ms) Inference, (0.0ms) NMS
+video 1/1 (47/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.1ms) Inference, (0.0ms) NMS
+video 1/1 (48/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (828.1ms) Inference, (0.0ms) NMS
+video 1/1 (49/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.2ms) Inference, (0.0ms) NMS
+video 1/1 (50/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.4ms) Inference, (0.0ms) NMS
+video 1/1 (51/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (671.9ms) Inference, (0.0ms) NMS
+video 1/1 (52/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.0ms) Inference, (0.0ms) NMS
+video 1/1 (53/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.2ms) Inference, (0.0ms) NMS
+video 1/1 (54/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.7ms) Inference, (0.0ms) NMS
+video 1/1 (55/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (56/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.2ms) Inference, (0.0ms) NMS
+video 1/1 (57/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.4ms) Inference, (0.0ms) NMS
+video 1/1 (58/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (719.1ms) Inference, (0.0ms) NMS
+video 1/1 (59/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (892.5ms) Inference, (0.0ms) NMS
+video 1/1 (60/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (61/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (62/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (758.9ms) Inference, (0.0ms) NMS
+video 1/1 (63/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (742.8ms) Inference, (0.0ms) NMS
+video 1/1 (64/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (687.5ms) Inference, (0.0ms) NMS
+video 1/1 (65/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (799.3ms) Inference, (0.0ms) NMS
+video 1/1 (66/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (702.2ms) Inference, (0.0ms) NMS
+video 1/1 (67/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (68/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (766.5ms) Inference, (0.0ms) NMS
+video 1/1 (69/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (70/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (766.4ms) Inference, (0.0ms) NMS
+video 1/1 (71/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (72/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (73/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (74/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (759.2ms) Inference, (1.0ms) NMS
+video 1/1 (75/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (831.0ms) Inference, (0.0ms) NMS
+video 1/1 (76/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.3ms) Inference, (0.0ms) NMS
+video 1/1 (77/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (78/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (79/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (704.5ms) Inference, (0.0ms) NMS
+video 1/1 (80/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.1ms) Inference, (0.0ms) NMS
+video 1/1 (81/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.9ms) Inference, (0.0ms) NMS
+video 1/1 (82/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (83/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (732.3ms) Inference, (0.0ms) NMS
+video 1/1 (84/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (760.4ms) Inference, (0.0ms) NMS
+video 1/1 (85/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (711.8ms) Inference, (0.0ms) NMS
+video 1/1 (86/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (87/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.3ms) Inference, (0.0ms) NMS
+video 1/1 (88/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.1ms) Inference, (0.0ms) NMS
+video 1/1 (89/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (908.5ms) Inference, (0.0ms) NMS
+video 1/1 (90/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (751.3ms) Inference, (0.0ms) NMS
+video 1/1 (91/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (92/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.7ms) Inference, (0.0ms) NMS
+video 1/1 (93/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (707.8ms) Inference, (0.0ms) NMS
+video 1/1 (94/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.6ms) Inference, (0.0ms) NMS
+video 1/1 (95/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (714.8ms) Inference, (0.0ms) NMS
+video 1/1 (96/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (97/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (98/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.2ms) Inference, (0.0ms) NMS
+video 1/1 (99/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (745.4ms) Inference, (0.0ms) NMS
+video 1/1 (100/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (733.8ms) Inference, (0.0ms) NMS
+video 1/1 (101/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.7ms) Inference, (0.0ms) NMS
+video 1/1 (102/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (758.4ms) Inference, (0.0ms) NMS
+video 1/1 (103/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (711.3ms) Inference, (0.0ms) NMS
+video 1/1 (104/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (105/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (744.0ms) Inference, (0.0ms) NMS
+video 1/1 (106/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (687.5ms) Inference, (0.0ms) NMS
+video 1/1 (107/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.6ms) Inference, (0.0ms) NMS
+video 1/1 (108/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.1ms) Inference, (0.0ms) NMS
+video 1/1 (109/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (110/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (751.6ms) Inference, (0.0ms) NMS
+video 1/1 (111/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.7ms) Inference, (0.0ms) NMS
+video 1/1 (112/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.6ms) Inference, (0.0ms) NMS
+video 1/1 (113/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (114/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.4ms) Inference, (0.0ms) NMS
+video 1/1 (115/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (736.0ms) Inference, (0.0ms) NMS
+video 1/1 (116/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (687.5ms) Inference, (0.0ms) NMS
+video 1/1 (117/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.6ms) Inference, (0.0ms) NMS
+video 1/1 (118/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.3ms) Inference, (0.0ms) NMS
+video 1/1 (119/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.1ms) Inference, (0.0ms) NMS
+video 1/1 (120/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (735.7ms) Inference, (0.0ms) NMS
+video 1/1 (121/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (715.9ms) Inference, (0.0ms) NMS
+video 1/1 (122/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.5ms) Inference, (0.0ms) NMS
+video 1/1 (123/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (124/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.1ms) Inference, (0.0ms) NMS
+video 1/1 (125/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (721.4ms) Inference, (0.0ms) NMS
+video 1/1 (126/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.4ms) Inference, (0.0ms) NMS
+video 1/1 (127/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (128/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.7ms) Inference, (0.0ms) NMS
+video 1/1 (129/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.7ms) Inference, (0.0ms) NMS
+video 1/1 (130/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (751.8ms) Inference, (0.0ms) NMS
+video 1/1 (131/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (132/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (687.5ms) Inference, (0.0ms) NMS
+video 1/1 (133/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.3ms) Inference, (0.0ms) NMS
+video 1/1 (134/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (671.9ms) Inference, (0.0ms) NMS
+video 1/1 (135/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (751.6ms) Inference, (0.0ms) NMS
+video 1/1 (136/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (137/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.4ms) Inference, (0.0ms) NMS
+video 1/1 (138/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (139/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (725.7ms) Inference, (0.0ms) NMS
+video 1/1 (140/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (728.4ms) Inference, (0.0ms) NMS
+video 1/1 (141/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (142/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (708.4ms) Inference, (0.0ms) NMS
+video 1/1 (143/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.7ms) Inference, (0.0ms) NMS
+video 1/1 (144/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.7ms) Inference, (0.0ms) NMS
+video 1/1 (145/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (146/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (743.3ms) Inference, (0.0ms) NMS
+video 1/1 (147/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (726.1ms) Inference, (0.0ms) NMS
+video 1/1 (148/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.4ms) Inference, (0.0ms) NMS
+video 1/1 (149/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.3ms) Inference, (0.0ms) NMS
+video 1/1 (150/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (687.5ms) Inference, (0.0ms) NMS
+video 1/1 (151/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.4ms) Inference, (0.0ms) NMS
+video 1/1 (152/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (719.7ms) Inference, (0.0ms) NMS
+video 1/1 (153/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.0ms) Inference, (0.0ms) NMS
+video 1/1 (154/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (155/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (704.5ms) Inference, (0.0ms) NMS
+video 1/1 (156/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (157/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (749.7ms) Inference, (0.0ms) NMS
+video 1/1 (158/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (764.4ms) Inference, (0.0ms) NMS
+video 1/1 (159/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.7ms) Inference, (0.0ms) NMS
+video 1/1 (160/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (861.5ms) Inference, (0.0ms) NMS
+video 1/1 (161/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.7ms) Inference, (0.0ms) NMS
+video 1/1 (162/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (163/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.2ms) Inference, (0.0ms) NMS
+video 1/1 (164/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (751.6ms) Inference, (0.0ms) NMS
+video 1/1 (165/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (166/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.4ms) Inference, (0.0ms) NMS
+video 1/1 (167/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (753.7ms) Inference, (0.0ms) NMS
+video 1/1 (168/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.1ms) Inference, (0.0ms) NMS
+video 1/1 (169/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.7ms) Inference, (0.0ms) NMS
+video 1/1 (170/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.1ms) Inference, (0.0ms) NMS
+video 1/1 (171/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (172/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (735.6ms) Inference, (0.0ms) NMS
+video 1/1 (173/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1145.1ms) Inference, (0.0ms) NMS
+video 1/1 (174/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (749.9ms) Inference, (0.0ms) NMS
+video 1/1 (175/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (747.3ms) Inference, (0.0ms) NMS
+video 1/1 (176/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (757.7ms) Inference, (0.0ms) NMS
+video 1/1 (177/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (740.1ms) Inference, (0.0ms) NMS
+video 1/1 (178/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (809.2ms) Inference, (0.0ms) NMS
+video 1/1 (179/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (180/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (762.9ms) Inference, (0.0ms) NMS
+video 1/1 (181/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (847.4ms) Inference, (0.0ms) NMS
+video 1/1 (182/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1135.3ms) Inference, (0.0ms) NMS
+video 1/1 (183/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (903.1ms) Inference, (0.0ms) NMS
+video 1/1 (184/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (788.4ms) Inference, (0.0ms) NMS
+video 1/1 (185/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1136.1ms) Inference, (0.0ms) NMS
+video 1/1 (186/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (937.2ms) Inference, (0.0ms) NMS
+video 1/1 (187/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (916.6ms) Inference, (1.0ms) NMS
+video 1/1 (188/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1216.8ms) Inference, (0.0ms) NMS
+video 1/1 (189/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (752.2ms) Inference, (0.0ms) NMS
+video 1/1 (190/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (848.2ms) Inference, (1.0ms) NMS
+video 1/1 (191/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (815.9ms) Inference, (1.0ms) NMS
+video 1/1 (192/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (793.1ms) Inference, (0.0ms) NMS
+video 1/1 (193/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.7ms) Inference, (0.0ms) NMS
+video 1/1 (194/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (802.7ms) Inference, (0.0ms) NMS
+video 1/1 (195/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (773.8ms) Inference, (0.0ms) NMS
+video 1/1 (196/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (798.1ms) Inference, (0.0ms) NMS
+video 1/1 (197/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (810.5ms) Inference, (0.0ms) NMS
+video 1/1 (198/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (880.4ms) Inference, (1.0ms) NMS
+video 1/1 (199/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.3ms) Inference, (1.0ms) NMS
+video 1/1 (200/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (787.3ms) Inference, (0.0ms) NMS
+video 1/1 (201/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (762.8ms) Inference, (0.0ms) NMS
+video 1/1 (202/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (808.5ms) Inference, (0.0ms) NMS
+video 1/1 (203/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (741.0ms) Inference, (0.0ms) NMS
+video 1/1 (204/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (803.0ms) Inference, (0.0ms) NMS
+video 1/1 (205/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (834.9ms) Inference, (1.0ms) NMS
+video 1/1 (206/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (775.5ms) Inference, (0.0ms) NMS
+video 1/1 (207/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.8ms) Inference, (0.0ms) NMS
+video 1/1 (208/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (784.6ms) Inference, (0.0ms) NMS
+video 1/1 (209/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (900.1ms) Inference, (0.0ms) NMS
+video 1/1 (210/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (810.4ms) Inference, (0.0ms) NMS
+video 1/1 (211/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.3ms) Inference, (1.0ms) NMS
+video 1/1 (212/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (742.5ms) Inference, (0.0ms) NMS
+video 1/1 (213/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (803.9ms) Inference, (0.0ms) NMS
+video 1/1 (214/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (789.1ms) Inference, (1.0ms) NMS
+video 1/1 (215/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (754.3ms) Inference, (0.0ms) NMS
+video 1/1 (216/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (806.5ms) Inference, (0.0ms) NMS
+video 1/1 (217/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (759.6ms) Inference, (0.0ms) NMS
+video 1/1 (218/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.4ms) Inference, (1.5ms) NMS
+video 1/1 (219/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (778.8ms) Inference, (0.0ms) NMS
+video 1/1 (220/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1063.6ms) Inference, (0.0ms) NMS
+video 1/1 (221/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (901.5ms) Inference, (0.0ms) NMS
+video 1/1 (222/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.0ms) Inference, (0.0ms) NMS
+video 1/1 (223/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (746.4ms) Inference, (0.0ms) NMS
+video 1/1 (224/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (758.6ms) Inference, (0.0ms) NMS
+video 1/1 (225/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (802.0ms) Inference, (1.0ms) NMS
+video 1/1 (226/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (732.1ms) Inference, (0.0ms) NMS
+video 1/1 (227/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1011.9ms) Inference, (1.0ms) NMS
+video 1/1 (228/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.7ms) Inference, (0.0ms) NMS
+video 1/1 (229/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (762.8ms) Inference, (0.0ms) NMS
+video 1/1 (230/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (772.6ms) Inference, (0.0ms) NMS
+video 1/1 (231/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.4ms) Inference, (0.0ms) NMS
+video 1/1 (232/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (749.7ms) Inference, (0.0ms) NMS
+video 1/1 (233/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (789.4ms) Inference, (0.0ms) NMS
+video 1/1 (234/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (745.9ms) Inference, (0.0ms) NMS
+video 1/1 (235/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (730.0ms) Inference, (1.0ms) NMS
+video 1/1 (236/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (789.7ms) Inference, (0.0ms) NMS
+video 1/1 (237/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (899.1ms) Inference, (0.0ms) NMS
+video 1/1 (238/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.7ms) Inference, (0.0ms) NMS
+video 1/1 (239/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (787.5ms) Inference, (0.0ms) NMS
+video 1/1 (240/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (714.9ms) Inference, (0.0ms) NMS
+video 1/1 (241/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (770.8ms) Inference, (0.0ms) NMS
+video 1/1 (242/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.1ms) Inference, (1.0ms) NMS
+video 1/1 (243/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (779.3ms) Inference, (1.1ms) NMS
+video 1/1 (244/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (812.1ms) Inference, (1.0ms) NMS
+video 1/1 (245/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (906.3ms) Inference, (0.0ms) NMS
+video 1/1 (246/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (752.8ms) Inference, (0.0ms) NMS
+video 1/1 (247/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (785.2ms) Inference, (1.0ms) NMS
+video 1/1 (248/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (868.6ms) Inference, (0.0ms) NMS
+video 1/1 (249/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (784.4ms) Inference, (0.0ms) NMS
+video 1/1 (250/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (787.2ms) Inference, (0.0ms) NMS
+video 1/1 (251/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (764.3ms) Inference, (0.0ms) NMS
+video 1/1 (252/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.0ms) Inference, (0.0ms) NMS
+video 1/1 (253/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (772.4ms) Inference, (0.0ms) NMS
+video 1/1 (254/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (910.1ms) Inference, (0.0ms) NMS
+video 1/1 (255/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (806.1ms) Inference, (0.0ms) NMS
+video 1/1 (256/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (791.0ms) Inference, (0.0ms) NMS
+video 1/1 (257/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (728.2ms) Inference, (1.0ms) NMS
+video 1/1 (258/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.1ms) Inference, (0.0ms) NMS
+video 1/1 (259/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.9ms) Inference, (1.0ms) NMS
+video 1/1 (260/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (722.0ms) Inference, (0.0ms) NMS
+video 1/1 (261/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.8ms) Inference, (0.0ms) NMS
+video 1/1 (262/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (769.9ms) Inference, (1.0ms) NMS
+video 1/1 (263/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (743.1ms) Inference, (1.0ms) NMS
+video 1/1 (264/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (839.4ms) Inference, (0.0ms) NMS
+video 1/1 (265/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (926.7ms) Inference, (0.0ms) NMS
+video 1/1 (266/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (827.8ms) Inference, (0.0ms) NMS
+video 1/1 (267/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (784.1ms) Inference, (0.0ms) NMS
+video 1/1 (268/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (751.7ms) Inference, (0.0ms) NMS
+video 1/1 (269/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (760.6ms) Inference, (0.0ms) NMS
+video 1/1 (270/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (865.9ms) Inference, (0.0ms) NMS
+video 1/1 (271/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1098.4ms) Inference, (0.0ms) NMS
+video 1/1 (272/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.6ms) Inference, (0.0ms) NMS
+video 1/1 (273/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (869.2ms) Inference, (0.0ms) NMS
+video 1/1 (274/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1176.0ms) Inference, (0.0ms) NMS
+video 1/1 (275/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1107.9ms) Inference, (0.0ms) NMS
+video 1/1 (276/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (934.3ms) Inference, (0.0ms) NMS
+video 1/1 (277/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (936.5ms) Inference, (0.0ms) NMS
+video 1/1 (278/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1003.6ms) Inference, (0.0ms) NMS
+video 1/1 (279/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (848.5ms) Inference, (1.5ms) NMS
+video 1/1 (280/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (996.9ms) Inference, (0.0ms) NMS
+video 1/1 (281/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (947.5ms) Inference, (0.0ms) NMS
+video 1/1 (282/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.2ms) Inference, (0.0ms) NMS
+video 1/1 (283/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (680.5ms) Inference, (0.0ms) NMS
+video 1/1 (284/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1039.1ms) Inference, (0.0ms) NMS
+video 1/1 (285/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (984.9ms) Inference, (0.0ms) NMS
+video 1/1 (286/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (941.6ms) Inference, (1.5ms) NMS
+video 1/1 (287/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (942.3ms) Inference, (0.0ms) NMS
+video 1/1 (288/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (877.9ms) Inference, (0.0ms) NMS
+video 1/1 (289/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.5ms) Inference, (1.0ms) NMS
+video 1/1 (290/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (874.3ms) Inference, (0.0ms) NMS
+video 1/1 (291/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1331.1ms) Inference, (1.0ms) NMS
+video 1/1 (292/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1166.0ms) Inference, (0.0ms) NMS
+video 1/1 (293/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.1ms) Inference, (0.0ms) NMS
+video 1/1 (294/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (857.8ms) Inference, (0.0ms) NMS
+video 1/1 (295/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (977.5ms) Inference, (0.0ms) NMS
+video 1/1 (296/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1033.7ms) Inference, (0.0ms) NMS
+video 1/1 (297/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (745.2ms) Inference, (0.0ms) NMS
+video 1/1 (298/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (790.8ms) Inference, (0.0ms) NMS
+video 1/1 (299/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (693.5ms) Inference, (0.0ms) NMS
+video 1/1 (300/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (766.6ms) Inference, (0.0ms) NMS
+video 1/1 (301/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (677.2ms) Inference, (0.0ms) NMS
+video 1/1 (302/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (771.0ms) Inference, (0.0ms) NMS
+video 1/1 (303/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (695.8ms) Inference, (0.0ms) NMS
+video 1/1 (304/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (675.5ms) Inference, (0.0ms) NMS
+video 1/1 (305/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (721.0ms) Inference, (0.0ms) NMS
+video 1/1 (306/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (705.6ms) Inference, (0.0ms) NMS
+video 1/1 (307/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (657.8ms) Inference, (0.0ms) NMS
+video 1/1 (308/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (794.6ms) Inference, (1.0ms) NMS
+video 1/1 (309/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (771.9ms) Inference, (0.0ms) NMS
+video 1/1 (310/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (699.6ms) Inference, (0.0ms) NMS
+video 1/1 (311/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (833.8ms) Inference, (0.0ms) NMS
+video 1/1 (312/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (687.1ms) Inference, (0.0ms) NMS
+video 1/1 (313/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (754.2ms) Inference, (0.0ms) NMS
+video 1/1 (314/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (627.6ms) Inference, (0.0ms) NMS
+video 1/1 (315/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (706.5ms) Inference, (0.0ms) NMS
+video 1/1 (316/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (704.4ms) Inference, (0.0ms) NMS
+video 1/1 (317/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (722.5ms) Inference, (0.0ms) NMS
+video 1/1 (318/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (737.9ms) Inference, (0.0ms) NMS
+video 1/1 (319/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (618.3ms) Inference, (0.0ms) NMS
+video 1/1 (320/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (711.8ms) Inference, (1.0ms) NMS
+video 1/1 (321/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (727.1ms) Inference, (0.0ms) NMS
+video 1/1 (322/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (666.3ms) Inference, (0.0ms) NMS
+video 1/1 (323/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (752.7ms) Inference, (0.0ms) NMS
+video 1/1 (324/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (699.1ms) Inference, (0.0ms) NMS
+video 1/1 (325/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.2ms) Inference, (0.0ms) NMS
+video 1/1 (326/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (722.6ms) Inference, (0.0ms) NMS
+video 1/1 (327/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (642.0ms) Inference, (0.0ms) NMS
+video 1/1 (328/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (738.5ms) Inference, (0.0ms) NMS
+video 1/1 (329/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.4ms) Inference, (0.0ms) NMS
+video 1/1 (330/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1063.6ms) Inference, (1.0ms) NMS
+video 1/1 (331/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (903.5ms) Inference, (0.0ms) NMS
+video 1/1 (332/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (886.2ms) Inference, (0.0ms) NMS
+video 1/1 (333/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (831.9ms) Inference, (0.0ms) NMS
+video 1/1 (334/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (770.0ms) Inference, (0.0ms) NMS
+video 1/1 (335/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (756.4ms) Inference, (0.0ms) NMS
+video 1/1 (336/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (824.4ms) Inference, (1.0ms) NMS
+video 1/1 (337/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (815.0ms) Inference, (0.0ms) NMS
+video 1/1 (338/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (754.1ms) Inference, (0.0ms) NMS
+video 1/1 (339/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (766.8ms) Inference, (1.0ms) NMS
+video 1/1 (340/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (789.0ms) Inference, (0.0ms) NMS
+video 1/1 (341/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (754.6ms) Inference, (0.0ms) NMS
+video 1/1 (342/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (817.7ms) Inference, (0.0ms) NMS
+video 1/1 (343/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.1ms) Inference, (0.0ms) NMS
+video 1/1 (344/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (773.1ms) Inference, (0.0ms) NMS
+video 1/1 (345/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (800.4ms) Inference, (0.0ms) NMS
+video 1/1 (346/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (770.4ms) Inference, (0.0ms) NMS
+video 1/1 (347/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.1ms) Inference, (1.0ms) NMS
+video 1/1 (348/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (853.1ms) Inference, (0.5ms) NMS
+video 1/1 (349/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (830.5ms) Inference, (1.0ms) NMS
+video 1/1 (350/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (754.1ms) Inference, (0.0ms) NMS
+video 1/1 (351/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.1ms) Inference, (0.0ms) NMS
+video 1/1 (352/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (737.7ms) Inference, (1.0ms) NMS
+video 1/1 (353/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (799.3ms) Inference, (0.0ms) NMS
+video 1/1 (354/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.9ms) Inference, (0.0ms) NMS
+video 1/1 (355/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (755.6ms) Inference, (0.0ms) NMS
+video 1/1 (356/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.6ms) Inference, (0.0ms) NMS
+video 1/1 (357/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (748.5ms) Inference, (0.0ms) NMS
+video 1/1 (358/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (805.8ms) Inference, (0.0ms) NMS
+video 1/1 (359/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (862.5ms) Inference, (0.0ms) NMS
+video 1/1 (360/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (837.3ms) Inference, (0.0ms) NMS
+video 1/1 (361/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (828.6ms) Inference, (0.0ms) NMS
+video 1/1 (362/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (975.7ms) Inference, (0.0ms) NMS
+video 1/1 (363/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (799.1ms) Inference, (1.0ms) NMS
+video 1/1 (364/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (848.2ms) Inference, (0.0ms) NMS
+video 1/1 (365/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (818.4ms) Inference, (0.0ms) NMS
+video 1/1 (366/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (762.5ms) Inference, (0.0ms) NMS
+video 1/1 (367/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (778.8ms) Inference, (0.0ms) NMS
+video 1/1 (368/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.0ms) Inference, (0.0ms) NMS
+video 1/1 (369/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (762.0ms) Inference, (0.0ms) NMS
+video 1/1 (370/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.5ms) Inference, (0.0ms) NMS
+video 1/1 (371/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (777.7ms) Inference, (0.0ms) NMS
+video 1/1 (372/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.7ms) Inference, (0.0ms) NMS
+video 1/1 (373/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.6ms) Inference, (0.0ms) NMS
+video 1/1 (374/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (751.6ms) Inference, (0.0ms) NMS
+video 1/1 (375/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.0ms) Inference, (0.0ms) NMS
+video 1/1 (376/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.7ms) Inference, (1.0ms) NMS
+video 1/1 (377/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (777.1ms) Inference, (0.0ms) NMS
+video 1/1 (378/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (812.7ms) Inference, (0.0ms) NMS
+video 1/1 (379/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.0ms) Inference, (0.0ms) NMS
+video 1/1 (380/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (756.3ms) Inference, (0.0ms) NMS
+video 1/1 (381/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (805.1ms) Inference, (0.0ms) NMS
+video 1/1 (382/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.9ms) Inference, (1.0ms) NMS
+video 1/1 (383/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (790.9ms) Inference, (0.0ms) NMS
+video 1/1 (384/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.0ms) Inference, (1.0ms) NMS
+video 1/1 (385/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (706.8ms) Inference, (0.0ms) NMS
+video 1/1 (386/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (805.1ms) Inference, (0.0ms) NMS
+video 1/1 (387/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.4ms) Inference, (0.0ms) NMS
+video 1/1 (388/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (761.8ms) Inference, (0.0ms) NMS
+video 1/1 (389/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (814.7ms) Inference, (0.0ms) NMS
+video 1/1 (390/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (853.3ms) Inference, (0.0ms) NMS
+video 1/1 (391/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (771.4ms) Inference, (0.0ms) NMS
+video 1/1 (392/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.3ms) Inference, (0.0ms) NMS
+video 1/1 (393/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (777.2ms) Inference, (1.0ms) NMS
+video 1/1 (394/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (772.8ms) Inference, (0.0ms) NMS
+video 1/1 (395/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (857.1ms) Inference, (1.0ms) NMS
+video 1/1 (396/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.9ms) Inference, (0.0ms) NMS
+video 1/1 (397/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (790.9ms) Inference, (0.0ms) NMS
+video 1/1 (398/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (797.1ms) Inference, (1.0ms) NMS
+video 1/1 (399/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.4ms) Inference, (1.0ms) NMS
+video 1/1 (400/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.2ms) Inference, (0.0ms) NMS
+video 1/1 (401/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (764.6ms) Inference, (0.0ms) NMS
+video 1/1 (402/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.5ms) Inference, (0.0ms) NMS
+video 1/1 (403/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (791.1ms) Inference, (0.0ms) NMS
+video 1/1 (404/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (787.3ms) Inference, (1.0ms) NMS
+video 1/1 (405/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (769.1ms) Inference, (0.0ms) NMS
+video 1/1 (406/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.8ms) Inference, (0.0ms) NMS
+video 1/1 (407/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (678.9ms) Inference, (0.0ms) NMS
+video 1/1 (408/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (701.9ms) Inference, (0.0ms) NMS
+video 1/1 (409/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (618.3ms) Inference, (0.0ms) NMS
+video 1/1 (410/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (700.3ms) Inference, (0.0ms) NMS
+video 1/1 (411/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (651.6ms) Inference, (0.0ms) NMS
+video 1/1 (412/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (844.8ms) Inference, (0.0ms) NMS
+video 1/1 (413/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (866.0ms) Inference, (0.0ms) NMS
+video 1/1 (414/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (819.0ms) Inference, (0.0ms) NMS
+video 1/1 (415/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (819.3ms) Inference, (0.0ms) NMS
+video 1/1 (416/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.9ms) Inference, (0.0ms) NMS
+video 1/1 (417/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.6ms) Inference, (0.0ms) NMS
+video 1/1 (418/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (791.9ms) Inference, (0.0ms) NMS
+video 1/1 (419/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (810.3ms) Inference, (0.0ms) NMS
+video 1/1 (420/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.2ms) Inference, (0.0ms) NMS
+video 1/1 (421/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.1ms) Inference, (1.0ms) NMS
+video 1/1 (422/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (891.5ms) Inference, (0.0ms) NMS
+video 1/1 (423/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.1ms) Inference, (0.0ms) NMS
+video 1/1 (424/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.2ms) Inference, (0.0ms) NMS
+video 1/1 (425/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.9ms) Inference, (0.0ms) NMS
+video 1/1 (426/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.2ms) Inference, (0.0ms) NMS
+video 1/1 (427/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.9ms) Inference, (0.0ms) NMS
+video 1/1 (428/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (912.0ms) Inference, (0.0ms) NMS
+video 1/1 (429/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (787.6ms) Inference, (0.0ms) NMS
+video 1/1 (430/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1216.7ms) Inference, (0.0ms) NMS
+video 1/1 (431/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (849.0ms) Inference, (1.0ms) NMS
+video 1/1 (432/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1137.4ms) Inference, (1.0ms) NMS
+video 1/1 (433/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (856.6ms) Inference, (0.0ms) NMS
+video 1/1 (434/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (770.3ms) Inference, (0.0ms) NMS
+video 1/1 (435/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (923.1ms) Inference, (1.0ms) NMS
+video 1/1 (436/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (887.3ms) Inference, (0.0ms) NMS
+video 1/1 (437/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (800.3ms) Inference, (0.0ms) NMS
+video 1/1 (438/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (878.0ms) Inference, (0.0ms) NMS
+video 1/1 (439/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (738.4ms) Inference, (0.0ms) NMS
+video 1/1 (440/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (715.4ms) Inference, (0.0ms) NMS
+video 1/1 (441/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (686.9ms) Inference, (0.0ms) NMS
+video 1/1 (442/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (723.8ms) Inference, (1.0ms) NMS
+video 1/1 (443/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (656.7ms) Inference, (0.0ms) NMS
+video 1/1 (444/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (680.6ms) Inference, (1.6ms) NMS
+video 1/1 (445/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (706.7ms) Inference, (0.0ms) NMS
+video 1/1 (446/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (631.9ms) Inference, (0.0ms) NMS
+video 1/1 (447/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (864.4ms) Inference, (0.0ms) NMS
+video 1/1 (448/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (834.6ms) Inference, (0.0ms) NMS
+video 1/1 (449/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (878.6ms) Inference, (1.0ms) NMS
+video 1/1 (450/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (851.3ms) Inference, (0.0ms) NMS
+video 1/1 (451/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (757.6ms) Inference, (1.0ms) NMS
+video 1/1 (452/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (772.8ms) Inference, (1.0ms) NMS
+video 1/1 (453/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (815.0ms) Inference, (0.0ms) NMS
+video 1/1 (454/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.1ms) Inference, (0.0ms) NMS
+video 1/1 (455/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (772.4ms) Inference, (0.0ms) NMS
+video 1/1 (456/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.3ms) Inference, (1.0ms) NMS
+video 1/1 (457/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (767.6ms) Inference, (1.0ms) NMS
+video 1/1 (458/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.1ms) Inference, (0.0ms) NMS
+video 1/1 (459/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (809.2ms) Inference, (0.0ms) NMS
+video 1/1 (460/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (848.4ms) Inference, (1.0ms) NMS
+video 1/1 (461/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (882.2ms) Inference, (1.0ms) NMS
+video 1/1 (462/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (844.3ms) Inference, (0.0ms) NMS
+video 1/1 (463/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (832.9ms) Inference, (1.0ms) NMS
+video 1/1 (464/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (834.4ms) Inference, (0.0ms) NMS
+video 1/1 (465/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (834.9ms) Inference, (0.0ms) NMS
+video 1/1 (466/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.1ms) Inference, (0.0ms) NMS
+video 1/1 (467/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (806.3ms) Inference, (0.0ms) NMS
+video 1/1 (468/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (789.0ms) Inference, (0.0ms) NMS
+video 1/1 (469/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (769.1ms) Inference, (0.0ms) NMS
+video 1/1 (470/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (823.0ms) Inference, (0.0ms) NMS
+video 1/1 (471/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.4ms) Inference, (1.0ms) NMS
+video 1/1 (472/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (764.1ms) Inference, (0.0ms) NMS
+video 1/1 (473/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.7ms) Inference, (0.0ms) NMS
+video 1/1 (474/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (800.1ms) Inference, (0.0ms) NMS
+video 1/1 (475/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.8ms) Inference, (0.0ms) NMS
+video 1/1 (476/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.2ms) Inference, (0.0ms) NMS
+video 1/1 (477/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (771.2ms) Inference, (0.0ms) NMS
+video 1/1 (478/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (771.3ms) Inference, (0.0ms) NMS
+video 1/1 (479/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.9ms) Inference, (0.0ms) NMS
+video 1/1 (480/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (767.3ms) Inference, (0.0ms) NMS
+video 1/1 (481/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.2ms) Inference, (1.0ms) NMS
+video 1/1 (482/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (788.4ms) Inference, (0.0ms) NMS
+video 1/1 (483/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (838.2ms) Inference, (0.0ms) NMS
+video 1/1 (484/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (830.4ms) Inference, (0.0ms) NMS
+video 1/1 (485/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.6ms) Inference, (0.0ms) NMS
+video 1/1 (486/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (756.7ms) Inference, (0.0ms) NMS
+video 1/1 (487/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (829.1ms) Inference, (0.0ms) NMS
+video 1/1 (488/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (788.9ms) Inference, (0.0ms) NMS
+video 1/1 (489/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (759.3ms) Inference, (0.0ms) NMS
+video 1/1 (490/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.9ms) Inference, (1.0ms) NMS
+video 1/1 (491/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (762.8ms) Inference, (0.0ms) NMS
+video 1/1 (492/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.0ms) Inference, (0.0ms) NMS
+video 1/1 (493/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (815.2ms) Inference, (0.0ms) NMS
+video 1/1 (494/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (773.1ms) Inference, (1.0ms) NMS
+video 1/1 (495/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1096.9ms) Inference, (0.0ms) NMS
+video 1/1 (496/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (822.2ms) Inference, (0.0ms) NMS
+video 1/1 (497/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (746.8ms) Inference, (0.0ms) NMS
+video 1/1 (498/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (826.2ms) Inference, (1.0ms) NMS
+video 1/1 (499/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (849.6ms) Inference, (1.0ms) NMS
+video 1/1 (500/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (810.9ms) Inference, (0.0ms) NMS
+video 1/1 (501/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (954.4ms) Inference, (1.0ms) NMS
+video 1/1 (502/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (840.2ms) Inference, (0.0ms) NMS
+video 1/1 (503/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (846.0ms) Inference, (0.0ms) NMS
+video 1/1 (504/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (948.8ms) Inference, (0.0ms) NMS
+video 1/1 (505/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (896.5ms) Inference, (0.0ms) NMS
+video 1/1 (506/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (825.1ms) Inference, (9.7ms) NMS
+video 1/1 (507/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (742.9ms) Inference, (0.0ms) NMS
+video 1/1 (508/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1023.1ms) Inference, (0.0ms) NMS
+video 1/1 (509/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (923.6ms) Inference, (0.0ms) NMS
+video 1/1 (510/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (821.1ms) Inference, (0.0ms) NMS
+video 1/1 (511/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (935.2ms) Inference, (1.1ms) NMS
+video 1/1 (512/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (831.1ms) Inference, (0.0ms) NMS
+video 1/1 (513/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (998.6ms) Inference, (0.0ms) NMS
+video 1/1 (514/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1052.3ms) Inference, (0.0ms) NMS
+video 1/1 (515/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1154.1ms) Inference, (1.0ms) NMS
+video 1/1 (516/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1407.4ms) Inference, (0.0ms) NMS
+video 1/1 (517/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1088.3ms) Inference, (0.0ms) NMS
+video 1/1 (518/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1370.4ms) Inference, (0.0ms) NMS
+video 1/1 (519/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1079.0ms) Inference, (1.0ms) NMS
+video 1/1 (520/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1057.0ms) Inference, (0.0ms) NMS
+video 1/1 (521/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1077.0ms) Inference, (0.0ms) NMS
+video 1/1 (522/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (789.0ms) Inference, (0.0ms) NMS
+video 1/1 (523/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (701.0ms) Inference, (1.0ms) NMS
+Done. (466.630s)
+Namespace(weights=['D:/Savior/fs/AI/object_detection/new_weights/group3.pt'], source='D:/Savior/fs/AI/object_detection/sample.mp4', img_size=640, conf_thres=0.75, iou_thres=0.55, device='', view_img=False, save_txt=False, save_conf=False, nosave=False, classes=None, agnostic_nms=False, augment=False, update=False, project='runs/detect', name='exp', exist_ok=False, no_trace=False)
+Fusing layers... 
+RepConv.fuse_repvgg_block
+RepConv.fuse_repvgg_block
+RepConv.fuse_repvgg_block
+IDetect.fuse
+ Convert model to Traced-model... 
+ traced_script_module saved! 
+ model is traced! 
+
+video 1/1 (1/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1162.9ms) Inference, (1.0ms) NMS
+video 1/1 (2/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (905.0ms) Inference, (1.0ms) NMS
+video 1/1 (3/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1183.0ms) Inference, (1.0ms) NMS
+video 1/1 (4/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (950.0ms) Inference, (0.0ms) NMS
+video 1/1 (5/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (853.8ms) Inference, (0.0ms) NMS
+video 1/1 (6/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (848.2ms) Inference, (0.0ms) NMS
+video 1/1 (7/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (956.9ms) Inference, (0.0ms) NMS
+video 1/1 (8/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (854.7ms) Inference, (0.0ms) NMS
+video 1/1 (9/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (793.9ms) Inference, (0.0ms) NMS
+video 1/1 (10/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (884.3ms) Inference, (1.0ms) NMS
+video 1/1 (11/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (804.7ms) Inference, (0.0ms) NMS
+video 1/1 (12/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.9ms) Inference, (0.0ms) NMS
+video 1/1 (13/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (828.5ms) Inference, (1.0ms) NMS
+video 1/1 (14/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (787.6ms) Inference, (0.0ms) NMS
+video 1/1 (15/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.9ms) Inference, (0.0ms) NMS
+video 1/1 (16/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (899.2ms) Inference, (0.0ms) NMS
+video 1/1 (17/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (761.1ms) Inference, (0.0ms) NMS
+video 1/1 (18/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (791.7ms) Inference, (0.0ms) NMS
+video 1/1 (19/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (787.9ms) Inference, (0.0ms) NMS
+video 1/1 (20/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (849.4ms) Inference, (1.0ms) NMS
+video 1/1 (21/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (777.5ms) Inference, (0.0ms) NMS
+video 1/1 (22/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.7ms) Inference, (1.5ms) NMS
+video 1/1 (23/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.9ms) Inference, (0.0ms) NMS
+video 1/1 (24/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (882.8ms) Inference, (1.0ms) NMS
+video 1/1 (25/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (844.4ms) Inference, (1.0ms) NMS
+video 1/1 (26/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.6ms) Inference, (1.0ms) NMS
+video 1/1 (27/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (809.6ms) Inference, (0.0ms) NMS
+video 1/1 (28/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (791.6ms) Inference, (1.0ms) NMS
+video 1/1 (29/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (899.4ms) Inference, (0.0ms) NMS
+video 1/1 (30/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (833.5ms) Inference, (0.0ms) NMS
+video 1/1 (31/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.8ms) Inference, (0.0ms) NMS
+video 1/1 (32/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (739.0ms) Inference, (0.0ms) NMS
+video 1/1 (33/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (778.3ms) Inference, (0.0ms) NMS
+video 1/1 (34/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.5ms) Inference, (1.0ms) NMS
+video 1/1 (35/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (742.3ms) Inference, (0.0ms) NMS
+video 1/1 (36/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (822.6ms) Inference, (0.0ms) NMS
+video 1/1 (37/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (724.5ms) Inference, (0.0ms) NMS
+video 1/1 (38/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (930.6ms) Inference, (1.0ms) NMS
+video 1/1 (39/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.4ms) Inference, (0.0ms) NMS
+video 1/1 (40/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (764.7ms) Inference, (0.0ms) NMS
+video 1/1 (41/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (800.4ms) Inference, (0.0ms) NMS
+video 1/1 (42/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (899.6ms) Inference, (0.0ms) NMS
+video 1/1 (43/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1064.9ms) Inference, (0.0ms) NMS
+video 1/1 (44/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (855.0ms) Inference, (0.0ms) NMS
+video 1/1 (45/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.8ms) Inference, (0.0ms) NMS
+video 1/1 (46/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (624.4ms) Inference, (0.0ms) NMS
+video 1/1 (47/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (760.3ms) Inference, (0.0ms) NMS
+video 1/1 (48/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (674.7ms) Inference, (0.0ms) NMS
+video 1/1 (49/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (867.4ms) Inference, (1.0ms) NMS
+video 1/1 (50/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1091.4ms) Inference, (1.0ms) NMS
+video 1/1 (51/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.0ms) Inference, (0.0ms) NMS
+video 1/1 (52/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (645.1ms) Inference, (5.1ms) NMS
+video 1/1 (53/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.6ms) Inference, (0.0ms) NMS
+video 1/1 (54/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (627.6ms) Inference, (0.0ms) NMS
+video 1/1 (55/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (690.4ms) Inference, (0.0ms) NMS
+video 1/1 (56/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (648.9ms) Inference, (0.0ms) NMS
+video 1/1 (57/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (710.3ms) Inference, (0.0ms) NMS
+video 1/1 (58/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (596.1ms) Inference, (0.0ms) NMS
+video 1/1 (59/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (855.6ms) Inference, (0.0ms) NMS
+video 1/1 (60/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (793.4ms) Inference, (0.0ms) NMS
+video 1/1 (61/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1245.0ms) Inference, (0.0ms) NMS
+video 1/1 (62/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (855.8ms) Inference, (0.0ms) NMS
+video 1/1 (63/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (743.7ms) Inference, (0.0ms) NMS
+video 1/1 (64/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (793.8ms) Inference, (0.0ms) NMS
+video 1/1 (65/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (718.8ms) Inference, (0.0ms) NMS
+video 1/1 (66/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (823.8ms) Inference, (0.0ms) NMS
+video 1/1 (67/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (799.3ms) Inference, (0.0ms) NMS
+video 1/1 (68/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (937.0ms) Inference, (0.0ms) NMS
+video 1/1 (69/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1109.0ms) Inference, (0.0ms) NMS
+video 1/1 (70/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1129.0ms) Inference, (0.0ms) NMS
+video 1/1 (71/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (895.1ms) Inference, (1.0ms) NMS
+video 1/1 (72/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (944.2ms) Inference, (0.0ms) NMS
+video 1/1 (73/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (899.1ms) Inference, (0.0ms) NMS
+video 1/1 (74/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1029.6ms) Inference, (1.0ms) NMS
+video 1/1 (75/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1097.9ms) Inference, (0.0ms) NMS
+video 1/1 (76/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (869.1ms) Inference, (1.0ms) NMS
+video 1/1 (77/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (715.8ms) Inference, (0.0ms) NMS
+video 1/1 (78/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.0ms) Inference, (0.0ms) NMS
+video 1/1 (79/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (868.0ms) Inference, (0.0ms) NMS
+video 1/1 (80/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (897.8ms) Inference, (0.0ms) NMS
+video 1/1 (81/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (847.0ms) Inference, (0.0ms) NMS
+video 1/1 (82/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (851.8ms) Inference, (0.0ms) NMS
+video 1/1 (83/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (817.4ms) Inference, (1.0ms) NMS
+video 1/1 (84/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (914.6ms) Inference, (0.0ms) NMS
+video 1/1 (85/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1058.4ms) Inference, (0.0ms) NMS
+video 1/1 (86/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.7ms) Inference, (0.0ms) NMS
+video 1/1 (87/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1067.8ms) Inference, (0.0ms) NMS
+video 1/1 (88/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1084.6ms) Inference, (5.0ms) NMS
+video 1/1 (89/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (947.1ms) Inference, (1.0ms) NMS
+video 1/1 (90/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1034.9ms) Inference, (1.0ms) NMS
+video 1/1 (91/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (792.4ms) Inference, (0.0ms) NMS
+video 1/1 (92/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.4ms) Inference, (0.0ms) NMS
+video 1/1 (93/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1113.3ms) Inference, (0.0ms) NMS
+video 1/1 (94/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (927.5ms) Inference, (1.0ms) NMS
+video 1/1 (95/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1226.9ms) Inference, (0.0ms) NMS
+video 1/1 (96/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (773.1ms) Inference, (0.0ms) NMS
+video 1/1 (97/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.1ms) Inference, (0.0ms) NMS
+video 1/1 (98/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (844.0ms) Inference, (6.2ms) NMS
+video 1/1 (99/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.9ms) Inference, (0.0ms) NMS
+video 1/1 (100/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (961.7ms) Inference, (0.0ms) NMS
+video 1/1 (101/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (881.8ms) Inference, (0.0ms) NMS
+video 1/1 (102/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.3ms) Inference, (1.0ms) NMS
+video 1/1 (103/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.2ms) Inference, (0.0ms) NMS
+video 1/1 (104/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (965.4ms) Inference, (0.0ms) NMS
+video 1/1 (105/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (736.1ms) Inference, (0.0ms) NMS
+video 1/1 (106/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (904.5ms) Inference, (0.0ms) NMS
+video 1/1 (107/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (822.4ms) Inference, (1.0ms) NMS
+video 1/1 (108/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (849.0ms) Inference, (0.3ms) NMS
+video 1/1 (109/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (947.6ms) Inference, (1.0ms) NMS
+video 1/1 (110/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (990.8ms) Inference, (0.0ms) NMS
+video 1/1 (111/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (935.7ms) Inference, (0.0ms) NMS
+video 1/1 (112/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (922.1ms) Inference, (1.0ms) NMS
+video 1/1 (113/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (721.9ms) Inference, (0.0ms) NMS
+video 1/1 (114/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (937.9ms) Inference, (1.5ms) NMS
+video 1/1 (115/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (978.8ms) Inference, (1.0ms) NMS
+video 1/1 (116/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (959.8ms) Inference, (0.0ms) NMS
+video 1/1 (117/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1134.6ms) Inference, (1.0ms) NMS
+video 1/1 (118/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1186.1ms) Inference, (0.0ms) NMS
+video 1/1 (119/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1323.1ms) Inference, (0.5ms) NMS
+video 1/1 (120/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1116.7ms) Inference, (0.0ms) NMS
+video 1/1 (121/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (966.4ms) Inference, (0.0ms) NMS
+video 1/1 (122/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (877.1ms) Inference, (0.0ms) NMS
+video 1/1 (123/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1046.9ms) Inference, (0.0ms) NMS
+video 1/1 (124/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.0ms) Inference, (0.0ms) NMS
+video 1/1 (125/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (837.9ms) Inference, (0.0ms) NMS
+video 1/1 (126/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (771.0ms) Inference, (0.0ms) NMS
+video 1/1 (127/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (784.7ms) Inference, (1.0ms) NMS
+video 1/1 (128/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (833.9ms) Inference, (0.0ms) NMS
+video 1/1 (129/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (805.2ms) Inference, (0.0ms) NMS
+video 1/1 (130/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (773.0ms) Inference, (0.0ms) NMS
+video 1/1 (131/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (798.0ms) Inference, (0.0ms) NMS
+video 1/1 (132/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.8ms) Inference, (0.0ms) NMS
+video 1/1 (133/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.6ms) Inference, (0.0ms) NMS
+video 1/1 (134/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (812.7ms) Inference, (0.0ms) NMS
+video 1/1 (135/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (760.5ms) Inference, (0.0ms) NMS
+video 1/1 (136/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (808.8ms) Inference, (1.0ms) NMS
+video 1/1 (137/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (789.7ms) Inference, (0.0ms) NMS
+video 1/1 (138/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (753.7ms) Inference, (0.0ms) NMS
+video 1/1 (139/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.3ms) Inference, (1.0ms) NMS
+video 1/1 (140/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (759.3ms) Inference, (0.0ms) NMS
+video 1/1 (141/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (792.4ms) Inference, (0.0ms) NMS
+video 1/1 (142/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1016.2ms) Inference, (0.0ms) NMS
+video 1/1 (143/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1015.7ms) Inference, (0.0ms) NMS
+video 1/1 (144/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1040.8ms) Inference, (0.0ms) NMS
+video 1/1 (145/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (855.5ms) Inference, (1.0ms) NMS
+video 1/1 (146/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (810.1ms) Inference, (0.0ms) NMS
+video 1/1 (147/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (777.2ms) Inference, (1.0ms) NMS
+video 1/1 (148/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (834.6ms) Inference, (0.0ms) NMS
+video 1/1 (149/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (918.0ms) Inference, (1.0ms) NMS
+video 1/1 (150/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (878.1ms) Inference, (0.0ms) NMS
+video 1/1 (151/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (994.2ms) Inference, (5.5ms) NMS
+video 1/1 (152/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1020.0ms) Inference, (0.0ms) NMS
+video 1/1 (153/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (974.3ms) Inference, (0.0ms) NMS
+video 1/1 (154/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (888.3ms) Inference, (0.0ms) NMS
+video 1/1 (155/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (919.2ms) Inference, (0.0ms) NMS
+video 1/1 (156/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (919.4ms) Inference, (0.0ms) NMS
+video 1/1 (157/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (830.1ms) Inference, (0.0ms) NMS
+video 1/1 (158/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.4ms) Inference, (0.0ms) NMS
+video 1/1 (159/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (843.4ms) Inference, (0.0ms) NMS
+video 1/1 (160/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (916.2ms) Inference, (0.0ms) NMS
+video 1/1 (161/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (931.6ms) Inference, (0.0ms) NMS
+video 1/1 (162/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.3ms) Inference, (0.0ms) NMS
+video 1/1 (163/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.7ms) Inference, (0.0ms) NMS
+video 1/1 (164/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (815.4ms) Inference, (0.0ms) NMS
+video 1/1 (165/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (817.7ms) Inference, (0.0ms) NMS
+video 1/1 (166/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (778.5ms) Inference, (0.0ms) NMS
+video 1/1 (167/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (792.9ms) Inference, (0.0ms) NMS
+video 1/1 (168/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (821.7ms) Inference, (0.0ms) NMS
+video 1/1 (169/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (769.0ms) Inference, (1.0ms) NMS
+video 1/1 (170/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (794.7ms) Inference, (1.0ms) NMS
+video 1/1 (171/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (790.8ms) Inference, (0.0ms) NMS
+video 1/1 (172/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (757.8ms) Inference, (0.0ms) NMS
+video 1/1 (173/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (803.4ms) Inference, (0.0ms) NMS
+video 1/1 (174/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (840.8ms) Inference, (0.0ms) NMS
+video 1/1 (175/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.3ms) Inference, (0.0ms) NMS
+video 1/1 (176/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.9ms) Inference, (0.0ms) NMS
+video 1/1 (177/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (782.4ms) Inference, (1.0ms) NMS
+video 1/1 (178/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (791.4ms) Inference, (1.0ms) NMS
+video 1/1 (179/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (834.1ms) Inference, (0.0ms) NMS
+video 1/1 (180/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.3ms) Inference, (0.0ms) NMS
+video 1/1 (181/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (812.8ms) Inference, (0.0ms) NMS
+video 1/1 (182/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (802.5ms) Inference, (0.0ms) NMS
+video 1/1 (183/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (742.1ms) Inference, (0.0ms) NMS
+video 1/1 (184/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.9ms) Inference, (0.0ms) NMS
+video 1/1 (185/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (770.4ms) Inference, (1.0ms) NMS
+video 1/1 (186/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (775.6ms) Inference, (0.0ms) NMS
+video 1/1 (187/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (809.1ms) Inference, (0.0ms) NMS
+video 1/1 (188/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.3ms) Inference, (0.0ms) NMS
+video 1/1 (189/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.0ms) Inference, (0.0ms) NMS
+video 1/1 (190/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (800.3ms) Inference, (0.0ms) NMS
+video 1/1 (191/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (778.9ms) Inference, (0.0ms) NMS
+video 1/1 (192/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.7ms) Inference, (0.0ms) NMS
+video 1/1 (193/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (874.3ms) Inference, (0.0ms) NMS
+video 1/1 (194/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (768.4ms) Inference, (0.0ms) NMS
+video 1/1 (195/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (775.2ms) Inference, (0.0ms) NMS
+video 1/1 (196/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (779.7ms) Inference, (0.0ms) NMS
+video 1/1 (197/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (751.0ms) Inference, (1.0ms) NMS
+video 1/1 (198/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (791.5ms) Inference, (0.0ms) NMS
+video 1/1 (199/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.4ms) Inference, (0.0ms) NMS
+video 1/1 (200/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (802.2ms) Inference, (0.0ms) NMS
+video 1/1 (201/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (792.0ms) Inference, (0.0ms) NMS
+video 1/1 (202/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (806.5ms) Inference, (1.0ms) NMS
+video 1/1 (203/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (893.7ms) Inference, (0.5ms) NMS
+video 1/1 (204/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.7ms) Inference, (0.0ms) NMS
+video 1/1 (205/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (729.8ms) Inference, (1.0ms) NMS
+video 1/1 (206/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.7ms) Inference, (0.0ms) NMS
+video 1/1 (207/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.8ms) Inference, (1.0ms) NMS
+video 1/1 (208/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (785.8ms) Inference, (1.0ms) NMS
+video 1/1 (209/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (826.1ms) Inference, (0.0ms) NMS
+video 1/1 (210/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (832.0ms) Inference, (0.0ms) NMS
+video 1/1 (211/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (843.1ms) Inference, (1.0ms) NMS
+video 1/1 (212/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (803.3ms) Inference, (0.0ms) NMS
+video 1/1 (213/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (789.8ms) Inference, (0.0ms) NMS
+video 1/1 (214/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.2ms) Inference, (0.0ms) NMS
+video 1/1 (215/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (770.2ms) Inference, (1.0ms) NMS
+video 1/1 (216/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (777.7ms) Inference, (0.0ms) NMS
+video 1/1 (217/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.9ms) Inference, (0.0ms) NMS
+video 1/1 (218/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (870.2ms) Inference, (0.0ms) NMS
+video 1/1 (219/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (770.1ms) Inference, (0.0ms) NMS
+video 1/1 (220/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (833.0ms) Inference, (0.0ms) NMS
+video 1/1 (221/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (820.0ms) Inference, (1.0ms) NMS
+video 1/1 (222/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (772.5ms) Inference, (0.0ms) NMS
+video 1/1 (223/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (797.8ms) Inference, (0.0ms) NMS
+video 1/1 (224/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (794.0ms) Inference, (1.0ms) NMS
+video 1/1 (225/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (777.2ms) Inference, (1.0ms) NMS
+video 1/1 (226/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.1ms) Inference, (0.0ms) NMS
+video 1/1 (227/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (802.4ms) Inference, (0.0ms) NMS
+video 1/1 (228/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.7ms) Inference, (0.0ms) NMS
+video 1/1 (229/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.1ms) Inference, (0.0ms) NMS
+video 1/1 (230/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (934.7ms) Inference, (0.0ms) NMS
+video 1/1 (231/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (736.7ms) Inference, (0.0ms) NMS
+video 1/1 (232/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (806.1ms) Inference, (0.0ms) NMS
+video 1/1 (233/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (777.9ms) Inference, (0.0ms) NMS
+video 1/1 (234/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (788.9ms) Inference, (0.0ms) NMS
+video 1/1 (235/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (803.7ms) Inference, (0.0ms) NMS
+video 1/1 (236/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (769.0ms) Inference, (0.0ms) NMS
+video 1/1 (237/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.7ms) Inference, (0.9ms) NMS
+video 1/1 (238/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.8ms) Inference, (0.0ms) NMS
+video 1/1 (239/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (837.1ms) Inference, (0.0ms) NMS
+video 1/1 (240/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (765.7ms) Inference, (0.0ms) NMS
+video 1/1 (241/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (814.2ms) Inference, (1.0ms) NMS
+video 1/1 (242/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.1ms) Inference, (0.0ms) NMS
+video 1/1 (243/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (812.6ms) Inference, (0.0ms) NMS
+video 1/1 (244/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.7ms) Inference, (1.0ms) NMS
+video 1/1 (245/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.9ms) Inference, (0.0ms) NMS
+video 1/1 (246/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (818.9ms) Inference, (1.0ms) NMS
+video 1/1 (247/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.4ms) Inference, (0.0ms) NMS
+video 1/1 (248/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (789.3ms) Inference, (0.0ms) NMS
+video 1/1 (249/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (818.3ms) Inference, (1.0ms) NMS
+video 1/1 (250/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.0ms) Inference, (0.0ms) NMS
+video 1/1 (251/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (773.0ms) Inference, (0.0ms) NMS
+video 1/1 (252/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (806.4ms) Inference, (1.5ms) NMS
+video 1/1 (253/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (767.9ms) Inference, (1.0ms) NMS
+video 1/1 (254/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.2ms) Inference, (1.0ms) NMS
+video 1/1 (255/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.7ms) Inference, (0.0ms) NMS
+video 1/1 (256/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (736.0ms) Inference, (0.0ms) NMS
+video 1/1 (257/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.4ms) Inference, (0.0ms) NMS
+video 1/1 (258/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (815.7ms) Inference, (1.0ms) NMS
+video 1/1 (259/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (766.2ms) Inference, (0.0ms) NMS
+video 1/1 (260/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (809.4ms) Inference, (1.0ms) NMS
+video 1/1 (261/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (781.1ms) Inference, (0.0ms) NMS
+video 1/1 (262/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (769.6ms) Inference, (1.0ms) NMS
+video 1/1 (263/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (788.1ms) Inference, (0.0ms) NMS
+video 1/1 (264/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (787.2ms) Inference, (0.0ms) NMS
+video 1/1 (265/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1097.8ms) Inference, (1.0ms) NMS
+video 1/1 (266/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (920.6ms) Inference, (1.0ms) NMS
+video 1/1 (267/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (987.7ms) Inference, (1.0ms) NMS
+video 1/1 (268/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (864.7ms) Inference, (0.0ms) NMS
+video 1/1 (269/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (889.3ms) Inference, (0.0ms) NMS
+video 1/1 (270/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (905.9ms) Inference, (0.0ms) NMS
+video 1/1 (271/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (773.9ms) Inference, (0.0ms) NMS
+video 1/1 (272/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (730.3ms) Inference, (0.0ms) NMS
+video 1/1 (273/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (747.8ms) Inference, (0.5ms) NMS
+video 1/1 (274/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (661.0ms) Inference, (0.0ms) NMS
+video 1/1 (275/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (748.7ms) Inference, (0.0ms) NMS
+video 1/1 (276/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.1ms) Inference, (0.0ms) NMS
+video 1/1 (277/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.1ms) Inference, (0.0ms) NMS
+video 1/1 (278/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (727.6ms) Inference, (0.0ms) NMS
+video 1/1 (279/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (635.1ms) Inference, (0.0ms) NMS
+video 1/1 (280/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (769.7ms) Inference, (0.0ms) NMS
+video 1/1 (281/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (679.8ms) Inference, (3.5ms) NMS
+video 1/1 (282/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (674.5ms) Inference, (0.0ms) NMS
+video 1/1 (283/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (806.3ms) Inference, (0.0ms) NMS
+video 1/1 (284/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (672.4ms) Inference, (0.0ms) NMS
+video 1/1 (285/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (730.9ms) Inference, (0.0ms) NMS
+video 1/1 (286/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (663.3ms) Inference, (0.0ms) NMS
+video 1/1 (287/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (694.8ms) Inference, (0.0ms) NMS
+video 1/1 (288/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (736.9ms) Inference, (0.0ms) NMS
+video 1/1 (289/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (704.3ms) Inference, (0.0ms) NMS
+video 1/1 (290/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (903.4ms) Inference, (0.0ms) NMS
+video 1/1 (291/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (716.0ms) Inference, (0.0ms) NMS
+video 1/1 (292/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (672.4ms) Inference, (0.0ms) NMS
+video 1/1 (293/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (754.2ms) Inference, (0.0ms) NMS
+video 1/1 (294/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (627.5ms) Inference, (0.0ms) NMS
+video 1/1 (295/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (705.2ms) Inference, (0.0ms) NMS
+video 1/1 (296/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (705.6ms) Inference, (0.0ms) NMS
+video 1/1 (297/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (737.3ms) Inference, (0.0ms) NMS
+video 1/1 (298/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (754.5ms) Inference, (0.0ms) NMS
+video 1/1 (299/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (644.9ms) Inference, (0.0ms) NMS
+video 1/1 (300/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (707.3ms) Inference, (0.0ms) NMS
+video 1/1 (301/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.9ms) Inference, (0.0ms) NMS
+video 1/1 (302/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (719.1ms) Inference, (0.0ms) NMS
+video 1/1 (303/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.0ms) Inference, (0.0ms) NMS
+video 1/1 (304/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (627.1ms) Inference, (0.0ms) NMS
+video 1/1 (305/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (722.5ms) Inference, (0.0ms) NMS
+video 1/1 (306/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (642.7ms) Inference, (0.0ms) NMS
+video 1/1 (307/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (721.4ms) Inference, (0.0ms) NMS
+video 1/1 (308/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (691.2ms) Inference, (0.0ms) NMS
+video 1/1 (309/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (642.2ms) Inference, (0.0ms) NMS
+video 1/1 (310/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (951.0ms) Inference, (0.0ms) NMS
+video 1/1 (311/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (711.7ms) Inference, (0.0ms) NMS
+video 1/1 (312/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (704.2ms) Inference, (0.0ms) NMS
+video 1/1 (313/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.4ms) Inference, (0.0ms) NMS
+video 1/1 (314/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (612.2ms) Inference, (0.0ms) NMS
+video 1/1 (315/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.8ms) Inference, (0.0ms) NMS
+video 1/1 (316/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (707.4ms) Inference, (0.0ms) NMS
+video 1/1 (317/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (712.0ms) Inference, (0.0ms) NMS
+video 1/1 (318/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (748.6ms) Inference, (0.0ms) NMS
+video 1/1 (319/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (626.6ms) Inference, (0.0ms) NMS
+video 1/1 (320/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (738.6ms) Inference, (0.0ms) NMS
+video 1/1 (321/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (658.5ms) Inference, (0.0ms) NMS
+video 1/1 (322/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (688.9ms) Inference, (0.0ms) NMS
+video 1/1 (323/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (779.4ms) Inference, (0.0ms) NMS
+video 1/1 (324/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (707.4ms) Inference, (0.0ms) NMS
+video 1/1 (325/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (721.4ms) Inference, (0.0ms) NMS
+video 1/1 (326/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (625.5ms) Inference, (15.6ms) NMS
+video 1/1 (327/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (723.4ms) Inference, (0.0ms) NMS
+video 1/1 (328/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (626.6ms) Inference, (0.0ms) NMS
+video 1/1 (329/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (768.9ms) Inference, (0.0ms) NMS
+video 1/1 (330/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (736.3ms) Inference, (0.0ms) NMS
+video 1/1 (331/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (723.1ms) Inference, (0.0ms) NMS
+video 1/1 (332/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.3ms) Inference, (0.0ms) NMS
+video 1/1 (333/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (579.6ms) Inference, (0.0ms) NMS
+video 1/1 (334/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (738.7ms) Inference, (0.0ms) NMS
+video 1/1 (335/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (610.9ms) Inference, (0.0ms) NMS
+video 1/1 (336/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (721.9ms) Inference, (0.0ms) NMS
+video 1/1 (337/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (706.9ms) Inference, (0.0ms) NMS
+video 1/1 (338/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (706.3ms) Inference, (0.0ms) NMS
+video 1/1 (339/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (704.7ms) Inference, (0.0ms) NMS
+video 1/1 (340/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (688.9ms) Inference, (0.0ms) NMS
+video 1/1 (341/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (689.2ms) Inference, (0.0ms) NMS
+video 1/1 (342/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (674.5ms) Inference, (0.0ms) NMS
+video 1/1 (343/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (690.7ms) Inference, (0.0ms) NMS
+video 1/1 (344/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.3ms) Inference, (0.0ms) NMS
+video 1/1 (345/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (629.1ms) Inference, (0.0ms) NMS
+video 1/1 (346/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (687.8ms) Inference, (0.0ms) NMS
+video 1/1 (347/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (643.5ms) Inference, (0.0ms) NMS
+video 1/1 (348/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (675.6ms) Inference, (0.0ms) NMS
+video 1/1 (349/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (704.7ms) Inference, (0.0ms) NMS
+video 1/1 (350/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (706.9ms) Inference, (0.0ms) NMS
+video 1/1 (351/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1114.0ms) Inference, (0.0ms) NMS
+video 1/1 (352/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (626.7ms) Inference, (0.0ms) NMS
+video 1/1 (353/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (675.1ms) Inference, (0.0ms) NMS
+video 1/1 (354/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (689.0ms) Inference, (0.0ms) NMS
+video 1/1 (355/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (723.5ms) Inference, (0.0ms) NMS
+video 1/1 (356/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (689.0ms) Inference, (0.0ms) NMS
+video 1/1 (357/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (669.0ms) Inference, (0.0ms) NMS
+video 1/1 (358/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (691.2ms) Inference, (0.0ms) NMS
+video 1/1 (359/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (672.4ms) Inference, (0.0ms) NMS
+video 1/1 (360/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (706.9ms) Inference, (0.0ms) NMS
+video 1/1 (361/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (673.5ms) Inference, (0.0ms) NMS
+video 1/1 (362/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (627.7ms) Inference, (0.0ms) NMS
+video 1/1 (363/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (702.7ms) Inference, (0.0ms) NMS
+video 1/1 (364/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (624.9ms) Inference, (0.0ms) NMS
+video 1/1 (365/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (707.5ms) Inference, (0.0ms) NMS
+video 1/1 (366/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (626.5ms) Inference, (0.0ms) NMS
+video 1/1 (367/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (691.3ms) Inference, (0.0ms) NMS
+video 1/1 (368/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (705.0ms) Inference, (0.0ms) NMS
+video 1/1 (369/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (642.2ms) Inference, (0.0ms) NMS
+video 1/1 (370/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (691.3ms) Inference, (0.0ms) NMS
+video 1/1 (371/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (595.4ms) Inference, (0.0ms) NMS
+video 1/1 (372/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (689.0ms) Inference, (0.0ms) NMS
+video 1/1 (373/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (645.5ms) Inference, (0.0ms) NMS
+video 1/1 (374/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (734.7ms) Inference, (0.0ms) NMS
+video 1/1 (375/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (660.6ms) Inference, (0.0ms) NMS
+video 1/1 (376/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (704.6ms) Inference, (0.0ms) NMS
+video 1/1 (377/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (768.8ms) Inference, (0.0ms) NMS
+video 1/1 (378/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (643.2ms) Inference, (0.0ms) NMS
+video 1/1 (379/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (752.5ms) Inference, (0.0ms) NMS
+video 1/1 (380/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (595.2ms) Inference, (0.0ms) NMS
+video 1/1 (381/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (752.3ms) Inference, (0.0ms) NMS
+video 1/1 (382/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (691.1ms) Inference, (0.0ms) NMS
+video 1/1 (383/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (595.3ms) Inference, (0.0ms) NMS
+video 1/1 (384/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (753.2ms) Inference, (0.0ms) NMS
+video 1/1 (385/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (627.5ms) Inference, (0.0ms) NMS
+video 1/1 (386/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (720.9ms) Inference, (0.0ms) NMS
+video 1/1 (387/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (613.0ms) Inference, (0.0ms) NMS
+video 1/1 (388/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (691.2ms) Inference, (0.0ms) NMS
+video 1/1 (389/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (671.3ms) Inference, (0.0ms) NMS
+video 1/1 (390/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (703.4ms) Inference, (0.0ms) NMS
+video 1/1 (391/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (674.5ms) Inference, (0.0ms) NMS
+video 1/1 (392/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (662.5ms) Inference, (0.0ms) NMS
+video 1/1 (393/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (735.9ms) Inference, (0.0ms) NMS
+video 1/1 (394/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (629.4ms) Inference, (0.0ms) NMS
+video 1/1 (395/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (751.4ms) Inference, (0.0ms) NMS
+video 1/1 (396/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (626.5ms) Inference, (0.0ms) NMS
+video 1/1 (397/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (689.5ms) Inference, (0.0ms) NMS
+video 1/1 (398/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (705.4ms) Inference, (0.0ms) NMS
+video 1/1 (399/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1030.9ms) Inference, (0.0ms) NMS
+video 1/1 (400/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (880.7ms) Inference, (0.0ms) NMS
+video 1/1 (401/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (880.3ms) Inference, (0.0ms) NMS
+video 1/1 (402/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (820.7ms) Inference, (0.0ms) NMS
+video 1/1 (403/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (802.8ms) Inference, (5.0ms) NMS
+video 1/1 (404/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (842.1ms) Inference, (0.0ms) NMS
+video 1/1 (405/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (750.5ms) Inference, (0.0ms) NMS
+video 1/1 (406/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (823.3ms) Inference, (1.0ms) NMS
+video 1/1 (407/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (814.3ms) Inference, (0.0ms) NMS
+video 1/1 (408/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.0ms) Inference, (0.0ms) NMS
+video 1/1 (409/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (823.1ms) Inference, (0.0ms) NMS
+video 1/1 (410/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.9ms) Inference, (0.0ms) NMS
+video 1/1 (411/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.8ms) Inference, (1.0ms) NMS
+video 1/1 (412/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (806.9ms) Inference, (0.0ms) NMS
+video 1/1 (413/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (805.5ms) Inference, (0.0ms) NMS
+video 1/1 (414/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (784.3ms) Inference, (0.0ms) NMS
+video 1/1 (415/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (815.9ms) Inference, (1.0ms) NMS
+video 1/1 (416/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (778.6ms) Inference, (0.0ms) NMS
+video 1/1 (417/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (776.3ms) Inference, (0.0ms) NMS
+video 1/1 (418/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (829.2ms) Inference, (0.0ms) NMS
+video 1/1 (419/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (785.3ms) Inference, (1.5ms) NMS
+video 1/1 (420/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (814.5ms) Inference, (0.0ms) NMS
+video 1/1 (421/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.9ms) Inference, (0.0ms) NMS
+video 1/1 (422/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.9ms) Inference, (1.0ms) NMS
+video 1/1 (423/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (812.9ms) Inference, (0.0ms) NMS
+video 1/1 (424/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (803.4ms) Inference, (0.0ms) NMS
+video 1/1 (425/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.5ms) Inference, (0.0ms) NMS
+video 1/1 (426/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (802.6ms) Inference, (1.0ms) NMS
+video 1/1 (427/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (808.7ms) Inference, (1.0ms) NMS
+video 1/1 (428/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (780.9ms) Inference, (0.0ms) NMS
+video 1/1 (429/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (813.8ms) Inference, (0.0ms) NMS
+video 1/1 (430/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (799.3ms) Inference, (0.0ms) NMS
+video 1/1 (431/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (792.6ms) Inference, (0.0ms) NMS
+video 1/1 (432/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (817.1ms) Inference, (0.0ms) NMS
+video 1/1 (433/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (771.5ms) Inference, (0.0ms) NMS
+video 1/1 (434/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.8ms) Inference, (0.0ms) NMS
+video 1/1 (435/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.6ms) Inference, (0.0ms) NMS
+video 1/1 (436/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (798.6ms) Inference, (0.0ms) NMS
+video 1/1 (437/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (797.7ms) Inference, (0.0ms) NMS
+video 1/1 (438/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (832.9ms) Inference, (0.0ms) NMS
+video 1/1 (439/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (842.7ms) Inference, (1.0ms) NMS
+video 1/1 (440/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (854.7ms) Inference, (1.0ms) NMS
+video 1/1 (441/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.0ms) Inference, (0.0ms) NMS
+video 1/1 (442/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (696.7ms) Inference, (1.0ms) NMS
+video 1/1 (443/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (772.2ms) Inference, (0.0ms) NMS
+video 1/1 (444/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (689.7ms) Inference, (0.0ms) NMS
+video 1/1 (445/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (696.6ms) Inference, (1.0ms) NMS
+video 1/1 (446/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (722.1ms) Inference, (0.0ms) NMS
+video 1/1 (447/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (634.6ms) Inference, (0.0ms) NMS
+video 1/1 (448/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (838.4ms) Inference, (0.0ms) NMS
+video 1/1 (449/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (820.9ms) Inference, (0.0ms) NMS
+video 1/1 (450/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (826.6ms) Inference, (0.0ms) NMS
+video 1/1 (451/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (873.7ms) Inference, (1.5ms) NMS
+video 1/1 (452/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (957.3ms) Inference, (1.0ms) NMS
+video 1/1 (453/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (856.3ms) Inference, (0.0ms) NMS
+video 1/1 (454/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (805.6ms) Inference, (1.0ms) NMS
+video 1/1 (455/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.5ms) Inference, (0.0ms) NMS
+video 1/1 (456/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (793.7ms) Inference, (0.0ms) NMS
+video 1/1 (457/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (814.2ms) Inference, (0.0ms) NMS
+video 1/1 (458/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.7ms) Inference, (0.0ms) NMS
+video 1/1 (459/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (795.6ms) Inference, (0.0ms) NMS
+video 1/1 (460/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (797.9ms) Inference, (1.0ms) NMS
+video 1/1 (461/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.3ms) Inference, (0.0ms) NMS
+video 1/1 (462/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (807.3ms) Inference, (0.0ms) NMS
+video 1/1 (463/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (817.5ms) Inference, (0.0ms) NMS
+video 1/1 (464/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.2ms) Inference, (0.0ms) NMS
+video 1/1 (465/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (826.7ms) Inference, (0.0ms) NMS
+video 1/1 (466/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (827.3ms) Inference, (1.0ms) NMS
+video 1/1 (467/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (752.3ms) Inference, (1.0ms) NMS
+video 1/1 (468/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (799.8ms) Inference, (0.0ms) NMS
+video 1/1 (469/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (802.4ms) Inference, (0.0ms) NMS
+video 1/1 (470/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.7ms) Inference, (0.0ms) NMS
+video 1/1 (471/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (798.2ms) Inference, (0.0ms) NMS
+video 1/1 (472/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (801.0ms) Inference, (0.0ms) NMS
+video 1/1 (473/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (805.8ms) Inference, (0.0ms) NMS
+video 1/1 (474/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (886.2ms) Inference, (0.0ms) NMS
+video 1/1 (475/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (825.1ms) Inference, (0.0ms) NMS
+video 1/1 (476/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (774.0ms) Inference, (0.0ms) NMS
+video 1/1 (477/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (830.1ms) Inference, (0.0ms) NMS
+video 1/1 (478/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (770.4ms) Inference, (0.0ms) NMS
+video 1/1 (479/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (817.6ms) Inference, (1.0ms) NMS
+video 1/1 (480/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (812.8ms) Inference, (0.0ms) NMS
+video 1/1 (481/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (767.6ms) Inference, (0.0ms) NMS
+video 1/1 (482/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (745.5ms) Inference, (1.0ms) NMS
+video 1/1 (483/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (704.1ms) Inference, (1.0ms) NMS
+video 1/1 (484/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (645.4ms) Inference, (0.0ms) NMS
+video 1/1 (485/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (766.0ms) Inference, (0.0ms) NMS
+video 1/1 (486/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (701.8ms) Inference, (0.0ms) NMS
+video 1/1 (487/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (757.1ms) Inference, (1.0ms) NMS
+video 1/1 (488/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (660.2ms) Inference, (0.0ms) NMS
+video 1/1 (489/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (698.4ms) Inference, (0.0ms) NMS
+video 1/1 (490/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (725.3ms) Inference, (0.0ms) NMS
+video 1/1 (491/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (610.7ms) Inference, (0.0ms) NMS
+video 1/1 (492/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (737.8ms) Inference, (0.0ms) NMS
+video 1/1 (493/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (762.2ms) Inference, (0.0ms) NMS
+video 1/1 (494/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (859.5ms) Inference, (0.0ms) NMS
+video 1/1 (495/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (878.9ms) Inference, (0.0ms) NMS
+video 1/1 (496/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (814.5ms) Inference, (0.0ms) NMS
+video 1/1 (497/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (844.7ms) Inference, (0.0ms) NMS
+video 1/1 (498/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (822.9ms) Inference, (0.0ms) NMS
+video 1/1 (499/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (799.9ms) Inference, (0.0ms) NMS
+video 1/1 (500/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (810.4ms) Inference, (1.0ms) NMS
+video 1/1 (501/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (811.7ms) Inference, (0.0ms) NMS
+video 1/1 (502/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (766.6ms) Inference, (0.0ms) NMS
+video 1/1 (503/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (805.1ms) Inference, (1.0ms) NMS
+video 1/1 (504/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (796.6ms) Inference, (1.0ms) NMS
+video 1/1 (505/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (752.5ms) Inference, (1.0ms) NMS
+video 1/1 (506/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (845.4ms) Inference, (0.0ms) NMS
+video 1/1 (507/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (785.2ms) Inference, (0.0ms) NMS
+video 1/1 (508/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (804.8ms) Inference, (0.0ms) NMS
+video 1/1 (509/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (817.2ms) Inference, (1.0ms) NMS
+video 1/1 (510/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (783.4ms) Inference, (0.0ms) NMS
+video 1/1 (511/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (788.9ms) Inference, (0.0ms) NMS
+video 1/1 (512/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (790.0ms) Inference, (1.0ms) NMS
+video 1/1 (513/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (816.9ms) Inference, (0.0ms) NMS
+video 1/1 (514/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (797.2ms) Inference, (0.0ms) NMS
+video 1/1 (515/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (814.8ms) Inference, (0.0ms) NMS
+video 1/1 (516/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (849.8ms) Inference, (0.0ms) NMS
+video 1/1 (517/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (849.0ms) Inference, (0.0ms) NMS
+video 1/1 (518/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (803.2ms) Inference, (0.0ms) NMS
+video 1/1 (519/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (786.3ms) Inference, (0.0ms) NMS
+video 1/1 (520/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (824.5ms) Inference, (1.0ms) NMS
+video 1/1 (521/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (798.3ms) Inference, (1.0ms) NMS
+video 1/1 (522/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (824.2ms) Inference, (0.0ms) NMS
+video 1/1 (523/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (798.0ms) Inference, (1.0ms) NMS
+Done. (458.034s)
+Namespace(weights=['D:/Savior/fs/AI/object_detection/new_weights/yolov7x.pt'], source='D:/Savior/fs/AI/object_detection/sample.mp4', img_size=640, conf_thres=0.75, iou_thres=0.55, device='', view_img=False, save_txt=False, save_conf=False, nosave=False, classes=None, agnostic_nms=False, augment=False, update=False, project='runs/detect', name='exp', exist_ok=False, no_trace=False)
+Fusing layers... 
+ Convert model to Traced-model... 
+ traced_script_module saved! 
+ model is traced! 
+
+video 1/1 (1/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1307.3ms) Inference, (0.0ms) NMS
+video 1/1 (2/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1260.5ms) Inference, (1.0ms) NMS
+video 1/1 (3/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1309.5ms) Inference, (2.0ms) NMS
+video 1/1 (4/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1311.4ms) Inference, (2.0ms) NMS
+video 1/1 (5/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1267.5ms) Inference, (3.0ms) NMS
+video 1/1 (6/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1313.2ms) Inference, (2.0ms) NMS
+video 1/1 (7/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1273.7ms) Inference, (1.5ms) NMS
+video 1/1 (8/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1254.0ms) Inference, (2.0ms) NMS
+video 1/1 (9/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1372.2ms) Inference, (3.0ms) NMS
+video 1/1 (10/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1318.9ms) Inference, (0.0ms) NMS
+video 1/1 (11/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1313.8ms) Inference, (1.0ms) NMS
+video 1/1 (12/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1236.4ms) Inference, (1.0ms) NMS
+video 1/1 (13/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1333.4ms) Inference, (2.0ms) NMS
+video 1/1 (14/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1405.1ms) Inference, (1.0ms) NMS
+video 1/1 (15/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 book, Done. (1289.9ms) Inference, (0.9ms) NMS
+video 1/1 (16/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1299.5ms) Inference, (1.0ms) NMS
+video 1/1 (17/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1273.6ms) Inference, (2.0ms) NMS
+video 1/1 (18/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1264.9ms) Inference, (1.0ms) NMS
+video 1/1 (19/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1588.3ms) Inference, (2.0ms) NMS
+video 1/1 (20/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1652.4ms) Inference, (2.0ms) NMS
+video 1/1 (21/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, 1 chair, Done. (1532.6ms) Inference, (1.0ms) NMS
+video 1/1 (22/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 book, Done. (1333.3ms) Inference, (1.0ms) NMS
+video 1/1 (23/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1167.0ms) Inference, (0.0ms) NMS
+video 1/1 (24/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 book, Done. (1170.1ms) Inference, (4.1ms) NMS
+video 1/1 (25/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1079.9ms) Inference, (5.4ms) NMS
+video 1/1 (26/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 book, Done. (1179.6ms) Inference, (5.0ms) NMS
+video 1/1 (27/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1235.0ms) Inference, (5.0ms) NMS
+video 1/1 (28/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1198.3ms) Inference, (2.5ms) NMS
+video 1/1 (29/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 book, Done. (1109.9ms) Inference, (0.0ms) NMS
+video 1/1 (30/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1130.0ms) Inference, (0.0ms) NMS
+video 1/1 (31/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1211.2ms) Inference, (0.0ms) NMS
+video 1/1 (32/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1144.3ms) Inference, (0.0ms) NMS
+video 1/1 (33/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 book, Done. (1066.2ms) Inference, (0.0ms) NMS
+video 1/1 (34/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 book, Done. (1175.1ms) Inference, (0.0ms) NMS
+video 1/1 (35/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 book, Done. (1240.2ms) Inference, (0.0ms) NMS
+video 1/1 (36/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1175.5ms) Inference, (15.6ms) NMS
+video 1/1 (37/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 book, Done. (1144.8ms) Inference, (0.0ms) NMS
+video 1/1 (38/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 book, Done. (1146.5ms) Inference, (0.0ms) NMS
+video 1/1 (39/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1195.7ms) Inference, (0.0ms) NMS
+video 1/1 (40/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 book, Done. (1076.7ms) Inference, (15.6ms) NMS
+video 1/1 (41/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1125.6ms) Inference, (1.0ms) NMS
+video 1/1 (42/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1174.6ms) Inference, (0.0ms) NMS
+video 1/1 (43/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1264.0ms) Inference, (1.0ms) NMS
+video 1/1 (44/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1114.7ms) Inference, (0.0ms) NMS
+video 1/1 (45/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 couch, Done. (1240.9ms) Inference, (1.0ms) NMS
+video 1/1 (46/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1247.6ms) Inference, (0.0ms) NMS
+video 1/1 (47/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1122.9ms) Inference, (0.0ms) NMS
+video 1/1 (48/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1159.4ms) Inference, (0.0ms) NMS
+video 1/1 (49/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1230.5ms) Inference, (2.0ms) NMS
+video 1/1 (50/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1233.7ms) Inference, (2.0ms) NMS
+video 1/1 (51/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1149.2ms) Inference, (1.0ms) NMS
+video 1/1 (52/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1050.5ms) Inference, (0.0ms) NMS
+video 1/1 (53/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 couch, Done. (1081.3ms) Inference, (0.0ms) NMS
+video 1/1 (54/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1082.4ms) Inference, (0.0ms) NMS
+video 1/1 (55/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1224.5ms) Inference, (2.0ms) NMS
+video 1/1 (56/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1473.4ms) Inference, (0.0ms) NMS
+video 1/1 (57/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1508.7ms) Inference, (6.0ms) NMS
+video 1/1 (58/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1358.1ms) Inference, (0.0ms) NMS
+video 1/1 (59/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1266.8ms) Inference, (1.0ms) NMS
+video 1/1 (60/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1229.9ms) Inference, (2.5ms) NMS
+video 1/1 (61/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1248.7ms) Inference, (2.0ms) NMS
+video 1/1 (62/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1242.1ms) Inference, (2.5ms) NMS
+video 1/1 (63/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1286.8ms) Inference, (3.0ms) NMS
+video 1/1 (64/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1261.3ms) Inference, (2.0ms) NMS
+video 1/1 (65/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1270.1ms) Inference, (2.0ms) NMS
+video 1/1 (66/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1381.9ms) Inference, (3.0ms) NMS
+video 1/1 (67/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1417.2ms) Inference, (2.0ms) NMS
+video 1/1 (68/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1337.0ms) Inference, (4.0ms) NMS
+video 1/1 (69/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1522.3ms) Inference, (2.0ms) NMS
+video 1/1 (70/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1511.5ms) Inference, (2.5ms) NMS
+video 1/1 (71/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1386.2ms) Inference, (2.5ms) NMS
+video 1/1 (72/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1464.5ms) Inference, (3.0ms) NMS
+video 1/1 (73/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1337.9ms) Inference, (1.0ms) NMS
+video 1/1 (74/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1518.3ms) Inference, (2.0ms) NMS
+video 1/1 (75/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1334.9ms) Inference, (2.5ms) NMS
+video 1/1 (76/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1264.2ms) Inference, (2.0ms) NMS
+video 1/1 (77/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1291.2ms) Inference, (2.0ms) NMS
+video 1/1 (78/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1284.6ms) Inference, (2.0ms) NMS
+video 1/1 (79/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1327.0ms) Inference, (2.0ms) NMS
+video 1/1 (80/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1271.5ms) Inference, (1.0ms) NMS
+video 1/1 (81/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1279.3ms) Inference, (2.0ms) NMS
+video 1/1 (82/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1275.1ms) Inference, (1.5ms) NMS
+video 1/1 (83/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1256.2ms) Inference, (2.1ms) NMS
+video 1/1 (84/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1292.5ms) Inference, (0.5ms) NMS
+video 1/1 (85/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1340.3ms) Inference, (1.0ms) NMS
+video 1/1 (86/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1294.3ms) Inference, (2.0ms) NMS
+video 1/1 (87/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1302.5ms) Inference, (2.0ms) NMS
+video 1/1 (88/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1266.3ms) Inference, (2.0ms) NMS
+video 1/1 (89/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1292.4ms) Inference, (2.0ms) NMS
+video 1/1 (90/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1295.8ms) Inference, (1.0ms) NMS
+video 1/1 (91/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1262.3ms) Inference, (2.0ms) NMS
+video 1/1 (92/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1232.7ms) Inference, (1.0ms) NMS
+video 1/1 (93/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1284.4ms) Inference, (1.0ms) NMS
+video 1/1 (94/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1446.2ms) Inference, (1.9ms) NMS
+video 1/1 (95/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1606.8ms) Inference, (1.9ms) NMS
+video 1/1 (96/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1217.1ms) Inference, (2.0ms) NMS
+video 1/1 (97/523) D:\Savior\fs\AI\object_detection\sample.mp4: 2 chairs, 1 refrigerator, Done. (1211.7ms) Inference, (4.0ms) NMS
+video 1/1 (98/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1577.8ms) Inference, (3.0ms) NMS
+video 1/1 (99/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1309.0ms) Inference, (3.0ms) NMS
+video 1/1 (100/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 refrigerator, Done. (1363.5ms) Inference, (2.0ms) NMS
+video 1/1 (101/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 refrigerator, Done. (1307.0ms) Inference, (2.0ms) NMS
+video 1/1 (102/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1250.9ms) Inference, (3.0ms) NMS
+video 1/1 (103/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1257.7ms) Inference, (1.0ms) NMS
+video 1/1 (104/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1287.7ms) Inference, (1.0ms) NMS
+video 1/1 (105/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1241.7ms) Inference, (1.0ms) NMS
+video 1/1 (106/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1260.9ms) Inference, (2.0ms) NMS
+video 1/1 (107/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1287.0ms) Inference, (1.0ms) NMS
+video 1/1 (108/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1277.7ms) Inference, (2.0ms) NMS
+video 1/1 (109/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1258.7ms) Inference, (2.0ms) NMS
+video 1/1 (110/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1297.6ms) Inference, (2.0ms) NMS
+video 1/1 (111/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1271.2ms) Inference, (1.0ms) NMS
+video 1/1 (112/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1262.2ms) Inference, (2.0ms) NMS
+video 1/1 (113/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1297.4ms) Inference, (1.0ms) NMS
+video 1/1 (114/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1287.1ms) Inference, (2.0ms) NMS
+video 1/1 (115/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1272.0ms) Inference, (1.6ms) NMS
+video 1/1 (116/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1281.1ms) Inference, (1.0ms) NMS
+video 1/1 (117/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1344.2ms) Inference, (2.5ms) NMS
+video 1/1 (118/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1304.0ms) Inference, (2.0ms) NMS
+video 1/1 (119/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1256.9ms) Inference, (2.0ms) NMS
+video 1/1 (120/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, 1 dog, Done. (1269.6ms) Inference, (2.0ms) NMS
+video 1/1 (121/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1279.7ms) Inference, (2.0ms) NMS
+video 1/1 (122/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1324.3ms) Inference, (2.0ms) NMS
+video 1/1 (123/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1470.1ms) Inference, (2.0ms) NMS
+video 1/1 (124/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1499.6ms) Inference, (13.5ms) NMS
+video 1/1 (125/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1191.8ms) Inference, (2.0ms) NMS
+video 1/1 (126/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1505.5ms) Inference, (2.5ms) NMS
+video 1/1 (127/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1380.0ms) Inference, (2.0ms) NMS
+video 1/1 (128/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1390.3ms) Inference, (1.5ms) NMS
+video 1/1 (129/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1329.4ms) Inference, (1.0ms) NMS
+video 1/1 (130/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1330.6ms) Inference, (3.1ms) NMS
+video 1/1 (131/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1312.3ms) Inference, (2.0ms) NMS
+video 1/1 (132/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1273.8ms) Inference, (1.0ms) NMS
+video 1/1 (133/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1293.4ms) Inference, (2.0ms) NMS
+video 1/1 (134/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1358.5ms) Inference, (1.0ms) NMS
+video 1/1 (135/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1276.5ms) Inference, (2.6ms) NMS
+video 1/1 (136/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1297.4ms) Inference, (2.0ms) NMS
+video 1/1 (137/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1326.0ms) Inference, (1.0ms) NMS
+video 1/1 (138/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1271.7ms) Inference, (1.6ms) NMS
+video 1/1 (139/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1321.6ms) Inference, (2.0ms) NMS
+video 1/1 (140/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1614.1ms) Inference, (3.0ms) NMS
+video 1/1 (141/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1676.5ms) Inference, (2.5ms) NMS
+video 1/1 (142/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1398.7ms) Inference, (2.0ms) NMS
+video 1/1 (143/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1230.9ms) Inference, (1.5ms) NMS
+video 1/1 (144/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1265.4ms) Inference, (1.0ms) NMS
+video 1/1 (145/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1458.4ms) Inference, (2.9ms) NMS
+video 1/1 (146/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1346.5ms) Inference, (2.0ms) NMS
+video 1/1 (147/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1381.3ms) Inference, (2.5ms) NMS
+video 1/1 (148/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1364.8ms) Inference, (2.0ms) NMS
+video 1/1 (149/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1469.6ms) Inference, (2.0ms) NMS
+video 1/1 (150/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1417.9ms) Inference, (2.0ms) NMS
+video 1/1 (151/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1325.1ms) Inference, (2.0ms) NMS
+video 1/1 (152/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1329.2ms) Inference, (1.0ms) NMS
+video 1/1 (153/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1298.6ms) Inference, (2.0ms) NMS
+video 1/1 (154/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1322.5ms) Inference, (2.0ms) NMS
+video 1/1 (155/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1329.8ms) Inference, (2.0ms) NMS
+video 1/1 (156/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1421.6ms) Inference, (3.0ms) NMS
+video 1/1 (157/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1321.2ms) Inference, (2.0ms) NMS
+video 1/1 (158/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1345.1ms) Inference, (1.0ms) NMS
+video 1/1 (159/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1375.7ms) Inference, (2.0ms) NMS
+video 1/1 (160/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1327.5ms) Inference, (1.0ms) NMS
+video 1/1 (161/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1410.4ms) Inference, (2.0ms) NMS
+video 1/1 (162/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1342.7ms) Inference, (1.5ms) NMS
+video 1/1 (163/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1474.7ms) Inference, (1.5ms) NMS
+video 1/1 (164/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1363.5ms) Inference, (1.5ms) NMS
+video 1/1 (165/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1498.6ms) Inference, (2.0ms) NMS
+video 1/1 (166/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1348.6ms) Inference, (2.0ms) NMS
+video 1/1 (167/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1737.7ms) Inference, (3.0ms) NMS
+video 1/1 (168/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, 1 dining table, Done. (1715.8ms) Inference, (2.0ms) NMS
+video 1/1 (169/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1892.1ms) Inference, (3.5ms) NMS
+video 1/1 (170/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (2193.2ms) Inference, (3.0ms) NMS
+video 1/1 (171/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (2119.6ms) Inference, (2.0ms) NMS
+video 1/1 (172/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1562.8ms) Inference, (1.0ms) NMS
+video 1/1 (173/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1539.5ms) Inference, (1.0ms) NMS
+video 1/1 (174/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1731.6ms) Inference, (2.0ms) NMS
+video 1/1 (175/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1425.4ms) Inference, (1.0ms) NMS
+video 1/1 (176/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1433.7ms) Inference, (0.0ms) NMS
+video 1/1 (177/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1179.9ms) Inference, (1.0ms) NMS
+video 1/1 (178/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1768.9ms) Inference, (1.0ms) NMS
+video 1/1 (179/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1787.1ms) Inference, (1.5ms) NMS
+video 1/1 (180/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1523.7ms) Inference, (2.0ms) NMS
+video 1/1 (181/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1407.9ms) Inference, (2.0ms) NMS
+video 1/1 (182/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1277.7ms) Inference, (1.0ms) NMS
+video 1/1 (183/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1405.4ms) Inference, (1.0ms) NMS
+video 1/1 (184/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1295.3ms) Inference, (4.5ms) NMS
+video 1/1 (185/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1580.6ms) Inference, (1.0ms) NMS
+video 1/1 (186/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1618.7ms) Inference, (0.0ms) NMS
+video 1/1 (187/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (2064.4ms) Inference, (1.0ms) NMS
+video 1/1 (188/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1522.1ms) Inference, (0.0ms) NMS
+video 1/1 (189/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1640.9ms) Inference, (2.0ms) NMS
+video 1/1 (190/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1441.7ms) Inference, (0.0ms) NMS
+video 1/1 (191/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1524.3ms) Inference, (1.0ms) NMS
+video 1/1 (192/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1555.2ms) Inference, (1.0ms) NMS
+video 1/1 (193/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1392.1ms) Inference, (1.0ms) NMS
+video 1/1 (194/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1400.3ms) Inference, (0.0ms) NMS
+video 1/1 (195/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1442.5ms) Inference, (2.0ms) NMS
+video 1/1 (196/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1121.7ms) Inference, (1.0ms) NMS
+video 1/1 (197/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1604.0ms) Inference, (1.0ms) NMS
+video 1/1 (198/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1463.5ms) Inference, (1.0ms) NMS
+video 1/1 (199/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1287.4ms) Inference, (1.0ms) NMS
+video 1/1 (200/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1244.1ms) Inference, (0.0ms) NMS
+video 1/1 (201/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1273.7ms) Inference, (0.0ms) NMS
+video 1/1 (202/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1222.2ms) Inference, (0.0ms) NMS
+video 1/1 (203/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1190.1ms) Inference, (1.0ms) NMS
+video 1/1 (204/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1185.2ms) Inference, (0.0ms) NMS
+video 1/1 (205/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1094.5ms) Inference, (0.0ms) NMS
+video 1/1 (206/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1281.7ms) Inference, (0.0ms) NMS
+video 1/1 (207/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1253.9ms) Inference, (1.0ms) NMS
+video 1/1 (208/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1365.6ms) Inference, (2.0ms) NMS
+video 1/1 (209/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1584.3ms) Inference, (0.0ms) NMS
+video 1/1 (210/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1188.3ms) Inference, (0.0ms) NMS
+video 1/1 (211/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1160.7ms) Inference, (0.0ms) NMS
+video 1/1 (212/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1203.5ms) Inference, (0.0ms) NMS
+video 1/1 (213/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1235.2ms) Inference, (0.0ms) NMS
+video 1/1 (214/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1320.0ms) Inference, (0.0ms) NMS
+video 1/1 (215/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1320.6ms) Inference, (2.0ms) NMS
+video 1/1 (216/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1455.7ms) Inference, (2.0ms) NMS
+video 1/1 (217/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1262.6ms) Inference, (0.0ms) NMS
+video 1/1 (218/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1219.6ms) Inference, (1.0ms) NMS
+video 1/1 (219/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1287.6ms) Inference, (0.0ms) NMS
+video 1/1 (220/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1253.8ms) Inference, (0.0ms) NMS
+video 1/1 (221/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1245.3ms) Inference, (1.0ms) NMS
+video 1/1 (222/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1348.0ms) Inference, (0.0ms) NMS
+video 1/1 (223/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1365.9ms) Inference, (0.0ms) NMS
+video 1/1 (224/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1277.3ms) Inference, (1.0ms) NMS
+video 1/1 (225/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1575.4ms) Inference, (2.0ms) NMS
+video 1/1 (226/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1672.0ms) Inference, (3.0ms) NMS
+video 1/1 (227/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1858.0ms) Inference, (2.0ms) NMS
+video 1/1 (228/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1706.5ms) Inference, (0.0ms) NMS
+video 1/1 (229/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1250.2ms) Inference, (0.0ms) NMS
+video 1/1 (230/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1251.3ms) Inference, (1.0ms) NMS
+video 1/1 (231/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1413.6ms) Inference, (0.0ms) NMS
+video 1/1 (232/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1216.7ms) Inference, (0.0ms) NMS
+video 1/1 (233/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1345.4ms) Inference, (1.0ms) NMS
+video 1/1 (234/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1251.4ms) Inference, (2.0ms) NMS
+video 1/1 (235/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1389.3ms) Inference, (1.0ms) NMS
+video 1/1 (236/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1363.9ms) Inference, (2.0ms) NMS
+video 1/1 (237/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1315.5ms) Inference, (1.0ms) NMS
+video 1/1 (238/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1328.1ms) Inference, (1.0ms) NMS
+video 1/1 (239/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1219.0ms) Inference, (0.0ms) NMS
+video 1/1 (240/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1376.8ms) Inference, (1.0ms) NMS
+video 1/1 (241/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1252.0ms) Inference, (1.0ms) NMS
+video 1/1 (242/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1761.0ms) Inference, (1.0ms) NMS
+video 1/1 (243/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1411.0ms) Inference, (1.0ms) NMS
+video 1/1 (244/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1459.0ms) Inference, (1.0ms) NMS
+video 1/1 (245/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1410.3ms) Inference, (2.0ms) NMS
+video 1/1 (246/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1599.3ms) Inference, (1.0ms) NMS
+video 1/1 (247/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1432.8ms) Inference, (2.0ms) NMS
+video 1/1 (248/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1486.7ms) Inference, (1.0ms) NMS
+video 1/1 (249/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1344.4ms) Inference, (1.0ms) NMS
+video 1/1 (250/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1693.2ms) Inference, (1.0ms) NMS
+video 1/1 (251/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1957.2ms) Inference, (1.0ms) NMS
+video 1/1 (252/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1788.2ms) Inference, (1.0ms) NMS
+video 1/1 (253/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1471.7ms) Inference, (1.0ms) NMS
+video 1/1 (254/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1375.0ms) Inference, (2.0ms) NMS
+video 1/1 (255/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1389.7ms) Inference, (1.0ms) NMS
+video 1/1 (256/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1402.4ms) Inference, (1.0ms) NMS
+video 1/1 (257/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1428.7ms) Inference, (1.0ms) NMS
+video 1/1 (258/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1478.8ms) Inference, (3.0ms) NMS
+video 1/1 (259/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1372.4ms) Inference, (1.0ms) NMS
+video 1/1 (260/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1120.8ms) Inference, (0.0ms) NMS
+video 1/1 (261/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1201.8ms) Inference, (1.0ms) NMS
+video 1/1 (262/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1256.5ms) Inference, (1.0ms) NMS
+video 1/1 (263/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1314.0ms) Inference, (1.0ms) NMS
+video 1/1 (264/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1551.0ms) Inference, (2.0ms) NMS
+video 1/1 (265/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1281.0ms) Inference, (3.0ms) NMS
+video 1/1 (266/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1113.0ms) Inference, (0.0ms) NMS
+video 1/1 (267/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1205.1ms) Inference, (2.0ms) NMS
+video 1/1 (268/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1301.0ms) Inference, (1.0ms) NMS
+video 1/1 (269/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1554.0ms) Inference, (2.0ms) NMS
+video 1/1 (270/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1706.3ms) Inference, (1.0ms) NMS
+video 1/1 (271/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1571.7ms) Inference, (0.0ms) NMS
+video 1/1 (272/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1392.3ms) Inference, (1.0ms) NMS
+video 1/1 (273/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1620.7ms) Inference, (1.0ms) NMS
+video 1/1 (274/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1519.4ms) Inference, (1.0ms) NMS
+video 1/1 (275/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1443.5ms) Inference, (1.0ms) NMS
+video 1/1 (276/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1508.4ms) Inference, (1.0ms) NMS
+video 1/1 (277/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1290.2ms) Inference, (0.0ms) NMS
+video 1/1 (278/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1225.4ms) Inference, (0.0ms) NMS
+video 1/1 (279/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1175.7ms) Inference, (1.0ms) NMS
+video 1/1 (280/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1172.3ms) Inference, (15.6ms) NMS
+video 1/1 (281/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1700.3ms) Inference, (15.6ms) NMS
+video 1/1 (282/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1651.8ms) Inference, (1.0ms) NMS
+video 1/1 (283/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1377.7ms) Inference, (0.0ms) NMS
+video 1/1 (284/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1352.3ms) Inference, (1.0ms) NMS
+video 1/1 (285/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1341.1ms) Inference, (0.0ms) NMS
+video 1/1 (286/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1321.7ms) Inference, (0.0ms) NMS
+video 1/1 (287/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1434.0ms) Inference, (1.0ms) NMS
+video 1/1 (288/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1731.7ms) Inference, (2.0ms) NMS
+video 1/1 (289/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bowl, Done. (1616.0ms) Inference, (0.0ms) NMS
+video 1/1 (290/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bowl, Done. (1299.4ms) Inference, (2.0ms) NMS
+video 1/1 (291/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1169.2ms) Inference, (0.0ms) NMS
+video 1/1 (292/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1317.1ms) Inference, (1.0ms) NMS
+video 1/1 (293/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1536.6ms) Inference, (1.0ms) NMS
+video 1/1 (294/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1835.7ms) Inference, (1.0ms) NMS
+video 1/1 (295/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1500.7ms) Inference, (0.0ms) NMS
+video 1/1 (296/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1396.0ms) Inference, (0.0ms) NMS
+video 1/1 (297/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1847.1ms) Inference, (1.0ms) NMS
+video 1/1 (298/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1510.5ms) Inference, (0.0ms) NMS
+video 1/1 (299/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1467.7ms) Inference, (1.0ms) NMS
+video 1/1 (300/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1456.1ms) Inference, (1.5ms) NMS
+video 1/1 (301/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1450.2ms) Inference, (0.0ms) NMS
+video 1/1 (302/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1371.2ms) Inference, (1.0ms) NMS
+video 1/1 (303/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bowl, Done. (1340.0ms) Inference, (1.9ms) NMS
+video 1/1 (304/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bowl, Done. (1318.4ms) Inference, (1.5ms) NMS
+video 1/1 (305/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bowl, Done. (1205.0ms) Inference, (2.0ms) NMS
+video 1/1 (306/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 fire hydrant, Done. (1305.2ms) Inference, (2.0ms) NMS
+video 1/1 (307/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1375.9ms) Inference, (1.0ms) NMS
+video 1/1 (308/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1610.0ms) Inference, (1.0ms) NMS
+video 1/1 (309/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1292.7ms) Inference, (1.0ms) NMS
+video 1/1 (310/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1383.7ms) Inference, (1.0ms) NMS
+video 1/1 (311/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1309.0ms) Inference, (1.0ms) NMS
+video 1/1 (312/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bowl, 1 sink, Done. (1390.0ms) Inference, (2.0ms) NMS
+video 1/1 (313/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1246.0ms) Inference, (2.0ms) NMS
+video 1/1 (314/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bowl, Done. (1395.0ms) Inference, (2.0ms) NMS
+video 1/1 (315/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1271.0ms) Inference, (1.0ms) NMS
+video 1/1 (316/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1465.0ms) Inference, (1.0ms) NMS
+video 1/1 (317/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1442.0ms) Inference, (1.0ms) NMS
+video 1/1 (318/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1505.0ms) Inference, (1.0ms) NMS
+video 1/1 (319/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1490.0ms) Inference, (1.0ms) NMS
+video 1/1 (320/523) D:\Savior\fs\AI\object_detection\sample.mp4: 2 bowls, Done. (1676.4ms) Inference, (0.0ms) NMS
+video 1/1 (321/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1529.2ms) Inference, (1.0ms) NMS
+video 1/1 (322/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1573.6ms) Inference, (2.0ms) NMS
+video 1/1 (323/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1647.5ms) Inference, (1.0ms) NMS
+video 1/1 (324/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1528.2ms) Inference, (0.0ms) NMS
+video 1/1 (325/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1436.7ms) Inference, (1.0ms) NMS
+video 1/1 (326/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1490.2ms) Inference, (2.0ms) NMS
+video 1/1 (327/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1624.4ms) Inference, (1.0ms) NMS
+video 1/1 (328/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1795.7ms) Inference, (2.0ms) NMS
+video 1/1 (329/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1674.6ms) Inference, (1.0ms) NMS
+video 1/1 (330/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1891.8ms) Inference, (2.0ms) NMS
+video 1/1 (331/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1565.7ms) Inference, (0.0ms) NMS
+video 1/1 (332/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1575.2ms) Inference, (1.0ms) NMS
+video 1/1 (333/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1614.1ms) Inference, (0.0ms) NMS
+video 1/1 (334/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1636.9ms) Inference, (1.0ms) NMS
+video 1/1 (335/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1675.0ms) Inference, (1.0ms) NMS
+video 1/1 (336/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1687.0ms) Inference, (0.0ms) NMS
+video 1/1 (337/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1578.8ms) Inference, (0.0ms) NMS
+video 1/1 (338/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1555.4ms) Inference, (1.0ms) NMS
+video 1/1 (339/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1597.1ms) Inference, (1.0ms) NMS
+video 1/1 (340/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1589.1ms) Inference, (1.0ms) NMS
+video 1/1 (341/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1396.9ms) Inference, (0.0ms) NMS
+video 1/1 (342/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1461.8ms) Inference, (1.0ms) NMS
+video 1/1 (343/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1116.8ms) Inference, (0.0ms) NMS
+video 1/1 (344/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1144.9ms) Inference, (0.0ms) NMS
+video 1/1 (345/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1264.4ms) Inference, (2.0ms) NMS
+video 1/1 (346/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1405.8ms) Inference, (0.0ms) NMS
+video 1/1 (347/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1145.3ms) Inference, (0.0ms) NMS
+video 1/1 (348/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1173.4ms) Inference, (1.0ms) NMS
+video 1/1 (349/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1296.7ms) Inference, (2.0ms) NMS
+video 1/1 (350/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1397.6ms) Inference, (1.0ms) NMS
+video 1/1 (351/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1246.7ms) Inference, (0.0ms) NMS
+video 1/1 (352/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1384.8ms) Inference, (0.0ms) NMS
+video 1/1 (353/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1466.5ms) Inference, (1.0ms) NMS
+video 1/1 (354/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1320.4ms) Inference, (1.0ms) NMS
+video 1/1 (355/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1263.5ms) Inference, (15.6ms) NMS
+video 1/1 (356/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1275.9ms) Inference, (0.0ms) NMS
+video 1/1 (357/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1553.0ms) Inference, (2.0ms) NMS
+video 1/1 (358/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1546.8ms) Inference, (0.0ms) NMS
+video 1/1 (359/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1492.1ms) Inference, (1.0ms) NMS
+video 1/1 (360/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1452.1ms) Inference, (3.0ms) NMS
+video 1/1 (361/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1713.8ms) Inference, (3.0ms) NMS
+video 1/1 (362/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1546.9ms) Inference, (15.0ms) NMS
+video 1/1 (363/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1418.7ms) Inference, (2.0ms) NMS
+video 1/1 (364/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1416.8ms) Inference, (0.0ms) NMS
+video 1/1 (365/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1396.7ms) Inference, (0.0ms) NMS
+video 1/1 (366/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1489.1ms) Inference, (0.0ms) NMS
+video 1/1 (367/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1412.7ms) Inference, (0.0ms) NMS
+video 1/1 (368/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1381.2ms) Inference, (0.0ms) NMS
+video 1/1 (369/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1551.9ms) Inference, (3.0ms) NMS
+video 1/1 (370/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1616.7ms) Inference, (3.0ms) NMS
+video 1/1 (371/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1816.5ms) Inference, (2.0ms) NMS
+video 1/1 (372/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1629.2ms) Inference, (2.0ms) NMS
+video 1/1 (373/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1724.2ms) Inference, (2.0ms) NMS
+video 1/1 (374/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1674.8ms) Inference, (0.0ms) NMS
+video 1/1 (375/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1406.4ms) Inference, (0.0ms) NMS
+video 1/1 (376/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1534.7ms) Inference, (1.0ms) NMS
+video 1/1 (377/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1421.6ms) Inference, (0.0ms) NMS
+video 1/1 (378/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1451.7ms) Inference, (2.0ms) NMS
+video 1/1 (379/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1434.7ms) Inference, (2.0ms) NMS
+video 1/1 (380/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1468.1ms) Inference, (2.0ms) NMS
+video 1/1 (381/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1197.9ms) Inference, (0.0ms) NMS
+video 1/1 (382/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1158.7ms) Inference, (2.0ms) NMS
+video 1/1 (383/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1200.0ms) Inference, (1.0ms) NMS
+video 1/1 (384/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1175.4ms) Inference, (0.0ms) NMS
+video 1/1 (385/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1237.8ms) Inference, (0.0ms) NMS
+video 1/1 (386/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1125.1ms) Inference, (0.0ms) NMS
+video 1/1 (387/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1252.6ms) Inference, (0.0ms) NMS
+video 1/1 (388/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1322.4ms) Inference, (2.0ms) NMS
+video 1/1 (389/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1527.5ms) Inference, (0.5ms) NMS
+video 1/1 (390/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1195.3ms) Inference, (0.0ms) NMS
+video 1/1 (391/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1330.4ms) Inference, (2.0ms) NMS
+video 1/1 (392/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1352.3ms) Inference, (0.0ms) NMS
+video 1/1 (393/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1282.1ms) Inference, (0.0ms) NMS
+video 1/1 (394/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1423.3ms) Inference, (0.0ms) NMS
+video 1/1 (395/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1321.8ms) Inference, (1.0ms) NMS
+video 1/1 (396/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1253.1ms) Inference, (0.0ms) NMS
+video 1/1 (397/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1203.3ms) Inference, (0.0ms) NMS
+video 1/1 (398/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1225.7ms) Inference, (0.0ms) NMS
+video 1/1 (399/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1220.8ms) Inference, (1.0ms) NMS
+video 1/1 (400/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1473.4ms) Inference, (2.0ms) NMS
+video 1/1 (401/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1299.0ms) Inference, (1.0ms) NMS
+video 1/1 (402/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1251.4ms) Inference, (2.0ms) NMS
+video 1/1 (403/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, Done. (1257.4ms) Inference, (1.0ms) NMS
+video 1/1 (404/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1269.1ms) Inference, (15.6ms) NMS
+video 1/1 (405/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1212.5ms) Inference, (0.0ms) NMS
+video 1/1 (406/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1238.6ms) Inference, (1.0ms) NMS
+video 1/1 (407/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1216.0ms) Inference, (0.0ms) NMS
+video 1/1 (408/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1436.0ms) Inference, (0.0ms) NMS
+video 1/1 (409/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1302.1ms) Inference, (0.0ms) NMS
+video 1/1 (410/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1406.1ms) Inference, (0.0ms) NMS
+video 1/1 (411/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1490.7ms) Inference, (0.0ms) NMS
+video 1/1 (412/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1549.7ms) Inference, (0.0ms) NMS
+video 1/1 (413/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1397.5ms) Inference, (15.6ms) NMS
+video 1/1 (414/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1403.6ms) Inference, (0.0ms) NMS
+video 1/1 (415/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1512.7ms) Inference, (0.0ms) NMS
+video 1/1 (416/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1467.6ms) Inference, (1.0ms) NMS
+video 1/1 (417/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1418.6ms) Inference, (0.0ms) NMS
+video 1/1 (418/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1589.7ms) Inference, (0.0ms) NMS
+video 1/1 (419/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1374.0ms) Inference, (1.2ms) NMS
+video 1/1 (420/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1354.0ms) Inference, (0.0ms) NMS
+video 1/1 (421/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1299.7ms) Inference, (0.0ms) NMS
+video 1/1 (422/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1360.6ms) Inference, (2.0ms) NMS
+video 1/1 (423/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1460.1ms) Inference, (1.0ms) NMS
+video 1/1 (424/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 person, 1 laptop, Done. (1397.2ms) Inference, (0.0ms) NMS
+video 1/1 (425/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1621.3ms) Inference, (2.0ms) NMS
+video 1/1 (426/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1290.7ms) Inference, (1.0ms) NMS
+video 1/1 (427/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1102.2ms) Inference, (0.0ms) NMS
+video 1/1 (428/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1200.2ms) Inference, (2.0ms) NMS
+video 1/1 (429/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1343.8ms) Inference, (1.0ms) NMS
+video 1/1 (430/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1255.5ms) Inference, (2.0ms) NMS
+video 1/1 (431/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1197.2ms) Inference, (1.0ms) NMS
+video 1/1 (432/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 sink, Done. (1317.3ms) Inference, (3.0ms) NMS
+video 1/1 (433/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1266.2ms) Inference, (1.0ms) NMS
+video 1/1 (434/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1198.4ms) Inference, (1.0ms) NMS
+video 1/1 (435/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1301.0ms) Inference, (2.0ms) NMS
+video 1/1 (436/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1222.1ms) Inference, (0.6ms) NMS
+video 1/1 (437/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1347.0ms) Inference, (15.7ms) NMS
+video 1/1 (438/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1282.3ms) Inference, (0.0ms) NMS
+video 1/1 (439/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1286.6ms) Inference, (1.0ms) NMS
+video 1/1 (440/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1282.6ms) Inference, (1.0ms) NMS
+video 1/1 (441/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1512.9ms) Inference, (1.0ms) NMS
+video 1/1 (442/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1314.9ms) Inference, (0.0ms) NMS
+video 1/1 (443/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bench, Done. (1158.3ms) Inference, (0.0ms) NMS
+video 1/1 (444/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, Done. (1294.2ms) Inference, (3.0ms) NMS
+video 1/1 (445/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1257.4ms) Inference, (0.0ms) NMS
+video 1/1 (446/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1387.6ms) Inference, (0.0ms) NMS
+video 1/1 (447/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1172.6ms) Inference, (0.0ms) NMS
+video 1/1 (448/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 couch, Done. (1294.2ms) Inference, (3.0ms) NMS
+video 1/1 (449/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1187.8ms) Inference, (2.0ms) NMS
+video 1/1 (450/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, Done. (1213.8ms) Inference, (0.0ms) NMS
+video 1/1 (451/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bench, Done. (1270.8ms) Inference, (0.0ms) NMS
+video 1/1 (452/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1254.7ms) Inference, (0.0ms) NMS
+video 1/1 (453/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1224.3ms) Inference, (2.0ms) NMS
+video 1/1 (454/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1199.3ms) Inference, (0.0ms) NMS
+video 1/1 (455/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1309.8ms) Inference, (1.0ms) NMS
+video 1/1 (456/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1223.7ms) Inference, (2.0ms) NMS
+video 1/1 (457/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1149.4ms) Inference, (0.0ms) NMS
+video 1/1 (458/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1165.9ms) Inference, (0.0ms) NMS
+video 1/1 (459/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1244.8ms) Inference, (0.0ms) NMS
+video 1/1 (460/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1270.6ms) Inference, (0.0ms) NMS
+video 1/1 (461/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1211.4ms) Inference, (15.6ms) NMS
+video 1/1 (462/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1107.5ms) Inference, (0.0ms) NMS
+video 1/1 (463/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1212.4ms) Inference, (0.0ms) NMS
+video 1/1 (464/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1230.5ms) Inference, (0.0ms) NMS
+video 1/1 (465/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1183.6ms) Inference, (15.6ms) NMS
+video 1/1 (466/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1114.0ms) Inference, (1.0ms) NMS
+video 1/1 (467/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1206.9ms) Inference, (15.6ms) NMS
+video 1/1 (468/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1209.0ms) Inference, (0.0ms) NMS
+video 1/1 (469/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1096.1ms) Inference, (0.0ms) NMS
+video 1/1 (470/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1220.7ms) Inference, (0.0ms) NMS
+video 1/1 (471/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 refrigerator, Done. (1068.5ms) Inference, (0.0ms) NMS
+video 1/1 (472/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 refrigerator, Done. (1160.7ms) Inference, (0.0ms) NMS
+video 1/1 (473/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1303.4ms) Inference, (0.0ms) NMS
+video 1/1 (474/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1236.8ms) Inference, (1.0ms) NMS
+video 1/1 (475/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1220.0ms) Inference, (2.0ms) NMS
+video 1/1 (476/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1312.9ms) Inference, (0.0ms) NMS
+video 1/1 (477/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1390.6ms) Inference, (2.0ms) NMS
+video 1/1 (478/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1266.9ms) Inference, (3.0ms) NMS
+video 1/1 (479/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1326.1ms) Inference, (2.0ms) NMS
+video 1/1 (480/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1596.4ms) Inference, (1.0ms) NMS
+video 1/1 (481/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1285.2ms) Inference, (3.0ms) NMS
+video 1/1 (482/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1235.0ms) Inference, (2.0ms) NMS
+video 1/1 (483/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1275.9ms) Inference, (1.0ms) NMS
+video 1/1 (484/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1345.1ms) Inference, (3.0ms) NMS
+video 1/1 (485/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1494.4ms) Inference, (1.0ms) NMS
+video 1/1 (486/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1177.7ms) Inference, (0.0ms) NMS
+video 1/1 (487/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1109.9ms) Inference, (0.0ms) NMS
+video 1/1 (488/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1190.7ms) Inference, (0.0ms) NMS
+video 1/1 (489/523) D:\Savior\fs\AI\object_detection\sample.mp4: 2 laptops, Done. (1325.0ms) Inference, (3.0ms) NMS
+video 1/1 (490/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1287.0ms) Inference, (2.0ms) NMS
+video 1/1 (491/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1555.4ms) Inference, (1.0ms) NMS
+video 1/1 (492/523) D:\Savior\fs\AI\object_detection\sample.mp4: 2 laptops, Done. (1448.2ms) Inference, (2.0ms) NMS
+video 1/1 (493/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1443.3ms) Inference, (2.0ms) NMS
+video 1/1 (494/523) D:\Savior\fs\AI\object_detection\sample.mp4: 2 laptops, Done. (1374.6ms) Inference, (2.0ms) NMS
+video 1/1 (495/523) D:\Savior\fs\AI\object_detection\sample.mp4: 2 laptops, Done. (1197.0ms) Inference, (0.0ms) NMS
+video 1/1 (496/523) D:\Savior\fs\AI\object_detection\sample.mp4: 2 laptops, Done. (1255.1ms) Inference, (3.0ms) NMS
+video 1/1 (497/523) D:\Savior\fs\AI\object_detection\sample.mp4: 2 laptops, Done. (1095.4ms) Inference, (2.0ms) NMS
+video 1/1 (498/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1380.4ms) Inference, (15.6ms) NMS
+video 1/1 (499/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1420.9ms) Inference, (2.0ms) NMS
+video 1/1 (500/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1311.6ms) Inference, (0.0ms) NMS
+video 1/1 (501/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1397.4ms) Inference, (0.0ms) NMS
+video 1/1 (502/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 bed, Done. (1474.2ms) Inference, (15.6ms) NMS
+video 1/1 (503/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1591.5ms) Inference, (0.0ms) NMS
+video 1/1 (504/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1625.7ms) Inference, (2.0ms) NMS
+video 1/1 (505/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1453.3ms) Inference, (0.0ms) NMS
+video 1/1 (506/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1913.8ms) Inference, (3.0ms) NMS
+video 1/1 (507/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1178.6ms) Inference, (0.0ms) NMS
+video 1/1 (508/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1302.6ms) Inference, (0.0ms) NMS
+video 1/1 (509/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1202.0ms) Inference, (15.6ms) NMS
+video 1/1 (510/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1257.1ms) Inference, (0.0ms) NMS
+video 1/1 (511/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1067.1ms) Inference, (0.0ms) NMS
+video 1/1 (512/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1057.0ms) Inference, (0.0ms) NMS
+video 1/1 (513/523) D:\Savior\fs\AI\object_detection\sample.mp4: Done. (1156.0ms) Inference, (0.0ms) NMS
+video 1/1 (514/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1409.0ms) Inference, (5.2ms) NMS
+video 1/1 (515/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1253.3ms) Inference, (0.0ms) NMS
+video 1/1 (516/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1344.5ms) Inference, (0.0ms) NMS
+video 1/1 (517/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1291.6ms) Inference, (0.0ms) NMS
+video 1/1 (518/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 laptop, Done. (1680.9ms) Inference, (2.0ms) NMS
+video 1/1 (519/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1402.3ms) Inference, (2.0ms) NMS
+video 1/1 (520/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1260.8ms) Inference, (2.0ms) NMS
+video 1/1 (521/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 bed, 1 laptop, Done. (1254.5ms) Inference, (0.0ms) NMS
+video 1/1 (522/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1279.5ms) Inference, (2.0ms) NMS
+video 1/1 (523/523) D:\Savior\fs\AI\object_detection\sample.mp4: 1 chair, 1 laptop, Done. (1201.3ms) Inference, (1.0ms) NMS
+Done. (758.609s)

@@ -157,7 +157,7 @@ class Object_Detection:
         print('\n************ Object_det_per = ', per, '%*******************\n')
         return int(per) # to cal the percentage 
       else:
-        print('\n******************* Object_det_per', per, '&*******************\n')
+        print('\n*******************Zero from Object_det_per', per, '&*******************\n')
         return 0
 
   def engin(self):

@@ -25,7 +25,7 @@ class GatherSimilarFaces():
 
     def similar_face(self):
         '''
-        this function will make folder of similar faces.
+        this function will make folder of similar faces. it works recursiviely, 
         '''
         # print("***********", self.faces_path, "***********")
         self.faces_list =  glob(self.db_path+'/*')
@@ -33,19 +33,19 @@ class GatherSimilarFaces():
 
 
         try:
-            df = DeepFace.find(img_path = self.faces_list[0],
+            df = DeepFace.find(
+                img_path = self.faces_list[0],
                 db_path = self.db_path,
                 model_name = 'Facenet512', 
-                model = DeepFace.build_model("Facenet512"),
+                # model = DeepFace.build_model("Facenet512"),
                 enforce_detection=False,
                 detector_backend='retinaface'
                 )
         except AttributeError or ValueError:
             pass
         else:
-            #ERROR01;
-            # df is pandas dataframe
-            similar_images_path = df['identity']
+            # df is pandas dataframe and it has 2 columns, first column is identity and second column is distance
+            similar_images_path = df[0]['identity'] # list of similar images path
             os.makedirs('Person'+str(self.index), exist_ok=True)
             path = os.getcwd()
             path = path + '/Person'+str(self.index)
@@ -70,7 +70,7 @@ class GatherSimilarFaces():
         for i in range(fold_len):
             fold = 'Person'+str(i)
             no_files =len(os.listdir(fold))
-            if no_files == 0 or no_files<3:
+            if no_files == 0 or no_files<3: # be careful here! 
                 shutil.rmtree(fold)
         print("Purified!")
     

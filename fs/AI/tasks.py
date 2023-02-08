@@ -17,13 +17,7 @@ def notify_before_posting(ID):
   zp = ZakatPosts.objects.get(id=ID) # delete full object
   notify.send(zp.creator.user, recipient=zp.creator.user, verb='Abdullah (AI) is checking your post which might takes more than an hour, after evaluation you will be notified with status of your post. Please wait!')
 
-@shared_task()
-def notify_after_posting(ID):
-  zp = ZakatPosts.objects.get(id=ID) # delete full objec
-  if zp.varified > 50:
-    notify.send(zp.creator.user, recipient=zp.creator.user, verb=f'Abdullah (AI) has varified your post with {zp.varified}%, and posted.')
-  if zp.varified <50: # menas in broken pipe, don't just notify, unless it's been gone thruogh the AI 
-    notify.send(zp.creator.user, recipient=zp.creator.user, verb='Sorry! Abdullah (AI) did not varify your post, and did not post it.')
+
 
 @shared_task()
 def AI(ID):
@@ -32,11 +26,13 @@ def AI(ID):
   face_ana = find_emotion(video_id=ID)  
   if type(face_ana) == str: # if string then return it
     return face_ana
+  # face_ana = 5
 
   # # # GETTING VOICE ANALYSIS1
   audio_ana = get_voice_ana(ID)                       
   if type(audio_ana) == str: # if string then return it
     return audio_ana
+  # audio_ana = 5
 
   # GETTING OBJECT DETECTION
   objects_ana = Object_Detection(ID).engin() # calling the engin function
@@ -49,7 +45,7 @@ def AI(ID):
   print("******audio_ana", audio_ana, "************************")
   print("*********objects_ana", objects_ana, "************************")
   print("**************Nor_and_add", Nor_and_add, "************************")
-  avg = (Nor_and_add//3)*100 # getting average
+  avg = (Nor_and_add/3)*100 # getting average
   print("Average of all******", avg, "************************")
   if avg>50:
     zp = ZakatPosts.objects.get(id=ID) # delete full object
@@ -65,4 +61,10 @@ def AI(ID):
     return avg
     # return "NOT VARIFIED" # SO THAT IT BALANCE POST NUMBER
   
-
+@shared_task()
+def notify_after_posting(ID):
+  zp = ZakatPosts.objects.get(id=ID) # delete full objec
+  if zp.varified > 50:
+    notify.send(zp.creator.user, recipient=zp.creator.user, verb=f'Abdullah (AI) has varified your post with {zp.varified}%, and posted.')
+  if zp.varified>0 and zp.varified<=50 : # menas in broken pipe, don't just notify, unless it's been gone thruogh the AI 
+    notify.send(zp.creator.user, recipient=zp.creator.user, verb='Sorry! Abdullah (AI) did not varify your post, and did not post it.')
