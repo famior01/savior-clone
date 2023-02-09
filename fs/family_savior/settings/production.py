@@ -76,11 +76,17 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # ======================================================================
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
 
-DB_DATABASE=config('POSTGRES_DB')
-DB_USERNAME=config('POSTGRES_USER')
-DB_PASSWORD=config('POSTGRES_PASSWORD')
-DB_HOST=config('POSTGRES_HOST')
-DB_PORT=config('POSTGRES_PORT')
+# DB_DATABASE=config('POSTGRES_DB')
+# DB_USERNAME=config('POSTGRES_USER')
+# DB_PASSWORD=config('POSTGRES_PASSWORD')
+# DB_HOST=config('POSTGRES_HOST')
+# DB_PORT=config('POSTGRES_PORT')
+
+DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
+DB_PORT="25060"
+DB_PASSWORD="AVNS_81xAWmYcDGfRClcsV9l"
+DB_USERNAME="doadmin"
+DB_DATABASE="defaultdb"
 
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
@@ -89,7 +95,7 @@ DB_IS_AVAILABLE = all([
 if DB_IS_AVAILABLE:
     DATABASES = {
         'default': {
-            "ENGINE": "django.db.backends.postgresql",
+            "ENGINE": "django.db.backends.postgresql. ",
             'NAME': DB_DATABASE,
             'USER': DB_USERNAME,
             'PASSWORD': DB_PASSWORD,
@@ -109,7 +115,7 @@ if DB_IS_AVAILABLE:
 # CELERY_BROKER_URL = config('CELERY_BROKER_REDIS_URL')
 REDIS_HOST = config('DO_REDIS_URL', default='redis://localhost:6379/0')
 CELERY_BROKER_URL = REDIS_HOST
-broker_use_ssl=True
+# broker_use_ssl=True
 # CELERY_RESULT_BACKEND = f'redis://{ENV_ALLOWED_HOST}:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
