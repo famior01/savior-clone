@@ -10,9 +10,9 @@ services:
     env_file:
       - fs/.env.prod
     environment:
-      - PORT=8001
+      - PORT=8000
     ports:
-      - "8001:8001"
+      - "8000:8000"
     command: sh -c "chmod +x /app/migrate.sh && /app/migrate.sh && /app/entrypoint.sh"
     volumes:
       - staticfiles:/app/staticfiles/
