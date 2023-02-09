@@ -1,5 +1,5 @@
 #!/bin/bash
 APP_PORT=${PORT}
-HOST=${DJANGO_ALLOWED_HOSTS:-"144.126.243.132"}
+# HOST=${DJANGO_ALLOWED_HOSTS:-"104.248.98.3"}
 cd /app/
-/opt/venv/bin/gunicorn --workers=1  --worker-class=gthread family_savior.wsgi:application --bind "${HOST}:${APP_PORT}"
+/opt/venv/bin/gunicorn --workers=1  --worker-class=gthread family_savior.wsgi:application --bind "104.248.98.3:${APP_PORT}"
