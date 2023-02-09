@@ -38,7 +38,7 @@ THE EASIEST WAY TO PAY ZAKAT!
 
 - [X] User must be able to upload video.
 - [X] User should be able to see his connectes' videos.
-- [X] Hearth, Comment, Pay, Share, and Report options should be there.
+- [X] like, dislike, Comment, Pay
 - [X] show recommendations and connected people on the side panaels and notification badge on the top right corner, options to follow.
 - [X]  use ajax to update the likes and comments in real time.
 - [X]  use javascript to update the likes and comments in real time. either of them are fine.
@@ -78,6 +78,11 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] Calculating of Zakat
 - [ ] Displaying of Zakat amount with in the app
 
+## 10. Other Features
+[ ] Report option
+[ ] Suggestion option 
+
+
 
 
 
@@ -90,4 +95,4 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] Notification improvements
 - [ ] showing like, followers and etc numbers on keys like (K, M, B, T)
 - [ ] There should be the model, which will record all extracted audioes, faces, objects, and emotions, and will be used to train the AI.
-- [ ] Model for getting suggestions, and Report issues to the admin from user.
+- [ ] down the posts if its getting downvotes, and up the posts if its getting upvotes.
