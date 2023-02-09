@@ -7,16 +7,16 @@ services:
       context: ./fs
       dockerfile: Dockerfile
     image: savior:1.1
+    env_file:
+      - fs/.env.prod
     environment:
       - PORT=8001
-    env_file:
-      - fs/.env
     ports:
       - "8001:8001"
     command: sh -c "chmod +x /app/migrate.sh && /app/migrate.sh && /app/entrypoint.sh"
     volumes:
       - staticfiles:/app/staticfiles/
-      
+
   postgres_db:
     image: postgres
     restart: always

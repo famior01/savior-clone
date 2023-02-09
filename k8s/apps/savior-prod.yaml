@@ -26,6 +26,11 @@ spec:
             value: "8001"
         ports:
         - containerPort: 8001
+        resources:
+          requests:
+            memory: "256Mi"
+            limits: 
+            memory: "512Mi"
       imagePullSecrets:
         - name: savior
 
