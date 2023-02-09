@@ -26,6 +26,7 @@ spec:
             value: "8001"
         ports:
         - containerPort: 8001
+
       imagePullSecrets:
         - name: savior
 
