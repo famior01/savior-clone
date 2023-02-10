@@ -21,9 +21,9 @@ opencv-python
 pandas
 deepface
 moviepy
-# transformers[torch]
+transformers[torch]
 torch
-transformers
+# transformers
 openai-whisper
 setuptools-rust
 ffmpeg-python
