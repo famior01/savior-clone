@@ -1,4 +1,5 @@
 django-dotenv
+python-decouple
 Django==4.1.6
 Celery
 eventlet
@@ -21,9 +22,6 @@ opencv-python
 pandas
 deepface
 moviepy
-transformers[torch]
-torch
-# transformers
 openai-whisper
 setuptools-rust
 ffmpeg-python
@@ -34,7 +32,6 @@ psycopg2
 requests
 django-storages
 boto3
-python-decouple
 sentencepiece
 torchvision
 torchaudio
@@ -42,3 +39,4 @@ huggingface-hub
 glob2
 seaborn
 scipy
+transformers[torch]
