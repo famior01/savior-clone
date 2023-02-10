@@ -1,10 +1,10 @@
 #!/bin/bash
 cd /app/
 
-pip install -r requirements.txt
-python manage.py makemigrations
-python manage.py migrate 
-python manage.py migrate --run-syncdb
+/opt/venv/bin/python manage.py makemigrations
+/opt/venv/bin/python manage.py migrate --noinput
+/opt/venv/bin/python manage.py migrate --run-syncdb --noinput
 
-celery -A family_savior worker -l INFO 
+/opt/venv/bin/celery -A family_savior worker -l INFO 
+
 
