@@ -80,7 +80,7 @@ jobs:
     - name: Migrate Database
       run: |
         export SINGLE_POD_NAME=$(kubectl get pod -l app=savior-deployment -o jsonpath="{.items[0].metadata.name}")
-        kubectl exec -i $SINGLE_POD_NAME -- bash pip3 install --upgrade pip3 
+        kubectl exec -i $SINGLE_POD_NAME -- bash pip3 install --upgrade pip 
         kubectl exec -i $SINGLE_POD_NAME -- bash pip3 install --use-pep517 -r requirements.txt
         kubectl exec -i $SINGLE_POD_NAME -- bash python3 manage.py makemigrations
         kubectl exec -i $SINGLE_POD_NAME -- bash python3 manage.py migrate
@@ -91,3 +91,11 @@ jobs:
         kubectl exec -i $SINGLE_POD_NAME -- bash celery -A family_savior worker -l INFO 
 
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh 
+
+
+# kubectl exec -it savior-deployment-65dc9fbd6f-sxr7v -- /bin/bash && \
+#     pip3 install --upgrade pip && \
+#     pip3 install --use-pep517 -r requirements.txt && \
+#     python3 manage.py makemigrations && \
+#     python3 manage.py migrate && \
+#     python3 manage.py migrate --run-syncdb 
