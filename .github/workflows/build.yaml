@@ -17,6 +17,10 @@ jobs:
     # needs: [test_django_job]
     env: 
       CONTAINER_NAME: savior
+      SUPERUSER_EMAIL: abuubaida901@gmail.com
+      SUPERUSER_FULLNAME: Abu-Ubaida
+      SUPERUSER_RELIGION: Islam
+      SUPERUSER_USERNAME: abuubaida01
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -76,6 +80,12 @@ jobs:
     - name: Migrate Database
       run: |
         export SINGLE_POD_NAME=$(kubectl get pod -l app=savior-deployment -o jsonpath="{.items[0].metadata.name}")
-        kubectl exec -i $SINGLE_POD_NAME -- bash /app/migrate.sh 
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/opt/venv/bin/python manage.py makemigrations
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/opt/venv/bin/python manage.py migrate
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/opt/venv/bin/python manage.py migrate --run-syncdb
+
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/opt/venv/bin/python manage.py createsuperuser --email ${{ env.SUPERUSER_EMAIL }}  --username ${{ env.SUPERUSER_USERNAME }} --full_name ${{ env.SUPERUSER_FULLNAME }}  --religion ${{ env.SUPERUSER_RELIGION }} --noinput || true
+
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/opt/venv/bin/celery -A family_savior worker -l INFO 
+
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh 
-        

@@ -30,6 +30,7 @@ ffmpeg-python
 matplotlib
 gunicorn
 psycopg2-binary
+psycopg2
 requests
 django-storages
 boto3
