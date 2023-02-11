@@ -69,7 +69,7 @@ EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 
-
+    
 
 # ======================================================================
 # ------------------------- Postgres DATABASE SETTINGS -------------------
