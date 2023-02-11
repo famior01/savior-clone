@@ -1,6 +1,5 @@
 #!/bin/bash
 cd /app/
-
 SUPERUSER_EMAIL="abuubaida901@gmail.com"
 SUPERUSER_FULLNAME="Abu-Ubaida"
 SUPERUSER_RELIGION="Islam"

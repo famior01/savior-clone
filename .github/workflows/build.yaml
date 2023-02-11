@@ -79,4 +79,6 @@ jobs:
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/migrate.sh 
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/superuser.sh 
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh 
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/celery.sh 
+
         
