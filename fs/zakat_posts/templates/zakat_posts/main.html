@@ -40,12 +40,23 @@
                         <strong>Instructions in English</strong>
                     </summary>
                         <div class='ui play details-content'>
-                        <audio controls>
-                            <source src='/static/audios/video1_eng.mp3'>
-                        </audio>
-                        <audio controls>
-                            <source src='/static/audios/video2_eng.mp3'>
-                        </audio>
+                            {% if Production %}
+                                <audio controls>
+                                    <source src='https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/static%2Faudio%2Fvideo1_eng.mp3'>
+                                </audio>
+                                <audio controls>
+                                    <source src='https://savior-staticfiles.sgp1.digitaloceanspaces.com/static%2Faudio%2Fvideo2_eng.mp3'>
+                                </audio>
+                            {% else %}
+                                <audio controls>
+                                    <source src='/static/audios/video1_eng.mp3'>
+                                </audio>
+                                <audio controls>
+                                    <source src='/static/audios/video2_eng.mp3'>
+                                </audio>
+                            {% endif %}
+
+                            
                         </div>
                     </details>
                 
@@ -54,12 +65,22 @@
                             <strong>Instructions in Urdu</strong>
                         </summary>
                             <div class='details-content'>
-                            <audio controls>
-                                <source src='/static/audios/video1_urdu.mp3'>
-                            </audio>
-                            <audio controls>
-                                <source src='/static/audios/video2_urdu.mp3'>
-                            </audio>
+                                {% if Production %}
+                                <audio controls>
+                                    <source src='https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/static%2Faudio%2Fvideo1_urdu.mp3'>
+                                </audio>
+                                <audio controls>
+                                    <source src='https://savior-staticfiles.sgp1.digitaloceanspaces.com/static%2Faudio%2Fvideo2_urdu.mp3'>
+                                </audio>
+                            {% else %}
+                                <audio controls>
+                                    <source src='/static/audios/video1_urdu.mp3'>
+                                </audio>
+                                <audio controls>
+                                    <source src='/static/audios/video2_urdu.mp3'>
+                                </audio>
+                            {% endif %}
+                            
                             </div>
                         </details>
                 </div>
