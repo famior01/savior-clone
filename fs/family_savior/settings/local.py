@@ -58,9 +58,9 @@ STATICFILES_DIRS = [
     BASE_DIR/"static",
     BASE_DIR/"profiles/static",
     BASE_DIR/"IWatch/static",
-    BASE_DIR/"user/static",
+    # BASE_DIR/"user/static",
     BASE_DIR/"zakat_posts/static",
-    BASE_DIR/"authentications/static",
+    # BASE_DIR/"authentications/static",
 ]
 
 STATIC_ROOT = BASE_DIR/"staticfiles"
