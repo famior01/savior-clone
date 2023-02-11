@@ -18,6 +18,10 @@ import os
 import cv2 
 import subprocess
 import shutil
+from decouple import config
+
+ABSOLUTE_PATH = config('ABSOLUTE_PATH')
+
 class Get_frames:
     def __init__(self, video_id=None, object_det=False):
         self.vid_path = video_id
@@ -39,7 +43,8 @@ class Get_frames:
         
     def mk_dir(self):
         if self.object_det:
-            curr_dir = r"D:\Savior\fs\AI\object_detection"
+            # curr_dir = r"D:\Savior\fs\AI\object_detection"
+            curr_dir = ABSOLUTE_PATH + "/AI/object_detection"
         else:
             curr_dir = os.path.realpath(os.path.dirname(__file__)) # for finding the curr dir
         curr_dir = curr_dir+'/data/Frames'
@@ -56,11 +61,12 @@ class Get_frames:
                 return 'video2'
         else:
             try: # if video1 is not given then it will give error
-                video = str(zak_post.video1.url)
+                video = str(zak_post.video1.url) #TODO; change url acc to server url ....
+                print('************', video, '******First video******')
             except ValueError:
                 return 'video1'
             
-        video = "D:/Savior/fs/" + video
+        video = ABSOLUTE_PATH + video
         # video = video.replace('/media/', '/media_root/')
         print('************', video, '******video******')
         

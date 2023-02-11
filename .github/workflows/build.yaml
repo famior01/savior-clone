@@ -43,7 +43,8 @@ jobs:
     - name: update deployment secrets
       run: |
         cat << EOF >> fs/.env.prod
-        USE_PRODUCTION=1
+        ABSOLUTE_PATH=D:/Savior-clone/fs
+        USE_PRODUCTION=True
         DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
         AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}

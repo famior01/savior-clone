@@ -20,7 +20,9 @@ from AI.face_emo_detection.emotion_detection import Analyze_pics
 from AI.face_emo_detection.img_purification import  Purification
 import os
 import shutil
+from decouple import config
 
+ABSOLUTE_PATH = config('ABSOLUTE_PATH')
 
 def find_emotion(video_id):
   obj = Get_frames(video_id=video_id)
@@ -49,7 +51,8 @@ def find_emotion(video_id):
     emotions[name] = emotion
   
   # remove utilized files
-  path = r'D:\Savior\fs\AI\face_emo_detection\data'
+  # path = r'D:\Savior\fs\AI\face_emo_detection\data'
+  path = ABSOLUTE_PATH + "/AI/face_emo_detection/data"
   shutil.rmtree(path, ignore_errors=True) # remove Frames
   
   # logic to get overall emotion of the video

@@ -35,10 +35,10 @@
                 {% comment %} <h3>Instructions to fill form in two languages</h3>
                 <button class="ui button b_English">English</button>
                 <button class="ui button b_Urdu">Urdu</button> {% endcomment %}
-                <details>
-                    <summary>
-                        <strong>Instructions in English</strong>
-                    </summary>
+                    <details>
+                        <summary>
+                            <strong>Instructions in English</strong>
+                        </summary>
                         <div class='ui play details-content'>
                             {% if Production %}
                                 <audio controls>
@@ -72,18 +72,18 @@
                                 <audio controls>
                                     <source src='https://savior-staticfiles.sgp1.digitaloceanspaces.com/static%2Faudio%2Fvideo2_urdu.mp3'>
                                 </audio>
-                            {% else %}
-                                <audio controls>
-                                    <source src='/static/audios/video1_urdu.mp3'>
-                                </audio>
-                                <audio controls>
-                                    <source src='/static/audios/video2_urdu.mp3'>
-                                </audio>
-                            {% endif %}
+                                {% else %}
+                                    <audio controls>
+                                        <source src='/static/audios/video1_urdu.mp3'>
+                                    </audio>
+                                    <audio controls>
+                                        <source src='/static/audios/video2_urdu.mp3'>
+                                    </audio>
+                                {% endif %}
                             
                             </div>
-                        </details>
-                </div>
+                    </details>
+            </div>
         </div>      
 
     </div>

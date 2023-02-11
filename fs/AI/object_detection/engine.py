@@ -21,6 +21,9 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import shutil
+from decouple import config
+
+ABSOLUTE_PATH = config('ABSOLUTE_PATH')
 
 class Object_Detection:
   def __init__(self, id):
@@ -52,12 +55,14 @@ class Object_Detection:
       return 91 # show error message, that you have big house!
 
     # converting frames to video
-    frame ='D:/Savior/fs/AI/object_detection/data/Frames/1.jpg'
+    # frame ='D:/Savior/fs/AI/object_detection/data/Frames/1.jpg'
+    frame = ABSOLUTE_PATH + "/AI/object_detection/data/Frames/1.jpg"
     img = cv2.imread(frame)
     height = img.shape[0]
     width = img.shape[1]   
     frameSize = (width, height)
-    path = 'D:/Savior/fs/AI/object_detection/sample.mp4'
+    # path = 'D:/Savior/fs/AI/object_detection/sample.mp4'
+    path = ABSOLUTE_PATH + "/AI/object_detection/sample.mp4"
     out = cv2.VideoWriter(path,cv2.VideoWriter_fourcc(*'mp4v'), v_fps, frameSize)
     print(f"*************\t{v_fps}\t*************")
     for filename in glob(F_or_V_path+'/*'):
@@ -75,16 +80,18 @@ class Object_Detection:
     '''
     print('\n************* In the object detection process *************\n')
     all_models = glob(models+'/*')
-    path = 'D:/Savior/fs/AI/object_detection/objects.txt' # declaring path
+    # path = 'D:/Savior/fs/AI/object_detection/objects.txt' # declaring path
+    path = ABSOLUTE_PATH + "/AI/object_detection/objects.txt" # declaring path
     with open(path, 'w') as f:
       for model in all_models:
         model = model.replace('\\', '/')
         print('\n******************', model, '******************')
-        subprocess.run(f'python D:/Savior/fs/AI/object_detection/yolov7/detect.py --weights {model} --conf-thres 0.75 --iou-thres 0.55 --img-size 640 --source {video_path}' , shell=True , stdout=f)
+        subpor_path = ABSOLUTE_PATH + "/AI/object_detection/yolov7/detect.py"
+        subprocess.run(f'python {subpor_path} --weights {model} --conf-thres 0.75 --iou-thres 0.55 --img-size 640 --source {video_path}' , shell=True , stdout=f)
     f.close()
     
     # Delete run folder
-    shutil.rmtree('D:/Savior/fs/runs', ignore_errors=True)
+    shutil.rmtree(f'{ABSOLUTE_PATH}/runs', ignore_errors=True)
 
     return path
   
@@ -170,9 +177,10 @@ class Object_Detection:
     
     print("****************\t\tvideo path: ", vid_path)
 
-    file_path = self.get_obj_file(video_path=vid_path, models='D:/Savior/fs/AI/object_detection/new_weights')
-
+    weight_path = ABSOLUTE_PATH + "/AI/object_detection/new_weights"
+    # file_path = self.get_obj_file(video_path=vid_path, models='D:/Savior/fs/AI/object_detection/new_weights')
+    file_path = self.get_obj_file(video_path=vid_path, models=weight_path)
     df = self.get_objs(file_path)
     prediction = self.cal_prediction(df)
-    shutil.rmtree('D:/Savior/fs/traced_model.pt', ignore_errors=True)
+    shutil.rmtree(f'{ABSOLUTE_PATH}/traced_model.pt', ignore_errors=True)
     return prediction
