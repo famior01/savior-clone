@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: celery-controller
+  labels:
+    component: celery
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: savior-deployment
+    spec:
+      containers:
+      - name: savior
+        image: registry.digitalocean.com/savior/savior:latest
+        command: [ "/bin/sh","-c" ]
+        args: [ "celery -A family_savior beat -l info --detach; celery -A family_savior worker --without-heartbeat --without-gossip --without-mingle -l INFO;" ]
+        ports:
+          - name: gunicorn
+            containerPort: 8000
+            protocol: TCP
+        envFrom:
+          - secretRef:
+              name: savior-prod-secret
+        resources:
+          limits:
+            cpu: 100m
