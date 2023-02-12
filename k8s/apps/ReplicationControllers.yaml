@@ -13,8 +13,9 @@ spec:
         component: savior-deployment
     spec:
       containers:
-      - image: registry.digitalocean.com/savior/savior:latest
-        name: savior
+      - name: savior
+        image: registry.digitalocean.com/savior/savior:latest
+        imagePullPolicy: Always
         command: [ "/bin/sh","-c" ]
         args: [ "celery -A family_savior beat -l info --detach; celery -A family_savior worker --without-heartbeat --without-gossip --without-mingle -l INFO;" ]
         ports:
@@ -27,6 +28,5 @@ spec:
         resources:
           limits:
             cpu: 100m
-            
       imagePullSecrets:
         - name: savior
