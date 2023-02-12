@@ -9,11 +9,6 @@ spec:
   selector:
     matchLabels:
       app: savior-deployment
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
 
   template:
     metadata:
@@ -33,7 +28,6 @@ spec:
             value: "8000"
         ports:
         - containerPort: 8000
-
       imagePullSecrets:
         - name: savior
 
