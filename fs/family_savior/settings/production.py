@@ -3,21 +3,21 @@ from decouple import config
 import ssl
 
 
-SECRET_KEY = config('DJANGO_SECRET_KEY')
-DEBUG = False
-ENV_ALLOWED_HOST = config('DJANGO_ALLOWED_HOSTS')
-ALLOWED_HOSTS = ["146.190.202.17"]
+SECRET_KEY =        config('DJANGO_SECRET_KEY', cast=str)
+DEBUG =             False
+ENV_ALLOWED_HOST =  config('DJANGO_ALLOWED_HOSTS', cast=str)
+ALLOWED_HOSTS =     [ ENV_ALLOWED_HOST ]
 
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
-DEFAULT_FROM_EMAIL = config('EMAIL_USER')
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_SSL = True
-EMAIL_PORT = 465
-EMAIL_HOST_USER = config('EMAIL_USER') 
-EMAIL_HOST_PASSWORD = config('EMAIL_PASSWORD')
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL=     config('EMAIL_USER', cast=str)
+EMAIL_HOST =            'smtp.gmail.com'
+EMAIL_USE_SSL =         True
+EMAIL_PORT =            465
+EMAIL_HOST_USER =       config('EMAIL_USER', cast=str) 
+EMAIL_HOST_PASSWORD =   config('EMAIL_PASSWORD', cast=str)
+EMAIL_BACKEND =         'django.core.mail.backends.smtp.EmailBackend'
 
 
     
@@ -27,11 +27,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # ======================================================================
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
 
-DB_DATABASE=config('POSTGRES_DB')
-DB_USERNAME=config('POSTGRES_USER')
-DB_PASSWORD=config('POSTGRES_PASSWORD')
-DB_HOST=config('POSTGRES_HOST')
-DB_PORT=config('POSTGRES_PORT')
+DB_DATABASE=    config('POSTGRES_DB', cast=str)
+DB_USERNAME=    config('POSTGRES_USER',  cast=str)
+DB_PASSWORD=    config('POSTGRES_PASSWORD', cast=str)
+DB_HOST=        config('POSTGRES_HOST', cast=str)
+DB_PORT=        config('POSTGRES_PORT', cast=str)
 
 # DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
 # DB_PORT="25060"
@@ -64,19 +64,19 @@ if DB_IS_AVAILABLE:
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
 # CELERY_BROKER_URL = config('CELERY_BROKER_REDIS_URL')
-REDIS_HOST = config('DO_REDIS_URL', default='redis://localhost:6379/0')
-CELERY_BROKER_URL = REDIS_HOST
+REDIS_HOST =                config('DO_REDIS_URL', cast=str)
+CELERY_BROKER_URL =         REDIS_HOST
 # broker_use_ssl=True
 # CELERY_RESULT_BACKEND = f'redis://{ENV_ALLOWED_HOST}:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Asia/Karachi'
-CELERY_RESULT_BACKEND = 'django-db'
+CELERY_ACCEPT_CONTENT =     ['application/json']
+CELERY_TASK_SERIALIZER =    'json'
+CELERY_RESULT_SERIALIZER =  'json'
+CELERY_TIMEZONE =           'Asia/Karachi'
+CELERY_RESULT_BACKEND =     'django-db'
 # CELERY_CACHE_BACKEND = 'django-cache'
-CELERY_CACHE_BACKEND = 'default'
-CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
-RESULT_BACKEND = 'db+sqlite://results.db'
+CELERY_CACHE_BACKEND =      'default'
+CELERY_BEAT_SCHEDULER =     'django_celery_beat.schedulers:DatabaseScheduler'
+RESULT_BACKEND =            'db+sqlite://results.db'
 
 
 #=================================================

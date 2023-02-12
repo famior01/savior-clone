@@ -96,3 +96,10 @@ THE EASIEST WAY TO PAY ZAKAT!
 - [ ] showing like, followers and etc numbers on keys like (K, M, B, T)
 - [ ] There should be the model, which will record all extracted audioes, faces, objects, and emotions, and will be used to train the AI.
 - [ ] down the posts if its getting downvotes, and up the posts if its getting upvotes.
+
+
+# TODOs
+
+- [ ] Getting media file from spaces 
+- [ ] Getting Ai (ID) from spaces
+- [ ] 

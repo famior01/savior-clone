@@ -1,8 +1,8 @@
 import os 
 from decouple import config
 
-AWS_ACCESS_KEY_ID=config("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY=config("AWS_SECRET_ACCESS_KEY")
+AWS_ACCESS_KEY_ID=config("AWS_ACCESS_KEY_ID", cast=str)
+AWS_SECRET_ACCESS_KEY=config("AWS_SECRET_ACCESS_KEY", cast=str)
 AWS_STORAGE_BUCKET_NAME="savior-staticfiles"
 AWS_S3_ENDPOINT_URL="https://sgp1.digitaloceanspaces.com"
 

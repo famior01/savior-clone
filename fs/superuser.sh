@@ -6,4 +6,5 @@ SUPERUSER_RELIGION=${DJANGO_SUPERUSER_RELIGION:-"Islam"}
 
 
 cd /app/
-/opt/venv/bin/python manage.py createsuperuser --email $SUPERUSER_EMAIL --username $SUPERUSER_USERNAME --full_name $SUPERUSER_FULLNAME --religion $SUPERUSER_RELIGION --noinput || true
+
+/opt/venv/bin/python manage.py createsuperuser --email $SUPERUSER_EMAIL --username $SUPERUSER_USERNAME --full_name $SUPERUSER_FULLNAME --religion $SUPERUSER_RELIGION  || true
