@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: ReplicationController
 metadata:
+  name: celery-configuration
   labels:
     component: celery
-  name: celery-controller
 spec:
   replicas: 1
   template:
@@ -18,15 +18,14 @@ spec:
         imagePullPolicy: Always
         command: [ "/bin/sh","-c" ]
         args: [ "celery -A family_savior beat -l info --detach; celery -A family_savior worker --without-heartbeat --without-gossip --without-mingle -l INFO;" ]
-        ports:
-          - name: gunicorn
-            containerPort: 8000
-            protocol: TCP
         envFrom:
           - secretRef:
               name: savior-prod-secret
-        resources:
-          limits:
-            cpu: 100m
+        env:
+          - name: PORT
+            value: "8000"
+        ports:
+        - containerPort: 8000
       imagePullSecrets:
         - name: savior
+

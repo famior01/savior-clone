@@ -6,7 +6,7 @@ import ssl
 SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = False
 ENV_ALLOWED_HOST = config('DJANGO_ALLOWED_HOSTS')
-ALLOWED_HOSTS = ["137.184.250.152"]
+ALLOWED_HOSTS = ["167.99.29.221"]
 
 # ====================================================
 # ----------------- Email Settings -----------------
