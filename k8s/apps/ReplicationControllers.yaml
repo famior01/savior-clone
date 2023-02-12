@@ -24,7 +24,9 @@ spec:
         envFrom:
           - secretRef:
               name: savior-prod-secret
-          
         resources:
           limits:
             cpu: 100m
+            
+      imagePullSecrets:
+        - name: savior
