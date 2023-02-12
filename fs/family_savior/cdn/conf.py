@@ -20,9 +20,9 @@ STATICFILES_STORAGE="family_savior.cdn.backends.StaticRootS3BotoStorage"
 
 # Use AWS_S3_ENDPOINT_URL here if you haven't enabled the CDN and got a custom domain. 
 STATIC_URL = f'https://{AWS_S3_ENDPOINT_URL}/static/'
-STATIC_ROOT = '/static/'
+STATIC_ROOT = 'static/'
 MEDIA_URL = f'https://{AWS_S3_ENDPOINT_URL}/media/'
-MEDIA_ROOT = '/media/'
+MEDIA_ROOT = 'media/'
 
 # try:
 #   STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, 'static')
