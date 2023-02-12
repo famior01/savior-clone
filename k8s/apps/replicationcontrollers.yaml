@@ -16,7 +16,7 @@ spec:
       - name: savior
         image: registry.digitalocean.com/savior/savior:latest
         imagePullPolicy: Always
-        command: [ "/bin/bash","/app/", "-c" ]
+        command: [ "/bin/sh", "-c" ]
         args: [ "/opt/venv/bin/celery -A family_savior worker --without-heartbeat --without-gossip --without-mingle -l INFO;" ]
         envFrom:
           - secretRef:
