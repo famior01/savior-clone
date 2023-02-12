@@ -157,8 +157,7 @@ HANDLERS = {
 
 }
 
-LOGGERS = (
-    {
+LOGGERS = {
         'django.request': {
             'handlers': ['mail_admins', ],
             'level': 'ERROR',
@@ -194,8 +193,8 @@ LOGGERS = (
             'handlers': ['console', 'mail_admins', ],
             'propagate': True
         },
-    }
-)
+}
+
 
 LOGGING = {
     'version': 1,
@@ -207,6 +206,6 @@ LOGGING = {
     },
     "formatters": FORMATTERS[0],
     "handlers": HANDLERS,
-    "loggers": LOGGERS[0],
+    "loggers": LOGGERS,
 }
 
