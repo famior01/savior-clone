@@ -26,17 +26,17 @@ EMAIL_BACKEND =         'django.core.mail.backends.smtp.EmailBackend'
 # ======================================================================
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
 
-DB_DATABASE=    os.environ.get('POSTGRES_DB')
-DB_USERNAME=    os.environ.get('POSTGRES_USER')
-DB_PASSWORD=    os.environ.get('POSTGRES_PASSWORD')
-DB_HOST=        os.environ.get('POSTGRES_HOST')
-DB_PORT=        os.environ.get('POSTGRES_PORT')
+# DB_DATABASE=    os.environ.get('POSTGRES_DB')
+# DB_USERNAME=    os.environ.get('POSTGRES_USER')
+# DB_PASSWORD=    os.environ.get('POSTGRES_PASSWORD')
+# DB_HOST=        os.environ.get('POSTGRES_HOST')
+# DB_PORT=        os.environ.get('POSTGRES_PORT')
 
-# DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
-# DB_PORT="25060"
-# DB_PASSWORD="AVNS_81xAWmYcDGfRClcsV9l"
-# DB_USERNAME="doadmin"
-# DB_DATABASE="defaultdb"
+DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
+DB_PORT="25060"
+DB_PASSWORD="AVNS_81xAWmYcDGfRClcsV9l"
+DB_USERNAME="doadmin"
+DB_DATABASE="defaultdb"
 
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
@@ -123,88 +123,93 @@ from ..cdn.conf import * # noqa
 # =====================================================
 
 # Reporting errors to admins
-# ADMINS = [
-#     ('Admin1', 'abuubaida901@gmail.com'),
-# ]
-# MANAGERS = ADMINS
+ADMINS = [
+    ('Admin1', 'abuubaida901@gmail.com'),
+]
+MANAGERS = ADMINS
 
-# FORMATTERS = (
-#     {
-#         "verbose": {
-#             "format": "{levelname} {asctime:s} {name} {threadName} {thread:d} {module} {filename} {lineno:d} {name} {funcName} {process:d} {message}",
-#             "style": "{",
-#         },
-#         "simple": {
-#             "format": "{levelname} {asctime:s} {name} {module} {filename} {lineno:d} {funcName} {message}",
-#             "style": "{",
-#         },
-#     },
-# )
+FORMATTERS = (
+    {
+        "verbose": {
+            "format": "{levelname} {asctime:s} {name} {threadName} {thread:d} {module} {filename} {lineno:d} {name} {funcName} {process:d} {message}",
+            "style": "{",
+        },
+        "simple": {
+            "format": "{levelname} {asctime:s} {name} {module} {filename} {lineno:d} {funcName} {message}",
+            "style": "{",
+        },
+    },
+)
 
-# HANDLERS = {
-#     'mail_admins': {
-#             'level': 'ERROR',
-#             'class': 'django.utils.log.AdminEmailHandler',
-#             'formatter': 'simple',
-#     },
-#     'console': {
-#         'level': 'DEBUG',
-#         'class': 'logging.StreamHandler',
-#         'filters': ['require_debug_false', ],
-#         'formatter': 'verbose',
-#     }
+HANDLERS = {
+    'mail_admins': {
+            'level': 'ERROR',
+            'class': 'django.utils.log.AdminEmailHandler',
+            'formatter': 'simple',
+    },
+    'console': {
+        'level': 'DEBUG',
+        'class': 'logging.StreamHandler',
+        'filters': ['require_debug_false', ],
+        'formatter': 'verbose',
+    }
 
-# }
+}
 
-# LOGGERS = {
-#         'django.request': {
-#             'handlers': ['mail_admins', ],
-#             'level': 'ERROR',
-#             'propagate': True
-#         },
-#         'django.security.DisallowedHost': {
-#             'level': 'INFO',
-#             'handlers': ['console', 'mail_admins', ],
-#             'propagate': True
-#         },
-#         'django.db.backends': {
-#             'level': 'INFO',
-#             'handlers': ['console', 'mail_admins', ],
-#             'propagate': True
-#         },
-#         'django.security.SuspiciousOperation': {
-#             'level': 'INFO',
-#             'handlers': ['console', 'mail_admins', ],
-#             'propagate': True
-#         },
-#         'django.template': {
-#             'level': 'DEBUG',
-#             'handlers': ['console', 'mail_admins', ],
-#             'propagate': True
-#         },
-#         'django.server': {
-#             'level': 'INFO',
-#             'handlers': ['console', 'mail_admins', ],
-#             'propagate': True
-#         },
-#         'django.security': {
-#             'level': 'INFO',
-#             'handlers': ['console', 'mail_admins', ],
-#             'propagate': True
-#         },
-# }
+LOGGERS = {
+        'django.request': {
+            'handlers': ['mail_admins', ],
+            'level': 'ERROR',
+            'propagate': True
+        },
+    
+        'django.template': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'mail_admins', ],
+            'propagate': True
+        },
+        'django.server': {
+            'level': 'INFO',
+            'handlers': ['console', 'mail_admins', ],
+            'propagate': True
+        },
+        'django.security': {
+            'level': 'INFO',
+            'handlers': ['console', 'mail_admins', ],
+            'propagate': True
+        },
+}
 
 
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,
-#     'filters': {
-#         'require_debug_false': {
-#             '()': 'django.utils.log.RequireDebugFalse'
-#         }
-#     },
-#     "formatters": FORMATTERS[0],
-#     "handlers": HANDLERS,
-#     "loggers": LOGGERS,
-# }
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    "formatters": FORMATTERS[0],
+    "handlers": HANDLERS,
+    "loggers": LOGGERS,
+}
 
+# =====================================================
+# ------------------- Extra  LOGGERS -----------------------
+# =====================================================
+
+    # 'django.security.DisallowedHost': {
+        #     'level': 'INFO',
+        #     'handlers': ['console', 'mail_admins', ],
+        #     'propagate': True
+        # },
+        # 'django.db.backends': {
+        #     'level': 'INFO',
+        #     'handlers': ['console', 'mail_admins', ],
+        #     'propagate': True
+        # },
+        # 'django.security.SuspiciousOperation': {
+        #     'level': 'INFO',
+        #     'handlers': ['console', 'mail_admins', ],
+        #     'propagate': True
+        # },

@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'authentications', 
     'zakat_posts',
     'AI',
+    'support',
 ]
 
 # My Custom User
