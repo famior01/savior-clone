@@ -27,17 +27,17 @@ EMAIL_BACKEND =         'django.core.mail.backends.smtp.EmailBackend'
 # ======================================================================
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
 
-DB_DATABASE=    config('POSTGRES_DB', cast=str)
-DB_USERNAME=    config('POSTGRES_USER',  cast=str)
-DB_PASSWORD=    config('POSTGRES_PASSWORD', cast=str)
-DB_HOST=        config('POSTGRES_HOST', cast=str)
-DB_PORT=        config('POSTGRES_PORT', cast=str)
+# DB_DATABASE=    os.environ.get('POSTGRES_DB')
+# DB_USERNAME=    os.environ.get('POSTGRES_USER')
+# DB_PASSWORD=    os.environ.get('POSTGRES_PASSWORD')
+# DB_HOST=        os.environ.get('POSTGRES_HOST')
+# DB_PORT=        os.environ.get('POSTGRES_PORT')
 
-# DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
-# DB_PORT="25060"
-# DB_PASSWORD="AVNS_81xAWmYcDGfRClcsV9l"
-# DB_USERNAME="doadmin"
-# DB_DATABASE="defaultdb"
+DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
+DB_PORT="25060"
+DB_PASSWORD="AVNS_81xAWmYcDGfRClcsV9l"
+DB_USERNAME="doadmin"
+DB_DATABASE="defaultdb"
 
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
