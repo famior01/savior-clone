@@ -2,49 +2,48 @@ from django.db import models
 from user.models import User
 from IWatch.models import IWatch
 from profiles.models import Profile
-from zakat_posts.models import ZakatPost
+from zakat_posts.models import ZakatPosts
 # Create your models here.
 
 # uncommit from dockerignore! TODO;
 
 class Sugg2Savior(models.Model):
-  profile             = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile')
+  savior_adviser      = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='savior_adviser')
   suggestion          = models.TextField(max_length=500, blank=True)
   updated             = models.DateTimeField(auto_now=True)
   created             = models.DateTimeField(auto_now_add=True)
   
   def __str__(self):
-    return str(self.profile)
+    return str(self.savior_adviser)
 
 
 class ReportSaviorProblem(models.Model):
-  profile             = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile')
-  # savior_problem      = models.ForeignKey(SaviorProblem, on_delete=models.CASCADE, related_name='savior_problem')
+  savior_reporter     = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='savior_reporter')
   report              = models.TextField(max_length=500, blank=True)
   updated             = models.DateTimeField(auto_now=True)
   created             = models.DateTimeField(auto_now_add=True)
   
   def __str__(self):
-    return str(self.profile)
+    return str(self.savior_reporter)
 
 
 class ReportZakatPost(models.Model):
-  profile             = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile')
-  zakat_post          = models.ForeignKey(ZakatPost, on_delete=models.CASCADE, related_name='zakat_post')
+  zakat_reporter             = models.OneToOneField(Profile, on_delete=models.CASCADE,        related_name='zakat_reporter')
+  reported_zp         = models.ForeignKey(ZakatPosts, on_delete=models.CASCADE, related_name='reported_zp')
   report              = models.TextField(max_length=500, blank=True)
   updated             = models.DateTimeField(auto_now=True)
   created             = models.DateTimeField(auto_now_add=True)
   
   def __str__(self):
-    return str(self.profile)
+    return str(self.zakat_reporter) +"|"+ str(self.reported_zp)
 
 class ReportIWatch(models.Model):
-  profile             = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='profile')
-  iwatch              = models.ForeignKey(IWatch, on_delete=models.CASCADE, related_name='iwatch')
+  iwatch_reporter     = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='iwatch_reporter')
+  reported_iw              = models.ForeignKey(IWatch, on_delete=models.CASCADE, related_name='reported_iw')
   report              = models.TextField(max_length=500, blank=True)
   updated             = models.DateTimeField(auto_now=True)
   created             = models.DateTimeField(auto_now_add=True)
   
   def __str__(self):
-    return str(self.profile)
+    return str(self.iwatch_reporter) +"|"+ str(self.reported_iw)
 

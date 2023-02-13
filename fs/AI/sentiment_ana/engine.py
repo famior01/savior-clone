@@ -13,12 +13,16 @@ import shutil
 from decouple import config
 
 ABSOLUTE_PATH = config('ABSOLUTE_PATH')
+USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
 
 
 def get_voice_ana(ID):
   obj = ZakatPosts.objects.filter(id=ID).first()
   video1 = str(obj.video1.url)
-  video1 = ABSOLUTE_PATH + video1
+  if USE_PRODUCTION:
+    video1 = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media/" + video1
+  else:
+    video1 = ABSOLUTE_PATH + video1
   # video1 = video1.replace('/media/', '/media_root/')
   print('************\n\t In Audio Analysis \n\t************')
 

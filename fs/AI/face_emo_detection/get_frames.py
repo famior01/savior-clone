@@ -21,6 +21,7 @@ import shutil
 from decouple import config
 
 ABSOLUTE_PATH = config('ABSOLUTE_PATH')
+USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
 
 class Get_frames:
     def __init__(self, video_id=None, object_det=False):
@@ -65,8 +66,11 @@ class Get_frames:
                 print('************', video, '******First video******')
             except ValueError:
                 return 'video1'
-            
-        video = ABSOLUTE_PATH + video
+        
+        if USE_PRODUCTION:
+            video = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media/" + video #media%2Fzakat_video%2Fangry.mp4
+        else:
+            video = ABSOLUTE_PATH + video
         # video = video.replace('/media/', '/media_root/')
         print('************', video, '******video******')
         

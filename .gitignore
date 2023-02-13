@@ -6,6 +6,10 @@ db.sqlite3
 *fs/.ipynb
 *.ipynb_checkpoints
 *ipynb
+*.csv
+*.txt
+*.mp3
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
