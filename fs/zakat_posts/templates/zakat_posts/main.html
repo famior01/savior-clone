@@ -139,6 +139,25 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <!--MODAL TO GIVE REPORT OF USER-->
+                                    <div class="ui small modal" id='Report'>
+                                        <div class="header">Payment Details</div>
+                                        <div class="content">
+                                            <div class="content">
+                                                <p><strong>Name</strong> = {{obj.seeker}}</p>
+                                                <p><strong>Phone Number</strong> = {{obj.phone_number}}</p>
+                                                <p><strong>Bank Details</strong> = {{obj.bank_details}}</p>
+                                                <p><strong>Address</strong> = {{obj.address}}</p>
+                                                <p><strong>Remaining Amount</strong>= {{obj.needed_money|sub:obj.paid}} PKR</p>
+                                            </div>
+                                            <form action="{% url 'support:ReportZakatPostFunc'%}" method=post>
+                                                {% csrf_token %}
+                                                <input type="hidden" name="zp_id" value={{obj.id}}> 
+                                                <input type="text" placeholder='What is your issue?' id='payment' name='problem' id={{obj.id}} width='400px'>
+                                                <button type='submit' class='ui basic blue button fluid'>Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
                                     <div class="ui tiny modal" id='donors'>
                                         <div class="header">All Donors</div>
                                         <div class="content">
@@ -278,7 +297,7 @@
                                 <button class='ui primary button' onclick='showDonors()   '>Donors</button>
                             </div>
                             <div class="item">
-                                <button class='ui primary button' onclick='showDonors()   '>Report</button>
+                                <button class='ui primary button' onclick='Report()'>Report</button>
                             </div>
                         </div>
                     </div>

@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from .views import home, notifications_read, notifications_delete, DeleteAllNotifications, ReadAllNotifications
 
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -15,6 +16,7 @@ urlpatterns = [
     path('zakat_posts/', include('zakat_posts.urls', namespace='zakat_posts')),
     path('user/', include('user.urls', namespace='user')),
     path('api/', include('zakat_posts.api.urls')),
+    path('support/', include('support.urls', namespace='support')),
     # for notifications
     re_path('^inbox/notifications/', include(notifications.urls, namespace='notifications')),
     path('notifications_read/', notifications_read, name='notifications_read'),

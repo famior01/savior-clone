@@ -8,9 +8,8 @@ from zakat_posts.models import ZakatPosts
 # uncommit from dockerignore! TODO;
 
 class Sugg2Savior(models.Model):
-  savior_adviser      = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='savior_adviser')
-  suggestion          = models.TextField(max_length=500, blank=True)
-  updated             = models.DateTimeField(auto_now=True)
+  savior_adviser      = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='savior_adviser')
+  suggestion          = models.TextField(max_length=1000, blank=True)
   created             = models.DateTimeField(auto_now_add=True)
   
   def __str__(self):
@@ -18,9 +17,8 @@ class Sugg2Savior(models.Model):
 
 
 class ReportSaviorProblem(models.Model):
-  savior_reporter     = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='savior_reporter')
-  report              = models.TextField(max_length=500, blank=True)
-  updated             = models.DateTimeField(auto_now=True)
+  savior_reporter     = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='savior_reporter')
+  problem             = models.TextField(max_length=1000, blank=True)
   created             = models.DateTimeField(auto_now_add=True)
   
   def __str__(self):
@@ -28,21 +26,21 @@ class ReportSaviorProblem(models.Model):
 
 
 class ReportZakatPost(models.Model):
-  zakat_reporter             = models.OneToOneField(Profile, on_delete=models.CASCADE,        related_name='zakat_reporter')
-  reported_zp         = models.ForeignKey(ZakatPosts, on_delete=models.CASCADE, related_name='reported_zp')
-  report              = models.TextField(max_length=500, blank=True)
-  updated             = models.DateTimeField(auto_now=True)
-  created             = models.DateTimeField(auto_now_add=True)
+  zakat_reporter         = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='zakat_reporter')
+  reported_zp            = models.ForeignKey(ZakatPosts, on_delete=models.CASCADE, related_name='reported_zp')
+  problem                = models.TextField(max_length=500, blank=True)
+  created                = models.DateTimeField(auto_now_add=True)
+
   
   def __str__(self):
     return str(self.zakat_reporter) +"|"+ str(self.reported_zp)
 
 class ReportIWatch(models.Model):
-  iwatch_reporter     = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='iwatch_reporter')
-  reported_iw              = models.ForeignKey(IWatch, on_delete=models.CASCADE, related_name='reported_iw')
-  report              = models.TextField(max_length=500, blank=True)
-  updated             = models.DateTimeField(auto_now=True)
+  iwatch_reporter     = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='iwatch_reporter')
+  reported_iw         = models.ForeignKey(IWatch, on_delete=models.CASCADE, related_name='reported_iw')
+  problem             = models.TextField(max_length=500, blank=True)
   created             = models.DateTimeField(auto_now_add=True)
+
   
   def __str__(self):
     return str(self.iwatch_reporter) +"|"+ str(self.reported_iw)

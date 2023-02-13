@@ -175,14 +175,30 @@
                     </a>
 
                     <!--account Report Savior Problem-->
-                    <a href="{% url 'account_change_password' %}" class="item">
-                        <i class="key icon"></i>Report Savior Problem
-                    </a>
+                    <div class="ui tiny modal" id='SaviorIssues'>
+                        <div class="header">Seeker Information</div>
+                        <div class="content">
+                            <form action="{% url 'support:ReportSaviorProblemFunc'%}" method=post>
+                                {% csrf_token %}
+                                <input type="text" placeholder='What would you like to suggest?' name='problem'>
+                                <button type='submit' class='ui basic blue  button fluid'>Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="item" onclick='SaviorIssues()'>Report Savior Problem</button>
 
                     <!--account suggest Something-->
-                    <a href="{% url 'account_change_password' %}" class="item">
-                        <i class="key icon"></i>Suggest Something
-                    </a>
+                    <div class="ui tiny modal" id='Suggest'>
+                        <div class="header">Seeker Information</div>
+                        <div class="content">
+                            <form action="{% url 'support:Sugg2SaviorFunc'%}" method=post>
+                                {% csrf_token %}
+                                <input type="text" placeholder='What would you like to suggest?' name='suggestion'>
+                                <button type='submit' class='ui basic blue  button fluid'>Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="item" onclick='Suggest()'>Give us some suggestions</button>
                 </div>
             </div>
             {% endif %}
@@ -232,4 +248,11 @@
         }
     })
 })
+function Suggest(){
+    $('#Suggest').modal('show');
+}
+
+function SaviorIssues(){
+    $('#SaviorIssues').modal('show');
+}   
 </script>

@@ -156,7 +156,7 @@
                                             <p>Kindly let us know how mush have you paid to the creator?</p>
                                             <form action="{% url 'IWatch:payment'%}" method=post>
                                               {% csrf_token %}
-                                              <input type="hidden" name="post_id" value={{IWatch.pk}}>
+                                              <input type="hidden" name="post_id" value={{IWatch.pk}}> 
                                               <input type="Number" placeholder='How much have you paid?' id='payment' name='amount' id={{IWatch.pk}} width='400px'>
                                               <button type='submit' class='ui basic blue button fluid'>Submit</button>
                                           </form>
@@ -165,7 +165,22 @@
                                   <button class='ui secondary button' onclick='showBankDetails()'>Pay</button>
                                 </div>
                                 <div class="six wide column">
-                                  <button class='ui secondary button' onclick='showBankDetails()'>Report</button>
+                                  <div class="ui small modal" id='Report'>
+                                    <div class="header">Payment Details</div>
+                                      <div class="content">
+                                          <p>Content Creator: <strong>{{IWatch.creator.user.full_name}}</strong></p>
+                                          <p><strong>Bank Name: </strong> {{IWatch.creator.bank_details}}</p>
+                                          <p><strong>Savior</strong> payment method is not available right now, soon it will be there, but for now you can pay him directly</p>
+                                          <p>Kindly let us know how mush have you paid to the creator?</p>
+                                          <form action="{% url 'support:ReportIWatchFunc'%}" method=post>
+                                            {% csrf_token %}
+                                            <input type="hidden" name="iw_id" value={{IWatch.pk}}> 
+                                            <input type="text" placeholder='What is your issue?' id='payment' name='problem' id={{IWatch.pk}} width='400px'>
+                                            <button type='submit' class='ui basic blue button fluid'>Submit</button>
+                                        </form>
+                                        </div>
+                                  </div>
+                                  <button class='ui secondary button' onclick='Report()'>Report</button>
                                 </div>
                                 <div class="four wide column">
                                   {% if not hitcount.hit_counted  %}
@@ -441,6 +456,11 @@ $('.dislike-form').submit(function(e){
 
 function showBankDetails(){
   $('#payment').modal('show');
+}
+
+
+function Report(){
+  $('#Report').modal('show');
 }
 
 </script>
