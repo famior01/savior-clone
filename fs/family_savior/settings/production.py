@@ -31,7 +31,7 @@ DB_USERNAME=    config('POSTGRES_USER', cast=str)
 DB_PASSWORD=    config('POSTGRES_PASSWORD', cast=str)
 DB_HOST=        config('POSTGRES_HOST', cast=str)
 DB_PORT=        config('POSTGRES_PORT', cast=str)
-DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
+# DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
 # DB_PORT="25060"
 # DB_PASSWORD="AVNS_81xAWmYcDGfRClcsV9l"
 # DB_USERNAME="doadmin"
@@ -79,11 +79,9 @@ RESULT_BACKEND =            'db+sqlite://results.db'
 # ------------- STATIC FILES ---------------------
 # =================================================
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR/"staticfiles"
 
-STATICFILES_DIRS = [
-    BASE_DIR/"staticfiles"
-]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 from ..cdn.conf import * # noqa
 
 # =====================================================
@@ -151,7 +149,6 @@ LOGGERS = {
             'level': 'ERROR',
             'propagate': True
         },
-    
         'django.template': {
             'level': 'DEBUG',
             'handlers': ['console', 'mail_admins', ],

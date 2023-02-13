@@ -81,7 +81,7 @@ class SearchIWatch(ListView):
       context = {
         'IWatch_list': IWatch_list,
       }
-      return render(request, "IWatch/Search.html", context)
+      return render(request, "IWatch/search.html", context)
     else:
       return redirect(request.META.get('HTTP_REFERER'))
       

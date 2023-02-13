@@ -56,6 +56,7 @@ RESULT_BACKEND = 'db+sqlite://results.db'
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR/"staticfiles"
+
 # python manage.py collectstatic --noinput  # to collect static files
 
 MEDIA_URL = 'media/'

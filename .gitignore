@@ -9,6 +9,7 @@ db.sqlite3
 *.csv
 *.txt
 *.mp3
+Important.env
 
 
 # Byte-compiled / optimized / DLL files
@@ -430,3 +431,4 @@ yolov5
 *.data
 fs/db.sqlite3
 fs/.env.prod
+fs/Important.env

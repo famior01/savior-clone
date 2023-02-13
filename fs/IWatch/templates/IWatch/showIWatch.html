@@ -146,7 +146,7 @@
                             <div class="ui blue labels">
                             <div class="ui grid">
                               <div class="row">
-                                <div class="sixteen wide column">
+                                <div class="six wide column">
                                     <div class="ui small modal" id='payment'>
                                       <div class="header">Payment Details</div>
                                         <div class="content">
@@ -164,10 +164,15 @@
                                     </div>
                                   <button class='ui secondary button' onclick='showBankDetails()'>Pay</button>
                                 </div>
-                                {% comment %} <div class="eight wide column">
-                                  <a class="ui label">{% if not hitcount.hit_counted  %}You've Watched
-                                    {% endif %}</a>    
-                                </div> {% endcomment %}
+                                <div class="six wide column">
+                                  <button class='ui secondary button' onclick='showBankDetails()'>Report</button>
+                                </div>
+                                <div class="four wide column">
+                                  {% if not hitcount.hit_counted  %}
+                                  <i class="fa-solid fa-eye" style="margin-left:1em;;"></i>
+                                  {% endif %}    
+                                </div> 
+
                               </div>
                             </div>    
                             </div>
