@@ -20,7 +20,7 @@
         <li>
             {% if request.user.is_authenticated %}
             <a href="{{zakat_posts_home}}" class="{% if request.path == path_to_posts %}{% endif %} item">
-                <h1>Savior</h1>
+                <img src="{% static 'Logos/black-logo.png' %}" id='main-logo'>
             </a>
             {% else %}
             <!--for sign up-->
@@ -41,7 +41,7 @@
         <li>
             {% if request.user.is_authenticated %}
             <a href="{{zakat_posts_home}}" class="{% if request.path == zakat_posts_home %}active{% endif %} item">
-                <i class=" user md icon"></i>
+                <img src="{% static 'Logos/black-zakat-icon.png' %}" id='zakat-icon'>
                 Zakat
             </a>
             {% endif %}

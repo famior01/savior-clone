@@ -1,5 +1,6 @@
 from .base import *
 from decouple import config
+import os
 
 SECRET_KEY = "ox5pd@^_zj!enw81&-b6&34mb2ik@rx+a0ebv6wt&324&fwlrqv9"
 DEBUG = True
