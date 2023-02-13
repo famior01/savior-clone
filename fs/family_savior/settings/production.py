@@ -79,9 +79,7 @@ RESULT_BACKEND =            'db+sqlite://results.db'
 # ------------- STATIC FILES ---------------------
 # =================================================
 STATIC_URL = 'static/'
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
 from ..cdn.conf import * # noqa
 
 # =====================================================
