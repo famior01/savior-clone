@@ -1,7 +1,6 @@
 import os 
 from decouple import config
 
-
 AWS_ACCESS_KEY_ID=config("AWS_ACCESS_KEY_ID", cast=str)
 AWS_SECRET_ACCESS_KEY=config("AWS_SECRET_ACCESS_KEY", cast=str)
 AWS_STORAGE_BUCKET_NAME="savior-staticfiles"
@@ -17,8 +16,19 @@ STATICFILES_STORAGE="family_savior.cdn.backends.StaticRootS3BotoStorage"
 
 
 
-STATIC_ROOT = '{}/{}/'.format(AWS_LOCATION, 'static')
-STATIC_URL = 'static/'
 
-MEDIA_ROOT = '{}/{}/'.format(AWS_LOCATION, 'media')
-MEDIA_URL = 'media/'
+
+
+
+
+
+
+# =====================================
+# -------------- used but failed ---------------
+# =====================================
+
+# STATIC_ROOT = '{}/{}/'.format(AWS_LOCATION, 'static')
+# STATIC_URL = 'static/'
+
+# MEDIA_ROOT = '{}/{}/'.format(AWS_LOCATION, 'media')
+# MEDIA_URL = 'media/'
