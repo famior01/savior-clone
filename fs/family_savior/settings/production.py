@@ -3,22 +3,21 @@ from decouple import config
 import ssl
 import os 
 
-SECRET_KEY =        config('DJANGO_SECRET_KEY')
-DEBUG =             False
-ENV_ALLOWED_HOST =  config('DJANGO_ALLOWED_HOSTS')
-ALLOWED_HOSTS =     [ ENV_ALLOWED_HOST ]
-
+SECRET_KEY =config('DJANGO_SECRET_KEY')
+DEBUG =False
+ENV_ALLOWED_HOST=config('DJANGO_ALLOWED_HOSTS')
+ALLOWED_HOSTS=[ ENV_ALLOWED_HOST ]
 
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
-DEFAULT_FROM_EMAIL=     config('EMAIL_USER', cast=str)
-EMAIL_HOST =            'smtp.gmail.com' 
-EMAIL_USE_SSL =         True
-EMAIL_PORT =            465
-EMAIL_HOST_USER =       config('EMAIL_USER', cast=str) 
-EMAIL_HOST_PASSWORD =   config('EMAIL_PASSWORD', cast=str)
-EMAIL_BACKEND =         'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL=config('EMAIL_USER', cast=str)
+EMAIL_HOST ='smtp.gmail.com' 
+EMAIL_USE_SSL =True
+EMAIL_PORT =465
+EMAIL_HOST_USER =config('EMAIL_USER', cast=str) 
+EMAIL_HOST_PASSWORD =config('EMAIL_PASSWORD', cast=str)
+EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 
 
 # ======================================================================
@@ -55,25 +54,25 @@ if DB_IS_AVAILABLE:
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
 # CELERY_BROKER_URL = config('CELERY_BROKER_REDIS_URL')
-REDIS_HOST =                config('DO_REDIS_URL', cast=str)
-CELERY_BROKER_URL =         REDIS_HOST
+REDIS_HOST =config('DO_REDIS_URL', cast=str)
+CELERY_BROKER_URL =REDIS_HOST
 # broker_use_ssl=True
 # CELERY_RESULT_BACKEND = f'redis://{ENV_ALLOWED_HOST}:6379'
-CELERY_ACCEPT_CONTENT =     ['application/json']
-CELERY_TASK_SERIALIZER =    'json'
-CELERY_RESULT_SERIALIZER =  'json'
-CELERY_TIMEZONE =           'Asia/Karachi'
-CELERY_RESULT_BACKEND =     'django-db'
+CELERY_ACCEPT_CONTENT =['application/json']
+CELERY_TASK_SERIALIZER ='json'
+CELERY_RESULT_SERIALIZER ='json'
+CELERY_TIMEZONE ='Asia/Karachi'
+CELERY_RESULT_BACKEND ='django-db'
 # CELERY_CACHE_BACKEND = 'django-cache'
-CELERY_CACHE_BACKEND =      'default'
-CELERY_BEAT_SCHEDULER =     'django_celery_beat.schedulers:DatabaseScheduler'
-RESULT_BACKEND =            'db+sqlite://results.db'
+CELERY_CACHE_BACKEND ='default'
+CELERY_BEAT_SCHEDULER ='django_celery_beat.schedulers:DatabaseScheduler'
+RESULT_BACKEND ='db+sqlite://results.db'
 
 
 #=================================================
 # ------------- STATIC FILES ---------------------
 # =================================================
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles-cdn"
 
 STATICFILES_DIRS = [
