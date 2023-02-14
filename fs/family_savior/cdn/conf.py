@@ -22,7 +22,6 @@ STATICFILES_STORAGE="family_savior.cdn.backends.StaticRootS3BotoStorage"
 
 
 
-
 # =====================================
 # -------------- used but failed ---------------
 # =====================================
