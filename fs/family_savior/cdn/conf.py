@@ -8,7 +8,7 @@ AWS_STORAGE_BUCKET_NAME="savior-staticfiles"
 AWS_S3_ENDPOINT_URL="https://sgp1.digitaloceanspaces.com"
 AWS_SE_OBJECT_PARAMETERS={
   "CacheControl":"max-age=86400",
-  "ACL":"public_read",
+  "ACL":"public_read", 
 }
 
 AWS_LOCATION="https://savior-staticfiles.sgp1.digitaloceanspaces.com"
