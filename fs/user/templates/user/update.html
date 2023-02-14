@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block title %}
-Update full_name | username
+User Credentials
 {% endblock title %}
 
 {% block content %}
@@ -13,6 +13,9 @@ Update full_name | username
     <form action="" method='POST' class='ui form' enctype='multipart/form-data'>
       {% csrf_token %}
       {{ form|crispy }}
+      <a href="{% url 'account_change_password' %}" class="ui secondary button">
+        <i class="key icon"></i>Change Password
+      </a>
       <button class='ui button primary mt-5' type='submit'>Update</button>
     </form>
   </div>
