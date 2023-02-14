@@ -13,4 +13,5 @@ class UserCreationForm(UserCreationForm):
 class UserChangeForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ['full_name','username'] 
+        fields = ['full_name','username']
+    

@@ -64,7 +64,6 @@ def ReportIWatchFunc(request):
       return redirect(request.META.get('HTTP_REFERER'))
   return redirect(request.META.get('HTTP_REFERER'))
 
-
 @login_required
 def ReportZakatPostFunc(request):
   if request.method == 'POST':
