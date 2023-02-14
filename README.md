@@ -102,4 +102,6 @@ THE EASIEST WAY TO PAY ZAKAT!
 
 - [ ] Getting media file from spaces 
 - [ ] Getting Ai (ID) from spaces
-- [ ] 
+- [ ] Advertiesment => 
+    - https://github.com/ferdiemmen/plyr-ads
+    - https://pypi.org/project/django-ads/#description 
