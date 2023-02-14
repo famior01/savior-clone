@@ -78,6 +78,7 @@ ACCOUNT_EMAIL_CONFIRMATION_HMAC = True
 
 ACCOUNT_FORMS = {
 'signup':'authentications.forms.CustomSignupForm',
+# 'add_email': 'allauth.account.forms.AddEmailForm',
 }
 
 
