@@ -128,9 +128,9 @@
 
                                         <div class="header">Payment Method</div>
                                         <div class="content">
-                                            <p>Savior Payment Method is not avalible right now, soon it will be there.</p>
-                                            <p>For now, you can pay to the seeker directly.</p>
-                                            <p>After paying the seeker, kindly let us know how much  you have paid, so that we can track him/her.</p>
+                                            <p><Strong>First:</Strong> Call seeker, and confirm his/her address, Bank details, and Needs.</p>
+                                            <p><strong>Second:</strong> Pay to the seeker directly through Internet Banking (Sadapay, etc), or TCS.</p>
+                                            <p><strong>Third:</strong> After paying the seeker, kindly let us know how much you have paid, so that we can track him/her.</p>
                                             <form action="{% url 'zakat_posts:paid'%}" method=post>
                                                 {% csrf_token %}
                                                 <input type="hidden" name="post_id" value={{obj.id}}>

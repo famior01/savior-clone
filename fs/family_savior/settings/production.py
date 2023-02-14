@@ -29,10 +29,10 @@ EMAIL_BACKEND =         'django.core.mail.backends.smtp.EmailBackend'
 DB_DATABASE=    config('POSTGRES_DB', cast=str)
 DB_USERNAME=    config('POSTGRES_USER', cast=str)
 DB_PASSWORD=    config('POSTGRES_PASSWORD', cast=str)
-# DB_HOST=        config('POSTGRES_HOST', cast=str)
+DB_HOST=        config('POSTGRES_HOST', cast=str)
 DB_PORT=        config('POSTGRES_PORT', cast=str)
 DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
-# DB_PORT="25060"
+DB_PORT="25060"
 # DB_PASSWORD="AVNS_81xAWmYcDGfRClcsV9l"
 # DB_USERNAME="doadmin"
 # DB_DATABASE="defaultdb"
