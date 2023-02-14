@@ -3,9 +3,9 @@ from decouple import config
 import ssl
 import os 
 
-SECRET_KEY =        config('DJANGO_SECRET_KEY', cast=str)
+SECRET_KEY =        config('DJANGO_SECRET_KEY')
 DEBUG =             False
-ENV_ALLOWED_HOST =  config('DJANGO_ALLOWED_HOSTS', cast=str)
+ENV_ALLOWED_HOST =  config('DJANGO_ALLOWED_HOSTS')
 ALLOWED_HOSTS =     [ ENV_ALLOWED_HOST ]
 
 
@@ -31,10 +31,6 @@ DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
 DB_PORT=config('POSTGRES_PORT', cast=str)
 DB_DATABASE=config('POSTGRES_DB', cast=str) 
 
-# DB_PORT="25060"
-# DB_PASSWORD="AVNS_81xAWmYcDGfRClcsV9l"
-# DB_USERNAME="doadmin"
-# DB_DATABASE="defaultdb"
 
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
@@ -110,8 +106,6 @@ from ..cdn.conf import * # noqa
 # =====================================================
 # -------------------   LOGGERS -----------------------
 # =====================================================
-
-# Reporting errors to admins
 ADMINS = [
     ('Admin1', 'abuubaida901@gmail.com'),
 ]
