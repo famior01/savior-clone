@@ -1,6 +1,5 @@
 db.sqlite3
 Important.env
-support/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
