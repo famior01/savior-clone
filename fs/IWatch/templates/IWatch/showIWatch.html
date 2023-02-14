@@ -168,10 +168,10 @@
                                   <div class="ui small modal" id='Report'>
                                     <div class="header">Payment Details</div>
                                       <div class="content">
-                                          <p>Content Creator: <strong>{{IWatch.creator.user.full_name}}</strong></p>
-                                          <p><strong>Bank Name: </strong> {{IWatch.creator.bank_details}}</p>
-                                          <p><strong>Savior</strong> payment method is not available right now, soon it will be there, but for now you can pay him directly</p>
-                                          <p>Kindly let us know how mush have you paid to the creator?</p>
+                                        <div class="content">
+                                          <h3>You are reporting Against User ({{IWatch.creator}})</h3>
+                                          <h5>Please write your issue in details, if we find it valid, we will take action against the user.</h5><br>
+                                        </div> 
                                           <form action="{% url 'support:ReportIWatchFunc'%}" method=post>
                                             {% csrf_token %}
                                             <input type="hidden" name="iw_id" value={{IWatch.pk}}> 

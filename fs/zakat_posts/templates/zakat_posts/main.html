@@ -141,19 +141,16 @@
                                     </div>
                                     <!--MODAL TO GIVE REPORT OF USER-->
                                     <div class="ui small modal" id='Report'>
-                                        <div class="header">Payment Details</div>
+                                        <div class="header">Report User</div>
                                         <div class="content">
                                             <div class="content">
-                                                <p><strong>Name</strong> = {{obj.seeker}}</p>
-                                                <p><strong>Phone Number</strong> = {{obj.phone_number}}</p>
-                                                <p><strong>Bank Details</strong> = {{obj.bank_details}}</p>
-                                                <p><strong>Address</strong> = {{obj.address}}</p>
-                                                <p><strong>Remaining Amount</strong>= {{obj.needed_money|sub:obj.paid}} PKR</p>
+                                                <h3>You are reporting Seeker ({{obj.seeker}})</h3>
+                                                <h5>Please write your issue in details, if we find it valid, we will take action against the user.</h5><br>
                                             </div>
                                             <form action="{% url 'support:ReportZakatPostFunc'%}" method=post>
                                                 {% csrf_token %}
                                                 <input type="hidden" name="zp_id" value={{obj.id}}> 
-                                                <input type="text" placeholder='What is your issue?' id='payment' name='problem' id={{obj.id}} width='400px'>
+                                                <input type="textarea" placeholder='What is your issue?' id='payment' name='problem' id={{obj.id}} width='400px'><br><br>
                                                 <button type='submit' class='ui basic blue button fluid'>Submit</button>
                                             </form>
                                         </div>

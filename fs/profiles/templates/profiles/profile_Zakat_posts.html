@@ -56,6 +56,23 @@
                                             </form>
                                         </div>
                                     </div>
+
+                                    <div class="ui small modal" id='Report'>
+                                        <div class="header">Report User</div>
+                                        <div class="content">
+                                            <div class="content">
+                                                <h3>You are reporting Seeker ({{obj.seeker}})</h3>
+                                                <h5>Please write your issue in details, if we find it valid, we will take action against the user.</h5><br>
+                                            </div>
+                                            <form action="{% url 'support:ReportZakatPostFunc'%}" method=post>
+                                                {% csrf_token %}
+                                                <input type="hidden" name="zp_id" value={{obj.id}}> 
+                                                <input type="textarea" placeholder='What is your issue?' id='payment' name='problem' id={{obj.id}} width='400px'><br><br>
+                                                <button type='submit' class='ui basic blue button fluid'>Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
                                     <div class="ui tiny modal" id='donors'>
                                         <div class="header">All Donors</div>
                                         <div class="content">
@@ -192,9 +209,9 @@
                             <div class="item">
                                 <button   onclick='opendetail()' class='ui primary button'>Pay</button>
                             </div>
-                            <div class="six wide column">
-                                <button class='ui secondary button' onclick='opendetail()'>Report</button>
-                            </div> 
+                            <div class="item">
+                                <button   onclick='Report()' class='ui primary button'>Report</button>
+                            </div>
                         </div>
                     </div>
                     <div class="column eight wide fluid">
@@ -263,5 +280,10 @@
     function showDonors(){
         $('#donors').modal('show');
     }
+
+    function Report(){
+        $('#Report').modal('show');
+    }
+
 </script>
 <script type="text/javascript" src="{% static 'zakat_posts/main.js' %}"></script>
