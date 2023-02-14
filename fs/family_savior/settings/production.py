@@ -13,7 +13,7 @@ ALLOWED_HOSTS =     [ ENV_ALLOWED_HOST ]
 # ----------------- Email Settings -----------------
 # ====================================================
 DEFAULT_FROM_EMAIL=     config('EMAIL_USER', cast=str)
-EMAIL_HOST =            'smtp.gmail.com'
+EMAIL_HOST =            'smtp.gmail.com' 
 EMAIL_USE_SSL =         True
 EMAIL_PORT =            465
 EMAIL_HOST_USER =       config('EMAIL_USER', cast=str) 
