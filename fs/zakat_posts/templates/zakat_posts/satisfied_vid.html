@@ -6,12 +6,12 @@
 {% block title %}Satisfied{% endblock title %}
 
 {% block content %}
-<div class="ui container">
+<div style = 'margin-top:6em;'  class="ui container">
     <div class="ui grid">
         {% for obj in zp %}
         {% if obj.satisfied and obj.varified >= 50  %}
     
-            <div style = 'margin-top:5em;' class="row">
+            <div class="row">
                 <div class=" eleven wide column ">
                     <div class="ui blue raised segment">
                         {% if request.user == obj.creator.user %}
