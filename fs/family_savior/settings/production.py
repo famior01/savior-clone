@@ -29,7 +29,7 @@ DB_USERNAME=config('POSTGRES_USER', cast=str)
 DB_PASSWORD=config('POSTGRES_PASSWORD', cast=str)
 DB_HOST="savior-database-do-user-13416996-0.b.db.ondigitalocean.com"
 DB_PORT=config('POSTGRES_PORT', cast=str)
-DB_DATABASE=config('POSTGRES_DB', cast=str) 
+DB_DATABASE=config('POSTGRES_DB', cast=str)  
 
 
 DB_IS_AVAILABLE = all([
