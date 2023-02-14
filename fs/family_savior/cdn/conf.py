@@ -13,21 +13,3 @@ AWS_SE_OBJECT_PARAMETERS={
 AWS_LOCATION="https://savior-staticfiles.sgp1.digitaloceanspaces.com"
 DEFAULT_FILE_STORAGE="family_savior.cdn.backends.MediaRootS3BotoStorage"
 STATICFILES_STORAGE="family_savior.cdn.backends.StaticRootS3BotoStorage"
-
-
-
-
-
-
-
-
-
-# =====================================
-# -------------- used but failed ---------------
-# =====================================
-
-# STATIC_ROOT = '{}/{}/'.format(AWS_LOCATION, 'static')
-# STATIC_URL = 'static/'
-
-# MEDIA_ROOT = '{}/{}/'.format(AWS_LOCATION, 'media')
-# MEDIA_URL = 'media/'
