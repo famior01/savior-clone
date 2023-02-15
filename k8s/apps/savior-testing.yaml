@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Testing
+kind: Deployment
 metadata:
   name: savior-testing
   labels:
@@ -24,9 +24,9 @@ spec:
               name: savior-prod-secret
         env:
           - name: PORT
-            value: "8000"
+            value: "8001"
         ports:
-        - containerPort: 8000
+        - containerPort: 8001
       imagePullSecrets:
         - name: savior
 
@@ -42,7 +42,7 @@ spec:
     - name: http
       protocol: TCP
       port: 80
-      targetPort: 8000
+      targetPort: 8001
   selector:
     app: savior-testing
 
