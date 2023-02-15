@@ -13,7 +13,7 @@
     <p>Leave the field blank, if you don't want to show. </p>
     <form action="" method='POST' class='ui form' enctype='multipart/form-data'>
       {% csrf_token %}
-      {% crispy form %}
+      {{ form|crispy }}
       <button class='ui large secondary button fluid mt-3' type='submit'>Update</button>
     </form>
   </div>

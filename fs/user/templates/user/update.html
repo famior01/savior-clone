@@ -12,13 +12,12 @@ User Credentials
     <h3>Update User Info</h3>
     <form action="" method='POST' class='ui form' enctype='multipart/form-data'>
       {% csrf_token %}
-      {% crispy form %}
-
-      <a href="{% url 'account_change_password' %}" class="ui secondary button">
-        <i class="key icon"></i>Change Password
-      </a>
+      {{ form|crispy }}
       <button class='ui button primary mt-5' type='submit'>Update</button>
     </form>
+    <a href="{% url 'account_change_password' %}" class="ui secondary button">
+      <i class="key icon"></i>Change Password
+    </a>
   </div>
 </div>
 {% endblock content %}
