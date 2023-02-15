@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
 
 {% block title %}Update {{user.username}}{% endblock title %}
 <link rel="stylesheet" type="text/css" href={% static 'profiles/style.css' %}>
@@ -13,7 +13,7 @@
     <p>Leave the field blank, if you don't want to show. </p>
     <form action="" method='POST' class='ui form' enctype='multipart/form-data'>
       {% csrf_token %}
-      {{ form|crispy }}
+      {{ form.as_table }}
       <button class='ui large secondary button fluid mt-3' type='submit'>Update</button>
     </form>
   </div>

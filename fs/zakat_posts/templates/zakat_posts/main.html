@@ -38,14 +38,14 @@
                             <strong>Instructions in English</strong>
                         </summary>
                         <div class='ui play details-content'>
-                            {% if Production %}
+                            {% comment %} {% if Production %}
                                 <audio controls>
                                     <source src='https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/static%2Faudio%2Fvideo1_eng.mp3'>
                                 </audio>
                                 <audio controls>
                                     <source src='https://savior-staticfiles.sgp1.digitaloceanspaces.com/static%2Faudio%2Fvideo2_eng.mp3'>
                                 </audio>
-                            {% else %}
+                            {% else %} {% endcomment %}
                             <audio controls>
                                 <source src={% static 'audios/first_eng_audio.mp3' %}>
                             </audio>
@@ -55,7 +55,7 @@
                             <audio controls>
                                 <source src= {% static 'audios/third_eng_audio.mp3' %}>
                             </audio>
-                            {% endif %} 
+                            {% comment %} {% endif %}  {% endcomment %}
 
                             
                         </div>
@@ -66,14 +66,14 @@
                             <strong>Instructions in Urdu</strong>
                         </summary>
                             <div class='details-content'>
-                                {% if Production %}
+                                {% comment %} {% if Production %}
                                 <audio controls>
                                     <source src='https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/static%2Faudio%2Fvideo1_urdu.mp3'>
                                 </audio>
                                 <audio controls>
                                     <source src='https://savior-staticfiles.sgp1.digitaloceanspaces.com/static%2Faudio%2Fvideo2_urdu.mp3'>
                                 </audio>
-                                {% else %}
+                                {% else %} {% endcomment %}
                                     <audio controls>
                                         <source src={% static 'audios/first_urdu_audio.mp3' %}>
                                     </audio>
@@ -83,7 +83,7 @@
                                     <audio controls>
                                         <source src= {% static 'audios/third_urdu_audio.m4a' %}>
                                     </audio>
-                                {% endif %}
+                                {% comment %} {% endif %} {% endcomment %}
                             
                             </div>
                     </details>

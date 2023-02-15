@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+{% comment %} {% load crispy_forms_tags %} {% endcomment %}
 {% load static %}
 
 {% block title %}
@@ -12,7 +12,7 @@ User Credentials
     <h3>Update User Info</h3>
     <form action="" method='POST' class='ui form' enctype='multipart/form-data'>
       {% csrf_token %}
-      {{ form|crispy }}
+      {{ form.as_table }}
       <button class='ui button primary mt-5' type='submit'>Update</button>
     </form>
     <a href="{% url 'account_change_password' %}" class="ui secondary button">
