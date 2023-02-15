@@ -120,6 +120,10 @@ MANAGERS = ADMINS
 
 FORMATTERS = (
     {
+        "console": {
+            "format": "{levelname} {asctime:s} {name} {module} {filename} {lineno:d} {funcName} {message}",
+            "style": "{",
+        },
         "simple": {
             "format": "{levelname} {asctime:s} {name} {module} {filename} {lineno:d} {funcName} {message}",
             "style": "{",
@@ -133,6 +137,11 @@ HANDLERS = {
         'class': 'django.utils.log.AdminEmailHandler',
         'formatter': 'simple',
     },
+    'console': {
+        'level': 'DEBUG',
+        'class': 'logging.StreamHandler',
+        'formatter': 'console',
+    },  
 }
 
 LOGGERS = {
@@ -143,32 +152,17 @@ LOGGERS = {
     },
     'django.server': {
         'level': 'INFO',
-        'handlers': ['mail_admins', ],
+        'handlers': [ 'console' ,'mail_admins', ],
         'propagate': True
     },
     'django.security': {
         'level': 'INFO',
-        'handlers': ['mail_admins', ],
+        'handlers': ['console' ,'mail_admins', ],
         'propagate': True
     },
     'django.template': {
         'level': 'INFO',
-        'handlers': ['mail_admins', ],
-        'propagate': True
-    },
-    'django.security.DisallowedHost': {
-        'level': 'INFO',
-        'handlers': ['mail_admins', ],
-        'propagate': True
-    },
-    'django.db.backends': {
-        'level': 'INFO',
-        'handlers': ['mail_admins', ],
-        'propagate': True
-    },
-    'django.security.SuspiciousOperation': {
-        'level': 'INFO',
-        'handlers': ['mail_admins', ],
+        'handlers': ['console' ,'mail_admins', ],
         'propagate': True
     },
 }
@@ -186,3 +180,23 @@ LOGGING = {
     "handlers": HANDLERS,
     "loggers": LOGGERS,
 }
+
+
+# =====================================================
+# -------------------   extra loggers  -----------------------
+# =====================================================
+# 'django.security.DisallowedHost': {
+#         'level': 'INFO',
+#         'handlers': ['mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.db.backends': {
+#         'level': 'INFO',
+#         'handlers': ['mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.security.SuspiciousOperation': {
+#         'level': 'INFO',
+#         'handlers': ['mail_admins', ],
+#         'propagate': True
+#     },

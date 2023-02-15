@@ -114,3 +114,7 @@ function showDonors(){
 function Report(){
     $('#Report').modal('show');
 }
+
+function how2post(){
+    $('#how2post').modal('show');
+}
