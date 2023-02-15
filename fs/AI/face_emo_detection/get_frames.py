@@ -68,7 +68,7 @@ class Get_frames:
                 return 'video1'
         
         if USE_PRODUCTION:
-            video = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media/" + video #media%2Fzakat_video%2Fangry.mp4
+            video = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media/zakat_video/" + video #media%2Fzakat_video%2Fangry.mp4
         else:
             video = ABSOLUTE_PATH + video
         # video = video.replace('/media/', '/media_root/')

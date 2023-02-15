@@ -9,7 +9,7 @@ from .models import ZakatPosts, ZakatPostsComment, UpVote, DownVote
 
 @admin.register(ZakatPosts)
 class ZakatPostsAdmin(admin.ModelAdmin):
-    list_display = ('id','creator', 'seeker','phone_number', 'address', 'varified', 'paid', 'needed_money','satisfied', 'upvote', 'downvote', 'created', 'updated')
+    list_display = ('id','creator', 'seeker', 'video1', 'video2','varified', 'paid', 'needed_money','satisfied', 'created', 'updated')
     
 @admin.register(ZakatPostsComment)
 class ZakatPostsCommentAdmin(admin.ModelAdmin):

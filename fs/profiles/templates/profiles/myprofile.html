@@ -187,6 +187,7 @@
                       <div class="ui items">
                         <!--UpVote-->
                         <div class="item">
+                          <div data-tooltip="I Trust" data-position="left center">
                           <form
                             action="{% url 'zakat_posts:upvote' %}"
                             method="POST"
@@ -211,9 +212,11 @@
                               </div>
                             </button>
                           </form>
+                          </div>
                         </div>
                         <!--DownVote-->
                         <div class="item">
+                          <div data-tooltip="I Don't Trust" data-position="left center">
                           <form
                             action="{% url 'zakat_posts:downvote' %}"
                             method="POST"
@@ -247,6 +250,7 @@
                               </div>
                             </button>
                           </form>
+                        </div>
                         </div>
                         <!--Pay-->
                         <div class="item">

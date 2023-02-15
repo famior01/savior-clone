@@ -96,7 +96,7 @@
                       
                       {% if user == profile.user %}
                       <a href="{% url 'profiles:following' profile.pk %}">
-                        <div class="ui label" data-tooltip="Only you can see your following" data-position="bottom left"><b>{{profile.get_following_no}}</b>&nbsp; Following
+                        <div class="ui label" data-tooltip="only you can see, who you follow" data-position="bottom left"><b>{{profile.get_following_no}}</b>&nbsp; Following
                         </div>
                       </a>
                       {% endif %}

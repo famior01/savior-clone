@@ -371,22 +371,22 @@
       tagUrl: '' ,
     },
     mediaMetadata: {
-      title: '{{IWatch.title}}',
-      artist: '{{IWatch.creator.user.full_name}}',
+      title: '{{ IWatch.title }}',
+      artist: '{{ IWatch.creator.user.full_name }}',
       album: '',
     },
   });
   player.source = {
     type: 'video',
-    title: '{{IWatch.title}}',
+    title: '{{ IWatch.title }}',
     sources: [
       {
-        src: '{{IWatch.video.url}}',
+        src: '{{ IWatch.video.url }}',
         type: 'video/mp4',
         size: 720,
       },
       {
-        src: '{{IWatch.video.url}}',
+        src: '{{ IWatch.video.url }}',
         type: 'video/webm',
         size: 1080,
       },

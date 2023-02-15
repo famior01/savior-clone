@@ -110,3 +110,11 @@ function opendetail(){
 function showDonors(){
     $('#donors').modal('show');
 }
+
+function Report(){
+    $('#Report').modal('show');
+}
+
+function how2post(){
+    $('#how2post').modal('show');
+}
