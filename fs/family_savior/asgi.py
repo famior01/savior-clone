@@ -21,8 +21,11 @@ from django.core.asgi import get_asgi_application
 # dotenv.read_dotenv(str(ENV_FILE_PATH))
 
 production = config('USE_PRODUCTION', cast=bool)
+testing = config('USE_TESTING', cast=bool)
 if production==True:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
+elif testing==True:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.testing')
 else:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.local')
 
