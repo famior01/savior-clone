@@ -50,14 +50,22 @@ if DB_IS_AVAILABLE:
         'sslmode': 'require',
     }
 
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 # ===========================================================
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
 # CELERY_BROKER_URL = config('CELERY_BROKER_REDIS_URL')
-REDIS_HOST =config('DO_REDIS_URL', cast=str)
+REDIS_HOST =config('DO_REDIS_URL', cast=str, default='redis://localhost:6379')
 CELERY_BROKER_URL =REDIS_HOST
-# broker_use_ssl=True
-# CELERY_RESULT_BACKEND = f'redis://{ENV_ALLOWED_HOST}:6379'
+broker_use_ssl=True
+CELERY_RESULT_BACKEND = REDIS_HOST
 CELERY_ACCEPT_CONTENT =['application/json']
 CELERY_TASK_SERIALIZER ='json'
 CELERY_RESULT_SERIALIZER ='json'
@@ -78,8 +86,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles-cdn"
 STATICFILES_DIRS = [
     BASE_DIR / "staticfiles"
 ]
-
-from ..cdn.conf import * # noqa
+# it overrides static_root
+from ..cdn.conf import * # noqa1 
 
 # =====================================================
 # ------------------- HTTPS SETTINGS -------------------------
@@ -112,10 +120,6 @@ MANAGERS = ADMINS
 
 FORMATTERS = (
     {
-        "verbose": {
-            "format": "{levelname} {asctime:s} {name} {threadName} {thread:d} {module} {filename} {lineno:d} {name} {funcName} {process:d} {message}",
-            "style": "{",
-        },
         "simple": {
             "format": "{levelname} {asctime:s} {name} {module} {filename} {lineno:d} {funcName} {message}",
             "style": "{",
@@ -125,40 +129,48 @@ FORMATTERS = (
 
 HANDLERS = {
     'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler',
-            'formatter': 'simple',
+        'level': 'ERROR',
+        'class': 'django.utils.log.AdminEmailHandler',
+        'formatter': 'simple',
     },
-    'console': {
-        'level': 'DEBUG',
-        'class': 'logging.StreamHandler',
-        'filters': ['require_debug_false', ],
-        'formatter': 'verbose',
-    }
-
 }
 
 LOGGERS = {
-        'django.request': {
-            'handlers': ['mail_admins', ],
-            'level': 'ERROR',
-            'propagate': True
-        },
-        'django.template': {
-            'level': 'DEBUG',
-            'handlers': ['console', 'mail_admins', ],
-            'propagate': True
-        },
-        'django.server': {
-            'level': 'INFO',
-            'handlers': ['console', 'mail_admins', ],
-            'propagate': True
-        },
-        'django.security': {
-            'level': 'INFO',
-            'handlers': ['console', 'mail_admins', ],
-            'propagate': True
-        },
+    'django.request': {
+        'handlers': ['mail_admins', ],
+        'level': 'ERROR',
+        'propagate': True
+    },
+    'django.server': {
+        'level': 'INFO',
+        'handlers': ['mail_admins', ],
+        'propagate': True
+    },
+    'django.security': {
+        'level': 'INFO',
+        'handlers': ['mail_admins', ],
+        'propagate': True
+    },
+    'django.template': {
+        'level': 'INFO',
+        'handlers': ['mail_admins', ],
+        'propagate': True
+    },
+    'django.security.DisallowedHost': {
+        'level': 'INFO',
+        'handlers': ['mail_admins', ],
+        'propagate': True
+    },
+    'django.db.backends': {
+        'level': 'INFO',
+        'handlers': ['mail_admins', ],
+        'propagate': True
+    },
+    'django.security.SuspiciousOperation': {
+        'level': 'INFO',
+        'handlers': ['mail_admins', ],
+        'propagate': True
+    },
 }
 
 
@@ -174,23 +186,3 @@ LOGGING = {
     "handlers": HANDLERS,
     "loggers": LOGGERS,
 }
-
-# =====================================================
-# ------------------- Extra  LOGGERS -----------------------
-# =====================================================
-
-    # 'django.security.DisallowedHost': {
-        #     'level': 'INFO',
-        #     'handlers': ['console', 'mail_admins', ],
-        #     'propagate': True
-        # },
-        # 'django.db.backends': {
-        #     'level': 'INFO',
-        #     'handlers': ['console', 'mail_admins', ],
-        #     'propagate': True
-        # },
-        # 'django.security.SuspiciousOperation': {
-        #     'level': 'INFO',
-        #     'handlers': ['console', 'mail_admins', ],
-        #     'propagate': True
-        # },

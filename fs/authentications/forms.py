@@ -41,4 +41,4 @@ class CustomSignupForm(SignupForm):
     user.gender = self.cleaned_data['gender']
 
     user.save()
-    return user
+    return user 
