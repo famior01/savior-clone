@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Testing
+metadata:
+  name: savior-testing
+  labels:
+    app: savior-testing
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: savior-testing
+  template:
+    metadata:
+      labels:
+        app: savior-testing
+    spec:
+      containers:
+      - name: savior
+        image: registry.digitalocean.com/savior/savior:testing
+        imagePullPolicy: Always
+        envFrom:
+          - secretRef:
+              name: savior-prod-secret
+        env:
+          - name: PORT
+            value: "8000"
+        ports:
+        - containerPort: 8000
+      imagePullSecrets:
+        - name: savior
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: savior-testing
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+  selector:
+    app: savior-testing
+
