@@ -27,30 +27,68 @@
             </div>
         </div>
 
+
+        <!--IN English-->
+        
         <div class="five wide column">
             <div class= 'ui red raised segment'>
-                    <button class='ui label'>Listen: How to post</button>
+                <div>
                     <details>
                         <summary>
                             <strong>Instructions in English</strong>
                         </summary>
-                        <div class='ui play details-content'>
-                            <audio controls >
-                                <source src={% static 'audios/first_eng_audio.mp3' %}>
-                            </audio>
-                            <audio controls>
-                                <source src={% static 'audios/second_eng_audio.mp3' %}>
-                            </audio>
-                            <audio controls>
-                                <source src= {% static 'audios/third_eng_audio.mp3' %}>
-                            </audio>
+                        <details>
+                            <summary>
+                                <strong>Listen</strong>
+                            </summary>
+                            <div class='ui play details-content'>
+                                <audio controls >
+                                    <source src={% static 'audios/first_eng_audio.mp3' %}>
+                                </audio>
+                                <audio controls>
+                                    <source src={% static 'audios/second_eng_audio.mp3' %}>
+                                </audio>
+                                <audio controls>
+                                    <source src= {% static 'audios/third_eng_audio.mp3' %}>
+                                </audio>
+                            </div>
+                        </details>
+                        <!--Read: How to post-->
+                        <div>
+                            <div class="ui tiny modal" id='how2post'>
+                                <div class="header">How to Post & Pay </div>
+                                <div class="content">
+                                <h2>English</h2>
+                                <h3><b>
+                                In the first video, you will tell your name and address. Then next, you will describe your problems and needs. After that, you will record each family member one by one in the same video for five seconds without saying anything.
+                                </b></h3>
+                                <h3><b>
+                                In the second video, you will recode all the furniture, electronic items, and daily household items one by one. Everything should look clear in the recording.
+                                </b></h3>
+                                <h3><b>
+                                After pressing Submit button, you will need to wait for 1 or 2 minutes then reload the website. Remember AI will take more than an hour to analyze your videos, once it is completed you will be notified!
+                                </b></h3>
+                                <h3><b>
+                                If you are ready to pay Zakat, first and foremost, call the seeker and confirm his address and bank details. If the person is the same as in the video, then pay Zakat. You should pay directly to his account and inform us. If he doesn't have an account, then pay through any delivery service.
+                                </b></h3>
+                                </div>
+                                
+                            </div>
+                            <br>
+                            <button class='ui basic blue label' onclick='how2post()'>Read in English</button>
                         </div>
                     </details>
-                
+                </div>
+
+                <br>
+                <div>
                     <details>
-                        <summary>
-                            <strong>Instructions in Urdu</strong>
-                        </summary>
+                        <summary>Instruction in Urdu</summary>
+                        <!--Listen-->
+                        <details>
+                            <summary>
+                                <strong>Listen</strong>
+                            </summary>
                             <div class='details-content'>
                                     <audio controls>
                                         <source src={% static 'audios/first_urdu_audio.mp3' %}>
@@ -62,40 +100,29 @@
                                         <source src= {% static 'audios/third_urdu_audio.m4a' %}>
                                     </audio>                            
                             </div>
-                    </details>
-                    <!--Read: How to post-->
-                    <div>
-                        <div class="ui tiny modal" id='how2post'>
-                            <div class="header">How to Post ZakatPost</div>
+                        </details>
+
+                        <!--How to Pay-->
+                        <div class="ui tiny modal" id='how2pay'>
+                            <div class="header">How to pay Zakat</div>
                             <div class="content">
-                            <h2>English</h2>
-                            <h3><b>
-                            In the first video, you will tell your name and address. Then next, you will describe your problems and needs. After that, you will record each family member one by one in the same video for five seconds without saying anything.
-                            </b></h3>
-                            <h3><b>
-                            In the second video, you will recode all the furniture, electronic items, and daily household items one by one. Everything should look clear in the recording.
-                            </b></h3>
-                            <h3><b>
-                            After pressing Submit button, you will need to wait for 1 or 2 minutes then reload the website. Remember AI will take more than an hour to analyze your videos, once it is completed you will be notified!
-                            </b></h3>
-                            </div>
-                            <div class="content">
-                            <h2>Urdu</h2>
-                            <h3><b>
-                        پہلی ویڈیو میں ، آپ اپنا نام اور پتہ بتائیں گے۔ پھر , آ                            
-                            </b></h3>
-                            <h3><b>
-                            دوسری ویڈیو میں آپ گھر کے تمام فرنیچر، الیکٹرانک آ ئیٹم، اور روز مرہ استعمال ہونے والی گھر کی چیزوں کو ایک ایک کرکے ریکوڈ کرے۔ ریکوڈنگ میں تمام چیزیں کلیر دیکھنی چاہیے۔
-                            </b></h3>
-                            <h3><b>
-                            سبمٹ بٹن پر کلک کرنے کے بعد آپ کو ایک یا دو منٹ کا انتظار کرنا ہوگا اور ویب سائٹ کو دوبارہ لوڈ کرنا ہوگا۔ یاد رکھیں کہ اے آئی
-                            کو ویڈیوز چیک کرنے میں 1 گھنٹے سے زیادہ وقت لگے گا۔                            
-                            </b></h3>
-                            </div>
+                                <h2>Urdu</h2>
+                                <h3><b>
+                                    پہلی  ویڈیو میں آپ اپنے گھر کے حالات، مشکلات، اور ضروریات  کے بارے میں بتاۓ گے۔ اس کے بعد آپ آپنے گھر کےتمام افراد کو ایک ایک کر کے اسہی ویڈیو میں پانچ سیکنڈ تک بغیر کچھ بولے ریکوڈ کرے گے۔
+                                </b></h3>
+                                <h3><b>
+                                دوسری ویڈیو میں آپ گھر کے تمام فرنیچر، الیکٹرانک آ ئیٹم، اور روز مرہ استعمال ہونے والی گھر کی چیزوں کو ایک ایک کرکے ریکوڈ کرے۔ ریکوڈنگ میں تمام چیزیں کلیر دیکھنی چاہیے۔
+                                </b></h3>
+                                <h3><b>
+                                سبمٹ بٹن پر کلک کرنے کے بعد آپ کو ایک یا دو منٹ کا انتظار کرنا ہوگا اور ویب سائٹ کو دوبارہ لوڈ کرنا ہوگا۔ یاد رکھیں کہ اے آئی
+                                کو ویڈیوز چیک کرنے میں 1 گھنٹے سے زیادہ وقت لگے گا۔                            
+                                </b></h3>
+
+                                </div>
                         </div>
-                        <br>
-                        <button class='ui label' onclick='how2post()'>Read: How to post</button>
-                    </div>
+                        <button class='ui basic blue label' onclick='how2pay()'>Read Urdu</button>
+                    </details>
+                </div>
             </div>
         </div>      
 
@@ -115,9 +142,10 @@
                             <div class="left floated  column eight wide fluid">
                                 <!--Profile picture and created time-->
                                 <a href="{% url 'profiles:profile-detail-view' obj.creator.user.pk %}">
-                                <img class="ui avatar image" src={{obj.creator.picture.url}}> </a>
-                                {{ obj.creator}} {{obj.creator.last_name}}
-                                <br>({{ obj.created|timesince}} ago)
+                                <img class="ui avatar image" src={{obj.creator.picture.url}}> 
+                                <b style='color:black;'>{{ obj.creator.user.full_name}}</b>
+                                </a>
+                                <a style='margin-left:3em;'>({{ obj.created|timesince}} ago)</a>
                             </div>
 
                             <div class="right floated column eight wide fluid ">
@@ -165,6 +193,7 @@
                                             </form>
                                         </div>
                                     </div>
+                                    <!--MODAL TO SHOW DONORS-->
                                     <div class="ui tiny modal" id='donors'>
                                         <div class="header">All Donors</div>
                                         <div class="content">

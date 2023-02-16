@@ -118,3 +118,6 @@ function Report(){
 function how2post(){
     $('#how2post').modal('show');
 }
+function how2pay(){
+    $('#how2pay').modal('show');
+}
