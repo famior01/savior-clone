@@ -90,11 +90,11 @@
               {% endif %}
               <!--========================= video cards ====================-->
             <div style='margin-left:3em;' class="ui four cards">
-              {% for i in qs %}
+              {% for i in qs %} 
                 <div id='card_style' class="card">
                     <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
                       <div class="card_image">
-                        <img src="{{ i.thumbnail.url }}">
+                        <img src="{{ i.thumbnail.url }}"> 
                       </div>
                     </a>
                     <div class="ui grid">

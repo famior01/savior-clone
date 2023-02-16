@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     "phonenumber_field",
     'hitcount',  # https://django-hitcount.readthedocs.io/en/latest/installation.html
     'mathfilters', # https://pypi.org/project/django-mathfilters/
-
     # Internal apps
     'user',
     'profiles',

@@ -61,9 +61,8 @@
                                 <div class="column eight wide">
                                     {% if obj.video1 %}
                                     <a href="{{obj.video1.url}}">  
-                                        <video width="320" height="240" controls>
+                                        <video width="370" height="220" controls>
                                             <source src="{{obj.video1.url}}" type="video/mp4">
-                                            {% comment %} <source src="{{obj.video1.url}}" type="video/mp4"> {% endcomment %}
                                         </video>
                                     </a>
                                 {% endif %}
@@ -72,13 +71,12 @@
                                 <!--video 1-->
                                 <div class="column eight wide">
                                     {% if obj.video2 %}
-                                    <a href="{{obj.video2.url}}">  
-                                        <video width="320" height="240" controls>
-                                            <source src="{{obj.video2.url}}" type="video/mp4">
-                                            {% comment %} <source src="{{obj.video2.url}}" type="video/mp4"> {% endcomment %}
-                                        </video>
-                                    </a>
-                                {% endif %}
+                                        <a href="{{obj.video2.url}}">  
+                                            <video width="370" height="220" controls>
+                                                <source src="{{obj.video2.url}}" type="video/mp4">
+                                            </video>
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

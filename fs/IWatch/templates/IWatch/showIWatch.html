@@ -12,11 +12,6 @@
 <link rel="stylesheet" type="text/css" href={% static 'IWatch/style.css' %}>  
 <link rel="stylesheet" type="text/css" href={% static 'IWatch/video.css' %}>  
 
-<link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
-<link rel="stylesheet" href="path/to/plyr.css" />
-<script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
-
-
 
 <div class="ui container-xl">
   <div class="ui grid">
@@ -29,13 +24,16 @@
             
               {% if not hitcount.hit_counted  %} <!--it is false, when watched, else true-->
               <div class='video_played'>
-              <video  id='player' controls></video>
+                <video id="player" poster="{{ IWatch.thumbnail.url }}" controls>
+                  <source src="{{ IWatch.video.url }}" type="video/mp4">
+                  <source src="{{ IWatch.video.url }}" type="video/webm">
+                </video>              
               </div>
-
               {% else %}
-              <div>
-                <video id='player' controls></video>
-              </div>
+              <video id="player" poster="{{ IWatch.thumbnail.url }}" controls >
+                <source src="{{ IWatch.video.url }}" type="video/mp4">
+                <source src="{{ IWatch.video.url }}" type="video/webm">
+              </video>
 
               {% endif %}
               {% comment %} <video width="500" height="700" controls>
@@ -330,106 +328,7 @@
   </div>
 </div>
 
-
-
-<!--Script for plyr-->
-<script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
-{% comment %} <script src="https://cdn.plyr.io/3.7.3/plyr.js"></script> {% endcomment %}
-{% comment %} <script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.js'></script> {% endcomment %}
-<script>
-
-  var controls = [
-  'play-large', // The large play button in the center
-  'restart', // Restart playback
-  'rewind', // Rewind by the seek time (default 10 seconds)
-  'play', // Play/pause playback
-  'fast-forward', // Fast forward by the seek time (default 10 seconds)
-  'progress', // The progress bar and scrubber for playback and buffering
-  'current-time', // The current time of playback
-  'duration', // The full duration of the media
-  'mute', // Toggle mute
-  'volume', // Volume control
-  //'captions', // Toggle captions
-  'settings', // Settings menu
-  'pip', // Picture-in-picture (currently Safari only)
-  'airplay', // Airplay (currently Safari only)
-  //'download', // Show a download button with a link to either the current source or a custom URL you specify in your options
-  'fullscreen', // Toggle fullscreen
-  'advertisement',
-];
-
-
-  const player = new Plyr('#player',  {
-    controls,
-    ratio	: '10:5',
-    loop: { active: false },
-    seekTime: 10,
-    disableContextMenu: true,
-    tooltips: { controls: true, seek: true},
-    captions	: { active: true, language: 'en', update: true },
-
-    ads: {
-      enabled: true,
-      publisherId: '',
-      tagUrl: '' ,
-    },
-
-    mediaMetadata: {
-      title: '{{ IWatch.title }}',
-      artist: '{{ IWatch.creator.user.full_name }}',
-      album: '',
-    },
-  });
-  player.source = {
-    type: 'video',
-    title: '{{ IWatch.title }}',
-    sources: [
-        { 
-          src: '{{ IWatch.video.url }}',
-          type: 'video/mp4',
-          size: 720,
-        }, 
-        {
-          src: '{{ IWatch.video.url }}',
-          type: 'video/webm',
-          size: 1080,
-        },
-      ],
-    poster: '{{ IWatch.thumbnail.url }} ',
-    previewThumbnails: {
-      src: '{{ IWatch.thumbnail.url }}',
-    },
-    tracks: [
-      {
-        kind: 'captions',
-        label: 'English',
-        srclang: 'en',
-        //src: '/path/to/captions.en.vtt',
-        default: true,
-      },
-      {
-        kind: 'captions',
-        label: 'Urdu',
-        srclang: 'ur',
-        //src: '/path/to/captions.ur.vtt',
-      }, 
-    ],
-  };
-
-  player.on('seeking', (event) => {
-    //increase seeking time
-    player.currentTime += 10;
-  });
-
-  player.rewind(4);
-  player.forward(4);
-
-  {% comment %} var adPlayer = plyr.setup();
-  plyrAds.setup(adPlayer, {
-    adTagUrl: ''
-  }); {% endcomment %}
-
-</script>
+<script type="text/javascript" src="{% static 'IWatch/player.js' %}" defer></script>
 
 <script>
 // =========================== Dislike Button ==========================
@@ -477,5 +376,6 @@ function Report(){
 
 {% block script %}
 <script type="text/javascript" src="{% static 'IWatch/main.js' %}"></script>
+<script type="text/javascript" src="{% static 'IWatch/player.js' %}" defer></script>
 
 {% endblock script %}

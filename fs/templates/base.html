@@ -25,6 +25,12 @@
   
 
     <!--Plyr -->
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
+    <link rel="stylesheet" href="path/to/plyr.css" />
+    <script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+
+
+
     
     {% block css %}{% endblock css %}
     <title>Savior~{% block title %}{% endblock title %}
@@ -133,6 +139,11 @@
     })
   })
   </script>
+
+  <!--for plyr video Player-->
+  <script src="https://cdn.plyr.io/3.7.3/plyr.polyfilled.js"></script>
+{% comment %} <script src="https://cdn.plyr.io/3.7.3/plyr.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/plyr/3.7.3/plyr.min.js'></script> {% endcomment %}
 
   </body>
 </html>

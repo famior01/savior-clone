@@ -17,3 +17,10 @@ class UserUpdateView(UpdateView):
 
   def get_success_url(self, **kwargs):
     return reverse("profiles:profile-detail-view", kwargs={'pk':self.request.user.pk})
+
+
+def handler404(request, exception):
+  return render(request, 'user/404.html')
+
+def handler500(request):
+  return render(request, 'user/500.html')
