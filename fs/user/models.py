@@ -10,12 +10,14 @@ class User(AbstractUser):
     
     email = models.EmailField(('email address'), unique=True)
     # username = models.CharField(max_length=100, unique=True)
+    date_of_birth = models.DateField(null=True)
+
     full_name = models.CharField(max_length=100)
     religion = models.CharField(max_length=100)
     gender = models.CharField(max_length=100)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'full_name', 'religion', 'gender']
+    REQUIRED_FIELDS = ['username', 'full_name', 'religion', 'gender', 'date_of_birth']
 
     objects = UserManager()
 
