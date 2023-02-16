@@ -14,6 +14,7 @@
 
 <link rel="stylesheet" href="https://cdn.plyr.io/3.7.3/plyr.css" />
 <link rel="stylesheet" href="path/to/plyr.css" />
+<script type="text/javascript" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
 
 
 
@@ -356,6 +357,8 @@
   'fullscreen', // Toggle fullscreen
   'advertisement',
 ];
+
+
   const player = new Plyr('#player',  {
     controls,
     ratio	: '10:5',
@@ -365,11 +368,6 @@
     tooltips: { controls: true, seek: true},
     captions	: { active: true, language: 'en', update: true },
 
-    ads: {
-      enabled: true,
-      publisherId: '',
-      tagUrl: '' ,
-    },
     mediaMetadata: {
       title: '{{ IWatch.title }}',
       artist: '{{ IWatch.creator.user.full_name }}',
@@ -380,17 +378,17 @@
     type: 'video',
     title: '{{ IWatch.title }}',
     sources: [
-      {
-        src: 'https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media/'+'{{ IWatch.video.url }}',
-        type: 'video/mp4',
-        size: 720,
-      },
-      {
-        src: 'https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media/'+'{{ IWatch.video.url }}',
-        type: 'video/webm',
-        size: 1080,
-      },
-    ],
+        { 
+          src: '{{ IWatch.video.url }}',
+          type: 'video/mp4',
+          size: 720,
+        }, 
+        {
+          src: '{{ IWatch.video.url }}',
+          type: 'video/webm',
+          size: 1080,
+        },
+      ],
     poster: '{{ IWatch.thumbnail.url }} ',
     previewThumbnails: {
       src: '{{ IWatch.thumbnail.url }}',
@@ -411,15 +409,20 @@
       },
     ],
   };
-
-  player.on('seeking', (event) => {
+  
+  {% comment %} player.on('seeking', (event) => {
     //increase seeking time
     player.currentTime += 10;
   });
 
   player.rewind(4);
-  player.forward(4);
+  player.forward(4); {% endcomment %}
 
+  var adPlayer = plyr.setup();
+  plyrAds.setup(adPlayer, {
+    adTagUrl: 'https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media%2FIWatch%2FVideos%2Fangry_5VeBSEU.mp4',
+    skipButton:{enabled: true, text: 'Skip ad', delay: 10},
+  });
 
 </script>
 
