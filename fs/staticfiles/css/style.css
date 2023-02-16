@@ -178,7 +178,7 @@ body{
 /* ======================== for sign up card ========================== */
 .signup_card{
   width: 30em !important;
-  height: 85% !important;
+  height: 35em !important;
   margin: 0 auto !important;
   margin-top: 1em !important;
   margin-left: 0em !important;
@@ -187,6 +187,7 @@ body{
   border-radius: 1em !important;
   background-color: #fff !important;
   box-shadow: 0 0 10px #000 !important;
+  overflow-y: scroll;
 }
 
 #signup_form{

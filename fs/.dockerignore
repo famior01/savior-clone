@@ -403,9 +403,6 @@ fabric.properties
 
 # Models
 # *.txt
-*.jpeg
 *.zip
 yolov5
-*.wav
-*.avi
 *.data
