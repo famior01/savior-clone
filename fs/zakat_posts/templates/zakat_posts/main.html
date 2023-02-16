@@ -26,10 +26,7 @@
                 </form>         
             </div>
         </div>
-        {% comment %} {% include 'zakat_posts/form.html' %} {% endcomment %}
-        {% comment %} <script type="text/javascript" src="{% static 'zakat_posts/form.js' %}"></script> {% endcomment %}
 
-        <!--Instructions Eng & Urdu-->
         <div class="five wide column">
             <div class= 'ui red raised segment'>
                     <button class='ui label'>Listen: How to post</button>
@@ -38,14 +35,6 @@
                             <strong>Instructions in English</strong>
                         </summary>
                         <div class='ui play details-content'>
-                            {% comment %} {% if Production %}
-                                <audio controls>
-                                    <source src='https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/static%2Faudio%2Fvideo1_eng.mp3'>
-                                </audio>
-                                <audio controls>
-                                    <source src='https://savior-staticfiles.sgp1.digitaloceanspaces.com/static%2Faudio%2Fvideo2_eng.mp3'>
-                                </audio>
-                            {% else %} {% endcomment %}
                             <audio controls>
                                 <source src={% static 'audios/first_eng_audio.mp3' %}>
                             </audio>
@@ -55,9 +44,6 @@
                             <audio controls>
                                 <source src= {% static 'audios/third_eng_audio.mp3' %}>
                             </audio>
-                            {% comment %} {% endif %}  {% endcomment %}
-
-                            
                         </div>
                     </details>
                 
@@ -66,14 +52,6 @@
                             <strong>Instructions in Urdu</strong>
                         </summary>
                             <div class='details-content'>
-                                {% comment %} {% if Production %}
-                                <audio controls>
-                                    <source src='https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/static%2Faudio%2Fvideo1_urdu.mp3'>
-                                </audio>
-                                <audio controls>
-                                    <source src='https://savior-staticfiles.sgp1.digitaloceanspaces.com/static%2Faudio%2Fvideo2_urdu.mp3'>
-                                </audio>
-                                {% else %} {% endcomment %}
                                     <audio controls>
                                         <source src={% static 'audios/first_urdu_audio.mp3' %}>
                                     </audio>
@@ -82,9 +60,7 @@
                                     </audio>
                                     <audio controls>
                                         <source src= {% static 'audios/third_urdu_audio.m4a' %}>
-                                    </audio>
-                                {% comment %} {% endif %} {% endcomment %}
-                            
+                                    </audio>                            
                             </div>
                     </details>
                     <!--Read: How to post-->
@@ -124,9 +100,6 @@
         </div>      
 
     </div>
-    {% comment %} <div id='Post-Box'></div> {% endcomment %}
-    
-
 
     {% for obj in qs %}
     {% if obj.varified >= 50 and  not obj.satisfied %}

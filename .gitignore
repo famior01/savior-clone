@@ -8,7 +8,6 @@ db.sqlite3
 *ipynb
 *.csv
 *.txt
-*.mp3
 Important.env
 
 
@@ -152,21 +151,16 @@ dmypy.json
 
 
 # Repo-specific GitIgnore ----------------------------------------------------------------------------------------------
-*.jpg
-*.jpeg
-*.png
 *.bmp
 *.tif
 *.tiff
 *.heic
 *.JPG
 *.JPEG
-*.PNG
 *.BMP
 *.TIF
 *.TIFF
 *.HEIC
-*.mp4
 *.mov
 *.MOV
 *.avi
@@ -418,16 +412,10 @@ fabric.properties
 
 # Models
 # *.txt
-*.jpeg
-*.jpg
-*.png
+
 *.zip
 yolov7
 yolov5
-*.mp3
-*.mp4
-*.wav
-*.avi
 *.data
 fs/db.sqlite3
 fs/.env.prod
