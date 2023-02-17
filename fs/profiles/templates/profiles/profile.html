@@ -68,10 +68,13 @@
                         <button class="ui large secondary button">Edit Profile</button>
                       </a>                
                   {% endif %}
+                  
+
 
                   <br><br>
                   <div class="description">
                     <div class="ui blue labels">
+                      
                       {% if user == profile.user %}
                         {% if myfollowers > 1 %}
                           <a href=" {% url 'profiles:followers' profile.pk %} ">
@@ -86,6 +89,8 @@
                             </div>
                           </a>
                         {% endif %}
+
+                        
                       {% else %}
                         <a href=" {% url 'profiles:followers' profile.pk %} ">
                           <div class="ui label">{{profile.get_follower_no}}&#160;&#160;
@@ -94,15 +99,18 @@
                         </a>
                       {% endif %}
                       
+                      
                       {% if user == profile.user %}
                       <a href="{% url 'profiles:following' profile.pk %}">
                         <div class="ui label" data-tooltip="only you can see, who you follow" data-position="bottom left"><b>{{profile.get_following_no}}</b>&nbsp; Following
                         </div>
                       </a>
                       {% endif %}
+                      
                     
                       <div class="ui label"><b>{{profile.get_post_no}} &nbsp; IWatch Posts</b></div>
                       <div class="ui label"><b>{{profile.get_zakat_posts_no}}</b> &nbsp;Zakat Posts</div>
+                      <br>
                     </div>
                   </div>
                 </div>
@@ -132,7 +140,36 @@
               {% endif %}
             </div>
 
+            <div class="ui dropdown" style='float:right;  position: absolute; bottom: 0; right:0; margin-bottom:1em; '>
+              <div class="ui modal" id='ReportUser'>
+                {% if my_profile != profile %}
+                <div class="header">Report {{profile.user.full_name}}</div>
+                  <div class="content">
+                      <form action="{% url 'support:ReportUserFunc' %}" method=post>
+                        {% csrf_token %}
+                        <input type="hidden" name="profile_pk" value={{profile.pk}}> 
+                        <input type="text" placeholder='What did he do?' id='ReportUser' name='problem' id={{profile.pk}} width='400px'>
+                        <button type='submit' class='ui basic blue button fluid'>Submit</button>
+                    </form>
+                  </div>
+                  {% else %}
+                  <div class="header">You can't report yourself</div>
+                  {% endif %}
+              </div>
+              <i class="list ul icon large"></i>
+              <div class="menu">
+                <div class="item">
+                  <a onclick='ReportUser()'>
+                    <i class="flag icon"></i>
+                    Report User
+                  </a>
+                </div>
+              </div>
+
+
+            </div>
           </div>
+          
         </div>
       </div>
       
@@ -180,3 +217,13 @@
 
 <script src= "{% static 'profiles/main.js' %}" defer></script>
 {% endblock content %}
+
+{% block script %}
+<script>
+  function ReportUser(){
+    $('#ReportUser').modal('show');
+  }
+</script>
+{% endblock script %}
+
+

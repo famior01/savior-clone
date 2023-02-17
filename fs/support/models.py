@@ -45,3 +45,15 @@ class ReportIWatch(models.Model):
   def __str__(self):
     return str(self.iwatch_reporter) +"|"+ str(self.reported_iw)
 
+
+class ReportUser(models.Model):
+  reporter_profile     = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='reporter_profile')
+  reported_profile     = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='reported_profile')
+  problem           = models.TextField(max_length=500, blank=True)
+  created           = models.DateTimeField(auto_now_add=True)
+
+  
+  def __str__(self):
+    return str(self.reporter_profile) +"|"+ str(self.reported_profile)
+
+

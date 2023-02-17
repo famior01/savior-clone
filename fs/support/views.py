@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ReportIWatch, ReportZakatPost, ReportSaviorProblem, Sugg2Savior
+from .models import ReportIWatch, ReportZakatPost, ReportSaviorProblem, Sugg2Savior, ReportUser
 from zakat_posts.models import ZakatPosts
 from IWatch.models import IWatch
 from profiles.models import Profile
@@ -89,3 +89,29 @@ def ReportZakatPostFunc(request):
   return redirect(request.META.get('HTTP_REFERER'))
 
 
+@login_required()
+def ReportUserFunc(request):
+  if request.method == 'POST':
+    problem = request.POST['problem']
+    profile_pk = request.POST['profile_pk']
+    reporter_pro = Profile.objects.get(user=request.user)
+    reported_pro= Profile.objects.get(id=profile_pk)
+
+
+    if reported_pro.reported_profile.filter(reporter_profile=reporter_pro).exists():
+      messages.error(request, f'You have already reported this user')
+      return redirect(request.META.get('HTTP_REFERER'))
+    elif  problem:
+      report_user = ReportUser.objects.create(reporter_profile=reporter_pro, reported_profile=reported_pro, problem=problem)
+      report_user.save()
+      reported_pro.following.remove(reporter_pro.user)
+      reported_pro.save()
+      reporter_pro.following.remove(reported_pro.user)
+      reporter_pro.save()
+      messages.success(request, f'You have reported {reported_pro.user.full_name} for {problem}, We are sorry for this inconvenience, we will check it out.')
+      # notify.send(request.user, recipient=user.user, verb=f'{profile.user.full_name} have reported you for {problem}, we are checking, if found guilty, your account will be deleted.')
+      return redirect(request.META.get('HTTP_REFERER'))
+    else:
+      messages.error(request, f'You have reported nothing :)')
+      return redirect(request.META.get('HTTP_REFERER'))
+  return redirect(request.META.get('HTTP_REFERER'))
