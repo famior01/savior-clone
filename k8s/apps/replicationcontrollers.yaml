@@ -1,52 +1,21 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: ReplicationController
 metadata:
   name: celery-configuration
-  namespace: default
   labels:
-    app: celery-configuration
+    component: celery
 spec:
   replicas: 1
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 0
-  selector:
-    matchLabels:
-      app: celery-configuration
   template:
     metadata:
       labels:
-        app: celery-configuration
+        app: savior-deployment
+        component: savior-deployment
     spec:
-      terminationGracePeriodSeconds: 86400
-      imagePullSecrets:
-        - name: savior
       containers:
       - name: savior
         image: registry.digitalocean.com/savior/savior:latest
         imagePullPolicy: Always
-        resources:
-            requests:
-              cpu: "100m"
-              memory: "500M"
-            limits:
-              cpu: "500m"
-              memory: "1000M"
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8000
-          initialDelaySeconds: 300
-          periodSeconds: 50
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8000
-          initialDelaySeconds: 500
-          periodSeconds: 200
-
         command: [ "/bin/sh", "-c" ]
         args: [ "/opt/venv/bin/celery -A family_savior worker -l INFO;" ]
         envFrom:
@@ -57,6 +26,8 @@ spec:
             value: "8000"
         ports:
         - containerPort: 8000
+      imagePullSecrets:
+        - name: savior
       
 
 ---
