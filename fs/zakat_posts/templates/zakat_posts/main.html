@@ -28,8 +28,7 @@
         </div>
 
 
-        <!--IN English-->
-        
+        <!--Instructions-->
         <div class="five wide column">
             <div class= 'ui red raised segment'>
                 <div>
@@ -68,13 +67,9 @@
                                 <h3><b>
                                 After pressing Submit button, you will need to wait for 1 or 2 minutes then reload the website. Remember AI will take more than an hour to analyze your videos, once it is completed you will be notified!
                                 </b></h3>
-                                <h3><b>
-                                If you are ready to pay Zakat, first and foremost, call the seeker and confirm his address and bank details. If the person is the same as in the video, then pay Zakat. You should pay directly to his account and inform us. If he doesn't have an account, then pay through any delivery service.
-                                </b></h3>
                                 </div>
                                 
                             </div>
-                            <br>
                             <button class='ui basic blue label' onclick='how2post()'>Read in English</button>
                         </div>
                     </details>
@@ -104,7 +99,7 @@
 
                         <!--How to Pay-->
                         <div class="ui tiny modal" id='how2pay'>
-                            <div class="header">How to pay Zakat</div>
+                            <div class="header">زکوٰۃ ادا کرنے اور پوسٹ کرنے کا طریقہ</div>
                             <div class="content">
                                 <h2>Urdu</h2>
                                 <h3><b>
@@ -114,10 +109,9 @@
                                 دوسری ویڈیو میں آپ گھر کے تمام فرنیچر، الیکٹرانک آ ئیٹم، اور روز مرہ استعمال ہونے والی گھر کی چیزوں کو ایک ایک کرکے ریکوڈ کرے۔ ریکوڈنگ میں تمام چیزیں کلیر دیکھنی چاہیے۔
                                 </b></h3>
                                 <h3><b>
-                                سبمٹ بٹن پر کلک کرنے کے بعد آپ کو ایک یا دو منٹ کا انتظار کرنا ہوگا اور ویب سائٹ کو دوبارہ لوڈ کرنا ہوگا۔ یاد رکھیں کہ اے آئی
-                                کو ویڈیوز چیک کرنے میں 1 گھنٹے سے زیادہ وقت لگے گا۔                            
-                                </b></h3>
+                                    سبمٹ بٹن پر کلک کرنے کے بعد آپ کو ایک یا دو منٹ کا انتظار کرنا ہوگا اور ویب سائٹ کو دوبارہ لوڈ کرنا ہوگا۔ یاد رکھیں کہ اے آئ   کو ویڈیوز چیک کرنے میں 1 گھنٹے سے زیادہ وقت لگے گا۔ایک بار جب یہ مکمل ہوجائے تو آپ کو مطلع کیا جائے گا۔                                 
 
+                                </b></h3>
                                 </div>
                         </div>
                         <button class='ui basic blue label' onclick='how2pay()'>Read Urdu</button>
@@ -166,7 +160,7 @@
 
                                         <div class="header">Payment Method</div>
                                         <div class="content">
-                                            <p><Strong>First:</Strong> Call seeker, and confirm his/her address, Bank details, and Needs.</p>
+                                            <p>First and foremost, call the seeker and confirm his address and bank details. If the person is the same as in the video, then pay Zakat.</p>
                                             <p><strong>Second:</strong> Pay to the seeker directly through Internet Banking (Sadapay, etc), or TCS.</p>
                                             <p><strong>Third:</strong> After paying the seeker, kindly let us know how much you have paid, so that we can track him/her.</p>
                                             <form action="{% url 'zakat_posts:paid'%}" method=post>

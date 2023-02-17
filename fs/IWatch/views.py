@@ -90,7 +90,7 @@ class SearchIWatch(ListView):
 
 # i dn't need views count here
 class UploadVideoView(CreateView):
-  model = IWatch
+  model = IWatch 
   form_class =  IWatchModelForm
   template_name = 'IWatch/upload.html'
   success_url = reverse_lazy('IWatch:IWatch-main')

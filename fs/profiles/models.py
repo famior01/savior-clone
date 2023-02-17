@@ -27,7 +27,7 @@ class Profile(models.Model):
   slogan              = models.CharField(max_length=100, blank=True)
   profession          = models.CharField(max_length=200, blank=True)
   cur_add             = models.CharField(max_length=500, blank=True) 
-  picture              = models.ImageField(default='picture.jpg', upload_to='picture/')
+  picture             = models.ImageField(default='picture.jpg', upload_to='picture/')
   following           = models.ManyToManyField(User, related_name='following', blank=True)
   updated             = models.DateTimeField(auto_now=True)
   created             = models.DateTimeField(auto_now_add=True)

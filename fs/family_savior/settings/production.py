@@ -7,7 +7,7 @@ SECRET_KEY =config('DJANGO_SECRET_KEY')
 DEBUG =False
 ENV_ALLOWED_HOST=config('DJANGO_ALLOWED_HOSTS')
 DOMAIN_NAME=config('DOMAIN_NAME', cast=str)
-ALLOWED_HOSTS=[ ENV_ALLOWED_HOST, DOMAIN_NAME ]
+ALLOWED_HOSTS=[ ENV_ALLOWED_HOST, DOMAIN_NAME, 'savior.website']
 
 # ====================================================
 # ----------------- Email Settings -----------------

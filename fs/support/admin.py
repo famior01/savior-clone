@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ReportIWatch, ReportSaviorProblem, ReportZakatPost, Sugg2Savior, ReportUser
+from .models import ReportIWatch, ReportSaviorProblem, ReportZakatPost, Sugg2Savior, ReportUser, SaviorMembers
 # Register your models here.
 
 @admin.register(ReportIWatch)
@@ -22,3 +22,8 @@ class SaviorSuggestions(admin.ModelAdmin):
 @admin.register(ReportUser)
 class UserRep(admin.ModelAdmin):
   list_display = ('id','reporter_profile','reported_profile','problem', 'created' )
+
+
+@admin.register(SaviorMembers)
+class SaviorMembers(admin.ModelAdmin):
+  list_display = ('id','member_profile', 'deposit_receipt', 'created' )

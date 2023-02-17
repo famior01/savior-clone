@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import ReportIWatch, ReportZakatPost, ReportSaviorProblem, Sugg2Savior, ReportUser
+from .models import ReportIWatch, ReportZakatPost, ReportSaviorProblem, Sugg2Savior, ReportUser, SaviorMembers
 from zakat_posts.models import ZakatPosts
 from IWatch.models import IWatch
 from profiles.models import Profile
@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from notifications.signals import notify
+from .forms import SaviorMembersForm
 # Create your views here.
 
 @login_required
@@ -115,3 +116,33 @@ def ReportUserFunc(request):
       messages.error(request, f'You have reported nothing :)')
       return redirect(request.META.get('HTTP_REFERER'))
   return redirect(request.META.get('HTTP_REFERER'))
+
+
+@login_required
+def SaviorMembersFunc(request):
+  if request.method == 'POST':
+    deposit_receipt = request.POST['deposit_recipient']
+    member = Profile.objects.get(user=request.user)
+    
+    if deposit_receipt:
+      savior_member = SaviorMembers.objects.create(member_profile=member, deposit_receipt=deposit_receipt) # first check by admin
+      savior_member.save()
+      messages.success(request, f'Thank you for joining the savior, we will check your deposit receipt.')
+      return redirect(request.META.get('HTTP_REFERER'))
+    else:
+      messages.error(request, f'You have reported nothing :)')
+      return redirect(request.META.get('HTTP_REFERER'))
+  return redirect(request.META.get('HTTP_REFERER'))
+
+
+
+# @login_required
+# class SaviorMemberCreate(CreateView):
+#   model = SaviorMembers
+#   fields = ['deposit_receipt']
+#   template_name = 'main/navbar.html'
+#   success_url = reverse_lazy(request.META.get('HTTP_REFERER'))
+
+#   def form_valid(self, form):
+#     form.instance.member_profile = Profile.objects.get(user=self.request.user)
+#     return super().form_valid(form)

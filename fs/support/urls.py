@@ -8,4 +8,5 @@ urlpatterns = [
     path('Sugg2Savior/', views.Sugg2SaviorFunc, name='Sugg2SaviorFunc'),
     path('ReportSaviorProblem/', views.ReportSaviorProblemFunc, name='ReportSaviorProblemFunc'),
     path('ReportUser/', views.ReportUserFunc, name='ReportUserFunc'),
+    path('SaviorMembers/', views.SaviorMembersFunc, name='SaviorMembersFunc'),
 ]

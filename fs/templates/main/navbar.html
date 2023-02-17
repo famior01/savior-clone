@@ -205,22 +205,19 @@
                     <div class="ui tiny modal" id='BeTheMember'>
                         <div class="header">Suppot Savior to Grow</div>
                         <div class="content">
-                            <p>If you pay us, your money will be used to make Savior fast, scalable by adding more features, and sustainable. This money will be used to pay extra expenditures that require resources to run.</p>
+                            <p>If you pay us, your money will be used to make Savior fast, scalable by adding more features, and sustainable. This money will be used to pay expenditures that require resources to run.</p>
                             <br>
-                            <h3><strong>SadaPay</strong>: 03312371338</h3>
-                            <h3><strong>EasyPaisa</strong>: 03312371338</h3>
-                            <h3><strong>JazzCash</strong>: 03312371338</h3>
-                            <h3><strong>Raast ID</strong>: 03312371338</h3>
-                            <h3><strong>Meezan Bank </strong>: PK78MEZN0001630107264391</h3>
-                            
+                            <p><b>Meezan Bank</b>: PK78MEZN0001630107264391</p>
+                            <p><b>Account Title</b>: Abu-Ubaida</p>
                         </div>
-                        {% comment %} <div class="content">
-                            <form action="{% url 'support:ReportSaviorProblemFunc'%}" method=post>
+                        <div class="content">
+                            <form action="{% url 'support:SaviorMembersFunc'%}" method=post  >
                                 {% csrf_token %}
-                                <input type="text" placeholder='What would you like to suggest?' name='problem'>
+                                <label for="img">Upload Cash Deposit Recipient:</label>
+                                <input type="file" id="img" name="deposit_recipient" accept="image/*">
                                 <button type='submit' class='ui basic blue  button fluid'>Submit</button>
                             </form>
-                        </div> {% endcomment %}
+                        </div>
                     </div>
                     <button class="ui black basic button fluid" onclick='BeTheMember()'>Be the Savior</button>
                 </div>

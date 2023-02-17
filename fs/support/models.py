@@ -57,3 +57,11 @@ class ReportUser(models.Model):
     return str(self.reporter_profile) +"|"+ str(self.reported_profile)
 
 
+class SaviorMembers(models.Model):
+  member_profile      = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='member_profile')
+  deposit_receipt     = models.ImageField(upload_to='deposit_receipt/')
+  submitted           = models.BooleanField(default=False) # must be handled by admin
+  created             = models.DateTimeField(auto_now_add=True)
+  
+  def __str__(self):
+    return str(self.member_profile) 
