@@ -1,9 +1,0 @@
-Here you will find these functions 
-
-* to get frames from video 
-* to get faces from frame 
-* to store similar faces 
-* to remove that folder where rest pictures are presents
-
-
-This will handle only Statement video. It will detect the emotion of seeker while speeking.
