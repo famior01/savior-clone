@@ -6,11 +6,6 @@ metadata:
     app: savior-deployment
 spec:
   replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 50%
-      maxUnavailable: 50%
   selector:
     matchLabels:
       app: savior-deployment
@@ -26,32 +21,14 @@ spec:
         envFrom:
           - secretRef:
               name: savior-prod-secret
-        resources:
-            requests:
-              cpu: "100m"
-              memory: "100M"
-            limits:
-              cpu: "150m"
-              memory: "200M"
-        ports:
-          - containerPort: 8000
-        readinessProbe:
-          httpGet:
-            path: /
-            port: 8000
-          initialDelaySeconds: 30
-          periodSeconds: 20
-        livenessProbe:
-          httpGet:
-            path: /
-            port: 8000
-          initialDelaySeconds: 15
-          periodSeconds: 120
         env:
           - name: PORT
             value: "8000"
+        ports:
+        - containerPort: 8000
       imagePullSecrets:
         - name: savior
+
 
 ---
 
