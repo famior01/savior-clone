@@ -174,31 +174,54 @@
                         <i class="key icon"></i>Change Password
                     </a>
 
+
+                    <!--account suggest Something-->
+                    <div class="ui tiny modal" id='Suggest'>
+                        <div class="header">Suggest us {{my_profile.user.full_name}}</div>
+                        <div class="content">
+                            <form action="{% url 'support:Sugg2SaviorFunc' %}" method=post>
+                                {% csrf_token %}
+                                <textarea name="suggestion" placeholder='What would you like to suggest?' rows="4" cols="70"></textarea>
+                                <button type='submit' class='ui basic blue  button fluid'>Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="item" onclick='Suggest()'>Suggest us something</button>
+
                     <!--account Report Savior Problem-->
                     <div class="ui tiny modal" id='SaviorIssues'>
-                        <div class="header">Seeker Information</div>
+                        <div class="header">{{my_profile.user.full_name}} are facing any issue? 🤔 </div>
                         <div class="content">
+                            <form action="{% url 'support:ReportSaviorProblemFunc'%}" method=post>
+                                {% csrf_token %}
+                                <textarea name="problem" placeholder='If yes then inform us about the bug 🪲' rows="4" cols="70"></textarea>
+                                <button type='submit' class='ui basic blue  button fluid'>Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                    <button class="ui black basic button fluid" onclick='SaviorIssues()'>Report Savior issue</button>
+
+                    <!--account Report Savior Problem-->
+                    <div class="ui tiny modal" id='BeTheMember'>
+                        <div class="header">Suppot Savior to Grow</div>
+                        <div class="content">
+                            <p>If you pay us, your money will be used to make Savior fast, scalable by adding more features, and sustainable. This money will be used to pay extra expenditures that require resources to run.</p>
+                            <br>
+                            <h3><strong>SadaPay</strong>: 03312371338</h3>
+                            <h3><strong>EasyPaisa</strong>: 03312371338</h3>
+                            <h3><strong>JazzCash</strong>: 03312371338</h3>
+                            <h3><strong>Raast ID</strong>: 03312371338</h3>
+                            <h3><strong>Meezan Bank </strong>: PK78MEZN0001630107264391</h3>
+                        </div>
+                        {% comment %} <div class="content">
                             <form action="{% url 'support:ReportSaviorProblemFunc'%}" method=post>
                                 {% csrf_token %}
                                 <input type="text" placeholder='What would you like to suggest?' name='problem'>
                                 <button type='submit' class='ui basic blue  button fluid'>Submit</button>
                             </form>
-                        </div>
+                        </div> {% endcomment %}
                     </div>
-                    <button class="item" onclick='SaviorIssues()'>Report Savior Problem</button>
-
-                    <!--account suggest Something-->
-                    <div class="ui tiny modal" id='Suggest'>
-                        <div class="header">Seeker Information</div>
-                        <div class="content">
-                            <form action="{% url 'support:Sugg2SaviorFunc'%}" method=post>
-                                {% csrf_token %}
-                                <input type="text" placeholder='What would you like to suggest?' name='suggestion'>
-                                <button type='submit' class='ui basic blue  button fluid'>Submit</button>
-                            </form>
-                        </div>
-                    </div>
-                    <button class="item" onclick='Suggest()'>Give us some suggestions</button>
+                    <button class="ui black basic button fluid" onclick='BeTheMember()'>Be the Savior</button>
                 </div>
             </div>
             {% endif %}
@@ -255,4 +278,10 @@ function Suggest(){
 function SaviorIssues(){
     $('#SaviorIssues').modal('show');
 }   
+
+
+function BeTheMember(){
+    $('#BeTheMember').modal('show');
+}
+
 </script>

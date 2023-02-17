@@ -37,6 +37,8 @@ DATABASES = {
 # ===========================================================
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+BROKER_USE_SSL = {'ssl_cert_reqs': ssl.CERT_REQUIRED,}
+BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 7200} # 2 hours
 CELERY_RESULT_BACKEND = "django-db"
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'

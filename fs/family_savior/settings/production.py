@@ -64,8 +64,9 @@ if DB_IS_AVAILABLE:
 # CELERY_BROKER_URL = config('CELERY_BROKER_REDIS_URL')
 REDIS_HOST =config('DO_REDIS_URL', cast=str, default='redis://localhost:6379')
 CELERY_BROKER_URL =REDIS_HOST
-broker_use_ssl=True
+BROKER_USE_SSL = {'ssl_cert_reqs': ssl.CERT_REQUIRED,}
 CELERY_RESULT_BACKEND = REDIS_HOST
+BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 7200} # 2 hours
 CELERY_ACCEPT_CONTENT =['application/json']
 CELERY_TASK_SERIALIZER ='json'
 CELERY_RESULT_SERIALIZER ='json'
