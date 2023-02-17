@@ -1,0 +1,7 @@
+######################################## Do & Don'ts ########################################
+1) Don't share any resources of Savior with anyone.
+2) Don't push your code to Deployment branch, only push to dev branch.
+3) Complete your work on time
+4) If you stuck on any issue, ask me (abuubaida01) for help.
+5) Just utilize the FS folder for your work, don't touch any other folder.
+6) whatever you install, make sure include that in requirements.txt file.

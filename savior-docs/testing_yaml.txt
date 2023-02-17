@@ -1,0 +1,25 @@
+################################# WorkFlow #################################
+First create app using savior-testing
+get ip, and put it on Testing_host_ip
+then push your code to testing branch 
+
+
+################################# Testing #################################
+1. Create a new branch from testing branch
+2. Push your code to your testing branch, just merge it to Deployment branch
+
+
+################################# Commands #################################
+kubectl get Services
+kubectl get deployment
+kubectl get pods
+kubectl get secrets
+kubectl apply -f .\k8s\apps\savior-testing.yaml 
+kubectl apply -f .\k8s\apps\replicationcontrollers.yaml
+kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
+
+
+kubectl delete deployment savior-testing
+kubectl delete replicationcontrollers/celery-configuration
+kubectl delete service savior-testing
+kubectl delete secret savior-prod-secret

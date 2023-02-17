@@ -7,7 +7,6 @@ db.sqlite3
 *.ipynb_checkpoints
 *ipynb
 *.csv
-*.txt
 Important.env
 *.mp4
 *.wav
@@ -46,7 +45,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
- 
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

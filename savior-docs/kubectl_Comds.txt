@@ -1,0 +1,48 @@
+################# Flow of Project #######################
+1) first create secret of env
+2) remove old deployment
+3) create new deployments
+4) create new replicationcontrollers
+
+################# Get Deep Info #######################
+kubectl exec -it <pod_name> -- /bin/bash
+kubectl logs <pod_name>
+kubectl describe pod
+kubectl describe deployment
+kubectl describe service
+kubectl describe replicaset
+kubectl describe pod <pod_name> -n <namespace>
+kubectl describe pod <pod_name> -n <namespace> --v=8
+kubectl describe pod <pod_name> -n <namespace> --v=8 --vmodule=*=4
+kubectl describe pod <pod_name> -n <namespace> --v=8 --vmodule=*=4 2>&1 | tee output.txt
+
+
+################# rollout #######################
+kubectl rollout restart deployment/savior-deployment
+kubectl rollout status deployment/savior-deployment
+
+
+################# secrets #######################
+kubectl get secrets
+kubectl get secret savior-prod-secret -o yaml
+kubectl delete secret savior-prod-secret
+kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
+
+
+################# Create services/deployment #######################
+kubectl get Services
+kubectl get deployment
+kubectl get pods
+kubectl get secrets
+kubectl describe replicationcontrollers/celery-configuration
+kubectl apply -f .\k8s\apps\savior-prod.yaml 
+kubectl apply -f .\k8s\apps\replicationcontrollers.yaml
+kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
+
+
+
+################# Delete services/deployment #######################
+kubectl delete deployment savior-deployment
+kubectl delete replicationcontrollers/celery-configuration
+kubectl delete service savior-deployment
+kubectl delete secret savior-prod-secret
