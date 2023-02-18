@@ -10,6 +10,7 @@ db.sqlite3
 Important.env
 *.mp4
 *.wav
+Thumbnails/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

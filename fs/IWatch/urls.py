@@ -13,7 +13,7 @@ urlpatterns = [
     path('post/<int:pk>/delete/', login_required(PostDeleteView.as_view()), name='post-delete'),
     path('post/<int:pk>/update/', login_required(PostUpdateView.as_view()), name='post-update'),
 
-    path('IWatch/<int:pk>/', login_required(IWatchDetailView.as_view()), name='Show-IWatch'),
+    path('<int:pk>/', login_required(IWatchDetailView.as_view()), name='Show-IWatch'),
 
     path('create_comment/', create_comment, name='create_comment'),
     path('like/', like, name='like'),

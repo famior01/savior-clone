@@ -406,3 +406,4 @@ fabric.properties
 *.zip
 yolov5
 *.data
+Thumbnails/*
