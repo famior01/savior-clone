@@ -6,6 +6,11 @@ metadata:
     app: savior-deployment
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
   selector:
     matchLabels:
       app: savior-deployment
@@ -14,6 +19,7 @@ spec:
       labels:
         app: savior-deployment
     spec:
+
       containers:
       - name: savior
         image: registry.digitalocean.com/savior/savior:latest
@@ -21,9 +27,18 @@ spec:
         envFrom:
           - secretRef:
               name: savior-prod-secret
+        resources:
+            requests:
+              cpu: "100m"
+              memory: "500M"
+            limits:
+              cpu: "500m"
+              memory: "1000M"
         env:
           - name: PORT
             value: "8000"
+
+
         ports:
         - containerPort: 8000
       imagePullSecrets:
