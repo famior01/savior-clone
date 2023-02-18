@@ -51,7 +51,6 @@ CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
 RESULT_BACKEND = 'db+sqlite://results.db'
 
 
-
 # ===========================================================
 # --------------------- STATIC FILES SETTINGS ---------------------
 # ===========================================================

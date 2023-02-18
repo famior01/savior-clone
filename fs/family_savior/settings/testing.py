@@ -3,11 +3,9 @@ from decouple import config
 import ssl
 import os 
 
-SECRET_KEY =config('DJANGO_SECRET_KEY')
+SECRET_KEY ="alsdjflk;dslkdsfjsdljldsjflkjdsfjsdfj;dslkjfsdhfljdshf"
 DEBUG =False
-ENV_ALLOWED_HOST=config('DJANGO_ALLOWED_HOSTS')
-DOMAIN_NAME=config('DOMAIN_NAME', cast=str)
-ALLOWED_HOSTS=[ ENV_ALLOWED_HOST, DOMAIN_NAME, 'savior.website']
+ALLOWED_HOSTS=['*']
 
 # ====================================================
 # ----------------- Email Settings -----------------
@@ -24,39 +22,18 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 # ======================================================================
 # ------------------------- Postgres DATABASE SETTINGS -------------------
 # ======================================================================
-# https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
-DB_USERNAME=config('POSTGRES_USER', cast=str)
-DB_PASSWORD=config('POSTGRES_PASSWORD', cast=str)
-DB_HOST="savior-main-do-user-13416996-0.b.db.ondigitalocean.com"
-DB_PORT=config('POSTGRES_PORT', cast=str) 
-DB_DATABASE=config('POSTGRES_DB', cast=str)  
-
-
-DB_IS_AVAILABLE = all([
-    DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
-])
-
-if DB_IS_AVAILABLE:
-    DATABASES = {
-        'default': {
-            "ENGINE": "django.db.backends.postgresql",
-            'NAME': DB_DATABASE,
-            'USER': DB_USERNAME,
-            'PASSWORD': DB_PASSWORD,
-            'HOST': DB_HOST,
-            'PORT': DB_PORT,
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-    DATABASES['default']['OPTIONS'] = {
-        'sslmode': 'require',
-    }
-
+}
 
 # ===========================================================
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
 # CELERY_BROKER_URL = config('CELERY_BROKER_REDIS_URL')
-REDIS_HOST =config('DO_REDIS_URL', cast=str, default='redis://localhost:6379')
+REDIS_HOST ='redis://localhost:6379'
 CELERY_BROKER_URL =REDIS_HOST
 BROKER_USE_SSL = {'ssl_cert_reqs': ssl.CERT_REQUIRED,}
 CELERY_RESULT_BACKEND = REDIS_HOST
@@ -86,9 +63,17 @@ IGNORABLE_404_URLS = [
 # ------------- STATIC FILES ---------------------
 # =================================================
 STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR/"staticfiles"
 
-from ..cdn.conf import * # noqa1 
+# STATICFILES_DIRS = [
+#     BASE_DIR / "staticfiles"
+# ]
+# python manage.py collectstatic --noinput  # to collect static files
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR/'media'
+# it overrides static_root
+# from ..cdn.conf import * # noqa1 
 
 # =====================================================
 # ------------------- HTTPS SETTINGS -------------------------
@@ -161,26 +146,6 @@ LOGGERS = {
         'handlers': ['console' ,'mail_admins', ],
         'propagate': True
     },
-    'django.security.DisallowedHost': {
-        'level': 'INFO',
-        'handlers': ['mail_admins', ],
-        'propagate': True
-    },
-    'django.db.backends': {
-        'level': 'INFO',
-        'handlers': ['mail_admins', ],
-        'propagate': True
-    },
-    'django.security.SuspiciousOperation': {
-        'level': 'INFO',
-        'handlers': ['mail_admins', ],
-        'propagate': True
-    },
-    'django.server': {
-        'level': 'INFO',
-        'handlers': [ 'console' ,'mail_admins', ],
-        'propagate': True
-    },
 }
 
 
@@ -201,4 +166,23 @@ LOGGING = {
 # =====================================================
 # -------------------   extra loggers  -----------------------
 # =====================================================
-    
+# 'django.security.DisallowedHost': {
+#         'level': 'INFO',
+#         'handlers': ['mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.db.backends': {
+#         'level': 'INFO',
+#         'handlers': ['mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.security.SuspiciousOperation': {
+#         'level': 'INFO',
+#         'handlers': ['mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.server': {
+#         'level': 'INFO',
+#         'handlers': [ 'console' ,'mail_admins', ],
+#         'propagate': True
+#     },

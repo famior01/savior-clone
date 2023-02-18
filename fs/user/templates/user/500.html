@@ -3,25 +3,26 @@
 {% load static %}
 <html>
 <head>
-    <title>500 Internal Server Error</title>
+    <title>Internal Server Error</title>
 </head>
 <body>
+    <center>
     <h1>Internal Server Error</h1>
     <p>The server encountered an internal error or misconfiguration and was unable to complete your request.</p>
-    <p>Please contact the server administrator, and inform them of the time the error occurred, and anything you might have done that may have caused the error.</p>
+    <p>Kindly let us know what did you try to access, and what you clicked on?</p>
+    
     
     <div class="ui tiny modal" id='SaviorIssues'>
-        <div class="header">Seeker Information</div>
+        <div class="header">Report Error</div>
         <div class="content">
             <form action="{% url 'support:ReportSaviorProblemFunc'%}" method=post>
                 {% csrf_token %}
-                <input type="text" placeholder='What would you like to suggest?' name='problem'>
-                <button type='submit' class='ui basic blue  button fluid'>Submit</button>
+                <input type="text" placeholder='Write your issue' name='problem'>
+                <button type='submit'>Submit</button>
             </form>
         </div>
     </div>
-    <button class="item" onclick='SaviorIssues()'>Report This Problem</button>
-
+</center>
     </body>
 </html>
 

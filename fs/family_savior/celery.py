@@ -10,8 +10,12 @@ from celery import Celery
 from django.conf import settings
 
 production = config('USE_PRODUCTION', cast=bool)
+testing = config('TESTING', cast=bool)
+
 if production==True:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
+elif testing==True:
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.testing')
 else:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.local')
 

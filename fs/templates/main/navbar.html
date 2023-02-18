@@ -24,7 +24,7 @@
             </a>
             {% else %}
             <!--for sign up-->
-            <a href="#" class="item"><h1>Savior</h1></a>
+            <img src="{% static 'Logos/black-logo.png' %}" id='main-logo'>
             {% endif %}
         </li>
 
@@ -225,7 +225,7 @@
             {% endif %}
         </li>
         
-        <li>
+        {% comment %} <li>
             <!--for sign up-->
             {% if not request.user.is_authenticated %}
                 <li style='marign-right:2em;'>
@@ -238,7 +238,7 @@
                 </li>
 
             {% endif %}
-        </li>
+        </li> {% endcomment %}
 
     
     </ul>

@@ -54,7 +54,7 @@
                         </details>
                         <!--Read: How to post-->
                         <div>
-                            <div class="ui tiny modal" id='how2post'>
+                            <div class="ui tiny modal" id='ReadEng'>
                                 <div class="header">How to Post & Pay </div>
                                 <div class="content">
                                 <h2>English</h2>
@@ -70,7 +70,7 @@
                                 </div>
                                 
                             </div>
-                            <button class='ui basic blue label' onclick='how2post()'>Read in English</button>
+                            <button class='ui basic blue label' onclick='ReadEng()'>Read in English</button>
                         </div>
                     </details>
                 </div>
@@ -98,7 +98,7 @@
                         </details>
 
                         <!--How to Pay-->
-                        <div class="ui tiny modal" id='how2pay'>
+                        <div class="ui tiny modal" id='ReadUrdu'>
                             <div class="header">زکوٰۃ ادا کرنے اور پوسٹ کرنے کا طریقہ</div>
                             <div class="content">
                                 <h2>Urdu</h2>
@@ -114,7 +114,7 @@
                                 </b></h3>
                                 </div>
                         </div>
-                        <button class='ui basic blue label' onclick='how2pay()'>Read Urdu</button>
+                        <button class='ui basic blue label' onclick='ReadUrdu()'>Read Urdu</button>
                     </details>
                 </div>
             </div>
@@ -393,13 +393,28 @@
 
 
 {% endblock content %}
-<script>
-    
-</script>
-
-
 {% block script %}
 <script type="text/javascript" src="{% static 'zakat_posts/main.js' %}"></script>
+<script>
+    // ======================== Details Modal ========================
+function opendetail(){
+    $('#Details').modal('show');
+}
 
+function showDonors(){
+    $('#donors').modal('show');
+}
+
+function Report(){
+    $('#Report').modal('show');
+}
+
+function ReadEng(){
+    $('#ReadEng').modal('show');
+}
+function ReadUrdu(){
+    $('#ReadUrdu').modal('show');
+}
+</script>
 {% endblock script %}
 

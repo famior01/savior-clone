@@ -102,22 +102,3 @@ $('.downvote-form').submit(function(e){
 })
 
 
-// ======================== Details Modal ========================
-function opendetail(){
-    $('#Details').modal('show');
-}
-
-function showDonors(){
-    $('#donors').modal('show');
-}
-
-function Report(){
-    $('#Report').modal('show');
-}
-
-function how2post(){
-    $('#how2post').modal('show');
-}
-function how2pay(){
-    $('#how2pay').modal('show');
-}
