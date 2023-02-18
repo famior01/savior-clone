@@ -1,0 +1,6 @@
+# create toke then type doct auth init, then pass the token to the command line
+https://www.digitalocean.com/community/tutorials/how-to-use-doctl-the-official-digitalocean-command-line-client#working-with-load-balancers
+
+1) doctl account get == to see the account details
+2) doctl compute load-balancer list == to see the load balancer details
+3) doctl compute certificate list == to see the certificate details

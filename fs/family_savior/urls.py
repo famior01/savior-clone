@@ -30,5 +30,5 @@ urlpatterns = [
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # for media files (user uploaded files)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # for static files (css, js, images)  
-handler404 = "user.views.handler404"
-handler500 = "user.views.handler500"
+# handler404 = "user.views.handler404"
+# handler500 = "user.views.handler500"
