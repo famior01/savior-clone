@@ -54,7 +54,8 @@ class Get_frames:
             # curr_dir = r"D:\Savior\fs\AI\object_detection"
             curr_dir = ABSOLUTE_PATH + "/AI/object_detection"
         else:
-            curr_dir = os.path.realpath(os.path.dirname(__file__)) # for finding the curr dir
+            # curr_dir = os.path.realpath(os.path.dirname(__file__)) # for finding the curr dir
+            curr_dir = ABSOLUTE_PATH + "/AI/face_emo_detection" 
         curr_dir = curr_dir+'/data/Frames'
         os.makedirs(curr_dir, exist_ok=True)
         return curr_dir
