@@ -21,6 +21,10 @@ import shutil
 from decouple import config
 from AI.get_video import get_vid_from_bucket
 
+# -==============================
+from user.models import User
+from notifications.signals import notify
+
 
 ABSOLUTE_PATH = config('ABSOLUTE_PATH')
 USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
@@ -58,15 +62,19 @@ class Get_frames:
     def get_frames(self):
         # here it will get video from our machine folder :(
         zak_post = ZakatPosts.objects.filter(id=self.vid_path).first()
+        notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb='Your video is being processed')
         if self.object_det:
             video = str(zak_post.video2.url)
         else:
             video = str(zak_post.video1.url) #TODO;  change url acc to server url ....
         
         if USE_PRODUCTION:
+            notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb='before finding in bucket')
             video = get_vid_from_bucket(video) # it will return url of that video
+            raise Exception("\n\n**************Video is not in bucket ************\n\n")
+            notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb=' after finding in bucket')
         else:
-            video = get_vid_from_bucket(video)
+            video = ABSOLUTE_PATH + video
 
         length_of_video = self.get_length(video)
     
@@ -150,6 +158,7 @@ class Get_frames:
         print("\n---------Done with Extracting Frames!---------\n")
         if self.object_det:
             # if old fps = 26, for making short video, v_fps*self.fps = 22
+            
             return path, int(v_fps*self.fps) 
             print("***********", path,"\t", v_fps,"***********")
         else:

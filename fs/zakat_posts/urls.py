@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path 
 from zakat_posts import views
 from django.contrib.auth.decorators import login_required
 app_name = 'zakat_posts'

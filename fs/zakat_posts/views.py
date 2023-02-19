@@ -9,7 +9,6 @@ from django.contrib import messages
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from IWatch.models import IWatch
-# from django.views.decorators.csrf import csrf_exempt
 from AI.tasks import AI, notify_before_posting #, notify_after_posting
 import cv2
 import os
@@ -36,15 +35,18 @@ def create_zakat_posts(request):
       zp = ZakatPosts.objects.get(id=instance.id)
       zp.post_number = profile.post_no # on which number the post was created
       zp.save()
+      notify.send(request.user, recipient=request.user, verb='afte form is valid ')
       profile.save()
       print('in the Zakat posts view.py **********\n\n')
       #(=====================   AI   =====================)
       # ID = instance.id
       ID = zp.id
       print("\n************", ID, "************\n")
+      notify.send(request.user, recipient=request.user, verb=f'the ID is {ID}, after getting id')
       notify_before_posting.apply_async(args=[ID], ignore_result=False)
       output = AI.apply_async(args=[ID], ignore_result=False)
       # notify_after_posting.apply_async(args=[ID], ignore_result=False)
+      notify.send(request.user, recipient=request.user, verb=f'after getting output')
       print("***********", output, "**output*********")
       output = output.get()
 

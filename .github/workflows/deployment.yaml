@@ -44,7 +44,7 @@ jobs:
     - name: update deployment secrets
       run: |
         cat << EOF >> fs/.env
-        ABSOLUTE_PATH=/app
+        ABSOLUTE_PATH=app
         USE_PRODUCTION=True
         TESTING=False
         DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
