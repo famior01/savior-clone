@@ -43,10 +43,10 @@ def create_zakat_posts(request):
       ID = zp.id
       print("\n************", ID, "************\n")
       notify.send(request.user, recipient=request.user, verb=f'the ID is {ID}, after getting id')
-      notify_before_posting.apply_async(args=[ID], ignore_result=False)
-      output = AI.apply_async(args=[ID], ignore_result=False)
+      notify_before_posting.apply_async(args=[ID])
+      output = AI.apply_async(args=[ID])
       # notify_after_posting.apply_async(args=[ID], ignore_result=False)
-      notify.send(request.user, recipient=request.user, verb=f'after getting output')
+      notify.send(request.user, recipient=request.user, verb=f'after getting {output} = output')
       print("***********", output, "**output*********")
       output = output.get()
 
