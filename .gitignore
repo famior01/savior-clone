@@ -11,6 +11,8 @@ Important.env
 *.mp4
 *.wav
 Thumbnails/*
+picture
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

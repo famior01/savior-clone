@@ -19,6 +19,8 @@ import cv2
 import subprocess
 import shutil
 from decouple import config
+from AI.get_video import get_vid_from_bucket
+
 
 ABSOLUTE_PATH = config('ABSOLUTE_PATH')
 USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
@@ -57,42 +59,15 @@ class Get_frames:
         # here it will get video from our machine folder :(
         zak_post = ZakatPosts.objects.filter(id=self.vid_path).first()
         if self.object_det:
-            try: # if video2 is not given then it will give error
-                video = str(zak_post.video2.url)
-            except ValueError:
-                return 'video2'
+            video = str(zak_post.video2.url)
         else:
-            try: # if video1 is not given then it will give error
-                video = str(zak_post.video1.url) #TODO; change url acc to server url ....
-                print('************', video, '******First video******')
-            except ValueError:
-                return 'video1'
+            video = str(zak_post.video1.url) #TODO;  change url acc to server url ....
         
         if USE_PRODUCTION:
-            try:
-                video= video.split("%2F")[-1]
-                video = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media/zakat_video/" + video
-                print("\n********** Used first try*************** \n")
-            except:
-                try:
-                    video= ABSOLUTE_PATH + video
-                    print("\n********** Used second try*************** \n")
-                except:
-                    try: 
-                        video = video
-                        print("\n********** Used third try*************** \n")
-                    except:
-                        try: 
-                            video = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media%2Fzakat_video%2F" + video #media%2Fzakat_video%2Fangry.mp4
-                            print("\n********** Used fourth try*************** \n") 
-                        except:
-                            raise ValueError("None of them worked!")
+            video = get_vid_from_bucket(video) # it will return url of that video
         else:
-            video = ABSOLUTE_PATH + video
-        # video = video.replace('/media/', '/media_root/')
-        print('************', video, '******video******')
-        
-        # if video reached to its limit then break it!
+            video = get_vid_from_bucket(video)
+
         length_of_video = self.get_length(video)
     
         """

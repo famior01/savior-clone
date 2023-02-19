@@ -11,6 +11,8 @@ import os
 from .audio_ana import audio2emo
 import shutil
 from decouple import config
+from AI.get_video import get_vid_from_bucket
+
 
 ABSOLUTE_PATH = config('ABSOLUTE_PATH')
 USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
@@ -19,8 +21,8 @@ USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
 def get_voice_ana(ID):
   obj = ZakatPosts.objects.filter(id=ID).first()
   video1 = str(obj.video1.url)
-  if USE_PRODUCTION: # TODO;
-    video1 = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media/" + video1
+  if USE_PRODUCTION: # TODO; 
+    video1 = get_vid_from_bucket(video1)
   else:
     video1 = ABSOLUTE_PATH + video1
   # video1 = video1.replace('/media/', '/media_root/')

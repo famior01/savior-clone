@@ -18,14 +18,15 @@
                         <a class="ui black right ribbon label">Post # {{ obj.post_number }}</a>
                         {% endif %}
                         <!--Herder line-->
-                        <div class="ui grid">
+                        <div class="ui grid"> 
                             <div class="row">
                                 <div class="left floated  column eight wide fluid">
                                     <!--Profile picture and created time-->
-                                    <a href="{% url 'profiles:profile-detail-view'  obj.pk%}">
-                                    <img class="ui avatar image" src={{obj.creator.picture.url}}> </a>
-                                    {{ obj.creator}} {{obj.creator.last_name}}
-                                    <br>({{ obj.created|timesince}} ago)
+                                    <a href="{% url 'profiles:profile-detail-view' obj.creator.user.pk %}">
+                                    <img class="ui avatar image" src={{obj.creator.picture.url}}> 
+                                    <b style='color:black;'>{{ obj.creator.user.full_name}}</b>
+                                    </a>
+                                    <a style='margin-left:3em;'>({{ obj.created|timesince}} ago)</a>
                                 </div>
         
                                 <div class="right floated column eight wide fluid ">
@@ -228,7 +229,31 @@
         </div>
     </div>
 
+    <script type="text/javascript" src="{% static 'zakat_posts/main.js' %}"></script>
+
+
 {% endblock content %}
+
 {% block script %}
-<script type="text/javascript" src="{% static 'zakat_posts/main.js' %}"></script>
+<script>
+    // ======================== Details Modal ========================
+function opendetail(){
+    $('#Details').modal('show');
+}
+
+function showDonors(){
+    $('#donors').modal('show');
+}
+
+function Report(){
+    $('#Report').modal('show');
+}
+
+function ReadEng(){
+    $('#ReadEng').modal('show');
+}
+function ReadUrdu(){
+    $('#ReadUrdu').modal('show');
+}
+</script>
 {% endblock script %}

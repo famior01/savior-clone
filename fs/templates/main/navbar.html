@@ -166,12 +166,13 @@
             <div class="ui floating dropdown icon button teal">
                 <i class="align justify icon"></i>
                 <div class="menu">
-                    <a href="{% url 'account_logout' %}" class="item">
-                        <i class="sign out alternate icon"></i>Logout
+                    <!--Logout-->
+                    <a href="{% url 'account_logout' %}" class="item ui basic black button fluid">
+                        <center><i class="fa-solid fa-right-from-bracket"></i>&nbsp; Logout</center>
                     </a>
                     <!--account change password-->
-                    <a href="{% url 'account_change_password' %}" class="item">
-                        <i class="key icon"></i>Change Password
+                    <a href="{% url 'account_change_password' %}" class="item ui basic black button fluid">
+                        <i class="fa-solid fa-key"></i>&nbsp;&nbsp;Change Password
                     </a>
 
 
@@ -186,7 +187,8 @@
                             </form>
                         </div>
                     </div>
-                    <button class="item" onclick='Suggest()'>Suggest us something</button>
+                    <button class="ui basic black button fluid" onclick='Suggest()'>
+                        <i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;Suggest something</button>
 
                     <!--account Report Savior Problem-->
                     <div class="ui tiny modal" id='SaviorIssues'>
@@ -199,7 +201,8 @@
                             </form>
                         </div>
                     </div>
-                    <button class="ui black basic button fluid" onclick='SaviorIssues()'>Report Savior issue</button>
+                    <button class="ui basic black button fluid" onclick='SaviorIssues()'>
+                        <i class="fa-solid fa-flag"></i> &nbsp;Report Issue</button>
 
                     <!--account Report Savior Problem-->
                     <div class="ui tiny modal" id='BeTheMember'>
@@ -219,7 +222,8 @@
                             </form>
                         </div>
                     </div>
-                    <button class="ui black basic button fluid" onclick='BeTheMember()'>Be the Savior</button>
+                    <button class="ui black basic button fluid" onclick='BeTheMember()'>
+                        <i class="fa-solid fa-user-group"></i>&nbsp; Be the Savior</button>
                 </div>
             </div>
             {% endif %}

@@ -27,13 +27,6 @@ ABSOLUTE_PATH = config('ABSOLUTE_PATH')
 def find_emotion(video_id):
   obj = Get_frames(video_id=video_id)
   path = obj.get_frames()
-  if path =='video1': # if video1 is not provided
-    return 'Video1 is not provided'
-  elif path == 'video2': # if video2 is not provided
-    return 'Video2 is not provided'
-  else:
-    pass
-
 
   gather = GatherSimilarFaces(faces_path=path)
   gather.similar_face()

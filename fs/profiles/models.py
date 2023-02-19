@@ -7,17 +7,6 @@ from django.db.models import Q
 from django.urls import reverse
 from phonenumber_field.modelfields import PhoneNumberField
 
-# Create your models here.
-
-class ProfileManager(models.Manager):
-  #TODO: HERE YOU WILL WRITE THE LOGIC OF RECOMMENDATION SYSTEM
-  # IT WILL BE DEPENDENT OF MUTUAL following, LOCATION 
-
-  def get_all_profiles(self, me):
-    profiles = Profile.objects.all().exclude(user=me)
-    return profiles
-
-
 class Profile(models.Model):
   user                = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
   phone_number        = PhoneNumberField(null=True, unique=True, blank=True)
@@ -32,8 +21,6 @@ class Profile(models.Model):
   updated             = models.DateTimeField(auto_now=True)
   created             = models.DateTimeField(auto_now_add=True)
 
-  objects = ProfileManager() # this is the manager
-  
   def __str__(self):
     # String representation of the model
     return str(self.user)
@@ -76,7 +63,7 @@ class Profile(models.Model):
     return self.zakat_posts.all()
 
   def get_zakat_posts_no(self): 
-    total_varified_posts = self.zakat_posts.get(varified__gte=50).count()
+    total_varified_posts = self.zakat_posts.filter(varified__gte=50).count()
     return total_varified_posts
 
   def total_IWatch_likes_by_curruser(self):
