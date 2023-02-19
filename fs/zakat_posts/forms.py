@@ -14,7 +14,7 @@ class ZakatPostForm(forms.ModelForm):
     video2 = forms.FileField(widget=forms.FileInput(attrs={'type': 'file', 'accept': 'video/*' , 'style': 'width: 200px;', 'required': 'required'}))
     content = forms.CharField(widget=forms.Textarea(attrs={'placeholder':"Write something (optional)", 'rows':1, 'cols':40, 'label':'' }))
     address = forms.CharField(widget=forms.Textarea(attrs={'placeholder':"Address (House, Street, Area, City, Country)", 'rows':1, 'cols':40 }))
-    phone_number = PhoneNumberField(label="Phone Number", widget =PhoneNumberPrefixWidget(initial='PK'))
+    phone_number = PhoneNumberField(label="Phone Number", widget =PhoneNumberPrefixWidget(initial='PK'), required=True)
     bank_details = forms.CharField(widget=forms.Textarea(attrs={'placeholder':"Bank Details (Bank Name, Account Number, Account Title)", 'rows':1, 'cols':40,'required': 'required' }))
 
     class Meta:

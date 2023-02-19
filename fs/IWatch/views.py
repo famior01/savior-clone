@@ -305,6 +305,8 @@ class PostUpdateView(UpdateView):
         form.add_error(None, "You are not authorized to update this post")
         return super().form_invalid(form)
 
+
+#TODO; send donor to exact post
 @login_required
 def payment(request):
   if request.method == 'POST':

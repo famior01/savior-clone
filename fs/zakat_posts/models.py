@@ -11,7 +11,7 @@ from phonenumber_field.modelfields import PhoneNumberField
 class ZakatPosts(models.Model):
   creator       = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='zakat_posts')
   seeker        = models.CharField(max_length=100, blank=True) 
-  phone_number  = PhoneNumberField(null=True, blank=True, unique=False)
+  phone_number  = PhoneNumberField(blank=True)
   address       = models.CharField(max_length=150, blank=True)
   bank_details  = models.CharField(max_length=200, blank=True)
   donor         = models.ManyToManyField(Profile, blank=True, related_name='donors') 

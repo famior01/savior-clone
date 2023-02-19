@@ -50,21 +50,22 @@ def AI(ID):
   if avg>50:
     zp = ZakatPosts.objects.get(id=ID) # delete full object
     zp.varified = avg
+    notify.send(zp.creator.user, recipient=zp.creator.user, verb=f'Abdullah (AI) has varified your post with {zp.varified}%, and posted.')
     zp.save()
     return avg
   else:
     '''Saving the post in database, for future training of AI, but not posting it'''
     zp = ZakatPosts.objects.get(id=ID) # delete full object
     zp.varified = avg
-    # zp.delete()
+    notify.send(zp.creator.user, recipient=zp.creator.user, verb='Sorry! Abdullah (AI) did not varify your post, and did not post it.')
     zp.save()
     return avg
     # return "NOT VARIFIED" # SO THAT IT BALANCE POST NUMBER
   
-@shared_task()
-def notify_after_posting(ID):
-  zp = ZakatPosts.objects.get(id=ID) # delete full objec
-  if zp.varified > 50:
-    notify.send(zp.creator.user, recipient=zp.creator.user, verb=f'Abdullah (AI) has varified your post with {zp.varified}%, and posted.')
-  if zp.varified>0 and zp.varified<=50 : # menas in broken pipe, don't just notify, unless it's been gone thruogh the AI 
-    notify.send(zp.creator.user, recipient=zp.creator.user, verb='Sorry! Abdullah (AI) did not varify your post, and did not post it.')
+# @shared_task() 
+# def notify_after_posting(ID):
+#   zp = ZakatPosts.objects.get(id=ID) # delete full objec
+#   if zp.varified > 50:
+#     notify.send(zp.creator.user, recipient=zp.creator.user, verb=f'Abdullah (AI) has varified your post with {zp.varified}%, and posted.')
+#   if zp.varified>0 and zp.varified<=50 : # menas in broken pipe, don't just notify, unless it's been gone thruogh the AI 
+#     notify.send(zp.creator.user, recipient=zp.creator.user, verb='Sorry! Abdullah (AI) did not varify your post, and did not post it.')

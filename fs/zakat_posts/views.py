@@ -10,7 +10,7 @@ from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from IWatch.models import IWatch
 # from django.views.decorators.csrf import csrf_exempt
-from AI.tasks import AI, notify_before_posting, notify_after_posting
+from AI.tasks import AI, notify_before_posting #, notify_after_posting
 import cv2
 import os
 from datetime import datetime, timedelta
@@ -44,7 +44,7 @@ def create_zakat_posts(request):
       print("\n************", ID, "************\n")
       notify_before_posting.apply_async(args=[ID], ignore_result=False)
       output = AI.apply_async(args=[ID], ignore_result=False)
-      notify_after_posting.apply_async(args=[ID], ignore_result=False)
+      # notify_after_posting.apply_async(args=[ID], ignore_result=False)
       print("***********", output, "**output*********")
       output = output.get()
 
