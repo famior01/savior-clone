@@ -71,16 +71,6 @@ CELERY_BEAT_SCHEDULER ='django_celery_beat.schedulers:DatabaseScheduler'
 RESULT_BACKEND ='db+sqlite://results.db'
 
 
-# =====================================================================
-# ------------------------- Django Ignor some 404 errors -------------------
-# =====================================================================
-import re
-IGNORABLE_404_URLS = [
-    re.compile(r'\.(php|cgi)$'),
-    re.compile(r'^/phpmyadmin/'),
-]
-
-
 #=================================================
 # ------------- STATIC FILES ---------------------
 # =================================================
@@ -149,37 +139,7 @@ LOGGERS = {
         'handlers': ['mail_admins', ],
         'level': 'ERROR',
         'propagate': True
-    },
-    'django.security': {
-        'level': 'INFO',
-        'handlers': ['console' ,'mail_admins', ],
-        'propagate': True
-    },
-    'django.template': {
-        'level': 'INFO',
-        'handlers': ['console' ,'mail_admins', ],
-        'propagate': True
-    },
-    'django.security.DisallowedHost': {
-        'level': 'INFO',
-        'handlers': ['mail_admins', ],
-        'propagate': True
-    },
-    'django.db.backends': {
-        'level': 'INFO',
-        'handlers': ['mail_admins', ],
-        'propagate': True
-    },
-    'django.security.SuspiciousOperation': {
-        'level': 'INFO',
-        'handlers': ['mail_admins', ],
-        'propagate': True
-    },
-    'django.server': {
-        'level': 'INFO',
-        'handlers': [ 'console' ,'mail_admins', ],
-        'propagate': True
-    },
+    }
 }
 
 
@@ -195,3 +155,39 @@ LOGGING = {
     "handlers": HANDLERS,
     "loggers": LOGGERS,
 }
+
+
+
+# =====================================================
+# -------------------   AWS SETTINGS -----------------------
+# =====================================================
+#  'django.security': {
+#         'level': 'INFO',
+#         'handlers': ['console' ,'mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.template': {
+#         'level': 'INFO',
+#         'handlers': ['console' ,'mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.security.DisallowedHost': {
+#         'level': 'INFO',
+#         'handlers': ['mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.db.backends': {
+#         'level': 'INFO',
+#         'handlers': ['mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.security.SuspiciousOperation': {
+#         'level': 'INFO',
+#         'handlers': ['mail_admins', ],
+#         'propagate': True
+#     },
+#     'django.server': {
+#         'level': 'INFO',
+#         'handlers': [ 'console' ,'mail_admins', ],
+#         'propagate': True
+#     },
