@@ -75,10 +75,9 @@ class Profile(models.Model):
   def get_zakat_posts(self):
     return self.zakat_posts.all()
 
-  def get_zakat_posts_no(self):
-    # total_posts = self.zakat_posts.filter(self.zakat_posts.varified>=50).count()
-    return self.zakat_posts.all().count()
-    # return total_posts
+  def get_zakat_posts_no(self): 
+    total_varified_posts = self.zakat_posts.get(varified__gte=50).count()
+    return total_varified_posts
 
   def total_IWatch_likes_by_curruser(self):
     return self.IWatch_likes.all().count()

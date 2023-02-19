@@ -55,7 +55,6 @@ if DB_IS_AVAILABLE:
 # ===========================================================
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
-# CELERY_BROKER_URL = config('CELERY_BROKER_REDIS_URL')
 REDIS_HOST =config('DO_REDIS_URL', cast=str, default='redis://localhost:6379')
 CELERY_BROKER_URL =REDIS_HOST
 BROKER_USE_SSL = {'ssl_cert_reqs': ssl.CERT_REQUIRED,}
@@ -196,9 +195,3 @@ LOGGING = {
     "handlers": HANDLERS,
     "loggers": LOGGERS,
 }
-
-
-# =====================================================
-# -------------------   extra loggers  -----------------------
-# =====================================================
-    
