@@ -22,6 +22,7 @@ from decouple import config
 
 ABSOLUTE_PATH = config('ABSOLUTE_PATH')
 USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
+TESTING = config('TESTING', cast=bool)
 
 class Get_frames:
     def __init__(self, video_id=None, object_det=False):
@@ -68,9 +69,24 @@ class Get_frames:
                 return 'video1'
         
         if USE_PRODUCTION:
-            video= video.split("%2F")[-1]
-            video = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media%2Fzakat_video%2F" + video #media%2Fzakat_video%2Fangry.mp4
-            
+            try:
+                video= video.split("%2F")[-1]
+                video = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media/zakat_video/" + video
+                print("\n********** Used first try*************** \n")
+            except:
+                try:
+                    video= ABSOLUTE_PATH + video
+                    print("\n********** Used second try*************** \n")
+                except:
+                    try: 
+                        video = video
+                        print("\n********** Used third try*************** \n")
+                    except:
+                        try: 
+                            video = "https://savior-staticfiles.sgp1.cdn.digitaloceanspaces.com/media%2Fzakat_video%2F" + video #media%2Fzakat_video%2Fangry.mp4
+                            print("\n********** Used fourth try*************** \n") 
+                        except:
+                            raise ValueError("None of them worked!")
         else:
             video = ABSOLUTE_PATH + video
         # video = video.replace('/media/', '/media_root/')

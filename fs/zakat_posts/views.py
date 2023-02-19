@@ -39,12 +39,13 @@ def create_zakat_posts(request):
       profile.save()
       print('in the Zakat posts view.py **********\n\n')
       #(=====================   AI   =====================)
-      ID = instance.id
+      # ID = instance.id
+      ID = zp.id
       print("\n************", ID, "************\n")
       notify_before_posting.apply_async(args=[ID], ignore_result=False)
       output = AI.apply_async(args=[ID], ignore_result=False)
       notify_after_posting.apply_async(args=[ID], ignore_result=False)
-      print("***********", output, "***********")
+      print("***********", output, "**output*********")
       output = output.get()
 
       # if didn't varify, then save in db, and don't show, and minus the post number

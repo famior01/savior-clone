@@ -102,7 +102,7 @@ class Object_Detection:
     print('\n************* In the dataframe making process *************\n')
     # getting data from file 
     csv_fp = file_path.replace('.txt', '.csv')
-    read_file = pd.read_csv(file_path)
+    read_file = pd.read_csv(csv_fp)
     read_file.to_csv(csv_fp, index=None, header=True) 
 
     df = pd.read_csv(csv_fp)

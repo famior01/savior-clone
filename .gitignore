@@ -420,3 +420,4 @@ yolov5
 fs/db.sqlite3
 fs/.env.prod
 fs/Important.env
+fs/AI/sentiment_ana/sample.mp3
