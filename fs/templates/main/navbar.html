@@ -88,16 +88,16 @@
                         <div class="ui divider" style="margin: 5px 0;"></div>
     
                         {% for qs in user.notifications.unread %}
-                        <div class="ui list segment raised red" id='noti_box'>  
+                        <div class="ui list segment raised red"  id='noti_box'>  
                                 <div class="item mb">
                                 {% for profile in profiles  %}
                                     {% if qs.actor == profile.user %}
                                         <div class="ui header"> 
                                         <img class='ui circular image' src="{{profile.picture.url}}">
                                         {{ qs.actor.full_name}}
-                                        </div>
-                                        <div class="description"  style='width: 33em;'>
-                                            {{ qs.verb }}   
+                                        </div><br>
+                                        <div class="description"  style='width: 21em; overflow:auto;'>
+                                            {{ qs.verb }} 
                                         </div>
                                         <div>
                                         {% if 'following' in qs.verb %}
@@ -123,7 +123,6 @@
                                         <br>
                                         <div class="description">
                                             {{ qs.timestamp|timesince }}
-                                            
                                         </div>
                                     {% endif %}
                                 {% endfor %}
