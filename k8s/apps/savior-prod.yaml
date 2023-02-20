@@ -38,6 +38,11 @@ spec:
       labels:
         app: savior-deployment
     spec:
+      securityContext:
+          runAsUser: 1000
+          runAsGroup: 3000
+          fsGroup: 2000
+          fsGroupChangePolicy: "OnRootMismatch"
 
       containers:
       - name: savior
@@ -47,21 +52,24 @@ spec:
           - secretRef:
               name: savior-prod-secret
         resources:
-            requests:
-              cpu: "100m"
-              memory: "500M"
-            limits:
-              cpu: "500m"
-              memory: "1000M"
+          requests:
+            cpu: "100m"
+            memory: "500M"
+          limits:
+            cpu: "500m"
+            memory: "1000M"
         env:
           - name: PORT
             value: "8000"
+        securityContext:
+          runAsUser: 2000
+          allowPrivilegeEscalation: false
 
 
         ports:
         - containerPort: 8000
       imagePullSecrets:
-        - name: savior
+        - name: savior 
 
 
 ---
