@@ -2,25 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: savior-deployment
-  annotations:
-    service.beta.kubernetes.io/do-loadbalancer-name: "savior-loadbalancer"
-    service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
-    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "bf2e68eb-bcbe-45d6-8271-ef0c6c83bfb0"
-    service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
-    service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
-    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    service.beta.kubernetes.io/do-loadbalancer-enable-backend-keepalive: "true"
-    service.beta.kubernetes.io/do-loadbalancer-http2-ports: "443,80"
-
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
-
-    service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
-    service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
-
-    service.beta.kubernetes.io/do-loadbalancer-size-unit: "2"
-    kubernetes.digitalocean.com/load-balancer-id: "c9f5cbd1-2ef2-48c5-ac96-76952f87445b"
-  
   labels:
     app: savior-deployment
 spec:
@@ -55,13 +36,11 @@ spec:
         env:
           - name: PORT
             value: "8000"
-
-
         ports:
         - containerPort: 8000
+
       imagePullSecrets:
         - name: savior 
-
 
 ---
 
