@@ -9,7 +9,7 @@ on:
     branches: [ "Deployment" ]
   
 
-jobs:
+jobs: 
   # test_django_job:
     # uses: Savior-Social/Savior/.github/workflows/test-django.yaml@Deployment
   build:
@@ -58,7 +58,7 @@ jobs:
         DJANGO_SUPERUSER_FULLNAME=${{ secrets.DJANGO_SUPERUSER_FULLNAME }}
         DJANGO_SUPERUSER_RELIGION=${{ secrets.DJANGO_SUPERUSER_RELIGION }}
         DJANGO_SUPERUSER_GENDER=Male
-        DJANGO_SECRET_KEY=${{ secrets.SECRET_KEY }}
+        DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
         POSTGRES_DB=${{ secrets.POSTGRES_DB }}
         POSTGRES_USER=${{ secrets.POSTGRES_USER }}
         POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}

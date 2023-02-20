@@ -12,4 +12,4 @@ urlpatterns = [
     path('update/<int:pk>/', login_required(views.PostUpdateView.as_view()), name='post-update'),
     path('satisfied/', views.satisfied, name='satisfied'),
     path('paid/', views.paid_money, name='paid'),
-]   
+]

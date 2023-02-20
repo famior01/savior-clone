@@ -12,6 +12,9 @@ Important.env
 *.wav
 Thumbnails/*
 picture
+ssh.keys
+DO
+DO.pub
 
 
 # Byte-compiled / optimized / DLL files
@@ -423,3 +426,4 @@ fs/db.sqlite3
 fs/.env.prod
 fs/Important.env
 fs/AI/sentiment_ana/sample.mp3
+ssh.key
