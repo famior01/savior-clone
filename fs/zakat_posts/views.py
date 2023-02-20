@@ -9,7 +9,7 @@ from django.contrib import messages
 from django.http import JsonResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from IWatch.models import IWatch
-from AI.tasks import AI#, notify_before_posting #, notify_after_posting
+from AI.tasks import AI, notify_before_posting #, notify_after_posting
 import cv2
 import os
 from datetime import datetime, timedelta
@@ -43,8 +43,8 @@ def create_zakat_posts(request):
       ID = zp.id
       print("\n************", ID, "************\n")
       notify.send(request.user, recipient=request.user, verb=f'the ID is {ID}, after getting id')
-      # notify_before_posting.apply_async(args=[ID])
-      notify.send(request.user, recipient=request.user, verb=f'Abdullah (AI) is checking your post which might takes more than an hour, after evaluation you will be notified with status of your post. Please wait!')
+      notify_before_posting.delay(ID)
+      # notify.send(request.user, recipient=request.user, verb=f'Abdullah (AI) is checking your post which might takes more than an hour, after evaluation you will be notified with status of your post. Please wait!')
 
       output = AI.delay(ID)    
       # notify_after_posting.apply_async(args=[ID], ignore_result=False)

@@ -12,10 +12,10 @@ from user.models import User
 from notifications.signals import notify
 
 
-# @shared_task()
-# def notify_before_posting(ID):  
-#   zp = ZakatPosts.objects.get(id=ID) # delete full object
-#   notify.send(zp.creator.user, recipient=zp.creator.user, verb='Abdullah (AI) is checking your post which might takes more than an hour, after evaluation you will be notified with status of your post. Please wait!')
+@shared_task()
+def notify_before_posting(ID):  
+  zp = ZakatPosts.objects.get(id=ID) # delete full object
+  notify.send(zp.creator.user, recipient=zp.creator.user, verb='Abdullah (AI) is checking your post which might takes more than an hour, after evaluation you will be notified with status of your post. Please wait!')
 
 
 
