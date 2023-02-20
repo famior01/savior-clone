@@ -40,3 +40,4 @@ glob2
 seaborn
 scipy
 transformers[torch]
+botocore
