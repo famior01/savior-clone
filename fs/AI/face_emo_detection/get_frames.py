@@ -19,7 +19,7 @@ import cv2
 import subprocess
 import shutil
 from decouple import config
-from AI.get_video import get_vid_from_bucket
+# from AI.get_video import get_vid_from_bucket
 
 # -==============================
 from user.models import User
@@ -70,10 +70,12 @@ class Get_frames:
             video = str(zak_post.video1.url) #TODO;  change url acc to server url ....
         
         if USE_PRODUCTION:
-            notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb='before finding in bucket')
-            video = get_vid_from_bucket(video) # it will return url of that video
-            raise Exception("\n\n**************Video is not in bucket ************\n\n")
-            notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb=' after finding in bucket')
+            # notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb='before finding in bucket')
+            # video = get_vid_from_bucket(video) # it will return url of that video
+            # raise Exception("\n\n**************Video is not in bucket ************\n\n")
+            # notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb=' after finding in bucket')
+            video = ABSOLUTE_PATH + video
+
         else:
             video = ABSOLUTE_PATH + video
 
