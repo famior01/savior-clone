@@ -1,3 +1,5 @@
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
 ################# Flow of Project #######################
 1) first create secret of env
 2) remove old deployment

@@ -49,8 +49,20 @@ kind: Service
 metadata:
   name: savior-deployment
   annotations:
+    service.beta.kubernetes.io/do-loadbalancer-name: "savior-loadbalancer"
     service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
     service.beta.kubernetes.io/do-loadbalancer-certificate-id: "bf2e68eb-bcbe-45d6-8271-ef0c6c83bfb0"
+    service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
+    service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
+    service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
+    service.beta.kubernetes.io/do-loadbalancer-enable-backend-keepalive: "true"
+    service.beta.kubernetes.io/do-loadbalancer-http2-ports: "443,80"
+
+    # service.beta.kubernetes.io/do-loadbalancer-tls-ports: "443"
+    # service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
+
+    # service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
+    # service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
 spec:
   type: LoadBalancer
   ports:
