@@ -46,7 +46,7 @@ def create_zakat_posts(request):
       # notify_before_posting.apply_async(args=[ID])
       notify.send(request.user, recipient=request.user, verb=f'Abdullah (AI) is checking your post which might takes more than an hour, after evaluation you will be notified with status of your post. Please wait!')
 
-      output = AI.delay(ID)
+      output = AI.delay(ID)    
       # notify_after_posting.apply_async(args=[ID], ignore_result=False)
       notify.send(request.user, recipient=request.user, verb=f'after getting {output} = output')
       print("***********", output, "**output*********")
