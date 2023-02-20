@@ -58,8 +58,8 @@ if DB_IS_AVAILABLE:
 REDIS_HOST =config('DO_REDIS_URL', cast=str, default='redis://localhost:6379')
 CELERY_BROKER_URL =REDIS_HOST 
 BROKER_USE_SSL = {'ssl_cert_reqs': ssl.CERT_REQUIRED,}
-CELERY_RESULT_BACKEND = REDIS_HOST
-BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 7200} # 2 hours
+# CELERY_RESULT_BACKEND = REDIS_HOST
+# BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 7200} # 2 hours
 CELERY_ACCEPT_CONTENT =['application/json']
 CELERY_TASK_SERIALIZER ='json'
 CELERY_RESULT_SERIALIZER ='json'
@@ -68,7 +68,7 @@ CELERY_RESULT_BACKEND ='django-db'
 # CELERY_CACHE_BACKEND = 'django-cache'
 CELERY_CACHE_BACKEND ='default'
 CELERY_BEAT_SCHEDULER ='django_celery_beat.schedulers:DatabaseScheduler'
-RESULT_BACKEND ='db+sqlite://results.db'
+# RESULT_BACKEND ='db+sqlite://results.db'
 
 
 #=================================================
