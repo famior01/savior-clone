@@ -35,15 +35,18 @@ kubectl get deployment
 kubectl get pods
 kubectl get secrets
 kubectl describe replicationcontrollers/celery-configuration
-kubectl apply -f .\k8s\apps\savior-prod.yaml 
 kubectl apply -f .\k8s\apps\replicationcontrollers.yaml
+
+doctl compute load-balancer list            ++> first get id of load balancer, and apply to image
+kubectl apply -f .\k8s\apps\savior-prod.yaml 
 kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
 
 
 
 ################# Delete services/deployment #######################
+kubectl delete replicationcontrollers/celery-configuration
+
 kubectl delete deployment savior-deployment
 kubectl delete service savior-deployment
 kubectl delete secret savior-prod-secret
-kubectl delete replicationcontrollers/celery-configuration
 

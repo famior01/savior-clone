@@ -6,7 +6,7 @@ import os
 import filecmp # it find exact similar pic
 from glob import glob
 # from face_detection import Detection
- 
+
 class Purification:
     def __init__(self, fold_path):
         self.fold_path = fold_path

@@ -19,7 +19,7 @@ metadata:
     service.beta.kubernetes.io/do-loadbalancer-tls-passthrough: "true"
 
     service.beta.kubernetes.io/do-loadbalancer-size-unit: "2"
-    kubernetes.digitalocean.com/load-balancer-id: "5741cca5-1c21-4e64-94cd-a6d28b60568f"
+    kubernetes.digitalocean.com/load-balancer-id: "c9f5cbd1-2ef2-48c5-ac96-76952f87445b"
   
   labels:
     app: savior-deployment
@@ -38,12 +38,6 @@ spec:
       labels:
         app: savior-deployment
     spec:
-      securityContext:
-          runAsUser: 1000
-          runAsGroup: 3000
-          fsGroup: 2000
-          fsGroupChangePolicy: "OnRootMismatch"
-
       containers:
       - name: savior
         image: registry.digitalocean.com/savior/savior:latest
@@ -61,9 +55,6 @@ spec:
         env:
           - name: PORT
             value: "8000"
-        securityContext:
-          runAsUser: 2000
-          allowPrivilegeEscalation: false
 
 
         ports:
