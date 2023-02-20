@@ -151,8 +151,7 @@
                                         <div class="content">
                                             <p>Content Creator: <strong>{{IWatch.creator.user.full_name}}</strong></p>
                                             <p><strong>Bank Name: </strong> {{IWatch.creator.bank_details}}</p>
-                                            <p><strong>Savior</strong> payment method is not available right now, soon it will be there, but for now you can pay him directly</p>
-                                            <p>Kindly let us know how mush have you paid to the creator?</p>
+                                            <p>Kindly let us know how much you have paid to the creator.</p>
                                             <form action="{% url 'IWatch:payment'%}" method=post>
                                               {% csrf_token %}
                                               <input type="hidden" name="post_id" value={{IWatch.pk}}> 

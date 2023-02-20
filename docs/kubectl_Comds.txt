@@ -43,6 +43,7 @@ kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
 
 ################# Delete services/deployment #######################
 kubectl delete deployment savior-deployment
-kubectl delete replicationcontrollers/celery-configuration
 kubectl delete service savior-deployment
 kubectl delete secret savior-prod-secret
+kubectl delete replicationcontrollers/celery-configuration
+

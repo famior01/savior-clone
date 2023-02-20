@@ -12,10 +12,10 @@ from user.models import User
 from notifications.signals import notify
 
 
-# @shared_task()
-# def notify_before_posting(ID):  
-#   zp = ZakatPosts.objects.get(id=ID) # delete full object
-#   notify.send(zp.creator.user, recipient=zp.creator.user, verb='Abdullah (AI) is checking your post which might takes more than an hour, after evaluation you will be notified with status of your post. Please wait!')
+@shared_task()
+def notify_before_posting(ID):  
+  zp = ZakatPosts.objects.get(id=ID) # delete full object
+  notify.send(zp.creator.user, recipient=zp.creator.user, verb='Abdullah (AI) is checking your post which might takes more than an hour, after evaluation you will be notified with status of your post. Please wait!')
 
 
 
@@ -30,14 +30,11 @@ def AI(ID):
     return face_ana
   notify.send(zp.creator.user, recipient=zp.creator.user, verb='after faec_ana')
   
-  # face_ana = 5
-
   # # # GETTING VOICE ANALYSIS1
   audio_ana = get_voice_ana(ID)                       
   if type(audio_ana) == str: # if string then return it
     return audio_ana
   notify.send(zp.creator.user, recipient=zp.creator.user, verb='after audio_ana')
-  # audio_ana = 5
 
   # GETTING OBJECT DETECTION
   objects_ana = Object_Detection(ID).engin() # calling the engin function
