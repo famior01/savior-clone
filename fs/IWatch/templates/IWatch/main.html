@@ -59,6 +59,7 @@
               <!--========================= Search Bar ====================-->
               <div class="ui ten wide column centered aligned"> 
                 <form action="{% url 'IWatch:search-IWatch' %}" method="GET"> 
+                  {% csrf_token %}
                     <div style='width: 45em;' id='search_bar' class="ui right action left icon input">
                         <i class="search icon"></i>
                         <input  type="text" name='query' id='search_here' value='{{ request.GET.query }}' placeholder="name of a Video by title, name, descriptions, username..."> 
