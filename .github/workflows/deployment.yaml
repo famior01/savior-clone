@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     # needs: [test_django_job]
     env: 
-      CONTAINER_NAME: savior
+      CONTAINER_NAME: savior-container
       
     steps:
     - name: Checkout code
@@ -38,7 +38,7 @@ jobs:
       run: |
         docker push registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior --all-tags
     - name: k8s cluster kubeconfig file short-live creds
-      run: |
+      run: | 
         doctl kubernetes cluster kubeconfig save  savior-cluster
 
     - name: update deployment secrets
@@ -84,7 +84,7 @@ jobs:
         export SINGLE_POD_NAME=$(kubectl get pod -l app=savior-deployment -o jsonpath="{.items[0].metadata.name}")
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/migrate.sh 
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh  
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/superuser.sh
         kubectl apply -f k8s/apps/replicationcontrollers.yaml
 
 
-# kubectl exec -i $SINGLE_POD_NAME -- bash /app/superuser.sh

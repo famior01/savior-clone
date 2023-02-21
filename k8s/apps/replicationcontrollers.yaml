@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: savior
-        image: registry.digitalocean.com/savior/savior:latest
+        image: registry.digitalocean.com/savior-container/savior:latest
         imagePullPolicy: Always
         command: [ "/bin/sh", "-c" ]
         args: [ "/opt/venv/bin/celery -A family_savior worker -l INFO;" ]

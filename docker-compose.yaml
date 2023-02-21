@@ -43,6 +43,6 @@ services:
 
 volumes:
   staticfiles:
-    external: true
+    external: true 
   postgres_data:
   redis_data:

@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: savior
-        image: registry.digitalocean.com/savior/savior:latest
+        image: registry.digitalocean.com/savior-container/savior:latest
         imagePullPolicy: Always
         envFrom:
           - secretRef:
@@ -40,7 +40,7 @@ spec:
         - containerPort: 8000
 
       imagePullSecrets:
-        - name: savior 
+        - name: savior-container 
 
 ---
 
@@ -51,7 +51,7 @@ metadata:
   annotations:
     service.beta.kubernetes.io/do-loadbalancer-name: "savior-loadbalancer"
     service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
-    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "bf2e68eb-bcbe-45d6-8271-ef0c6c83bfb0"
+    service.beta.kubernetes.io/do-loadbalancer-certificate-id: "9a72fa32-d678-48e8-a2b8-f58ae16253d2" 
     # # service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
     # service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
     # service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
