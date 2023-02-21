@@ -19,14 +19,14 @@ jobs:
       CONTAINER_NAME: savior-container
       
     steps:
-    # - name: Checkout code
-    #   uses: actions/checkout@v3
-    # - name: Install doctl
-    #   uses: digitalocean/action-doctl@v2
-    #   with:
-    #     token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-    # - name: LOGIN TO DO REGISTRY FOR 20 MINUTES
-    #   run: doctl registry login 
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Install doctl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+    - name: LOGIN TO DO REGISTRY FOR 20 MINUTES
+      run: doctl registry login 
     # - name: Build conainer Image
     #   working-directory: ./fs
     #   run: |
@@ -37,9 +37,9 @@ jobs:
     # - name: Push container Image
     #   run: |
     #     docker push registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior --all-tags
-    # - name: k8s cluster kubeconfig file short-live creds
-    #   run: | 
-    #     doctl kubernetes cluster kubeconfig save  savior-cluster
+    - name: k8s cluster kubeconfig file short-live creds
+      run: | 
+        doctl kubernetes cluster kubeconfig save  savior-cluster
 
     - name: update deployment secrets
       run: |
