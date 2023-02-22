@@ -137,6 +137,12 @@ body{
   color: #000;
 }
 
+.controls p{
+  font-size: 10px;
+  font-weight: 500;
+  color: #f10000;
+}
+
 .controls input:hover{
   border: 1px solid rgb(16, 227, 255);
   border-radius: 0.5em;
@@ -190,6 +196,7 @@ body{
   overflow-y: scroll;
 }
 
+
 #signup_form{
   margin-top:0em;
 }
@@ -206,3 +213,6 @@ body{
   font-weight: 500 !important;
   color: #000 !important;
 }
+
+
+

@@ -58,6 +58,13 @@ RESULT_BACKEND = 'db+sqlite://results.db'
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR/"staticfiles"
 
+STATICFILES_DIRS = [
+    BASE_DIR/"static",
+    BASE_DIR/"profiles/static",
+    BASE_DIR/"IWatch/static",
+    BASE_DIR/"zakat_posts/static",
+]
+
 # python manage.py collectstatic --noinput  # to collect static files
 
 MEDIA_URL = 'media/'

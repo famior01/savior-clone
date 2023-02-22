@@ -19,6 +19,8 @@ spec:
       labels:
         app: savior-deployment
     spec:
+      securityContext:
+        fsGroup: 1000      
       containers:
       - name: savior
         image: registry.digitalocean.com/savior-container/savior:latest
@@ -52,25 +54,19 @@ metadata:
     service.beta.kubernetes.io/do-loadbalancer-name: "savior-loadbalancer"
     service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
     service.beta.kubernetes.io/do-loadbalancer-certificate-id: "9a72fa32-d678-48e8-a2b8-f58ae16253d2" 
-    # # service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
-    # service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
-    # service.beta.kubernetes.io/do-loadbalancer-enable-proxy-protocol: "true"
-    # service.beta.kubernetes.io/do-loadbalancer-enable-backend-keepalive: "true"
-    # service.beta.kubernetes.io/do-loadbalancer-http2-ports: "443,80"
+    service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
+    service.beta.kubernetes.io/do-loadbalancer-redirect-http-to-https: "true"
+    service.beta.kubernetes.io/do-loadbalancer-enable-backend-keepalive: "true"
 
     # # # # to enable Cookie (upper is working correctly)
-    # service.beta.kubernetes.io/do-loadbalancer-sticky-sessions-type: "cookies"
-    # service.beta.kubernetes.io/do-loadbalancer-sticky-sessions-cookie-name: "savior-cookies"
-    # service.beta.kubernetes.io/do-loadbalancer-sticky-sessions-cookie-ttl: "60"
+    service.beta.kubernetes.io/do-loadbalancer-sticky-sessions-type: "cookies"
+    service.beta.kubernetes.io/do-loadbalancer-sticky-sessions-cookie-name: "savior-cookies"
+    service.beta.kubernetes.io/do-loadbalancer-sticky-sessions-cookie-ttl: "60"
 
     # # to enable health check
-    # service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
-    # service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
-    # service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/health"
-    # service.beta.kubernetes.io/do-loadbalancer-healthcheck-check-interval-seconds: "3"
-    # service.beta.kubernetes.io/do-loadbalancer-healthcheck-response-timeout-seconds: "5"
-    # service.beta.kubernetes.io/do-loadbalancer-healthcheck-unhealthy-threshold: "3"
-    # service.beta.kubernetes.io/do-loadbalancer-healthcheck-healthy-threshold: "5"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
+    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
+
 
 spec:
   type: LoadBalancer

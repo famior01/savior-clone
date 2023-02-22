@@ -3,8 +3,8 @@ from decouple import config
 import ssl
 import os 
 
-SECRET_KEY =config('DJANGO_SECRET_KEY')
-DEBUG =False
+SECRET_KEY=config('DJANGO_SECRET_KEY')
+DEBUG=False
 ENV_ALLOWED_HOST=config('DJANGO_ALLOWED_HOSTS')
 DOMAIN_NAME=config('DOMAIN_NAME', cast=str)
 ALLOWED_HOSTS=[ ENV_ALLOWED_HOST, DOMAIN_NAME, 'savior.website']
@@ -30,7 +30,6 @@ DB_PASSWORD=config('POSTGRES_PASSWORD', cast=str)
 DB_HOST= "savior-psql-do-user-13616832-0.b.db.ondigitalocean.com"
 DB_PORT=config('POSTGRES_PORT', cast=str) 
 DB_DATABASE=config('POSTGRES_DB', cast=str)  
-
 
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
@@ -71,11 +70,23 @@ CELERY_BEAT_SCHEDULER ='django_celery_beat.schedulers:DatabaseScheduler'
 # RESULT_BACKEND ='db+sqlite://results.db'
 
 
+
+# =================================================
+# ------------- CSRF_TRUSTED_ORIGINS ---------------------
+# =================================================
+CSRF_TRUSTED_ORIGINS=['https://savior.website','https://*.savior.website','https://www.savior.website']
 #=================================================
 # ------------- STATIC FILES ---------------------
 # =================================================
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATICFILES_DIRS = [
+    BASE_DIR/"static",
+    BASE_DIR/"profiles/static",
+    BASE_DIR/"IWatch/static",
+    BASE_DIR/"zakat_posts/static",
+]
 
 from ..cdn.conf import * # noqa1 
 
