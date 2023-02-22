@@ -30,7 +30,6 @@ spec:
         - containerPort: 8000
       imagePullSecrets:
         - name: savior-container
-      
 
 ---
 
