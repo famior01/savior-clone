@@ -82,10 +82,7 @@ STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 STATICFILES_DIRS = [
-    BASE_DIR/"static",
-    BASE_DIR/"profiles/static",
-    BASE_DIR/"IWatch/static",
-    BASE_DIR/"zakat_posts/static",
+    BASE_DIR / "staticfiles-cdn",
 ]
 
 from ..cdn.conf import * # noqa1 

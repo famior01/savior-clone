@@ -1,0 +1,218 @@
+
+
+body{
+  background-color: rgb(214, 214, 214) !important; 
+}
+
+.nav{
+  border-radius: 0% !important;
+  font-size: 12px !important;
+  background-color: #000 !important;
+  /* margin-top: 0em !important;
+  padding: 0em !important;
+  overflow: hidden !important;
+  /* position: fixed !important; */
+  /* top: 0 !important;
+  width: 100% !important; */
+  /* height: 5em !important; */
+  /* z-index: 1 !important; */
+
+}
+
+.mb{
+  margin: 1em !important;
+  padding: 0.4em !important; 
+  word-spacing: 0em !important;
+  font-size: 0.9em !important;
+  font-weight: 1000 !important;
+  color: #fff !important;
+}
+
+
+
+
+/* for posts/main.html*/
+.mb-5 {
+  margin-bottom: 5px !important;
+}
+
+/* for profiles/profile_list.html--> buttons*/
+.btn_size {
+  width: 200px !important;
+}
+
+.bwhite-lg {
+  background-color: transparent !important;
+}
+
+.bwhite-sm {
+  background-color: transparent !important;
+  width: 10px !important;
+}
+
+.comment-box {
+  display: none;
+}
+
+/* details {
+  padding: 5 5 5 5 !important;
+} */
+
+
+/* nofitication scroll bar */
+.scroll{
+  height: 100% !important;
+  overflow: scroll !important;
+}
+
+/* scrolling for comments */
+.comment_scroll{
+  height: 20em !important;
+  overflow: scroll !important;
+  overflow-x: hidden !important;
+  overflow-inline: hidden !important;
+}
+
+.comment_segment{
+  height: 50px !important;
+  padding : 0.5em !important;
+  margin : 0.5em !important;
+  border: 1px solid rgb(6, 6, 6) !important;
+  border-radius: 1em !important;
+}
+
+.upvote_btn {
+  background-color: transparent !important;
+  border: none !important;
+  color: #000 !important;
+  font-size: 1.5em !important;
+  font-weight: 1000 !important;
+}
+
+
+
+/* ======================================================================  */
+/* ===================== Plyr for playing Video ========================== */
+/* ======================================================================= */
+:root {
+  --plyr-color-main: #21ff03;
+}
+
+/* .containervideo {
+	margin: 50px auto;
+	max-width: 500px;
+} */
+
+/* ======================== for ShowIWatch.html/video ========================== */
+/* #videodiv{
+  width: 80% !important;
+  height:400px !important;
+  /* top: 0 !important; */
+  /* margin-right: 5em; */
+  /* margin-left: 5em; */
+  /* padding: 50px; */
+  /* overflow: auto; */
+  /* border: 1px solid rgb(106, 0, 255);; */
+/* }
+
+
+/* ======================== for password change.html ========================== */
+.controls{
+  font-size: 15px;
+  font-weight: 500;
+  color: #000;
+  width: 100%;
+  margin-bottom: 1em;
+
+}
+
+.controls input{
+  width: 40%;
+  height: 2em;
+  border: 1px solid #000;
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: 1em;
+  font-weight: 500;
+  color: #000;
+}
+
+.controls p{
+  font-size: 10px;
+  font-weight: 500;
+  color: #f10000;
+}
+
+.controls input:hover{
+  border: 1px solid rgb(16, 227, 255);
+  border-radius: 0.5em;
+  padding: 0.5em;
+  font-size: 1em;
+  font-weight: 500;
+  color: #000;
+}
+
+
+
+.control-label{
+  font-size: 17px;
+  font-weight: 500;
+  color: #000;
+}
+
+#forgot_pass{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+
+/* ======================== for login card ========================== */
+
+.login_card{
+  width: 25em !important;
+  height: 25em !important;
+  margin: 0 auto !important;
+  margin-top: 1em !important;
+  padding: 2em !important;
+  border-radius: 1em !important;
+  background-color: #fff !important;
+  box-shadow: 0 0 10px #000 !important;
+}
+
+
+/* ======================== for sign up card ========================== */
+.signup_card{
+  width: 30em !important;
+  height: 35em !important;
+  margin: 0 auto !important;
+  margin-top: 1em !important;
+  margin-left: 0em !important;
+  margin-bottom: 5em !important;
+  padding: 1em !important;
+  border-radius: 1em !important;
+  background-color: #fff !important;
+  box-shadow: 0 0 10px #000 !important;
+  overflow-y: scroll;
+}
+
+
+#signup_form{
+  margin-top:0em;
+}
+.control-group input{
+  border-radius: 8px !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #000 !important;
+}
+
+
+#signup_form label{
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  color: #000 !important;
+}
+
+
+
