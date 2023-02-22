@@ -78,7 +78,6 @@ jobs:
       run: |
         kubectl rollout status deployment/savior-deployment
         
-      
     - name: Migrate Database
       run: |
         export SINGLE_POD_NAME=$(kubectl get pod -l app=savior-deployment -o jsonpath="{.items[0].metadata.name}")
