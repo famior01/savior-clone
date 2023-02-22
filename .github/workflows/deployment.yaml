@@ -25,7 +25,7 @@ jobs:
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-    - name: LOGIN TO DO REGISTRY
+    - name: LOGIN TO DO REGISTRY FOR 20 MINUTES
       run: doctl registry login 
     - name: Build conainer Image
       working-directory: ./fs
@@ -39,7 +39,7 @@ jobs:
         docker push registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior --all-tags
     - name: k8s cluster kubeconfig file short-live creds
       run: | 
-        doctl kubernetes cluster kubeconfig save savior-cluster
+        doctl kubernetes cluster kubeconfig save  savior-cluster
 
     - name: update deployment secrets
       run: |
@@ -78,13 +78,13 @@ jobs:
       run: |
         kubectl rollout status deployment/savior-deployment
         
+      
     - name: Migrate Database
       run: |
         export SINGLE_POD_NAME=$(kubectl get pod -l app=savior-deployment -o jsonpath="{.items[0].metadata.name}")
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/migrate.sh 
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh  
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/superuser.sh
         kubectl apply -f k8s/apps/replicationcontrollers.yaml
-
-# kubectl exec -i $SINGLE_POD_NAME -- bash /app/superuser.sh
 
 

@@ -13,35 +13,26 @@
     <h3>Upload video</h3>
     <hr>
     <!--Note-->
-    <div class='ui info message'>
-      <div class='header'>
-        Note
+    <details>
+      <summary> <i class="fas fa-info-circle"></i> &nbsp; <b>Instructions</b></summary>
+      <div class='ui info message'>
+        <div class='header'>
+          Note
+        </div>
+        <ul class='list'>
+          <li>Video must be less than 10 minutes</li>
+          <li>All kind of contents are allowed except:
+            <ul>
+              <li>Sexual Content</li>
+              <li>Movies (Any kind of movie clip) </li>
+              <li>Music (Any kind of Music)</li>
+              <li>Dance (Any kind of dance)</li>
+              <li>Dramas (Any kind of Drama clip)</li>
+            </ul>
+          </li>
+        </ul>
       </div>
-      <ul class='list'>
-        <li>Video must be in less than 10 minutes</li>
-        <li>These type of Content are not allowed:
-          <div class="ui grid">
-            <div class="ui row">
-              <div class="ui ten column">
-                <ul>
-                  <li>Violence</li>
-                  <li>Sexual Content</li>
-                  <li>Spam</li>
-                </ul>
-              </div>
-              <div class="ui eight wide column">
-                <ul>
-                  <li>Threats</li>
-                  <li>Abuse</li>
-                  <li>Illegal Content</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-    
+    </details><br>
     <form action="" method='POST' class='ui form' enctype='multipart/form-data'>
       {% csrf_token %}
       {{ form.as_table }}
