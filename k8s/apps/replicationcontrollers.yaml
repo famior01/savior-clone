@@ -12,8 +12,6 @@ spec:
         app: savior-deployment
         component: savior-deployment
     spec:
-      securityContext:
-        fsGroup: 1000
       containers:
       - name: savior
         image: registry.digitalocean.com/savior-container/savior:latest
