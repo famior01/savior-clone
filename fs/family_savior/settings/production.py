@@ -113,6 +113,8 @@ from ..cdn.conf import * # noqa1
 # =====================================================
 ADMINS = [
     ('Admin1', 'abuubaida901@gmail.com'),
+    ('Admin2', 'saviore01@gmail.com'),
+    ('Admin3', 'famior01@gmail.com'),
 ]
 MANAGERS = ADMINS
 
@@ -139,7 +141,7 @@ HANDLERS = {
         'level': 'DEBUG',
         'class': 'logging.StreamHandler',
         'formatter': 'console',
-    },  
+    },
 }
 
 LOGGERS = {
@@ -147,7 +149,37 @@ LOGGERS = {
         'handlers': ['mail_admins', ],
         'level': 'ERROR',
         'propagate': True
-    }
+    },
+    'django.security.DisallowedHost': {
+        'level': 'INFO',
+        'handlers':[ 'console' ,'mail_admins', ],
+        'propagate': True
+    },
+    'django.db.backends': {
+        'level': 'INFO',
+        'handlers':[ 'console' ,'mail_admins', ],
+        'propagate': True
+    },
+    'django.security.SuspiciousOperation': {
+        'level': 'INFO',
+        'handlers': [ 'console' ,'mail_admins', ],
+        'propagate': True
+    },
+    'django.server': {
+        'level': 'INFO',
+        'handlers': [ 'console' ,'mail_admins', ],
+        'propagate': True
+    },  
+    'django.security': {
+        'level': 'INFO',
+        'handlers': ['console' ,'mail_admins', ],
+        'propagate': True
+    },
+    'django.template': {
+        'level': 'INFO',
+        'handlers': ['console' ,'mail_admins', ],
+        'propagate': True
+    },
 }
 
 

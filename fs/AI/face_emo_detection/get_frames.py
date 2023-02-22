@@ -70,8 +70,8 @@ class Get_frames:
             video = str(zak_post.video1.url) #TODO;  change url acc to server url ....
         
         if USE_PRODUCTION:
-            notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb='before finding in bucket')
-            video = get_vid_from_bucket(video) # it will return url of that video
+            notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb=f'before finding in bucket{video}')
+            video = get_vid_from_bucket(video) #TODO;  change url acc to server url ....
             raise Exception("\n\n**************Video is not in bucket ************\n\n")
             notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb=' after finding in bucket')
         else:
