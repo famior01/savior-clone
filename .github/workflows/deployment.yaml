@@ -25,21 +25,21 @@ jobs:
       uses: digitalocean/action-doctl@v2
       with:
         token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-    - name: LOGIN TO DO REGISTRY FOR 20 MINUTES
+    - name: LOGIN TO DO REGISTRY
       run: doctl registry login 
-    # - name: Build conainer Image
-    #   working-directory: ./fs
-    #   run: |
-    #     docker build -f Dockerfile \
-    #       -t registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior:latest \
-    #       -t registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5} \
-    #       . 
-    # - name: Push container Image
-    #   run: |
-    #     docker push registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior --all-tags
+    - name: Build conainer Image
+      working-directory: ./fs
+      run: |
+        docker build -f Dockerfile \
+          -t registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior:latest \
+          -t registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5} \
+          . 
+    - name: Push container Image
+      run: |
+        docker push registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior --all-tags
     - name: k8s cluster kubeconfig file short-live creds
       run: | 
-        doctl kubernetes cluster kubeconfig save  savior-cluster
+        doctl kubernetes cluster kubeconfig save savior-cluster
 
     - name: update deployment secrets
       run: |
@@ -70,15 +70,14 @@ jobs:
         kubectl delete secret savior-prod-secret
         kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
 
-    # - name: update Deployment Image
-    #   run: |
-    #     kubectl set image deployment/savior-deployment savior=registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5}
+    - name: update Deployment Image
+      run: |
+        kubectl set image deployment/savior-deployment savior=registry.digitalocean.com/${{ env.CONTAINER_NAME }}/savior:${GITHUB_SHA::7}-${GITHUB_RUN_ID::5}
 
-    # - name: wait for rollout to finish
-    #   run: |
-    #     kubectl rollout status deployment/savior-deployment
+    - name: wait for rollout to finish
+      run: |
+        kubectl rollout status deployment/savior-deployment
         
-      
     - name: Migrate Database
       run: |
         export SINGLE_POD_NAME=$(kubectl get pod -l app=savior-deployment -o jsonpath="{.items[0].metadata.name}")
