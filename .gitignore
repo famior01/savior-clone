@@ -10,11 +10,12 @@ db.sqlite3
 Important.env
 *.mp4
 *.wav
-Thumbnails/*
+Thumbnails
 picture
 ssh.keys
 DO
 DO.pub
+media/*
 
 
 # Byte-compiled / optimized / DLL files

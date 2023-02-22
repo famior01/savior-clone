@@ -17,7 +17,11 @@ from hitcount.views import HitCountDetailView
 from hitcount.utils import get_hitcount_model
 from hitcount.views import HitCountMixin
 
+from decouple import config
+import subprocess
 
+ABSOLUTE_PATH = config('ABSOLUTE_PATH')
+PRODUCTION = config('USE_PRODUCTION')
 
 #TODO; Recommendation system
 #TODO; solve the bug of video skeetime
@@ -95,11 +99,35 @@ class UploadVideoView(CreateView):
   template_name = 'IWatch/upload.html'
   success_url = reverse_lazy('IWatch:IWatch-main')
 
+  def get_length(self, filename):
+        result = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
+                                "format=duration", "-of",
+                                "default=noprint_wrappers=1:nokey=1", filename],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT)
+        total_sec = int(float(result.stdout))
+        return total_sec
 
   # only author will be able to update the post
   def form_valid(self, form):
     profile = Profile.objects.get(user=self.request.user)
     form.instance.creator = profile
+    form.save()
+
+    video_url = form.instance.video.url
+    id = form.instance.id
+
+    if PRODUCTION == 'True':
+      video_url = video_url  # TODO; GET PATH FROM SPACE
+    else:
+      video_url = ABSOLUTE_PATH + str(video_url)
+    video_lenght = self.get_length(video_url)
+    if video_lenght > 600:
+      form.add_error(None, "Video length must be less than 10 minutes")
+      IWatch.objects.filter(id=id).delete()  #TODO; DELETE VIDEO FROM MEDIA AS WELL
+      return super().form_invalid(form)
+    else:
+      return super().form_valid(form)
 
     if form.instance.creator == profile:
       return super().form_valid(form)

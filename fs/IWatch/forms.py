@@ -2,7 +2,8 @@ from django import forms
 from .models import Like, IWatchComment, IWatch 
 from profiles.models import Profile
 
-class IWatchModelForm(forms.ModelForm):
+
+class IWatchModelForm(forms.ModelForm): 
     
     '''
     This form is used to create and update a post
@@ -28,13 +29,11 @@ class IWatchModelForm(forms.ModelForm):
       self.fields['thumbnail'].required= True
       self.fields['description'].required = False
 
-
       # some css class like field
       for i,field in enumerate(self.fields):
         self.fields[str(field)].widget.attrs['class'] = 'field'+str(i+1)
         # id to each field
         self.fields[str(field)].widget.attrs['id'] = 'field'+str(i+1)
-
 
 
 class CommentModelForm(forms.ModelForm):
