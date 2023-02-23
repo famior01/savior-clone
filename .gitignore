@@ -16,6 +16,7 @@ ssh.keys
 DO
 DO.pub
 media/*
+roughwork.*
 
 
 # Byte-compiled / optimized / DLL files

@@ -11,31 +11,33 @@ import os
 from .audio_ana import audio2emo
 import shutil
 from decouple import config
-from AI.get_video import get_vid_from_bucket
+from notifications.signals import notify
+from AI.space_vid_utils import get_audio_of_space_vid
 
 
 ABSOLUTE_PATH = config('ABSOLUTE_PATH')
 USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
+TESTING= config('TESTING', cast=bool)
 
 
 def get_voice_ana(ID):
   obj = ZakatPosts.objects.filter(id=ID).first()
   video1 = str(obj.video1.url)
-  if USE_PRODUCTION: # TODO; 
-    video1 = get_vid_from_bucket(video1)
+  if USE_PRODUCTION: 
+    notify.send(obj.creator.user, recipient=obj.creator.user, verb='Your video is being processed')
+    get_audio_of_space_vid(video1) #TODO; check whether it is checking mute videos or not  
   else:
     video1 = ABSOLUTE_PATH + video1
-  # video1 = video1.replace('/media/', '/media_root/')
-  print('************\n\t In Audio Analysis \n\t************')
+    print('************\n\t In Audio Analysis \n\t************')
 
-  # first I need to extract audio from video
-  os.chdir(os.path.realpath(os.path.dirname(__file__)))
-  video = me.VideoFileClip(video1)
-  audio = video.audio
-  if audio == None: # if no audio in video 
-    return "Number first video has no audio"
-  else:
-    audio.write_audiofile('sample.mp3')
+    # first I need to extract audio from video
+    os.chdir(os.path.realpath(os.path.dirname(__file__)))
+    video = me.VideoFileClip(video1)
+    audio = video.audio
+    if audio == None: # if no audio in video
+      return "Number first video has no audio"
+    else:
+      audio.write_audiofile('sample.mp3')
 
   print("********* Made MP3 file! *********")
   

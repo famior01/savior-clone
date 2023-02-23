@@ -11,6 +11,8 @@ it will create a folder name data/Frames, and will save all frames in it. and wi
 '''
 
 from zakat_posts.models import ZakatPosts
+from AI.space_vid_utils import download_space_vid
+from user.models import User
 # Imports 
 import time
 import sys
@@ -19,10 +21,6 @@ import cv2
 import subprocess
 import shutil
 from decouple import config
-from AI.get_video import get_vid_from_bucket
-
-# -==============================
-from user.models import User
 from notifications.signals import notify
 
 
@@ -66,19 +64,20 @@ class Get_frames:
         notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb='Your video is being processed')
         if self.object_det:
             video = str(zak_post.video2.url)
+            destination = ABSOLUTE_PATH + "/AI/object_detection/od_video.mp4"
         else:
             video = str(zak_post.video1.url) #TODO;  change url acc to server url ....
+            destination = ABSOLUTE_PATH + "/AI/face_emo_detection/fe_video.mp4"
         
         if USE_PRODUCTION:
             notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb=f'before finding in bucket{video}')
-            video = get_vid_from_bucket(video) #TODO;  change url acc to server url ....
-            raise Exception("\n\n**************Video is not in bucket ************\n\n")
+            video = download_space_vid(video, destination)
             notify.send(zak_post.creator.user, recipient=zak_post.creator.user, verb=' after finding in bucket')
         else:
             video = ABSOLUTE_PATH + video
 
         length_of_video = self.get_length(video)
-    
+
         """
         I want to manage the size of video, to get stuff faster!
         Here Suppose the video of 24 fps, and I need to get frames with respect to fps and length of video
@@ -111,7 +110,6 @@ class Get_frames:
         elif self.object_det and length_of_video <120:
             self.fps = 0.80
             print("*************", self.fps, "*************")
-        
         elif self.object_det and length_of_video <150:
             self.fps = 0.75
             print("*************", self.fps, "*************")
@@ -159,12 +157,14 @@ class Get_frames:
         print("\n---------Done with Extracting Frames!---------\n")
         if self.object_det:
             # if old fps = 26, for making short video, v_fps*self.fps = 22
-            
+            shutil.rmtree(destination, ignore_errors=True)
             return path, int(v_fps*self.fps) 
             print("***********", path,"\t", v_fps,"***********")
         else:
+            shutil.rmtree(destination, ignore_errors=True)
             return  path
 
 
+
 #TODO;
-# Problem, if you give vertical video(9:16), then it flip that video and then make short video, which is usless for YOLOV
+# Problem, if you give vertical video(9:16), then it flip that video and make short video, which is usless for YOLOV

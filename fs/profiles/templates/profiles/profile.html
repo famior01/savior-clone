@@ -205,8 +205,10 @@
 
   {% block posts %}
     {% if IWatch %}
-      {% include "profiles/profile_IWatch.html" %}
-    {% else %} <!--else ZakatPosts-->
+      <div style='margin-left:4.5em;'>
+        {% include "profiles/profile_IWatch.html" %}
+      </div>
+      {% else %} <!--else ZakatPosts-->
       {% include "profiles/profile_Zakat_posts.html" %}
     {% endif %}
   {% endblock posts %} 

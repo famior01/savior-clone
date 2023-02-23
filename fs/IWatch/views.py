@@ -21,10 +21,18 @@ from decouple import config
 import subprocess
 
 ABSOLUTE_PATH = config('ABSOLUTE_PATH')
-PRODUCTION = config('USE_PRODUCTION')
+PRODUCTION = config('USE_PRODUCTION', cast=bool)
+TESTING = config('TESTING', cast=bool)
+
+import boto3
+from botocore.client import Config
+import os 
+import cv2
+import tempfile
+from AI.space_vid_utils import get_space_vid_len, delete_vid_from_bucket
+
 
 #TODO; Recommendation system
-#TODO; solve the bug of video skeetime
 
 
 #  I need hitcoutn herer
@@ -90,23 +98,16 @@ class SearchIWatch(ListView):
       return redirect(request.META.get('HTTP_REFERER'))
       
 
-
-
 # i dn't need views count here
 class UploadVideoView(CreateView):
+  """
+  This class, will only accept video less than 10 minutes, it will calculate the video length by using some function from AI folder, all line are self explanatory
+  """
   model = IWatch 
   form_class =  IWatchModelForm
   template_name = 'IWatch/upload.html'
   success_url = reverse_lazy('IWatch:IWatch-main')
 
-  def get_length(self, filename):
-        result = subprocess.run(["ffprobe", "-v", "error", "-show_entries",
-                                "format=duration", "-of",
-                                "default=noprint_wrappers=1:nokey=1", filename],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT)
-        total_sec = int(float(result.stdout))
-        return total_sec
 
   # only author will be able to update the post
   def form_valid(self, form):
@@ -117,14 +118,23 @@ class UploadVideoView(CreateView):
     video_url = form.instance.video.url
     id = form.instance.id
 
-    if PRODUCTION == 'True':
-      video_url = video_url  # TODO; GET PATH FROM SPACE
+    if PRODUCTION: 
+      video_lenght = get_space_vid_len(video_url)
     else:
       video_url = ABSOLUTE_PATH + str(video_url)
-    video_lenght = self.get_length(video_url)
+      cap = cv2.VideoCapture(video_url)
+      total_frames = cap.get(cv2.CAP_PROP_FRAME_COUNT)
+      fps = cap.get(cv2.CAP_PROP_FPS)
+      video_lenght = total_frames/fps
+
     if video_lenght > 600:
       form.add_error(None, "Video length must be less than 10 minutes")
-      IWatch.objects.filter(id=id).delete()  #TODO; DELETE VIDEO FROM MEDIA AS WELL
+      if PRODUCTION:
+        delete_vid_from_bucket(video_url) # from AI folder
+        IWatch.objects.filter(id=id).delete()
+      else:
+        print("in the testing delete")
+        IWatch.objects.filter(id=id).delete() # deleting record, delete file by yourself
       return super().form_invalid(form)
     else:
       return super().form_valid(form)
