@@ -5,10 +5,10 @@ docker compose up --build
 ```
 
 ##  Rebuild Docker Image
-```
+``` 
 docker compose build
 ```
-
+ 
 ##  Run Docker Image
 ```
 docker compose up

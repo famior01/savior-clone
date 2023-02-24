@@ -3,10 +3,10 @@ name: Deploy Savior
 on:
   workflow_call:
   workflow_dispatch:
-  push:
-    branches: [ "Deployment" ]
-  pull_request: 
-    branches: [ "Deployment" ]
+  # push:
+  #   branches: [ "Deployment" ]
+  # pull_request: 
+  #   branches: [ "Deployment" ]
   
 
 jobs: 

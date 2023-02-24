@@ -17,6 +17,11 @@ DO
 DO.pub
 media/*
 roughwork.*
+build-push-notes.txt
+deployment-guide.txt
+doctl_comds.txt
+run-docker.txt
+testing_yaml.txt
 
 
 # Byte-compiled / optimized / DLL files
