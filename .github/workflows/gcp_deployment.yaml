@@ -10,12 +10,6 @@ jobs:
       IMAGE_NAME: savior
       PROJECT_ID: high-function-378716
     steps:
-    # - id: 'auth'
-    #   uses: 'google-github-actions/auth@v1'
-    #   with:
-    #     workload_identity_provider: 'projects/941419757436/locations/global/workloadIdentityPools/savior/attribute.repository/famior01/savior-clone'
-    #     service_account: 'github-action@high-function-378716.iam.gserviceaccount.com'
-    
     - uses: google-github-actions/setup-gcloud@main
       with:
         service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
@@ -28,6 +22,7 @@ jobs:
 
     - name: Configure Docker Client
       run: |-
+        gcloud auth login
         gcloud auth configure-docker --quiet
         
     - name: Push Docker Image to Container Registry (GCR)

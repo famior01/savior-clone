@@ -1,0 +1,8 @@
+# log in to gcloud
+gcloud auth login 
+
+# setup your project
+gcloud config set project <your-project-id>
+
+# create a cluster
+gcloud container clusters create <your-cluster-name> --num-nodes=3 --machine-type=n1-standard-1
