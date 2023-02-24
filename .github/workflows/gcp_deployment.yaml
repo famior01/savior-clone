@@ -13,11 +13,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - uses: google-github-actions/setup-gcloud@v1
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
       with:
-        service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-        project_id: ${{ env.PROJECT_ID }}
-        export_default_credentials: true
+        workload_identity_provider: 'projects/941419757436/locations/global/workloadIdentityPools/savior/attribute.repository/famior01/savior-clone'
+        service_account: 'savior-credentia@high-function-378716.iam.gserviceaccount.com'
 
     - name: Build Docker Image
       working-directory: ./fs

@@ -1,0 +1,6 @@
+gcloud iam service-accounts add-iam-policy-binding "github-action@high-function-378716.iam.gserviceaccount.com" \
+  --project="high-function-378716" \
+  --role="roles/iam.workloadIdentityUser" \
+  --member="principalSet://iam.googleapis.com/projects/941419757436/locations/global/workloadIdentityPools/savior/attribute.repository/famior01/savior-clone"
+
+# https://iam.googleapis.com/projects/941419757436/locations/global/workloadIdentityPools/savior/providers/github-action
