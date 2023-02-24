@@ -10,11 +10,11 @@ jobs:
       IMAGE_NAME: savior
       PROJECT_ID: high-function-378716
     steps:
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        workload_identity_provider: 'projects/941419757436/locations/global/workloadIdentityPools/savior/attribute.repository/famior01/savior-clone'
-        service_account: 'github-action@high-function-378716.iam.gserviceaccount.com'
+    # - id: 'auth'
+    #   uses: 'google-github-actions/auth@v1'
+    #   with:
+    #     workload_identity_provider: 'projects/941419757436/locations/global/workloadIdentityPools/savior/attribute.repository/famior01/savior-clone'
+    #     service_account: 'github-action@high-function-378716.iam.gserviceaccount.com'
     
     - uses: google-github-actions/setup-gcloud@main
       with:
