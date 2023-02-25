@@ -2,36 +2,36 @@ name: Build and Push Python Image to Google Cloud Platform
 on:
   push:
     branches: [ Deployment ]
+
 jobs:
-  build-push-gcr:
+  job_id: 
     name: Build and Push to GCP
     runs-on: ubuntu-latest
     env:
       IMAGE_NAME: savior
       PROJECT_ID: high-function-378716
+
+    permissions:
+      contents: 'read'
+      id-token: 'write'
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+    # actions/checkout MUST come before auth
+    - uses: 'actions/checkout@v3'
 
     - id: 'auth'
-      name: Authenticate to Google Cloud
-      uses: google-github-actions/auth@v1
-      with: 
-        credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
-        token_format: 'access_token'
-      
-    - name: Set up Cloud SDK
-      uses: google-github-actions/setup-gcloud@v1
-    
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        workload_identity_provider: 'projects/941419757436/locations/global/workloadIdentityPools/savior/attribute.repository/famior01/savior-clone'
+        service_account: 'github-action@high-function-378716.iam.gserviceaccount.com'
+
     - name: Build Docker Image
       working-directory: ./fs
       run: docker build -t $IMAGE_NAME:latest .
 
     - name: Configure Docker Client
       run: |-
-        gcloud auth login --no-launch-browser
         gcloud auth configure-docker --quiet
-          
         
     - name: Push Docker Image to Container Registry (GCR)
       env:
