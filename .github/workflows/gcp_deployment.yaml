@@ -22,8 +22,7 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'projects/941419757436/locations/global/workloadIdentityPools/savior/providers/famior01/savior-clone'
-        service_account: 'github-action@high-function-378716.iam.gserviceaccount.com'
+        credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
 
     - name: Build Docker Image
       working-directory: ./fs
@@ -31,7 +30,7 @@ jobs:
 
     - name: Configure Docker Client
       run: |-
-        gcloud auth configure-docker savior --quiet
+        gcloud auth configure-docker --quiet
         
     - name: Push Docker Image to Container Registry (GCR)
       env:
