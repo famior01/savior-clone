@@ -6,10 +6,9 @@ gcloud iam service-accounts add-iam-policy-binding "github-action@high-function-
 # https://iam.googleapis.com/projects/941419757436/locations/global/workloadIdentityPools/savior/providers/github-action
 
 
-
-- id: 'auth'
+ - id: 'auth'
+      name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
         workload_identity_provider: 'projects/941419757436/locations/global/workloadIdentityPools/savior/attribute.repository/famior01/savior-clone'
         service_account: 'github-action@high-function-378716.iam.gserviceaccount.com'
-    

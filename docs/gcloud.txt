@@ -4,5 +4,7 @@ gcloud auth login
 # setup your project
 gcloud config set project <your-project-id>
 
-# create a cluster
-gcloud container clusters create <your-cluster-name> --num-nodes=3 --machine-type=n1-standard-1
+# to push docker image to gcr
+1) create service account and give it roll of storage admin, and create keys for it
+2) push it through yaml file i have created
+
