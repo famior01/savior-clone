@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: savior-ingress
+  namespace: default
+spec:
+  rules:
+  - host: savior.website
+    http:
+      paths:
+      - path: /savior
+        pathType: Prefix
+        backend:
+          service:
+            name: savior-deployment
+            port:
+              name: http
+      - path: /savior
+        pathType: Prefix
+        backend:
+          service:
+            name: savior-deployment
+            port:
+              name: https

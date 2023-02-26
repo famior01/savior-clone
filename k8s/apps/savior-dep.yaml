@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: savior-deployment
+  namespace: default
+  labels:
+    app: savior-deployment
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+  selector:
+    matchLabels:
+      app: savior-deployment
+
+  template:
+    metadata:
+      labels:
+        app: savior-deployment
+    spec:
+      containers:
+      - name: savior-deployment
+        image: asia.gcr.io/high-function-378716/savior:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: savior-prod-secret
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "500M"
+          limits:
+            cpu: "500m"
+            memory: "1000M"
+        env:
+          - name: PORT
+            value: "8000"
+        ports:
+        - containerPort: 8000
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: savior-deployment
+  namespace: default
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 8000
+  selector:
+    run: savior-deployment
+  type: NodePort
+

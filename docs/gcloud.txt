@@ -7,4 +7,29 @@ gcloud config set project <your-project-id>
 # to push docker image to gcr
 1) create service account and give it roll of storage admin, and create keys for it
 2) push it through yaml file i have created
+3) https://www.youtube.com/watch?v=6dLHcnlPi_U&t=383s&ab_channel=AntonPutra  (this is the video i followed)
 
+
+# to deploy to kubernetes
+1) create cluster
+2) steps:
+  * gcloud auth login
+  * gcloud components install gke-gcloud-auth-plugin
+  * gcloud container clusters get-credentials savior-cluster --region asia-south1 --project high-function-378716  ==> connect with gcloud kubernetes
+
+# create deployment and ingress file https://devops4solutions.com/setup-kubernetes-ingress-on-gke/
+
+# Create simple cluster 
+https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
+https://cloud.google.com/kubernetes-engine/docs/how-to/image-streaming#gcloud (image streaming)
+1) gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1 --zone=us-central1-a --project=high-function-378716 --no-enable-ip-alias --location-policy=us-central1 --enable-image-streaming --enable-stackdriver-kubernetes --enable-network-policy --enable-master-authorized-networks
+
+1b) gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1 --zone=asia-south1-a --project=high-function-378716 --enable-autoscaling --min-nodes=1 --max-nodes=3 --enable-autorepair --enable-autoupgrade --enable-ip-alias --enable-stackdriver-kubernetes --enable-network-policy --enable-master-authorized-networks --master-authorized-networks=
+2) gcloud container clusters get-credentials savior-cluster --zone asia-south1-a --project high-function-378716
+3) kubectl create deployment savior-deployment --image=gcr.io/high-function-378716/savior:latest
+4) kubectl expose deployment savior-deployment --type=LoadBalancer --port 80 --target-port 8080
+5) kubectl get service
+6) kubectl get pods
+7) kubectl get deployments
+8) kubectl get nodes
+9) kubectl get all
