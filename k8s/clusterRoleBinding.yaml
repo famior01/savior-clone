@@ -1,0 +1,12 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: gcr-push-keys-clusterrolebinding
+subjects:
+- kind: User
+  name: gcr-push-keys@high-function-378716.iam.gserviceaccount.com
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: container-cluster-role
+  apiGroup: rbac.authorization.k8s.io
