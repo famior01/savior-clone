@@ -1,4 +1,3 @@
-django-dotenv
 python-decouple
 Django==4.1.6
 Celery
@@ -40,3 +39,4 @@ glob2
 seaborn
 scipy
 transformers[torch]
+google-cloud-storag

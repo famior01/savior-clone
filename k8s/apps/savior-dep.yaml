@@ -23,11 +23,8 @@ spec:
     spec:
       containers:
       - name: savior-deployment
-        image: asia.gcr.io/high-function-378716/savior:latest
+        image: us-central1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
         imagePullPolicy: IfNotPresent
-        envFrom:
-          - secretRef:
-              name: savior-prod-secret
         resources:
           requests:
             cpu: "100m"
@@ -50,16 +47,16 @@ metadata:
   name: savior-deployment
   namespace: default
 spec:
+  type: LoadBalancer
   ports:
     - name: http
       protocol: TCP
       port: 80
       targetPort: 8000
-    - name: https
-      protocol: TCP
-      port: 443
-      targetPort: 8000
+    # - name: https
+    #   protocol: TCP
+    #   port: 443
+    #   targetPort: 8000
   selector:
     run: savior-deployment
-  type: NodePort
 

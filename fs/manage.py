@@ -4,7 +4,7 @@ import os
 import sys
 from decouple import config
 
-
+ 
 def main():
     """Run administrative tasks."""
     production = config('USE_PRODUCTION', cast=bool)

@@ -62,52 +62,52 @@ jobs:
 
 # =============================================================================================
 
-    # - name: k8s cluster kubeconfig file short-live creds
-    #   run: | 
-    #     doctl kubernetes cluster kubeconfig save  savior-cluster
+    - name: k8s cluster kubeconfig file short-live creds
+      run: | 
+        doctl kubernetes cluster kubeconfig save  savior-cluster
 
-    # - name: update deployment secrets
-    #   run: |
-    #     cat << EOF >> fs/.env
-    #     ABSOLUTE_PATH=app
-    #     USE_PRODUCTION=True
-    #     TESTING=False
-    #     DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
-    #     AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     DJANGO_ALLOWED_HOSTS=${{ secrets.ALLOWED_HOST }}
-    #     DOMAIN_NAME=${{ secrets.DOMAIN_NAME }}
-    #     DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
-    #     DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
-    #     DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
-    #     DJANGO_SUPERUSER_FULLNAME=${{ secrets.DJANGO_SUPERUSER_FULLNAME }}
-    #     DJANGO_SUPERUSER_RELIGION=${{ secrets.DJANGO_SUPERUSER_RELIGION }}
-    #     DJANGO_SUPERUSER_GENDER=Male
-    #     DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
-    #     POSTGRES_DB=${{ secrets.POSTGRES_DB }}
-    #     POSTGRES_USER=${{ secrets.POSTGRES_USER }}
-    #     POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-    #     POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} 
-    #     POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
-    #     EMAIL_USER=${{ secrets.EMAIL_USER }} 
-    #     EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
-    #     EOF
-    #     kubectl delete secret savior-prod-secret
-    #     kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
+    - name: update deployment secrets
+      run: |
+        cat << EOF >> fs/.env
+        ABSOLUTE_PATH=app
+        USE_PRODUCTION=True
+        TESTING=False
+        DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
+        AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        DJANGO_ALLOWED_HOSTS=${{ secrets.ALLOWED_HOST }}
+        DOMAIN_NAME=${{ secrets.DOMAIN_NAME }}
+        DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+        DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+        DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+        DJANGO_SUPERUSER_FULLNAME=${{ secrets.DJANGO_SUPERUSER_FULLNAME }}
+        DJANGO_SUPERUSER_RELIGION=${{ secrets.DJANGO_SUPERUSER_RELIGION }}
+        DJANGO_SUPERUSER_GENDER=Male
+        DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
+        POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+        POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+        POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} 
+        POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
+        EMAIL_USER=${{ secrets.EMAIL_USER }} 
+        EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+        EOF
+        kubectl delete secret savior-prod-secret
+        kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
 
-    # - name: update Deployment Image
-    #   run: |
-    #     kubectl set image deployment/$DEPLOYMENT_NAME savior=asia.gcr.io/high-function-378716/savior:latest
+    - name: update Deployment Image
+      run: |
+        kubectl set image deployment/$DEPLOYMENT_NAME savior=us-central1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
-    # - name: wait for rollout to finish
-    #   run: |
-    #     kubectl rollout status deployment/$DEPLOYMENT_NAME
+    - name: wait for rollout to finish
+      run: |
+        kubectl rollout status deployment/$DEPLOYMENT_NAME
 
     # - name: Migrate Database
     #   run: |
     #     export SINGLE_POD_NAME=$(kubectl get pod -l app=$DEPLOYMENT_NAME -o jsonpath="{.items[0].metadata.name}")
     #     kubectl exec -i $SINGLE_POD_NAME -- bash /app/migrate.sh 
     #     kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh  
-    #     kubectl exec -i $SINGLE_POD_NAME -- bash /app/superuser.sh
+    #     kubectl exec -i $SINGLE_POD_NAME -- bash /app/su1peruser.sh
 
 # kubectl apply -f k8s/apps/replicationcontrollers.yaml
