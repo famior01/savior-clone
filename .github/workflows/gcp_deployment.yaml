@@ -84,9 +84,6 @@ jobs:
     #     kubectl delete secret savior-prod-secret
     #     kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
     
-    - name: check kubectl 
-      run: |
-        kubectl version --client
     # - name: connect with GKE cluster 
     #   run: |-
     #     gcloud components install gke-gcloud-auth-plugin
@@ -97,14 +94,14 @@ jobs:
     #   run: |
     #     kubectl create clusterrolebinding gcr-push-keys-binding --clusterrole=container.deployments.get --user=gcr-push-keys@high-function-378716.iam.gserviceaccount.com
 
-    # # kubectl describe deployment/savior-deployment
-    # - name: update Deployment Image
-    #   run: |
-    #     kubectl set image deployment/savior-deployment savior-1=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
+    # kubectl describe deployment/savior-deployment
+    - name: update Deployment Image
+      run: |
+        kubectl set image deployment/savior-deployment savior-1=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
-    # - name: wait for rollout to finish
-    #   run: |
-    #     kubectl rollout status deployment/$DEPLOYMENT_NAME
+    - name: wait for rollout to finish
+      run: |
+        kubectl rollout status deployment/$DEPLOYMENT_NAME
 
     # - name: Migrate Database
     #   run: |
