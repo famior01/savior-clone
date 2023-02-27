@@ -83,8 +83,7 @@ jobs:
     #     kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
     
     - name: connect with GKE cluster 
-      run: |-
-        sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
+      run: |
         gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
 
     # kubectl describe deployment/savior-deployment
