@@ -90,10 +90,14 @@ jobs:
         gcloud components install kubectl
         gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
 
+    - name: Grant permission to kubectl
+      run: |
+        kubectl create clusterrolebinding gcr-push-keys-binding --clusterrole=container.deployments.get --user=gcr-push-keys@high-function-378716.iam.gserviceaccount.com
+
     # kubectl describe deployment/savior-deployment
-    # - name: update Deployment Image
-    #   run: |
-    #     kubectl set image deployment/savior-deployment savior-1=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
+    - name: update Deployment Image
+      run: |
+        kubectl set image deployment/savior-deployment savior-1=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
     - name: wait for rollout to finish
       run: |
