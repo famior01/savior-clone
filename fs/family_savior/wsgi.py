@@ -18,8 +18,8 @@ from django.core.wsgi import get_wsgi_application
 # ENV_FILE_PATH = BASE_DIR / '.env'
 # dotenv.read_dotenv(str(ENV_FILE_PATH))
 
-production = config('USE_PRODUCTION', default=True, cast=bool)
-testing = config('TESTING', default=False, cast=bool)
+production = os.environ.get('USE_PRODUCTION')
+testing = os.environ.get('TESTING')
 
 if production==True:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')

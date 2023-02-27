@@ -3,21 +3,21 @@ from decouple import config
 import ssl
 import os 
 
-SECRET_KEY=config('DJANGO_SECRET_KEY')
+SECRET_KEY=os.environ.get('DJANGO_SECRET_KEY')
 DEBUG=False
-ENV_ALLOWED_HOST=config('DJANGO_ALLOWED_HOSTS')
-DOMAIN_NAME=config('DOMAIN_NAME', cast=str)
+ENV_ALLOWED_HOST=os.environ.get('DJANGO_ALLOWED_HOSTS')
+DOMAIN_NAME=os.environ.get('DOMAIN_NAME')
 ALLOWED_HOSTS=[ ENV_ALLOWED_HOST, DOMAIN_NAME, 'savior.website']
 
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
-DEFAULT_FROM_EMAIL=config('EMAIL_USER', cast=str)
+DEFAULT_FROM_EMAIL=os.environ.get('EMAIL_USER')
 EMAIL_HOST ='smtp.gmail.com' 
 EMAIL_USE_SSL =True
 EMAIL_PORT =465
-EMAIL_HOST_USER =config('EMAIL_USER', cast=str) 
-EMAIL_HOST_PASSWORD =config('EMAIL_PASSWORD', cast=str)
+EMAIL_HOST_USER =os.environ.get('EMAIL_USER') 
+EMAIL_HOST_PASSWORD =os.environ.get('EMAIL_PASSWORD')
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 
 
@@ -61,8 +61,9 @@ if DB_IS_AVAILABLE:
 # ===========================================================
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
-REDIS_HOST =config('DO_REDIS_URL', cast=str, default='redis://localhost:6379')
+REDIS_HOST =os.environ.get('DO_REDIS_URL')
 CELERY_BROKER_URL =REDIS_HOST 
+CELERY_BROKER_URL = 'redis://localhost:6379'
 BROKER_USE_SSL = {'ssl_cert_reqs': ssl.CERT_REQUIRED,}
 # CELERY_RESULT_BACKEND = REDIS_HOST
 # BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 7200} # 2 hours

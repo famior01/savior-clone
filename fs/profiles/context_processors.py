@@ -1,7 +1,7 @@
 from .models import Profile
 from decouple import config
 
-Production=config('USE_PRODUCTION', default=False, cast=bool)
+Production=os.environ.get('USE_PRODUCTION')
 
 def profile_picture(request):
   '''
