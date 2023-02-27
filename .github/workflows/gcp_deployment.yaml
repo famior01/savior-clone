@@ -87,7 +87,6 @@ jobs:
     - name: connect with GKE cluster 
       run: |-
         gcloud components install gke-gcloud-auth-plugin
-        gcloud components install kubectl
         gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
 
     - name: Grant permission to kubectl
