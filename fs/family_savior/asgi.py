@@ -22,7 +22,7 @@ from django.core.asgi import get_asgi_application
 
 production = config('USE_PRODUCTION', default=True, cast=bool)
 
-testing = config('TESTING', cast=bool)
+testing = config('TESTING', default=False, cast=bool)
 
 if production==True:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
