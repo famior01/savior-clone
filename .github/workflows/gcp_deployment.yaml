@@ -10,10 +10,9 @@ jobs:
     env:
       IMAGE_NAME: savior
       PROJECT_ID: high-function-378716
-      # PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-      GKE_CLUSTER: savior-cluster    # Add your cluster name here.
-      GKE_ZONE: asia-south1   # Add your cluster zone here.
-      DEPLOYMENT_NAME: savior-deployment # Add your deployment name here.
+      GKE_CLUSTER: savior-cluster    
+      GKE_ZONE: asia-south1   
+      DEPLOYMENT_NAME: savior-deployment 
       IMAGE: savior
 
     permissions:
@@ -30,14 +29,15 @@ jobs:
 
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
-    # - name: Build Docker Image
-    #   working-directory: ./fs
-    #   run: docker build -t $IMAGE_NAME:latest .
+
+    - name: Build Docker Image
+      working-directory: ./fs
+      run: docker build -t $IMAGE_NAME:latest .
     
-    # - name: Automatic Tagging of Releases
-    #   id: increment-git-tag
-    #   run: |
-    #     bash ./scripts/git_update.sh -v minor
+    - name: Automatic Tagging of Releases
+      id: increment-git-tag
+      run: |
+        bash ./scripts/git_update.sh -v minor
 
     - name: Configure Docker Client
       run: |-
@@ -45,55 +45,51 @@ jobs:
         gcloud auth configure-docker asia-southeast1-docker.pkg.dev --quiet
         
 
-    # - name: Push Docker Image to Artifact Registry
-    #   env:
-    #     GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-    #   run: |-
-    #     docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-    #     docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
-    #     docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-    #     docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+    - name: Push Docker Image to Artifact Registry
+      env:
+        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+      run: |-
+        docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+        docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+        docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+        docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
 
-
-    # - name: update deployment secrets
-    #   run: |
-    #     cat << EOF >> fs/.env
-    #     ABSOLUTE_PATH=app
-    #     USE_PRODUCTION=True
-    #     TESTING=False
-    #     DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
-    #     AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     DJANGO_ALLOWED_HOSTS=${{ secrets.ALLOWED_HOST }}
-    #     DOMAIN_NAME=${{ secrets.DOMAIN_NAME }}
-    #     DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
-    #     DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
-    #     DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
-    #     DJANGO_SUPERUSER_FULLNAME=${{ secrets.DJANGO_SUPERUSER_FULLNAME }}
-    #     DJANGO_SUPERUSER_RELIGION=${{ secrets.DJANGO_SUPERUSER_RELIGION }}
-    #     DJANGO_SUPERUSER_GENDER=Male
-    #     DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
-    #     POSTGRES_DB=${{ secrets.POSTGRES_DB }}
-    #     POSTGRES_USER=${{ secrets.POSTGRES_USER }}
-    #     POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-    #     POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} 
-    #     POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
-    #     EMAIL_USER=${{ secrets.EMAIL_USER }} 
-    #     EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
-    #     EOF
-    #     kubectl delete secret savior-prod-secret
-    #     kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
-    
     - name: connect with GKE cluster 
       run: |-
         gcloud components install gke-gcloud-auth-plugin
         gcloud components install kubectl
         gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
 
-    # - name: Grant permission to kubectl
-    #   run: |
-    #     kubectl create clusterrolebinding gcr-push-keys-binding --clusterrole=container.deployments.get --user=gcr-push-keys@high-function-378716.iam.gserviceaccount.com
-
+    - name: update deployment secrets
+      run: |
+        cat << EOF >> fs/.env
+        ABSOLUTE_PATH=app
+        USE_PRODUCTION=True
+        TESTING=False
+        DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
+        AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        DJANGO_ALLOWED_HOSTS=${{ secrets.ALLOWED_HOST }}
+        DOMAIN_NAME=${{ secrets.DOMAIN_NAME }}
+        DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+        DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+        DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+        DJANGO_SUPERUSER_FULLNAME=${{ secrets.DJANGO_SUPERUSER_FULLNAME }}
+        DJANGO_SUPERUSER_RELIGION=${{ secrets.DJANGO_SUPERUSER_RELIGION }}
+        DJANGO_SUPERUSER_GENDER=Male
+        DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
+        POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+        POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+        POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} 
+        POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
+        EMAIL_USER=${{ secrets.EMAIL_USER }} 
+        EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+        EOF
+        kubectl delete secret savior-prod-secret
+        kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
+    
+    # # must run some yaml scripts to allow some permissions
     # # kubectl describe deployment/savior-deployment
     - name: update Deployment Image
       run: |
@@ -103,12 +99,12 @@ jobs:
       run: |
         kubectl rollout status deployment/$DEPLOYMENT_NAME --watch=true --namespace=default 
 
-    # - name: Migrate Database
-    #   run: |
-    #     export SINGLE_POD_NAME=$(kubectl get pod -l app=$DEPLOYMENT_NAME -o jsonpath="{.items[0].metadata.name}")
-    #     kubectl exec -i $SINGLE_POD_NAME -- bash /app/migrate.sh 
-    #     kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh  
-    #     kubectl exec -i $SINGLE_POD_NAME -- bash /app/su1peruser.sh
+    - name: Migrate Database
+      run: |
+        export SINGLE_POD_NAME=$(kubectl get pod -l app=$DEPLOYMENT_NAME -o jsonpath="{.items[0].metadata.name}")
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/migrate.sh 
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh  
+        kubectl exec -i $SINGLE_POD_NAME -- bash /app/su1peruser.sh
 
 # kubectl apply -f k8s/apps/replicationcontrollers.yaml
 
