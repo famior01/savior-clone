@@ -94,10 +94,15 @@ jobs:
     #     EOF
     #     kubectl delete secret savior-prod-secret
     #     kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
+    
+    - name: connect with GKE cluster
+      run: |
+        gcloud container clusters get-credentials savior-cluster --zone us-central1-a --project high-function-378716
 
+    # kubectl describe deployment/savior-deployment
     - name: update Deployment Image
       run: |
-        kubectl set image deployment/$DEPLOYMENT_NAME savior=us-central1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
+        kubectl set image deployment/savior-deployment savior-deployment=us-central1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
     - name: wait for rollout to finish
       run: |
