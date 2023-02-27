@@ -39,4 +39,4 @@ glob2
 seaborn
 scipy
 transformers[torch]
-google-cloud-storag
+google-cloud-storage==2.7.0
