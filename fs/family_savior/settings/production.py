@@ -33,7 +33,7 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 
 DB_USERNAME="abuubaida01"
 DB_PASSWORD="DA$32@#@:)32>03fak*nKIh&f24@01"
-DB_HOST= "high-function-378716:asia-southeast1:savior-psql-db"
+DB_HOST= "/cloudsql/high-function-378716:asia-southeast1:savior-psql-db"
 DB_PORT= "5432"
 DB_DATABASE=  "savior-db"
 
