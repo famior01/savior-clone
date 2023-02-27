@@ -93,7 +93,7 @@ jobs:
     # # kubectl describe deployment/savior-deployment
     - name: update Deployment Image
       run: |
-        kubectl set image deployment/savior-deployment savior-1=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
+        kubectl set image deployment/savior-deployment savior-deployment=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
     - name: wait for rollout to finish
       run: |
