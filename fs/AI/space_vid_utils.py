@@ -6,7 +6,7 @@ import subprocess
 import shutil
 import tempfile
 from decouple import config
-ABSOLUTE_PATH = config('ABSOLUTE_PATH')
+ABSOLUTE_PATH = os.environ.get('ABSOLUTE_PATH')
 
 
 def get_space_vid_len(path):
