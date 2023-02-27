@@ -28,9 +28,9 @@ jobs:
       with:
         credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
 
-    - name: Build Docker Image
-      working-directory: ./fs
-      run: docker build -t $IMAGE_NAME:latest .
+    # - name: Build Docker Image
+    #   working-directory: ./fs
+    #   run: docker build -t $IMAGE_NAME:latest .
     
     - name: Automatic Tagging of Releases
       id: increment-git-tag
@@ -51,14 +51,14 @@ jobs:
     #     docker push asia.gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
     #     docker push asia.gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 
-    - name: Push Docker Image to Artifact Registry
-      env:
-        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-      run: |-
-        docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-        docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
-        docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-        docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+    # - name: Push Docker Image to Artifact Registry
+    #   env:
+    #     GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+    #   run: |-
+    #     docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+    #     docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+    #     docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+    #     docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
 
 # =============================================================================================
 
@@ -97,11 +97,14 @@ jobs:
     
     - name: connect with GKE cluster 
       run: |
+        gcloud components install kubectl
+        gcloud components install gke-gcloud-auth-plugin
         gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
 
     # kubectl describe deployment/savior-deployment
     - name: update Deployment Image
       run: |
+
         kubectl set image deployment/savior-deployment savior-1=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
     - name: wait for rollout to finish
