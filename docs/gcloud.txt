@@ -22,7 +22,15 @@ gcloud config set project <your-project-id>
 # Create simple cluster 
 https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
 https://cloud.google.com/kubernetes-engine/docs/how-to/image-streaming#gcloud (image streaming)
-1) gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-southeast1-b --enable-image-streaming --region=asia-southeast1 
+1) gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-southeast1-b --enable-image-streaming 
+            no quota is avaliable               --region=asia-southeast1 
 
 2) gcloud container clusters get-credentials savior-cluster --zone asia-south1-a --project high-function-378716
 
+
+
+
+##################################################3
+################# Commands #######################
+##################################################3
+kubectl auth can-i create clusterrolebindings == > check if you have permission to create clusterrolebindings
