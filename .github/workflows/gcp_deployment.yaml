@@ -28,6 +28,8 @@ jobs:
       with:
         credentials_json: '${{ secrets.SERVICE_ACCOUNT_KEY }}'
 
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v1'
     # - name: Build Docker Image
     #   working-directory: ./fs
     #   run: docker build -t $IMAGE_NAME:latest .
@@ -83,7 +85,7 @@ jobs:
     #     kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
     
     - name: connect with GKE cluster 
-      run: |
+      run: |-
         gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
 
     # kubectl describe deployment/savior-deployment
