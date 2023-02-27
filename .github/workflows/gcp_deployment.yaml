@@ -90,9 +90,9 @@ jobs:
         gcloud components install kubectl
         gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
 
-    - name: Grant permission to kubectl
-      run: |
-        kubectl create clusterrolebinding gcr-push-keys-binding --clusterrole=container.deployments.get --user=gcr-push-keys@high-function-378716.iam.gserviceaccount.com
+    # - name: Grant permission to kubectl
+    #   run: |
+    #     kubectl create clusterrolebinding gcr-push-keys-binding --clusterrole=container.deployments.get --user=gcr-push-keys@high-function-378716.iam.gserviceaccount.com
 
     # # kubectl describe deployment/savior-deployment
     - name: update Deployment Image
