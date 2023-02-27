@@ -22,13 +22,7 @@ gcloud config set project <your-project-id>
 # Create simple cluster 
 https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
 https://cloud.google.com/kubernetes-engine/docs/how-to/image-streaming#gcloud (image streaming)
-1) gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1 --zone=us-central1-a --project=high-function-378716 --enable-image-streaming
+1) gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-southeast1-b --enable-image-streaming --region=asia-southeast1 
 
 2) gcloud container clusters get-credentials savior-cluster --zone asia-south1-a --project high-function-378716
-3) kubectl create deployment savior-deployment --image=gcr.io/high-function-378716/savior:latest
-4) kubectl expose deployment savior-deployment --type=LoadBalancer --port 80 --target-port 8080
-5) kubectl get service
-6) kubectl get pods
-7) kubectl get deployments
-8) kubectl get nodes
-9) kubectl get all
+

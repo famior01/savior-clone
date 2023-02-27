@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: savior-deployment
-        image: us-central1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
+        image: asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
         imagePullPolicy: IfNotPresent
         resources:
           requests:

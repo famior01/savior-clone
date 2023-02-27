@@ -40,7 +40,7 @@ jobs:
     - name: Configure Docker Client
       run: |-
         gcloud auth configure-docker --quiet
-        gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+        gcloud auth configure-docker asia-southeast1-docker.pkg.dev --quiet
         
     # - name: Push Docker Image to Container Registry (GCR)
     #   env:
@@ -55,10 +55,10 @@ jobs:
       env:
         GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
       run: |-
-        docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-        docker tag $IMAGE_NAME:latest us-central1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
-        docker push us-central1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-        docker push us-central1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+        docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+        docker tag $IMAGE_NAME:latest asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+        docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+        docker push asia-southeast1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
 
 # =============================================================================================
 
@@ -66,43 +66,43 @@ jobs:
     #   run: | 
     #     doctl kubernetes cluster kubeconfig save  savior-cluster
 
-    # - name: update deployment secrets
-    #   run: |
-    #     cat << EOF >> fs/.env
-    #     ABSOLUTE_PATH=app
-    #     USE_PRODUCTION=True
-    #     TESTING=False
-    #     DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
-    #     AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-    #     AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     DJANGO_ALLOWED_HOSTS=${{ secrets.ALLOWED_HOST }}
-    #     DOMAIN_NAME=${{ secrets.DOMAIN_NAME }}
-    #     DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
-    #     DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
-    #     DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
-    #     DJANGO_SUPERUSER_FULLNAME=${{ secrets.DJANGO_SUPERUSER_FULLNAME }}
-    #     DJANGO_SUPERUSER_RELIGION=${{ secrets.DJANGO_SUPERUSER_RELIGION }}
-    #     DJANGO_SUPERUSER_GENDER=Male
-    #     DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
-    #     POSTGRES_DB=${{ secrets.POSTGRES_DB }}
-    #     POSTGRES_USER=${{ secrets.POSTGRES_USER }}
-    #     POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
-    #     POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} 
-    #     POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
-    #     EMAIL_USER=${{ secrets.EMAIL_USER }} 
-    #     EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
-    #     EOF
-    #     kubectl delete secret savior-prod-secret
-    #     kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
-    
-    - name: connect with GKE cluster
+    - name: update deployment secrets
       run: |
-        gcloud container clusters get-credentials savior-cluster --zone us-central1-a --project high-function-378716
+        cat << EOF >> fs/.env
+        ABSOLUTE_PATH=app
+        USE_PRODUCTION=True
+        TESTING=False
+        DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
+        AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        DJANGO_ALLOWED_HOSTS=${{ secrets.ALLOWED_HOST }}
+        DOMAIN_NAME=${{ secrets.DOMAIN_NAME }}
+        DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+        DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+        DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+        DJANGO_SUPERUSER_FULLNAME=${{ secrets.DJANGO_SUPERUSER_FULLNAME }}
+        DJANGO_SUPERUSER_RELIGION=${{ secrets.DJANGO_SUPERUSER_RELIGION }}
+        DJANGO_SUPERUSER_GENDER=Male
+        DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
+        POSTGRES_DB=${{ secrets.POSTGRES_DB }}
+        POSTGRES_USER=${{ secrets.POSTGRES_USER }}
+        POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
+        POSTGRES_HOST=${{ secrets.POSTGRES_HOST }} 
+        POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}
+        EMAIL_USER=${{ secrets.EMAIL_USER }} 
+        EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+        EOF
+        kubectl delete secret savior-prod-secret
+        kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
+    
+    - name: connect with GKE cluster 
+      run: |
+        gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
 
     # kubectl describe deployment/savior-deployment
     - name: update Deployment Image
       run: |
-        kubectl set image deployment/savior-deployment savior-deployment=us-central1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
+        kubectl set image deployment/savior-deployment savior-deployment=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
     - name: wait for rollout to finish
       run: |
