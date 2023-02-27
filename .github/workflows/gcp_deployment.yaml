@@ -89,9 +89,8 @@ jobs:
         gcloud components install gke-gcloud-auth-plugin
         gcloud components install kubectl
         gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
-        kubectl set image deployment/savior-deployment savior-1=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
-    # # kubectl describe deployment/savior-deployment
+    # kubectl describe deployment/savior-deployment
     # - name: update Deployment Image
     #   run: |
     #     kubectl set image deployment/savior-deployment savior-1=asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
