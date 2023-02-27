@@ -62,9 +62,9 @@ jobs:
 
 # =============================================================================================
 
-    - name: k8s cluster kubeconfig file short-live creds
-      run: | 
-        doctl kubernetes cluster kubeconfig save  savior-cluster
+    # - name: k8s cluster kubeconfig file short-live creds
+    #   run: | 
+    #     doctl kubernetes cluster kubeconfig save  savior-cluster
 
     - name: update deployment secrets
       run: |
