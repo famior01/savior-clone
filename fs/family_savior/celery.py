@@ -9,7 +9,7 @@ from decouple import config
 from celery import Celery
 from django.conf import settings
 
-production = config('USE_PRODUCTION', cast=bool)
+production = config('USE_PRODUCTION', default=True, cast=bool)
 testing = config('TESTING', cast=bool)
 
 if production==True:

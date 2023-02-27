@@ -18,7 +18,7 @@ from django.core.wsgi import get_wsgi_application
 # ENV_FILE_PATH = BASE_DIR / '.env'
 # dotenv.read_dotenv(str(ENV_FILE_PATH))
 
-production = config('USE_PRODUCTION', cast=bool)
+production = config('USE_PRODUCTION', default=True, cast=bool)
 testing = config('TESTING', cast=bool)
 
 if production==True:
