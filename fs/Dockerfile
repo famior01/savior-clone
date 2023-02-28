@@ -14,7 +14,6 @@ RUN python -m venv /opt/venv && \
     apt-get install -y --no-install-recommends \
         dialog \
         apt-utils \
-        libnvinfer-dev \
         libnvinfer-plugin-dev \
         libnvparsers-dev \
         libnvonnxparsers-dev && \
