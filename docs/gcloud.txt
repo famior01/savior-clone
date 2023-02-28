@@ -37,7 +37,7 @@
 ############################ WAY TO Start APP ############################
 ###########################################################################
   ####> create cluster 
-  gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-southeast1-b --enable-image-streaming 
+  gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-east1-a --enable-image-streaming 
 
   ####> connect with gcloud kubernetes
   gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
