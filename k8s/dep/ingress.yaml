@@ -7,22 +7,26 @@ metadata:
     kubernetes.io/ingress.global-static-ip-name: savior-ip
     networking.gke.io/managed-certificates: savior-cert
     kubernetes.io/ingress.class: "gce"
+
 spec:
-  rules:
-  - host: savior.website
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: savior-deployment
-            port:
-              name: http
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: savior-deployment
-            port:
-              name: https
+  defaultBackend:
+    service:
+      name: savior-deployment
+      port:
+        number: 80
+# spec:
+#   tls:
+#   - hosts: 
+#     - savior.website
+#     secretName: savior-cert
+#   rules:
+#   - host: savior.website
+#     http:
+#       paths:
+#       - path: /
+#         pathType: Prefix
+#         backend:
+#           service:
+#             name: savior-deployment
+#             port:
+#               number: 80

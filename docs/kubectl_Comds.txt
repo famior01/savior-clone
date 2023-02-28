@@ -38,6 +38,11 @@ kubectl get pods
 kubectl get secrets
 kubectl describe replicationcontrollers/celery-configuration
 kubectl apply -f .\k8s\apps\replicationcontrollers.yaml
+kubectl get ns
+kubectl get pods -n kube-system
+kubectl get pods -n kube-system -o wide
+kubectl get pods -n kube-system -o wide --show-labels
+kubectl get pods -n kubernetes-dashboard -o wide --show-labels
 
 doctl compute load-balancer list            ++> first get id of load balancer, and apply to image
 kubectl apply -f .\k8s\apps\savior-prod.yaml 

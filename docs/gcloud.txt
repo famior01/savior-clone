@@ -49,7 +49,7 @@
   kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/cloud/deploy.yaml
 
   ####> Create Ingress 
-        kubectl apply -f .\k8s\ingress.yaml
+        kubectl apply -f .\k8s\dep\ingress.yaml
 
   ####> Create Reserve IP
         gcloud compute addresses create savior-ip --global
