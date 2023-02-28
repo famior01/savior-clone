@@ -102,11 +102,11 @@ jobs:
       run: |
         export SINGLE_POD_NAME=$(kubectl get pod -l app=$DEPLOYMENT_NAME -o jsonpath="{.items[0].metadata.name}")
         kubectl exec -i $SINGLE_POD_NAME -- bash /app/migrate.sh 
-        kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh    
-        kubectl exec -i $SINGLE_POD_NAME -- bash /app/superuser.sh
+        
 # kubectl apply -f k8s/dep/celery.yaml
 
-
+# kubectl exec -i $SINGLE_POD_NAME -- bash /app/collectstatic.sh    
+# kubectl exec -i $SINGLE_POD_NAME -- bash /app/superuser.sh
 
 
 

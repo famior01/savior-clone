@@ -12,6 +12,13 @@ RUN python -m venv /opt/venv && \
     apt-get install redis-server -y && \
     apt-get install dialog apt-utils -y && \
     /opt/venv/bin/pip install --use-pep517 -r requirements.txt  --timeout 4000 && \
-    chmod +x entrypoint.sh
+    chmod +x entrypoint.sh && \
+    apt-get install -y --no-install-recommends  && \
+        libnvinfer8=8.0.1.6-1+cuda11.4 && \
+        libnvparsers8=8.0.1.6-1+cuda11.4 && \
+        libnvonnxparsers8=8.0.1.6-1+cuda11.4 && \
+        libnvinfer-plugin8=8.0.1.6-1+cuda11.4 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 CMD ["/app/entrypoint.sh"]
