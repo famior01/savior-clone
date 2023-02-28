@@ -8,17 +8,20 @@ WORKDIR /app
 
 RUN python -m venv /opt/venv && \
     /opt/venv/bin/pip install --upgrade pip && \
-    apt-get update && apt-get install libgl1 -y --no-install-recommends apt-utils --fix-missing && \
-    apt-get install redis-server -y && \
-    apt-get install dialog apt-utils -y && \
-    # /opt/venv/bin/pip install --use-pep517 -r requirements.txt  --timeout 4000 && \
-    chmod +x entrypoint.sh && \
-    apt-get install -y --no-install-recommends  && \
-        # libnvinfer8=8.0.1.6-1+cuda11.4 && \
-        libnvparsers8=8.0.1.6-1+cuda11.4 && \
-        libnvonnxparsers8=8.0.1.6-1+cuda11.4 && \
-        libnvinfer-plugin8=8.0.1.6-1+cuda11.4 && \
+    apt-get update && apt-get install -y --no-install-recommends \
+        libgl1 \
+        redis-server && \
+    apt-get install -y --no-install-recommends \
+        dialog \
+        apt-utils \
+        libnvinfer-dev \
+        libnvinfer-plugin-dev \
+        libnvparsers-dev \
+        libnvonnxparsers-dev && \
+    /opt/venv/bin/pip install --use-feature=2020-resolver --timeout 4000 -r requirements.txt && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    chmod +x entrypoint.sh 
+    
 
 CMD ["/app/entrypoint.sh"]
