@@ -25,17 +25,12 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 # ------------------------- Postgres DATABASE SETTINGS -------------------
 # ======================================================================
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
-# DB_USERNAME=config('POSTGRES_USER', cast=str)
-# DB_PASSWORD=config('POSTGRES_PASSWORD', cast=str)
-# DB_HOST= "savior-psql-do-user-13616832-0.b.db.ondigitalocean.com"
-# DB_PORT=config('POSTGRES_PORT', cast=str) 
-# DB_DATABASE=config('POSTGRES_DB', cast=str)  
-
-DB_USERNAME="abuubaida01"
-DB_PASSWORD="DA$32@#@:)32>03fak*nKIh&f24@01"
+DB_USERNAME=os.environ.get('DB_USERNAME')
+DB_PASSWORD=os.environ.get('DB_PASSWORD')
 DB_HOST= "/cloudsql/high-function-378716:asia-southeast1:savior-psql-db"
-DB_PORT= "5432"
-DB_DATABASE=  "savior-db"
+DB_PORT=os.environ.get('DB_PORT') 
+DB_DATABASE=os.environ.get('DB_NAME')  
+
 
 
 DB_IS_AVAILABLE = all([
@@ -83,6 +78,7 @@ CELERY_BEAT_SCHEDULER ='django_celery_beat.schedulers:DatabaseScheduler'
 # ------------- CSRF_TRUSTED_ORIGINS ---------------------
 # =================================================
 CSRF_TRUSTED_ORIGINS=['https://savior.website','https://*.savior.website','https://www.savior.website']
+
 #=================================================
 # ------------- STATIC FILES ---------------------
 # =================================================
@@ -93,7 +89,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "staticfiles-cdn",
 ]
 
-from ..cdn.conf import * # noqa1 
+# from ..cdn.conf import * # noqa1 
 
 # =====================================================
 # ------------------- HTTPS SETTINGS -------------------------

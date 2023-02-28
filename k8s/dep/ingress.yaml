@@ -3,19 +3,23 @@ kind: Ingress
 metadata:
   name: savior-ingress
   namespace: default
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: savior-ip
+    networking.gke.io/managed-certificates: savior-cert
+    kubernetes.io/ingress.class: "gce"
 spec:
   rules:
   - host: savior.website
     http:
       paths:
-      - path: /savior
+      - path: /
         pathType: Prefix
         backend:
           service:
             name: savior-deployment
             port:
               name: http
-      - path: /savior
+      - path: /
         pathType: Prefix
         backend:
           service:

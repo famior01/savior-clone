@@ -1,36 +1,75 @@
-# log in to gcloud
-gcloud auth login 
+###########################################################################
+############################ WAY TO Create App ############################
+###########################################################################
+  # log in to gcloud
+  gcloud auth login 
 
-# setup your project
-gcloud config set project <your-project-id>
+  # setup your project
+  gcloud config set project <your-project-id>
 
-# to push docker image to gcr
-1) create service account and give it roll of storage admin, and create keys for it
-2) push it through yaml file i have created
-3) https://www.youtube.com/watch?v=6dLHcnlPi_U&t=383s&ab_channel=AntonPutra  (this is the video i followed)
+  # to push docker image to gcr
+  1) create service account and give it roll of storage admin, and create keys for it
+  2) push it through yaml file i have created
+  3) https://www.youtube.com/watch?v=6dLHcnlPi_U&t=383s&ab_channel=AntonPutra  (this is the video i followed)
+
+  # to deploy to kubernetes
+  1) create cluster
+  2) steps:
+    * gcloud auth login
+    * gcloud components install gke-gcloud-auth-plugin
+    * gcloud container clusters get-credentials savior-cluster --region asia-south1 --project high-function-378716  ==> connect with gcloud kubernetes
+
+  # create deployment and ingress file https://devops4solutions.com/setup-kubernetes-ingress-on-gke/
+
+  # Create simple cluster 
+  https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
+  https://cloud.google.com/kubernetes-engine/docs/how-to/image-streaming#gcloud (image streaming)
+  1) gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-southeast1-b --enable-image-streaming 
+              no quota is avaliable               --region=asia-southeast1 
+
+  2) gcloud container clusters get-credentials savior-cluster --zone asia-south1-a --project high-function-378716
+
+  # check if you have permission to create clusterrolebindings
+  kubectl auth can-i create clusterrolebindings == > check if you have permission to create clusterrolebindings
 
 
-# to deploy to kubernetes
-1) create cluster
-2) steps:
-  * gcloud auth login
-  * gcloud components install gke-gcloud-auth-plugin
-  * gcloud container clusters get-credentials savior-cluster --region asia-south1 --project high-function-378716  ==> connect with gcloud kubernetes
+###########################################################################
+############################ WAY TO Start APP ############################
+###########################################################################
+  ####> create cluster 
+  gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-southeast1-b --enable-image-streaming 
 
-# create deployment and ingress file https://devops4solutions.com/setup-kubernetes-ingress-on-gke/
+  ####> connect with gcloud kubernetes
+  gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
 
-# Create simple cluster 
-https://cloud.google.com/sdk/gcloud/reference/container/clusters/create
-https://cloud.google.com/kubernetes-engine/docs/how-to/image-streaming#gcloud (image streaming)
-1) gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-southeast1-b --enable-image-streaming 
-            no quota is avaliable               --region=asia-southeast1 
+  ####> create ssl certificate
+    https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs
+    
+  ####> Download Ingress controller 
+  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/cloud/deploy.yaml
 
-2) gcloud container clusters get-credentials savior-cluster --zone asia-south1-a --project high-function-378716
+  ####> Create Ingress 
+        kubectl apply -f .\k8s\ingress.yaml
 
+  ####> Create Reserve IP
+        gcloud compute addresses create savior-ip --global
+  
+  ####> change DNS Records 
+        https://www.youtube.com/watch?v=ZcFNzxfDy3E&ab_channel=ProgrammerGirl
 
+  ####> put IP to ALLOWED_HOSTS in github actions 
 
+  ####> create or update image in gcr
+        run gcp_deployment.yaml file
 
-##################################################3
-################# Commands #######################
-##################################################3
-kubectl auth can-i create clusterrolebindings == > check if you have permission to create clusterrolebindings
+  ####> Make sure Database is up and running
+
+  ####> create Workloads (deployment)
+        kubectl apply -f .\k8s\apps\savior-dep.yaml
+
+  ####> create services (loadbalancer) & ingress
+        kubectl apply -f .\k8s\ingress.yaml
+
+  ####> create bucket for media/static files
+
+  ####> Redis database for celery

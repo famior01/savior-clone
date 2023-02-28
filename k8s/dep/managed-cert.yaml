@@ -1,0 +1,8 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: savior-cert
+spec:
+  domains:
+    - savior.website
+    - www.savior.website
