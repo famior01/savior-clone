@@ -8,10 +8,11 @@ WORKDIR /app
 
 RUN python -m venv /opt/venv && \
     /opt/venv/bin/pip install --upgrade pip && \
-    apt-get update && apt-get install libgl1 -y --no-install-recommends apt-utils --fix-missing && \
-    apt-get install redis-server -y && \
+    apt-get update && apt-get install redis-server -y && \
     chmod +x entrypoint.sh
     
 
 CMD ["/app/entrypoint.sh"]
     # /opt/venv/bin/pip install --use-pep517 -r requirements.txt  --timeout 4000 && \
+    # apt-get update && apt-get install libgl1 -y --no-install-recommends apt-utils --fix-missing && \
+# 
