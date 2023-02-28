@@ -30,9 +30,9 @@ jobs:
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v1'
 
-    # - name: Build Docker Image
-    #   working-directory: ./fs
-    #   run: docker build -t $IMAGE_NAME:latest .
+    - name: Build Docker Image
+      working-directory: ./fs
+      run: docker build -t $IMAGE_NAME:latest .
 
     - name: Automatic Tagging of Releases
       id: increment-git-tag
@@ -42,22 +42,22 @@ jobs:
     - name: Configure Docker Client
       run: |-
         gcloud auth configure-docker --quiet       
-        gcloud auth configure-docker asia-east1-docker.pkg.dev --quiet
+        gcloud auth configure-docker asia-south2-docker.pkg.dev --quiet
         
-    # - name: Push Docker Image to Artifact Registry
-    #   env:
-    #     GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-    #   run: |-
-    #     docker tag $IMAGE_NAME:latest asia-east1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-    #     docker tag $IMAGE_NAME:latest asia-east1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
-    #     docker push asia-east1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-    #     docker push asia-east1-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+    - name: Push Docker Image to Artifact Registry
+      env:
+        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+      run: |-
+        docker tag $IMAGE_NAME:latest asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+        docker tag $IMAGE_NAME:latest asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+        docker push asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+        docker push asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
 
     - name: connect with GKE cluster 
       run: |-
         gcloud components install gke-gcloud-auth-plugin
         gcloud components install kubectl
-        gcloud container clusters get-credentials savior-cluster --zone asia-east1-a --project high-function-378716
+        gcloud container clusters get-credentials savior-cluster --zone asia-south2-a --project high-function-378716
 
     - name: update deployment secrets
       run: |
@@ -91,7 +91,7 @@ jobs:
     # # kubectl describe deployment/savior-deployment
     - name: update Deployment Image
       run: |
-        kubectl set image deployment/savior-deployment  savior-deployment=asia-east1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
+        kubectl set image deployment/savior-deployment  savior-deployment=asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
     - name: wait for rollout to finish
       run: |
@@ -107,9 +107,6 @@ jobs:
 # kubectl apply -f k8s/dep/celery.yaml
 
 
-
-
-
 # - name: Push Docker Image to Container Registry (GCR)
 #   env:
 #     GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
@@ -118,9 +115,6 @@ jobs:
 #     docker tag $IMAGE_NAME:latest asia.gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
 #     docker push asia.gcr.io/$PROJECT_ID/$IMAGE_NAME:latest
 #     docker push asia.gcr.io/$PROJECT_ID/$IMAGE_NAME:$GIT_TAG
-
-
-
 
 
 # kubectl delete secret savior-prod-secret
