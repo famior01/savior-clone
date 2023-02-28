@@ -1,4 +1,6 @@
 FROM python:3.10-bullseye
+ENV PYTHONUNBUFFERED 1
+ENV TF_CPP_MIN_LOG_LEVEL 3
 
 
 COPY . /app

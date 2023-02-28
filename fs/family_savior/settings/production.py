@@ -7,7 +7,7 @@ SECRET_KEY=os.environ.get('DJANGO_SECRET_KEY')
 DEBUG=False
 ENV_ALLOWED_HOST=os.environ.get('DJANGO_ALLOWED_HOSTS')
 DOMAIN_NAME=os.environ.get('DOMAIN_NAME')
-ALLOWED_HOSTS=[ ENV_ALLOWED_HOST, DOMAIN_NAME, 'savior.website']
+ALLOWED_HOSTS=[ "35.244.250.90", DOMAIN_NAME, 'savior.website']
 
 # ====================================================
 # ----------------- Email Settings -----------------
@@ -28,10 +28,8 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 DB_USERNAME=os.environ.get('DB_USERNAME')
 DB_PASSWORD=os.environ.get('DB_PASSWORD')
 DB_HOST= "/cloudsql/high-function-378716:asia-southeast1:savior-psql-db"
-DB_PORT=os.environ.get('DB_PORT') 
+DB_PORT=os.environ.get('DB_PORT')  
 DB_DATABASE=os.environ.get('DB_NAME')  
-
-
 
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
