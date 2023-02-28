@@ -11,10 +11,8 @@ RUN python -m venv /opt/venv && \
     apt-get update && apt-get install libgl1 -y --no-install-recommends apt-utils --fix-missing && \
     apt-get install redis-server -y && \
     apt-get install dialog apt-utils -y && \
-    /opt/venv/bin/pip install --use-pep517 -r requirements.txt  --timeout 4000 && \
-    apt-get install -y --no-install-recommends libnvinfer8=8.2.3-1+cuda11.4 \
-    libnvinfer-dev=8.2.3-1+cuda11.4 && \
     chmod +x entrypoint.sh
     
 
 CMD ["/app/entrypoint.sh"]
+    # /opt/venv/bin/pip install --use-pep517 -r requirements.txt  --timeout 4000 && \
