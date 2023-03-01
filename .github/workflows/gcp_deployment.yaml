@@ -15,9 +15,9 @@ jobs:
       DEPLOYMENT_NAME: savior-deployment 
       IMAGE: savior
 
-    permissions:
-      contents: read
-      id-token: write
+    # permissions:
+    #   contents: read
+    #   id-token: write
     steps:
     - uses: actions/checkout@v3
 
@@ -27,8 +27,8 @@ jobs:
       with:
         credentials_json: ${{ secrets.SERVICE_ACCOUNT_KEY }}
 
-    # - name: Set up Cloud SDK
-    #   uses: google-github-actions/setup-gcloud@v1 
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1 
 
     # - name: Build Docker Image
     #   working-directory: ./fs
@@ -53,10 +53,10 @@ jobs:
     #     docker tag $IMAGE_NAME:latest asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
     #     docker push asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
     #     docker push asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+        # gcloud components install gke-gcloud-auth-plugin
 
     - name: connect with GKE cluster 
       run: |-
-        gcloud components install gke-gcloud-auth-plugin
         gcloud components install kubectl
         gcloud container clusters get-credentials savior-cluster --zone asia-south2-a --project high-function-378716
 
