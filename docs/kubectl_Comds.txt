@@ -57,3 +57,13 @@ kubectl delete deployment savior-deployment
 kubectl delete service savior-deployment
 kubectl delete secret savior-prod-secret
 
+
+
+# checking ingress 
+kubectl describe ingress savior-ingress
+
+# checking deployment
+kubectl describe deployment savior-deployment
+
+# checking server 
+nslookup savior.website    # check if domain is pointing to load balancer ip

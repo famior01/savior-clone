@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: savior-deployment
-        image: asia-southeast1-docker.pkg.dev/high-function-378716/savior-images/savior:latest
+        image: asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:latest
         imagePullPolicy: IfNotPresent
         resources:
           requests:
@@ -37,6 +37,16 @@ spec:
             value: "8000"
         ports:
         - containerPort: 8000
-
-
-
+          protocol: TCP
+        livenessProbe:  
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10

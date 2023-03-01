@@ -9,7 +9,7 @@ services:
     image: savior:1.1
     env_file:
       - fs/.env.prod
-    environment:
+    environment: 
       - PORT=8000
     ports:
       - "8000:8000"
