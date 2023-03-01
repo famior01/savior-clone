@@ -15,9 +15,9 @@ jobs:
       DEPLOYMENT_NAME: savior-deployment 
       IMAGE: savior
 
-    # permissions:
-    #   contents: read
-    #   id-token: write
+    permissions:
+      contents: read
+      id-token: write
     steps:
     - uses: actions/checkout@v3
 
