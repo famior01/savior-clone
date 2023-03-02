@@ -7,11 +7,11 @@ metadata:
     app: savior-deployment
 spec:
   replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 50%
-      maxUnavailable: 50%
+  # strategy:
+  #   type: RollingUpdate
+  #   rollingUpdate:
+  #     maxSurge: 50%
+  #     maxUnavailable: 50%
   selector:
     matchLabels:
       app: savior-deployment
