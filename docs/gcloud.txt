@@ -38,11 +38,6 @@
   openssl pkcs12 -in savior-secret.pfx  -nocerts -out savior.key 
   openssl pkcs12 -in savior-secret.pfx  -clcerts -nokeys -out savior.crt
 
-  
-  
-  
-  # check proxy
-   gcloud compute target-https-proxies list
 
   
 
@@ -57,8 +52,6 @@
 
   ####> create ssl certificate
     https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs
-    https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs#console 
-
     
   ####> ingress Controller 
   https://cloud.google.com/community/tutorials/nginx-ingress-gke
@@ -97,24 +90,10 @@
 ############################ WAY TO Update APP ############################
 ###########################################################################
 create k8s cluster 
-gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-south2-a --enable-image-streaming
-
 deploy dep.yaml
-kubectl apply -f k8s/dep/dep.yaml
-
 deploy service.yaml 
-kubectl apply -f k8s/dep/service.yaml
-
 add ingress controller 
-https://cloud.google.com/community/tutorials/nginx-ingress-gke 
-
-
 add ingress.yaml
-kubectl apply -f k8s/dep/ingress-resources.yaml
-
 get ip-add and put it into ALLOWED_HOSTS in github actions
-
-
 configure ip-add into DNS
-
 run github actions

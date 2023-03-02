@@ -59,40 +59,40 @@ jobs:
         gcloud components install kubectl
         gcloud container clusters get-credentials savior-cluster --zone asia-south2-a --project high-function-378716
 
-    - name: update deployment secrets
-      run: |
-        cat << EOF >> fs/.env
-        ABSOLUTE_PATH=app
-        USE_PRODUCTION=True
-        TESTING=False
-        DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
-        AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        DJANGO_ALLOWED_HOSTS=${{ secrets.ALLOWED_HOST }}
-        DOMAIN_NAME=${{ secrets.DOMAIN_NAME }}
-        DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
-        DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
-        DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
-        DJANGO_SUPERUSER_FULLNAME=${{ secrets.DJANGO_SUPERUSER_FULLNAME }}
-        DJANGO_SUPERUSER_RELIGION=${{ secrets.DJANGO_SUPERUSER_RELIGION }}
-        DJANGO_SUPERUSER_GENDER=Male
-        DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
-        DB_NAME=${{ secrets.DB_NAME }}
-        DB_USERNAME=${{ secrets.DB_USERNAME }}
-        DB_PASSWORD=${{ secrets.DB_PASSWORD }}
-        DB_HOST=${{ secrets.DB_HOST }} 
-        DB_PORT=${{ secrets.DB_PORT }}
-        EMAIL_USER=${{ secrets.EMAIL_USER }} 
-        EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
-        EOF
-        kubectl delete secret savior-prod-secret
-        kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
+    # - name: update deployment secrets
+    #   run: |
+    #     cat << EOF >> fs/.env
+    #     ABSOLUTE_PATH=app
+    #     USE_PRODUCTION=True
+    #     TESTING=False
+    #     DO_REDIS_URL=${{ secrets.DO_REDIS_URL }}
+    #     AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     DJANGO_ALLOWED_HOSTS=${{ secrets.ALLOWED_HOST }}
+    #     DOMAIN_NAME=${{ secrets.DOMAIN_NAME }}
+    #     DJANGO_SUPERUSER_USERNAME=${{ secrets.DJANGO_SUPERUSER_USERNAME }}
+    #     DJANGO_SUPERUSER_PASSWORD=${{ secrets.DJANGO_SUPERUSER_PASSWORD }}
+    #     DJANGO_SUPERUSER_EMAIL=${{ secrets.DJANGO_SUPERUSER_EMAIL }}
+    #     DJANGO_SUPERUSER_FULLNAME=${{ secrets.DJANGO_SUPERUSER_FULLNAME }}
+    #     DJANGO_SUPERUSER_RELIGION=${{ secrets.DJANGO_SUPERUSER_RELIGION }}
+    #     DJANGO_SUPERUSER_GENDER=Male
+    #     DJANGO_SECRET_KEY=${{ secrets.DJANGO_SECRET_KEY }}
+    #     DB_NAME=${{ secrets.DB_NAME }}
+    #     DB_USERNAME=${{ secrets.DB_USERNAME }}
+    #     DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+    #     DB_HOST=${{ secrets.DB_HOST }} 
+    #     DB_PORT=${{ secrets.DB_PORT }}
+    #     EMAIL_USER=${{ secrets.EMAIL_USER }} 
+    #     EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}
+    #     EOF
+    #     kubectl delete secret savior-prod-secret
+    #     kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
     
     # must run some yaml scripts to allow some permissions
     # kubectl describe deployment/savior-deployment
     - name: update Deployment Image
       run: |
-        kubectl set image deployment/savior-deployment  savior-deployment=asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:$GIT_TAG
+        kubectl set image deployment/savior-deployment  savior-deployment=asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
     # - name: wait for rollout to finish
     #   run: |
