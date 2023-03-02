@@ -7,8 +7,8 @@ SECRET_KEY=os.environ.get('DJANGO_SECRET_KEY')
 DEBUG=False
 ENV_ALLOWED_HOST=os.environ.get('DJANGO_ALLOWED_HOSTS')
 DOMAIN_NAME=os.environ.get('DOMAIN_NAME')
-ALLOWED_HOSTS=[ "34.131.57.36", DOMAIN_NAME, 'savior.website']
-    
+# ALLOWED_HOSTS=[ "34.131.57.36", DOMAIN_NAME, 'savior.website']
+ALLOWED_HOSTS=[ "34.131.216.217"]    
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
