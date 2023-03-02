@@ -30,9 +30,9 @@ jobs:
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v1 
 
-    - name: Build Docker Image
-      working-directory: ./fs
-      run: docker build -t $IMAGE_NAME:latest .
+    # - name: Build Docker Image
+    #   working-directory: ./fs
+    #   run: docker build -t $IMAGE_NAME:latest .
 
     - name: Automatic Tagging of Releases
       id: increment-git-tag
@@ -44,15 +44,15 @@ jobs:
         gcloud auth configure-docker --quiet       
         gcloud auth configure-docker asia-south2-docker.pkg.dev --quiet
         
-    - name: Push Docker Image to Artifact Registry
-      env:
-        GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
-      run: |-
-        docker tag $IMAGE_NAME:latest asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-        docker tag $IMAGE_NAME:latest asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
-        docker push asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
-        docker push asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
-        gcloud components install gke-gcloud-auth-plugin
+    # - name: Push Docker Image to Artifact Registry
+    #   env:
+    #     GIT_TAG: ${{ steps.increment-git-tag.outputs.git-tag }}
+    #   run: |-
+    #     docker tag $IMAGE_NAME:latest asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+    #     docker tag $IMAGE_NAME:latest asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+    #     docker push asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:latest
+    #     docker push asia-south2-docker.pkg.dev/$PROJECT_ID/savior-images/$IMAGE_NAME:$GIT_TAG
+    #     gcloud components install gke-gcloud-auth-plugin
 
     - name: connect with GKE cluster 
       run: |-
@@ -92,7 +92,7 @@ jobs:
     # # kubectl describe deployment/savior-deployment
     - name: update Deployment Image
       run: |
-        kubectl set image deployment/savior-deployment  savior-1=asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:$GIT_TAG
+        kubectl set image deployment/savior-deployment  savior-deployment=asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:latest
 
     - name: wait for rollout to finish
       run: |

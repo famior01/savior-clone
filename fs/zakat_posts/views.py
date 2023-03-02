@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .models import ZakatPosts, ZakatPostsComment, UpVote, DownVote
 from profiles.models import Profile
 from django.shortcuts import render, redirect
-from .forms import ZakatPostForm, ZakatPostsCommentForm
+from .forms import ZakatPostForm, ZakatPostsCommentForm, ZakatUpdateForm
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy, reverse
 from django.contrib import messages
@@ -231,7 +231,7 @@ class PostDeleteView(DeleteView):
 
 class PostUpdateView(UpdateView):
     model = ZakatPosts
-    form_class = ZakatPostForm  # from forms.py
+    form_class = ZakatUpdateForm  # from forms.py
     template_name = 'zakat_posts/update.html'
     success_url = reverse_lazy('zakat_posts:main-post-view')
 
