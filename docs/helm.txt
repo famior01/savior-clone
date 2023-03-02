@@ -1,0 +1,11 @@
+# list all helm charts
+helm ls
+
+# list all helm charts in all namespaces
+helm ls --all-namespaces
+
+# apply ingress controller 
+helm install stable/nginx-ingress --name nginx-ingress --set rbac.create=true
+
+# install ingress-controller 
+helm install stable/nginx-ingress --name nginx-ingress --set rbac.create=true --namespace ingress-nginx

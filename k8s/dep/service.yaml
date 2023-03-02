@@ -3,10 +3,10 @@ kind: Service
 metadata: 
   name: savior-deployment
   namespace: default
-  annotations:
-      cloud.google.com/neg: '{"ingress": true}'
+  # annotations:
+      # cloud.google.com/neg: '{"ingress": true}'
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - name: http
       protocol: TCP

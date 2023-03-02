@@ -1,0 +1,51 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: savior-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: savior-ip
+  #   networking.gke.io/managed-certificates: savior-cert
+  #   kubernetes.io/ingress.class: gce
+
+spec:
+  defaultBackend:
+    service:
+      name: savior-deployment
+      port:
+        number: 80
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: savior-deployment
+            port:
+              number: 80
+
+
+  # tls:
+  #   - hosts:
+  #       - www.savior.website
+  #     secretName: savior-cert
+  
+  # spec:
+  #   tls:
+  #   - hosts: 
+  #     - savior.website
+  #     secretName: savior-cert
+  #   rules:
+  #   - host: savior.website
+  #     http:
+  #       paths:
+  #       - path: /
+  #         pathType: Prefix
+  #         backend:
+  #           service:
+  #             name: savior-deployment
+  #             port:
+  #               number: 80
+
+    # - host: savior.website

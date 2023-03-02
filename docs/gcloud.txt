@@ -30,8 +30,16 @@
   2) gcloud container clusters get-credentials savior-cluster --zone asia-south1-a --project high-function-378716
 
   # check if you have permission to create clusterrolebindings
-  kubectl auth can-i create clusterrolebindings == > check if you have permission to create clusterrolebindings
+  kubectl auth can-i create clusterrolebindings ==> check if you have permission to create clusterrolebindings
 
+  # https://cloud.google.com/load-balancing/docs/ssl-certificates/google-managed-certs (create ssl certificate)
+
+  # write command to generate the secret
+  openssl pkcs12 -in savior-secret.pfx  -nocerts -out savior.key 
+  openssl pkcs12 -in savior-secret.pfx  -clcerts -nokeys -out savior.crt
+
+
+  
 
 ###########################################################################
 ############################ WAY TO Start APP ############################
@@ -40,13 +48,13 @@
   gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-south2-a --enable-image-streaming 
 
   ####> connect with gcloud kubernetes
-  gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716
+  gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716 
 
   ####> create ssl certificate
     https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs
     
-  ####> Download Ingress controller 
-  kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.43.0/deploy/static/provider/cloud/deploy.yaml
+  ####> ingress Controller 
+  https://cloud.google.com/community/tutorials/nginx-ingress-gke
 
   ####> Create Ingress 
         kubectl apply -f .\k8s\dep\ingress.yaml
