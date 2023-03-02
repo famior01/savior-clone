@@ -6,7 +6,7 @@ metadata:
   labels:
     app: savior-deployment
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -40,5 +40,4 @@ spec:
             value: "8000"
         ports:
         - containerPort: 8000
-      imagePullSecrets:
-        - name: savior
+        

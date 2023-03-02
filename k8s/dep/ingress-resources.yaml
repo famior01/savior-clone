@@ -8,8 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   rules:
-  - host: "savior.website"
-    http:
+  - http:
       paths:
       - pathType: Prefix
         path: /
@@ -17,7 +16,7 @@ spec:
           service:
             name: savior-deployment
             port:
-              number: 80
+              number: 8090
 
 # kubernetes.io/ingress.global-static-ip-name: savior-ip
 #   networking.gke.io/managed-certificates: savior-cert
