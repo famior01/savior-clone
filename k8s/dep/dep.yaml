@@ -25,15 +25,43 @@ spec:
       - name: savior-deployment
         image: asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:latest
         imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: savior-prod-secret
         resources:
-          requests:
-            cpu: "100m"
-            memory: "500M"
-          limits:
-            cpu: "500m"
-            memory: "1000M"
+            requests:
+              cpu: "100m"
+              memory: "500M"
+            limits:
+              cpu: "500m"
+              memory: "1000M"
         env:
           - name: PORT
             value: "8000"
         ports:
         - containerPort: 8000
+      imagePullSecrets:
+        - name: savior
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: savior-deployment
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8000
+    - name: https
+      protocol: TCP
+      port: 443
+      targetPort: 8000
+    
+  selector:
+    app: savior-deployment
+

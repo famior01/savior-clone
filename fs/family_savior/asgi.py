@@ -20,9 +20,9 @@ from django.core.asgi import get_asgi_application
 # ENV_FILE_PATH = BASE_DIR / '.env'
 # dotenv.read_dotenv(str(ENV_FILE_PATH))
 
-production = os.environ.get('USE_PRODUCTION')
+production = config('USE_PRODUCTION')
 
-testing = os.environ.get('TESTING')
+testing = config('TESTING')
 
 if production==True:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')

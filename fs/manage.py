@@ -7,8 +7,8 @@ from decouple import config
  
 def main():
     """Run administrative tasks."""
-    production = os.environ.get('USE_PRODUCTION')
-    testing = os.environ.get('TESTING')
+    production = config('USE_PRODUCTION')
+    testing = config('TESTING')
     if production==True:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
     elif testing==True:

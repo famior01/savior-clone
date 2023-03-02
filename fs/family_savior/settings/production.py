@@ -3,21 +3,21 @@ from decouple import config
 import ssl
 import os 
 
-SECRET_KEY=os.environ.get('DJANGO_SECRET_KEY')
+SECRET_KEY=config('DJANGO_SECRET_KEY')
 DEBUG=False
-ENV_ALLOWED_HOST=os.environ.get('DJANGO_ALLOWED_HOSTS')
-DOMAIN_NAME=os.environ.get('DOMAIN_NAME')
+ENV_ALLOWED_HOST=config('DJANGO_ALLOWED_HOSTS')
+DOMAIN_NAME=config('DOMAIN_NAME')
 # ALLOWED_HOSTS=[ "34.131.57.36", DOMAIN_NAME, 'savior.website']
-ALLOWED_HOSTS=[ "34.131.216.217"]    
+ALLOWED_HOSTS=["*"]    
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
-DEFAULT_FROM_EMAIL=os.environ.get('EMAIL_USER')
+DEFAULT_FROM_EMAIL=config('EMAIL_USER')
 EMAIL_HOST ='smtp.gmail.com' 
 EMAIL_USE_SSL =True
 EMAIL_PORT =465
-EMAIL_HOST_USER =os.environ.get('EMAIL_USER') 
-EMAIL_HOST_PASSWORD =os.environ.get('EMAIL_PASSWORD')
+EMAIL_HOST_USER =config('EMAIL_USER') 
+EMAIL_HOST_PASSWORD =config('EMAIL_PASSWORD')
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 
 
@@ -25,11 +25,11 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 # ------------------------- Postgres DATABASE SETTINGS -------------------
 # ======================================================================
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
-DB_USERNAME=os.environ.get('DB_USERNAME')
-DB_PASSWORD=os.environ.get('DB_PASSWORD')
+DB_USERNAME=config('DB_USERNAME')
+DB_PASSWORD=config('DB_PASSWORD')
 DB_HOST= "/cloudsql/high-function-378716:asia-southeast1:savior-psql-db"
-DB_PORT=os.environ.get('DB_PORT')  
-DB_DATABASE=os.environ.get('DB_NAME')  
+DB_PORT=config('DB_PORT')  
+DB_DATABASE=config('DB_NAME')  
 
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
@@ -54,7 +54,7 @@ if DB_IS_AVAILABLE:
 # ===========================================================
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
-REDIS_HOST =os.environ.get('DO_REDIS_URL')
+REDIS_HOST =config('DO_REDIS_URL')
 CELERY_BROKER_URL =REDIS_HOST 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 BROKER_USE_SSL = {'ssl_cert_reqs': ssl.CERT_REQUIRED,}

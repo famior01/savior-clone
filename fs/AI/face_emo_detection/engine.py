@@ -22,7 +22,7 @@ import os
 import shutil
 from decouple import config
 
-ABSOLUTE_PATH = os.environ.get('ABSOLUTE_PATH')
+ABSOLUTE_PATH = config('ABSOLUTE_PATH')
 
 def find_emotion(video_id):
   obj = Get_frames(video_id=video_id)

@@ -9,8 +9,8 @@ from decouple import config
 from celery import Celery
 from django.conf import settings
 
-production = os.environ.get('USE_PRODUCTION')
-testing = os.environ.get('TESTING')
+production = config('USE_PRODUCTION')
+testing = config('TESTING')
 if production==True:
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
 elif testing==True:
