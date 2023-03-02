@@ -7,11 +7,11 @@ metadata:
     app: savior-deployment
 spec:
   replicas: 2
-  # strategy:
-  #   type: RollingUpdate
-  #   rollingUpdate:
-  #     maxSurge: 50%
-  #     maxUnavailable: 50%
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
   selector:
     matchLabels:
       app: savior-deployment
@@ -42,26 +42,3 @@ spec:
         - containerPort: 8000
       imagePullSecrets:
         - name: savior
-
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: savior-deployment
-spec:
-  type: LoadBalancer
-  ports:
-    - name: http
-      protocol: TCP
-      port: 80
-      targetPort: 8000
-    - name: https
-      protocol: TCP
-      port: 443
-      targetPort: 8000
-    
-  selector:
-    app: savior-deployment
-

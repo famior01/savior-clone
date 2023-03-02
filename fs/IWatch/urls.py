@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth.decorators import login_required
-from .views import IWatchListView, PostDeleteView, PostUpdateView,  IWatchDetailView, UploadVideoView, create_comment, like, dislike, SearchIWatch, TopWatchedView, payment
+from .views import IWatchListView, PostDeleteView, PostUpdateView,  IWatchDetailView, UploadVideoView, create_comment, like, dislike, SearchIWatch, TopWatchedView, payment, mypvc
 
 app_name = 'IWatch'
 
@@ -20,6 +20,7 @@ urlpatterns = [
     path('dislike/', dislike, name='dislike'),
     path('search/', login_required(SearchIWatch.as_view()), name='search-IWatch'),
     path('top/', login_required(TopWatchedView.as_view()), name='top-IWatch'),
+    path('mypvc/', login_required(mypvc), name='mypvc'),
 
     path('payment/', payment, name='payment'),
 

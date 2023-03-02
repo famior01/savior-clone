@@ -78,6 +78,36 @@ class TopWatchedView(ListView):
       return context
 
 
+def mypvc(request):
+  context = {}
+  profile = Profile.objects.get(user=request.user)
+  following_users = profile.following.all()
+  following_profiles = Profile.objects.filter(user__in=following_users)
+  following_profiles |= Profile.objects.filter(user=request.user)
+  following_Videos = IWatch.objects.filter(creator__in=following_profiles)
+  context['qs'] = following_Videos
+  context['following_profiles'] = following_profiles.exclude(user=request.user)
+
+  # Recommendation system for now
+  items = list(IWatch.objects.all())
+  unfollowing_profiles = profile.get_unfollowing()
+  people = list(unfollowing_profiles)
+  # change 8 to how many random items you want
+  no = int(len(items)*0.4)
+  no1 = int(len(people)*0.4)
+  if items:
+    random_objects = random.sample(items, no)
+    context['random_objects'] = random_objects
+  elif people:
+    random_people = random.sample(people, no1)
+    context['random_people'] = random_people
+  else:
+    context['random_objects'] = items
+    context['random_people'] = people
+  # context['IWatch_list'] = IWatch.objects.all()[:5]
+  # context['post_views'] = ["ajax", "detail", "detail-with-count"]
+  return render(request, 'IWatch/mypvc.html', context)
+
 
 class SearchIWatch(ListView):
 

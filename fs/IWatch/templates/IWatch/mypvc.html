@@ -89,72 +89,69 @@
             </div>
 
             <div class="row">
-              
-              <!--========================= video cards ====================-->
-              <div style="width:95%; margin-left:2.5em; font-size:10px;" class="ui black raised segment"><h4>Pure Video Clips (PVC)</h4></div>           
-              <div style='margin-left:3em;' class="row">
-                  <div  class="ui four cards">
-                    {% for i in random_objects %}
-                      <div id='card_style' class="card">
-                          <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
-                            <div class="card_image">
-                              <img src="{{ i.thumbnail.url }}">
-                            </div>
-                          </a>
-                          <div class="ui grid">
-                            <div class="row">
-                              <div class="four wide column">
-                                <div class="user-img">
-                                  <img src="{{ i.creator.picture.url }}">
-                                </div> 
+              {% if qs %}
+                  <div style="width:95%; margin-left:2.5em; font-size:10px;" class="ui black raised segment">
+                    <h4>Videos from people you follow</h4>
+                  </div>
+                  {% endif %}
+              <div style='margin-left:3em;' class="ui four cards">
+                {% for i in qs %} 
+                  <div id='card_style' class="card">
+                      <a href="{% url 'IWatch:Show-IWatch' i.pk %}">
+                        <div class="card_image">
+                          <img src="{{ i.thumbnail.url }}"> 
+                        </div>
+                      </a>
+                      <div class="ui grid">
+                        <div class="row">
+                          <div class="four wide column">
+                            <div class="user-img">
+                              <img src="{{ i.creator.picture.url }}">
+                            </div> 
+                          </div>
+                          <div class="twelve wide column">
+                            <div class="card_title">
+                              <p>{{i.title|truncatechars:50}}</p>
+                            </div> 
+                            <div class="footer">
+                              <div class="creator_name">
+                                <a href="{% url 'profiles:profile-detail-view' i.creator.pk %}"><p>{{i.creator.user.full_name}}</p></a>
                               </div>
-                              <div class="twelve wide column">
-                                <div class="card_title">
-                                  <p>{{i.title|truncatechars:50}}</p>
-                                </div> 
-                                <div class="footer">
-                                  <div class="creator_name">
-                                    <a href="{% url 'profiles:profile-detail-view' i.creator.pk %}"><p>{{i.creator.user.full_name}}</p></a>
-                                  </div>
-                                  <div class="info">
-                                    {{i.get_hit_count}} Views
-                                    {{i.creator.get_follower_no}} Followers
-                                    {{i.created|timesince}}ago
-                                  </div>
-                                </div>
+                              <div class="info">
+                                {{i.current_hit_count}} Views
+                                {{i.creator.get_follower_no}} Followers
+                                {{i.created|timesince}} ago
                               </div>
                             </div>
                           </div>
-                        
+                        </div>
                       </div>
-                    {% endfor %}
+                    
                   </div>
+                {% endfor %}
               </div>
+            </div>
           </div>
-          
         </div>
-      
-      
       </div>
     </div>
   </div>
-</div>
 
 
-  {% comment %} <script src="{% static 'hitcount/jquery.postcsrf.js' %}"></script>
+{% comment %} <script src="{% static 'hitcount/jquery.postcsrf.js' %}"></script>
 
-  {% get_hit_count_js_variables for IWatch as hitcount %}
-  <script type="text/javascript">
-  jQuery(document).ready(function($) {
-    $.postCSRF("{{ hitcount.ajax_url }}", { hitcountPK : "{{ hitcount.pk }}" })
-      .done(function(data){
-        $('<i />').text(data.hit_counted).attr('id','hit-counted-value').appendTo('#hit-counted');
-        $('#hit-response').text(data.hit_message);
-    }).fail(function(data){
-        console.log('POST failed');
-        console.log(data);
-    });
-  });
-  </script> {% endcomment %}
+{% get_hit_count_js_variables for IWatch as hitcount %}
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+$.postCSRF("{{ hitcount.ajax_url }}", { hitcountPK : "{{ hitcount.pk }}" })
+.done(function(data){
+$('<i />').text(data.hit_counted).attr('id','hit-counted-value').appendTo('#hit-counted');
+$('#hit-response').text(data.hit_message);
+}).fail(function(data){
+console.log('POST failed');
+console.log(data);
+});
+});
+</script> {% endcomment %}
 
 {% endblock content %}

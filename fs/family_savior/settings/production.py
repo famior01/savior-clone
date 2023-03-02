@@ -8,7 +8,7 @@ DEBUG=False
 ENV_ALLOWED_HOST=config('DJANGO_ALLOWED_HOSTS')
 DOMAIN_NAME=config('DOMAIN_NAME')
 # ALLOWED_HOSTS=[ "34.131.57.36", DOMAIN_NAME, 'savior.website']
-ALLOWED_HOSTS=["34.131.216.217"]    
+ALLOWED_HOSTS=["34.131.216.217", DOMAIN_NAME, 'savior.website']    
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
@@ -27,7 +27,7 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
 DB_USERNAME=config('DB_USERNAME')
 DB_PASSWORD=config('DB_PASSWORD')
-DB_HOST= "/cloudsql/high-function-378716:asia-southeast1:savior-psql-db"
+DB_HOST= "/cloudsql/high-function-378716:asia-south2:saviordb"
 DB_PORT=config('DB_PORT')  
 DB_DATABASE=config('DB_NAME')  
 
