@@ -18,6 +18,7 @@ spec:
             name: savior-deployment
             port:
               number: 80
+            
 
 # kubernetes.io/ingress.global-static-ip-name: savior-ip
 #   networking.gke.io/managed-certificates: savior-cert
