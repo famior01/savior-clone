@@ -7,11 +7,6 @@ metadata:
     app: savior-deployment
 spec:
   replicas: 2
-  strategy:
-    type: RollingUpdate
-    rollingUpdate:
-      maxSurge: 50%
-      maxUnavailable: 50%
   selector:
     matchLabels:
       app: savior-deployment
@@ -22,22 +17,33 @@ spec:
     spec:
       containers:
       - name: savior-deployment
-        image: asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:latest
-        imagePullPolicy: IfNotPresent
-        envFrom:
-          - secretRef:
-              name: savior-prod-secret
-        resources:
-            requests:
-              cpu: "100m"
-              memory: "500M"
-            limits:
-              cpu: "500m"
-              memory: "1000M"
+        image: asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:v1.1.0
+        imagePullPolicy: Always
         env:
           - name: PORT
             value: "8000"
         ports:
         - containerPort: 8000
-      imagePullSecrets:
-        - name: savior-keys
+
+
+
+
+
+
+# strategy:
+#     type: RollingUpdate
+#     rollingUpdate:
+#       maxSurge: 50%
+#       maxUnavailable: 50%
+# envFrom:
+#   - secretRef:
+#       name: savior-prod-secret
+# resources:
+#     requests:
+#       cpu: "100m"
+#       memory: "500M"
+#     limits:
+#       cpu: "500m"
+#       memory: "1000M"
+# imagePullSecrets:
+        # - name: savior-keys
