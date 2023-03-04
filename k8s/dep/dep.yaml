@@ -7,6 +7,11 @@ metadata:
     app: savior-deployment
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
   selector:
     matchLabels:
       app: savior-deployment
@@ -19,9 +24,77 @@ spec:
       - name: savior-deployment
         image: asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:v1.1.0
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "500M"
+          limits:
+            cpu: "800m"
+            memory: "4000M"
         env:
           - name: PORT
             value: "8000"
+
+          - name: USE_PRODUCTION
+            value: "True"
+
+          - name: TESTING
+            value: "False"
+
+          - name: ABSOLUTE_PATH
+            value: "app"
+
+          - name: IP_1
+            value: ""
+
+          - name: IP_2
+            value: ""
+            
+          - name: DOMAIN_NAME
+            value: "savior.website"
+
+          - name: DJANGO_SUPERUSER_USERNAME
+            value: "abuubaida01"
+
+          - name: DJANGO_SUPERUSER_PASSWORD
+            value: "fAz881Pn537gajnDzeRQBiB9kzsEvurZ6LPiEeQ8rUc"
+
+          - name: DJANGO_SUPERUSER_EMAIL
+            value: "abuubaida901@gmail.com"
+
+          - name: DJANGO_SUPERUSER_FULLNAME
+            value: "Abu-Ubaida"
+
+          - name: DJANGO_SUPERUSER_RELIGION
+            value: "Islam"
+
+          - name: DJANGO_SUPERUSER_GENDER
+            value: "Male"
+
+          - name: DJANGO_SECRET_KEY
+            value: "zLHEBvVqwREAYmrT4_25tRklh4Anv5iXbV08s8u26KVSP_5iMBEinzcnEp-bj8qure4"
+
+          - name: DB_NAME
+            value: "savior-psql"
+
+          - name: DB_USERNAME
+            value: "abuubaida01"
+
+          - name: DB_PASSWORD
+            value: "Sp1|@Sl2|7*"
+
+          - name: DB_HOST
+            value: "/cloudsql/high-function-378716:asia-south2:saviordb"
+
+          - name: DB_PORT
+            value: "5432"
+
+          - name: EMAIL_USER
+            value: "famior01@gmail.com"
+
+          - name: EMAIL_PASSWORD
+            value: "ddkbuimnyedhkmpy"
+
         ports:
         - containerPort: 8000
 
@@ -30,20 +103,10 @@ spec:
 
 
 
-# strategy:
-#     type: RollingUpdate
-#     rollingUpdate:
-#       maxSurge: 50%
-#       maxUnavailable: 50%
+
 # envFrom:
 #   - secretRef:
 #       name: savior-prod-secret
-# resources:
-#     requests:
-#       cpu: "100m"
-#       memory: "500M"
-#     limits:
-#       cpu: "500m"
-#       memory: "1000M"
+
 # imagePullSecrets:
         # - name: savior-keys

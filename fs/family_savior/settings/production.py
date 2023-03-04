@@ -5,10 +5,11 @@ import os
 
 SECRET_KEY=config('DJANGO_SECRET_KEY')
 DEBUG=False
-ENV_ALLOWED_HOST=config('DJANGO_ALLOWED_HOSTS')
+IP_1=config('IP_1')
+IP_2=config('IP_2')
 DOMAIN_NAME=config('DOMAIN_NAME')
 # ALLOWED_HOSTS=[ "34.131.57.36", DOMAIN_NAME, 'savior.website']
-ALLOWED_HOSTS=["savior.website", DOMAIN_NAME]    
+ALLOWED_HOSTS=["www.savior.website", DOMAIN_NAME, IP_1, IP_2 ]    
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
@@ -27,7 +28,7 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
 DB_USERNAME=config('DB_USERNAME')
 DB_PASSWORD=config('DB_PASSWORD')
-DB_HOST= "/cloudsql/high-function-378716:asia-south2:saviordb"
+DB_HOST=config('DB_HOST')
 DB_PORT=config('DB_PORT')  
 DB_DATABASE=config('DB_NAME')  
 
