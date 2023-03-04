@@ -67,3 +67,6 @@ kubectl describe deployment savior-deployment
 
 # checking server 
 nslookup savior.website    # check if domain is pointing to load balancer ip
+
+
+kubectl explane ingress.spec.rules.host # it will explance that thing to you

@@ -41,6 +41,10 @@
 
   
 
+  # check 
+  kubectl get all -n ingress-nginx
+
+
 ###########################################################################
 ############################ WAY TO Start APP ############################
 ###########################################################################
@@ -48,12 +52,20 @@
   gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-south2-a --enable-image-streaming 
 
   ####> connect with gcloud kubernetes
-  gcloud container clusters get-credentials savior-cluster --zone asia-southeast1-b --project high-function-378716 
+  gcloud container clusters get-credentials savior-cluster --zone asia-south2-a --project high-function-378716 
 
+  ####>  kubectl create clusterrolebinding cluster-admin-binding  --clusterrole cluster-admin --clusterrole cluster-admin ## give permission to create clusterrolebindings
+  
   ####> create ssl certificate
     https://cloud.google.com/kubernetes-engine/docs/how-to/managed-certs
     
   ####> ingress Controller 
+  helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+  helm repo update
+  helm install nginx-ingress ingress-nginx/ingress-nginx
+
+
+
   https://cloud.google.com/community/tutorials/nginx-ingress-gke
 
   ####> Create Ingress 
@@ -61,6 +73,8 @@
 
   ####> Create Reserve IP
         gcloud compute addresses create savior-ip --global
+        checking:
+            gcloud compute addresses list
   
   ####> change DNS Records 
         https://www.youtube.com/watch?v=ZcFNzxfDy3E&ab_channel=ProgrammerGirl
@@ -82,18 +96,51 @@
 
   ####> Redis database for celery
 
-  ####>  kubectl create clusterrolebinding cluster-admin-binding  --clusterrole cluster-admin --clusterrole cluster-admin ## give permission to create clusterrolebindings
 
 
 
 ###########################################################################
 ############################ WAY TO Update APP ############################
 ###########################################################################
-create k8s cluster 
-deploy dep.yaml
-deploy service.yaml 
-add ingress controller 
-add ingress.yaml
-get ip-add and put it into ALLOWED_HOSTS in github actions
-configure ip-add into DNS
-run github actions
+=====================) create k8s cluster (===================== 
+      gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-south2-a --enable-image-streaming 
+
+      gcloud container clusters get-credentials savior-cluster --zone asia-south2-a --project high-function-378716 
+  
+      kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
+      
+      kubectl create secret generic savior-keys --from-file=ssh.keys/savior-secret.json
+
+      kubectl create clusterrolebinding cluster-admin-binding  --clusterrole cluster-admin --user $(gcloud config get-value account)
+
+
+=====================)   dep.yaml & service.yaml    (=====================
+      kubectl apply -f k8s/dep/dep.yaml
+      kubectl apply -f k8s/dep/service.yaml
+
+      Checking:
+      kubectl get all
+
+
+(=====================)    add ingress controller   (===================== 
+      kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.6.4/deploy/static/provider/cloud/deploy.yaml
+      
+      helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+      helm repo update
+      helm install nginx-ingress ingress-nginx/ingress-nginx
+
+      checking:
+      kubectl get all -n ingress-nginx
+      
+
+(=====================)     create ingress.yaml      (=====================
+      kubectl apply -f k8s/dep/ingress-resources.yaml
+      
+      checking:
+      kubectl describe ingress savior-ingress
+
+
+(=====================    get ip-add and put it into ALLOWED_HOSTS, Domain  (=====================
+
+
+(===================== Run github actions to create image and push it to gcr (====================

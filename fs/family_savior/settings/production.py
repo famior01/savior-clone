@@ -8,7 +8,7 @@ DEBUG=False
 ENV_ALLOWED_HOST=config('DJANGO_ALLOWED_HOSTS')
 DOMAIN_NAME=config('DOMAIN_NAME')
 # ALLOWED_HOSTS=[ "34.131.57.36", DOMAIN_NAME, 'savior.website']
-ALLOWED_HOSTS=["34.131.43.61",'savior.website']    
+ALLOWED_HOSTS=["*",'savior.website', DOMAIN_NAME, '10.76.13.100', '34.131.57.36', '34.117.175.183']    
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================

@@ -15,7 +15,6 @@ spec:
   selector:
     matchLabels:
       app: savior-deployment
-
   template:
     metadata:
       labels:
@@ -23,7 +22,7 @@ spec:
     spec:
       containers:
       - name: savior-deployment
-        image: asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:v1.1.0
+        image: asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:latest
         imagePullPolicy: IfNotPresent
         envFrom:
           - secretRef:
@@ -41,4 +40,4 @@ spec:
         ports:
         - containerPort: 8000
       imagePullSecrets:
-        - name: savior
+        - name: savior-keys
