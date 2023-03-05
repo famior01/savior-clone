@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: savior-deployment
-        image: asia-east2-docker.pkg.dev/high-function-378716/savior-images/savior:v1.1.0
+        image: asia-east2-docker.pkg.dev/high-function-378716/savior-images/savior:latest
         imagePullPolicy: Always
         resources:
           requests:
@@ -96,3 +96,17 @@ spec:
         - containerPort: 8000
       imagePullSecrets:
       - name: savior-keys
+        
+        # readinessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 8080
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 10
+        # livenessProbe:
+        #   httpGet:
+        #     path: /
+        #     port: 8080
+        #   initialDelaySeconds: 15
+        #   periodSeconds: 20
+        
