@@ -34,6 +34,64 @@ spec:
         envFrom:
         - secretRef:
             name: savior-prod-secret
+        
+        env:
+          - name: PORT
+            value: "8000"
+
+          - name: USE_PRODUCTION
+            value: "True"
+
+          - name: TESTING
+            value: "False"
+
+          - name: ABSOLUTE_PATH
+            value: "app"
+
+          - name: DOMAIN_NAME
+            value: "savior.website"
+
+          - name: DJANGO_SUPERUSER_USERNAME
+            value: "abuubaida01"
+
+          - name: DJANGO_SUPERUSER_PASSWORD
+            value: "fAz881Pn537gajnDzeRQBiB9kzsEvurZ6LPiEeQ8rUc"
+
+          - name: DJANGO_SUPERUSER_EMAIL
+            value: "abuubaida901@gmail.com"
+
+          - name: DJANGO_SUPERUSER_FULLNAME
+            value: "Abu-Ubaida"
+
+          - name: DJANGO_SUPERUSER_RELIGION
+            value: "Islam"
+
+          - name: DJANGO_SUPERUSER_GENDER
+            value: "Male"
+
+          - name: DJANGO_SECRET_KEY
+            value: "zLHEBvVqwREAYmrT4_25tRklh4Anv5iXbV08s8u26KVSP_5iMBEinzcnEp-bj8qure4"
+
+          - name: DB_NAME
+            value: "savior-psql"
+
+          - name: DB_USERNAME
+            value: "abuubaida01"
+
+          - name: DB_PASSWORD
+            value: "Sp1|@Sl2|7*"
+
+          - name: DB_HOST
+            value: "/cloudsql/high-function-378716:asia-south2:saviordb"
+
+          - name: DB_PORT
+            value: "5432"
+
+          - name: EMAIL_USER
+            value: "famior01@gmail.com"
+
+          - name: EMAIL_PASSWORD
+            value: "ddkbuimnyedhkmpy"
         ports:
         - containerPort: 8000
       imagePullSecrets:
@@ -51,60 +109,4 @@ spec:
         #     port: 8080
         #   initialDelaySeconds: 15
         #   periodSeconds: 20
-        # env:
-        #   - name: PORT
-        #     value: "8000"
-
-        #   - name: USE_PRODUCTION
-        #     value: "True"
-
-        #   - name: TESTING
-        #     value: "False"
-
-        #   - name: ABSOLUTE_PATH
-        #     value: "app"
-
-        #   - name: DOMAIN_NAME
-          #   value: "savior.website"
-
-          # - name: DJANGO_SUPERUSER_USERNAME
-          #   value: "abuubaida01"
-
-          # - name: DJANGO_SUPERUSER_PASSWORD
-          #   value: "fAz881Pn537gajnDzeRQBiB9kzsEvurZ6LPiEeQ8rUc"
-
-          # - name: DJANGO_SUPERUSER_EMAIL
-          #   value: "abuubaida901@gmail.com"
-
-          # - name: DJANGO_SUPERUSER_FULLNAME
-          #   value: "Abu-Ubaida"
-
-          # - name: DJANGO_SUPERUSER_RELIGION
-          #   value: "Islam"
-
-          # - name: DJANGO_SUPERUSER_GENDER
-          #   value: "Male"
-
-          # - name: DJANGO_SECRET_KEY
-          #   value: "zLHEBvVqwREAYmrT4_25tRklh4Anv5iXbV08s8u26KVSP_5iMBEinzcnEp-bj8qure4"
-
-          # - name: DB_NAME
-          #   value: "savior-psql"
-
-          # - name: DB_USERNAME
-          #   value: "abuubaida01"
-
-          # - name: DB_PASSWORD
-          #   value: "Sp1|@Sl2|7*"
-
-          # - name: DB_HOST
-          #   value: "/cloudsql/high-function-378716:asia-south2:saviordb"
-
-          # - name: DB_PORT
-          #   value: "5432"
-
-          # - name: EMAIL_USER
-          #   value: "famior01@gmail.com"
-
-          # - name: EMAIL_PASSWORD
-          #   value: "ddkbuimnyedhkmpy"
+        
