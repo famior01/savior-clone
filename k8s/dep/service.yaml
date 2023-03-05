@@ -4,7 +4,8 @@ metadata:
   name: savior-deployment
   namespace: default
   annotations:
-    cloud.google.com/neg: '{"ingress": true}'
+      cloud.google.com/neg: '{"ingress": true}'
+  
 spec:
   type: ClusterIP
   ports:
@@ -14,3 +15,5 @@ spec:
       targetPort: 8000
   selector:
     app: savior-deployment
+
+    

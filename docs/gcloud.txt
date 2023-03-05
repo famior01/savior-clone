@@ -49,10 +49,10 @@
 ############################ WAY TO Start APP ############################
 ###########################################################################
   ####> create cluster 
-  gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-south2-a --enable-image-streaming 
+  gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-east2-a --enable-image-streaming 
 
   ####> connect with gcloud kubernetes
-  gcloud container clusters get-credentials savior-cluster --zone asia-south2-a --project high-function-378716 
+  gcloud container clusters get-credentials savior-cluster --zone asia-east2-a --project high-function-378716 
 
   ####>  kubectl create clusterrolebinding cluster-admin-binding  --clusterrole cluster-admin --clusterrole cluster-admin ## give permission to create clusterrolebindings
   
@@ -103,9 +103,9 @@
 ############################ WAY TO Update APP ############################
 ###########################################################################
 =====================) create k8s cluster (===================== 
-      gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-south2-a --enable-image-streaming 
+      gcloud container clusters create savior-cluster --num-nodes=1 --machine-type=n1-standard-1  --project=high-function-378716 --zone=asia-east2-a --enable-image-streaming 
 
-      gcloud container clusters get-credentials savior-cluster --zone asia-south2-a --project high-function-378716 
+      gcloud container clusters get-credentials savior-cluster --zone asia-east2-a --project high-function-378716 
   
       kubectl create secret generic savior-prod-secret --from-env-file=fs/.env
       
@@ -120,11 +120,12 @@
 
       Checking:
       kubectl get all
+      kubectl describe deployment/savior-deployment
 
 
 (=====================)    add ingress controller   (===================== 
       kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.6.4/deploy/static/provider/cloud/deploy.yaml
-      
+                                          or 
       helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
       helm repo update
       helm install nginx-ingress ingress-nginx/ingress-nginx
@@ -132,15 +133,13 @@
       checking:
       kubectl get all -n ingress-nginx
       
+      put pubile ip of this in DNS records
 
 (=====================)     create ingress.yaml      (=====================
       kubectl apply -f k8s/dep/ingress-resources.yaml
       
       checking:
       kubectl describe ingress savior-ingress
-
-
-(=====================    get ip-add and put it into ALLOWED_HOSTS, Domain  (=====================
 
 
 (===================== Run github actions to create image and push it to gcr (====================

@@ -22,15 +22,18 @@ spec:
     spec:
       containers:
       - name: savior-deployment
-        image: asia-south2-docker.pkg.dev/high-function-378716/savior-images/savior:v1.1.0
+        image: asia-east2-docker.pkg.dev/high-function-378716/savior-images/savior:v1.1.0
         imagePullPolicy: Always
         resources:
           requests:
             cpu: "100m"
             memory: "500M"
           limits:
-            cpu: "800m"
-            memory: "4000M"
+            cpu: "500m"
+            memory: "1000M"
+        envFrom:
+        - secretRef:
+            name: savior-prod-secret
         env:
           - name: PORT
             value: "8000"
@@ -44,12 +47,6 @@ spec:
           - name: ABSOLUTE_PATH
             value: "app"
 
-          - name: IP_1
-            value: ""
-
-          - name: IP_2
-            value: ""
-            
           - name: DOMAIN_NAME
             value: "savior.website"
 
@@ -94,19 +91,8 @@ spec:
 
           - name: EMAIL_PASSWORD
             value: "ddkbuimnyedhkmpy"
-
+        
         ports:
         - containerPort: 8000
-
-
-
-
-
-
-
-# envFrom:
-#   - secretRef:
-#       name: savior-prod-secret
-
-# imagePullSecrets:
-        # - name: savior-keys
+      imagePullSecrets:
+      - name: savior-keys

@@ -5,11 +5,9 @@ import os
 
 SECRET_KEY=config('DJANGO_SECRET_KEY')
 DEBUG=False
-IP_1=config('IP_1')
-IP_2=config('IP_2')
 DOMAIN_NAME=config('DOMAIN_NAME')
-# ALLOWED_HOSTS=[ "34.131.57.36", DOMAIN_NAME, 'savior.website']
-ALLOWED_HOSTS=["www.savior.website", DOMAIN_NAME, IP_1, IP_2 ]    
+ALLOWED_HOSTS=[ DOMAIN_NAME, "www.savior.website"]    
+
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
