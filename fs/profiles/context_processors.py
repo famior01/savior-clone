@@ -2,7 +2,7 @@ from .models import Profile
 from decouple import config
 import os
 
-Production=config('USE_PRODUCTION')
+Production=config('USE_PRODUCTION', cast=bool)
 
 def profile_picture(request):
   '''

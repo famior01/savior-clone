@@ -4,11 +4,10 @@ import os
 import sys
 from decouple import config
 
- 
 def main():
     """Run administrative tasks."""
-    production = config('USE_PRODUCTION')
-    testing = config('TESTING')
+    production = config('USE_PRODUCTION', cast=bool)
+    testing = config('TESTING', cast=bool)
     if production==True:
         os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'family_savior.settings.production')
     elif testing==True:

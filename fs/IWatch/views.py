@@ -21,9 +21,9 @@ from decouple import config
 import subprocess
 import os
 
-ABSOLUTE_PATH = config('ABSOLUTE_PATH')
-PRODUCTION = config('USE_PRODUCTION')
-TESTING = config('TESTING')
+ABSOLUTE_PATH = config('ABSOLUTE_PATH', cast=str)
+PRODUCTION = config('USE_PRODUCTION', cast=bool)
+TESTING = config('TESTING', cast=bool)
 
 import boto3
 from botocore.client import Config

@@ -24,9 +24,9 @@ from decouple import config
 from notifications.signals import notify
 
 
-ABSOLUTE_PATH = config('ABSOLUTE_PATH')
-USE_PRODUCTION= config('USE_PRODUCTION')
-TESTING = config('TESTING')
+ABSOLUTE_PATH = config('ABSOLUTE_PATH', cast=str)
+USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
+TESTING = config('TESTING', cast=bool)
 
 class Get_frames:
     def __init__(self, video_id=None, object_det=False):

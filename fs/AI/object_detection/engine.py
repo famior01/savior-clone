@@ -23,7 +23,7 @@ import numpy as np
 import shutil
 from decouple import config
 
-ABSOLUTE_PATH = config('ABSOLUTE_PATH')
+ABSOLUTE_PATH = config('ABSOLUTE_PATH', cast=str)
 
 class Object_Detection:
   def __init__(self, id):

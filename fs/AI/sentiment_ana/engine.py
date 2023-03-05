@@ -15,9 +15,9 @@ from notifications.signals import notify
 from AI.space_vid_utils import get_audio_of_space_vid
 
 
-ABSOLUTE_PATH = config('ABSOLUTE_PATH')
-USE_PRODUCTION= config('USE_PRODUCTION')
-TESTING= config('TESTING')
+ABSOLUTE_PATH = config('ABSOLUTE_PATH', cast=str)
+USE_PRODUCTION= config('USE_PRODUCTION', cast=bool)
+TESTING= config('TESTING', cast=bool)
 
 
 def get_voice_ana(ID):

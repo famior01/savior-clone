@@ -3,20 +3,20 @@ from decouple import config
 import ssl
 import os 
 
-SECRET_KEY=config('DJANGO_SECRET_KEY')
+SECRET_KEY=config('DJANGO_SECRET_KEY', cast=str)
 DEBUG=False
-DOMAIN_NAME=config('DOMAIN_NAME')
+DOMAIN_NAME=config('DOMAIN_NAME', cast=str)
 ALLOWED_HOSTS=[ DOMAIN_NAME, "www.savior.website"]    
 
 # ====================================================
 # ----------------- Email Settings -----------------
 # ====================================================
-DEFAULT_FROM_EMAIL=config('EMAIL_USER')
+DEFAULT_FROM_EMAIL=config('EMAIL_USER', cast=str)
 EMAIL_HOST ='smtp.gmail.com' 
 EMAIL_USE_SSL =True
 EMAIL_PORT =465
-EMAIL_HOST_USER =config('EMAIL_USER') 
-EMAIL_HOST_PASSWORD =config('EMAIL_PASSWORD')
+EMAIL_HOST_USER =config('EMAIL_USER', cast=str) 
+EMAIL_HOST_PASSWORD =config('EMAIL_PASSWORD', cast=str)
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 
 
@@ -24,11 +24,11 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 # ------------------------- Postgres DATABASE SETTINGS -------------------
 # ======================================================================
 # https://www.enterprisedb.com/postgres-tutorials/how-use-postgresql-django
-DB_USERNAME=config('DB_USERNAME')
-DB_PASSWORD=config('DB_PASSWORD')
-DB_HOST=config('DB_HOST')
-DB_PORT=config('DB_PORT')  
-DB_DATABASE=config('DB_NAME')  
+DB_USERNAME=config('DB_USERNAME', cast=str)
+DB_PASSWORD=config('DB_PASSWORD', cast=str)
+DB_HOST=config('DB_HOST', cast=str)
+DB_PORT=config('DB_PORT', cast=str)
+DB_DATABASE=config('DB_NAME', cast=str)  
 
 DB_IS_AVAILABLE = all([
     DB_DATABASE, DB_USERNAME, DB_PASSWORD, DB_HOST, DB_PORT 
@@ -53,7 +53,7 @@ if DB_IS_AVAILABLE:
 # ===========================================================
 # --------------------- CELERY SETTINGS ---------------------
 # ===========================================================
-REDIS_HOST =config('DO_REDIS_URL')
+REDIS_HOST =config('DO_REDIS_URL', cast=str)
 CELERY_BROKER_URL =REDIS_HOST 
 CELERY_BROKER_URL = 'redis://localhost:6379'
 BROKER_USE_SSL = {'ssl_cert_reqs': ssl.CERT_REQUIRED,}
